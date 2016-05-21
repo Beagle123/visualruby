@@ -1,9 +1,0 @@
-cd ~/vrp/vr3
-git add -A
-git commit -m "latest changes"
-git push -u origin master
-cd ~/vrp/vrlib
-git add -A
-git commit -m "latest changes"
-git push -u origin master
-cd ~/vrp/vr3
