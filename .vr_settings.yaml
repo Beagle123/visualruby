@@ -13,11 +13,18 @@ open_files:
 - "/home/eric/vrp/vr3/visualruby_examples/listview_objects/bin/ListViewObjectsGUI.rb"
 - "/home/eric/vrp/vr3/visualruby_examples/filetreeview/bin/MyClass.rb"
 - "/home/eric/vrp/vr3/bin/main/VR_ENV.rb"
+- "/home/eric/vrp/vr3/visualruby_examples/all_widgets/main.rb"
+- "/home/eric/vrp/vr3/visualruby_examples/calculator/main.rb"
+- "/home/eric/vrp/vr3/visualruby_examples/child_window/main.rb"
+- "/home/eric/vrp/vr3/visualruby_examples/drag_drop/main.rb"
+- "/home/eric/vrp/vr3/visualruby_examples/filetreeview/main.rb"
+- "/home/eric/vrp/vr3/visualruby_examples/listview/main.rb"
+- "/home/eric/vrp/vr3/visualruby_examples/listview_objects/main.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
 - "/home/eric/vrp/vr3/bin/editor"
 - "/home/eric/vrp/vr3/bin/main"
-current_file: "/home/eric/vrp/vr3/vr"
+current_file: "/home/eric/vrp/vr3/visualruby_examples/listview_objects/main.rb"
 rdoc_command_line: rdoc -x *.glade
 builder: !ruby/object:Gtk::Builder {}

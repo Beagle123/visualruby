@@ -1,0 +1,6 @@
+cd ~/vrp/vr3
+git pull git@github.com:Beagle123/visualruby.git
+cd ~/vrp/vrlib
+git pull git@github.com:Beagle123/vrlib.git
+echo
+echo vr and vrlib pulled!

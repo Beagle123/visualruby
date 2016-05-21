@@ -4,7 +4,7 @@
 
 my_path = File.expand_path(File.dirname(__FILE__))
 if my_path =~ /^\/home\/eric\/vrp\/.*/  
-	require File.expand_path(my_path + "../../../../vrlib3") + "/vrlib.rb"  
+	require File.expand_path(my_path + "../../../../vrlib") + "/vrlib.rb"  
 else
 	require "vrlib"
 end
