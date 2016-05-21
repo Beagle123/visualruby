@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby 
 #
 
-#require "rubygems"
+#don't require rubygems
 require "gtksourceview3"
 require "yaml" #needed
 require "net/http" #needed
