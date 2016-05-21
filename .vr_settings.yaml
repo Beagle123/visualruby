@@ -1,0 +1,23 @@
+--- !ruby/object:VR_ENV
+settings_file_version: 1
+width: 1545
+height: 897
+panel_pos: 577
+run_command_line: ruby vr
+open_files:
+- "/home/eric/vrp/vr3/vr"
+- "/home/eric/vrp/vr3/bin/main/VR_ENV_GLOBAL.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
+- "/home/eric/vrp/vr3/visualruby_examples/listview/bin/SongListView.rb"
+- "/home/eric/vrp/vr3/visualruby_examples/listview_objects/bin/ListViewObjectsGUI.rb"
+- "/home/eric/vrp/vr3/visualruby_examples/filetreeview/bin/MyClass.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_ENV.rb"
+open_folders:
+- "/home/eric/vrp/vr3"
+- "/home/eric/vrp/vr3/bin"
+- "/home/eric/vrp/vr3/bin/editor"
+- "/home/eric/vrp/vr3/bin/main"
+current_file: "/home/eric/vrp/vr3/vr"
+rdoc_command_line: rdoc -x *.glade
+builder: !ruby/object:Gtk::Builder {}

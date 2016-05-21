@@ -1,0 +1,15 @@
+--- !ruby/object:VR_ENV
+settings_file_version: 1
+width: 1240
+height: 795
+panel_pos: 504
+run_command_line: ruby main.rb
+open_files:
+- "/home/eric/vrp/vr3/visualruby_examples/filetreeview/main.rb"
+- "/home/eric/vrp/vr3/visualruby_examples/filetreeview/bin/MyClass.rb"
+open_folders:
+- "/home/eric/vrp/vr3/visualruby_examples/filetreeview"
+- "/home/eric/vrp/vr3/visualruby_examples/filetreeview/bin"
+- "/home/eric/vrp/vr3/visualruby_examples/filetreeview/bin/glade"
+current_file: "/home/eric/vrp/vr3/visualruby_examples/filetreeview/bin/MyClass.rb"
+rdoc_command_line: rdoc -x README
