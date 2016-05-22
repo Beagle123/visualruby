@@ -21,7 +21,7 @@ class SongListView < VR::ListView
 		@cols[:popular] = VR::ProgressCol
 		@cols[:buy] = VR::ComboCol
 		@cols[:quantity] = Gtk::Adjustment ##VR::SpinCol
-#   @cols[:price] = VR::CurrencyCol
+   @cols[:price] = VR::CurrencyCol
 		@cols[:check] = TrueClass
 		super(@cols)
 
@@ -66,11 +66,11 @@ class SongListView < VR::ListView
   		row[:artist] = row[:first_name] + " " + row[:last_name]
   		row[:song] = data[i][2]
   		row[:quantity] = Gtk::Adjustment.new(0,0,100,1,0,0)  # VR::SpinCol.new(0,0,100,1)
-#			row[:price] = VR::CurrencyCol.new(2.99)
+			row[:price] = VR::CurrencyCol.new(2.99)
   		row[:popular] = data[i][3]
   		row[:buy] = VR::ComboCol.new("Buy", "Buy", "Rent", "Listen") # all rows use the same combobox
   		row[:check] = false
-			row[:date] = VR::CalendarCol.new(data[i][4], :hide_date=>true)
+			row[:date] = VR::CalendarCol.new(data[i][4], :format => "%d %b %Y ", :hide_time=>true, :hide_date => false)
 		end
 	end
 
