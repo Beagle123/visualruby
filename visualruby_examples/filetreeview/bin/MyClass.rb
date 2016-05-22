@@ -10,11 +10,10 @@ class MyClass #(change name)
 	def before_show()
 		path = File.expand_path(ENV['HOME'])
 		@ftv = VR::FileTreeView.new(path, "/home/eric/vrp/vr3/img/")
-		@ftv.glob = "/.settings.yaml"
+#		@ftv.glob = "/.settings.yaml"
 		@builder["scrolledwindow1"].add(@ftv)
 		@ftv.refresh
 		@ftv.expand_row(@ftv.model.iter_first.path, false)
-		parse_signals()  #makes method below work:
 	end	
 
 

@@ -14,7 +14,7 @@ class SongListView < VR::ListView
 	def initialize 
 		@cols = {}
 		@cols[:pix] = {:pix => Gdk::Pixbuf, :song => String } #two renderers in this column
-		@cols[:date] = DateTime
+		@cols[:date] = VR::CalendarCol # DateTime
 		@cols[:artist] = String
 		@cols[:first_name] = String	  
 		@cols[:last_name] = String
@@ -70,7 +70,7 @@ class SongListView < VR::ListView
   		row[:popular] = data[i][3]
   		row[:buy] = VR::ComboCol.new("Buy", "Buy", "Rent", "Listen") # all rows use the same combobox
   		row[:check] = false
-			row[:date] = data[i][4]
+			row[:date] = VR::CalendarCol.new(data[i][4], :hide_date=>true)
 		end
 	end
 

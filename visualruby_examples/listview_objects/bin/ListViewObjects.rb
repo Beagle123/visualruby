@@ -20,7 +20,7 @@ class ListViewObjects < VR::ListView
 
 	def populate_data()  # just populates model with random data
 		row = add_row() 
-		row[:join] = VR::CalendarCol.new DateTime.new(2011, 1, 15, 7, 23, 0)
+		row[:join] = VR::CalendarCol.new DateTime.new(2011, 1, 15, 7, 23, 0) 
 		row[:name] = DataObject.new("Henry Johnson", "18458 S Beauford St.", "hohohoja@email.net", "154-453-8585")
 		row[:quote] = VR::TextCol.new "I have come to believe that the whole world is an enigma, a harmless enigma that is made terrible by our own mad attempt to interpret it as though it had an underlying truth.\n\n- Umberto Eco"
 		row = add_row()

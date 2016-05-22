@@ -87,7 +87,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://www.yoursite.org/"  # optional
   s.description = "Full description here" # optional
 	s.executables = ['#{main_file}']  # i.e. 'vr' (optional, blank if library project)
-	s.default_executable = ['#{main_file}']  # i.e. 'vr' (optional, blank if library project)
+	s.default_executable = '#{main_file}'  # i.e. 'vr' (optional, blank if library project)
 	s.bindir = [#{bindir}]    # optional, default = bin
 	s.require_paths = [#{libdir}]  # optional, default = lib 
 	s.files = Dir.glob(File.join("**", "*.{rb,glade}"))
