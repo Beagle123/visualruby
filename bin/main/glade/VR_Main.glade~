@@ -593,7 +593,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkPaned" id="panelNotebook">
+              <object class="GtkPaned" id="paned1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="orientation">vertical</property>

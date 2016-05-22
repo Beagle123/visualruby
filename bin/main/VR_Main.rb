@@ -218,9 +218,9 @@ class VR_Main
 	end
 
   def save_state
-    return if $VR_ENV == nil
     $VR_ENV.width, $VR_ENV.height = @builder["window1"].size()
     $VR_ENV.panel_pos = @builder["panelMain"].position
+    $VR_ENV.notebook_panel_position = @builder["panelNotebook"].position
     $VR_ENV.open_folders = @file_tree.get_open_folders()
     $VR_ENV.open_files = @tabs.get_open_fn()
     $VR_ENV.current_file = @tabs.docs[@tabs.page].full_path_file
@@ -230,11 +230,11 @@ class VR_Main
 	def load_state
     @builder["window1"].resize($VR_ENV.width, $VR_ENV.height)
     @builder['panelMain'].set_position($VR_ENV.panel_pos)
-    @builder["window1"].visible = true
+		@builder["panelNotebook"].set_position($VR_ENV.notebook_panel_position)
+#    @builder["window1"].visible = true
     @tabs.open_file_names($VR_ENV.open_files)
     @tabs.switch_to($VR_ENV.current_file)
     @file_tree.open_folders($VR_ENV.open_folders)
-    @builder["window1"].show_all
 	end
 
 	def menuCreateGemspec__activate(*a)

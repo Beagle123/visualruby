@@ -1,23 +1,16 @@
 --- !ruby/object:VR_ENV
 settings_file_version: 1
-width: 1545
-height: 897
-panel_pos: 577
+width: 1206
+height: 600
+panel_pos: 362
 run_command_line: ruby vr
 open_files:
-- "/home/eric/vrp/vr3/bin/main/RubygemsAPI.rb"
-- "/home/eric/vrp/vr3/bin/main/NewProjectGUI.rb"
-- "/home/eric/vrp/vr3/bin/editor/VR_Tabs.rb"
-- "/home/eric/vrp/vr3/bin/editor/VR_TextShell.rb"
-- "/home/eric/vrp/vr3/vr"
-- "/home/eric/vrp/vr3/bin/tools/VR_Tools.rb"
-- "/home/eric/vrp/vr3/vr.gemspec"
+- "/home/eric/vrp/vr3/bin/main/VR_ENV.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
-- "/home/eric/vrp/vr3/bin/editor"
 - "/home/eric/vrp/vr3/bin/main"
-- "/home/eric/vrp/vr3/bin/main/glade"
-current_file: "/home/eric/vrp/vr3/vr.gemspec"
-rdoc_command_line: rdoc -x *.glade
+current_file: "/home/eric/vrp/vr3/bin/main/VR_ENV.rb"
+rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
+notebook_panel_position: 147
