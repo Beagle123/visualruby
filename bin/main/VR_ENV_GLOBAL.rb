@@ -1,21 +1,19 @@
 
-class VR_ENV_GLOBAL
+class VR_ENV_GLOBAL < VR::SavableClass
 		
 	GLOBAL_SETTINGS_FILE = File.join(ENV["HOME"], "visualruby", ".vr_global_settings")
-	SETTINGS_FILE_VERSION = 1
 
 	include GladeGUI
 	
 	attr_accessor :browser, :tab_spaces, :glade_path
-	attr_accessor :font_name, :settings_file_version
+	attr_accessor :font_name, :settings_file_version, :filename
 
-	def initialize
-		@settings_file_version = SETTINGS_FILE_VERSION
-		@browser = "firefox"
-		@tab_spaces = 2
-		@font_name = "Monospace 10"
-		@glade_path = "glade"
-		save_yaml
+	def defaults()
+		@filename ||= GLOBAL_SETTINGS_FILE
+		@browser ||= "firefox"
+		@tab_spaces ||= 2
+		@font_name ||= "Monospace 10"
+		@glade_path ||= "glade"
 	end
 
 	def before_show
@@ -34,22 +32,6 @@ class VR_ENV_GLOBAL
 	def buttonCancel__clicked(*args)
 		@builder["window1"].destroy
 	end		
-
-	def save_yaml
-		data = YAML.dump(self)
-		File.open(GLOBAL_SETTINGS_FILE, "w") {|f| f.puts(data)}
-	end
-
-	def self.load_yaml()
-		if File.file?(GLOBAL_SETTINGS_FILE) 
-		 	me = YAML::load(File.open(GLOBAL_SETTINGS_FILE).read)
-			return VR_ENV_GLOBAL.new() if me.settings_file_version.nil?
-			return VR_ENV_GLOBAL.new() if me.settings_file_version < SETTINGS_FILE_VERSION
-			return me 
-		else
-	  	VR_ENV_GLOBAL.new()
-		end
-	end
 
 	def buttonTryGlade__clicked(*argv)
 		VR_Tools.popen(@glade_path)

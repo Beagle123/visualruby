@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby 
 #
 
-
+start = Time.now
 require "gtksourceview3"
 require "yaml" #needed
 require "net/http" #needed
@@ -13,6 +13,8 @@ require "rubygems/uninstaller"
 require "rubygems/package"
 require "rubygems/specification"
 
+puts "Require Time:  " + (Time.now - start).to_s
+
 #rubygems uses rubygems/package as of ruby 2.0.0
 begin
 	require "rubygems/builder"
@@ -20,19 +22,29 @@ rescue LoadError
 end
 
 
+
+
 #make program output in real time so errors visible
 STDOUT.sync = true
 STDERR.sync = true
 
+
 my_path = File.expand_path(File.dirname(__FILE__))
 if my_path =~ /^\/home\/eric\/vrp\/.*/  
-	require File.expand_path(my_path + "/../vrlib") + "/vrlib.rb"  
+	temp = File.expand_path(my_path + "/../vrlib") + "/vrlib.rb" 
+puts "Require Time Before vrlib:  " + (Time.now - start).to_s 
+	require temp
+puts "Require Time After vrlib:  " + (Time.now - start).to_s 
 else
 	require "vrlib"
 end
 
-require_all Dir.glob(my_path + "/bin/**/*.rb") # cant require_all root because .rb files in root will run????
 
+
+#require_all Dir.glob(my_path + "/bin/**/*.rb") # cant require_all root because .rb files in root will run????
+require_rel 'bin/'
+
+puts "Require Time:  " + (Time.now - start).to_s
 
 VR_Main.new(ARGV).show
 

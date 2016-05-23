@@ -1,4 +1,6 @@
 
+
+
 class VR_Main 
 
 	include GladeGUI
@@ -68,8 +70,12 @@ class VR_Main
 		FileUtils.cd(proj_path)
 		@builder['window1'].title = "VR: " + File.basename(Dir.pwd)
 		@builder["labelStatus"].label = Dir.pwd
-		$VR_ENV = VR_ENV.load_yaml()
-		$VR_ENV_GLOBAL = VR_ENV_GLOBAL.load_yaml()
+		unless $VR_ENV = VR_ENV.load_yaml(VR_ENV::SETTINGS_FILE) 
+			$VR_ENV = VR_ENV.new(VR_ENV::SETTINGS_FILE)
+		end
+		unless $VR_ENV_GLOBAL = VR_ENV_GLOBAL.load_yaml(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
+			$VR_ENV_GLOBAL = VR_ENV_GLOBAL.new(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
+		end
 		@file_tree.root = proj_path
 		@file_tree.refresh()
 		load_state()
