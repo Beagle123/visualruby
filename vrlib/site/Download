@@ -1,0 +1,85 @@
+
+=Install Visual Ruby
+
+==Requirements:
+
+* Ruby 2.x.x  
+
+* Glade Interface Designer  
+
+
+==Install in http://visualruby.net/img/windows_logo.jpg
+
+
+1. Install Ruby 2.x.x using {Ruby's one-click installer}[http://rubyinstaller.org/downloads/] for windows.
+
+
+2. Install Glade 3.16 or higher [https://glade.gnome.org] (windows installer)
+
+
+3. You should remove any old versions of Ruby/Gnome from your computer.  Look in your program
+   menu, and select "Uninstall" for any Ruby/Gnome entries.  Visualruby will
+   automatically install the latest {GTK2 rubygem}[http://rubygems.org/gems/gtk2].
+
+
+4. Install visaualruby by going to <b>Start > Command Prompt With Ruby</b> and entering the command:
+
+     gem install visualruby
+
+After it installs, you can run visualruby by entering:
+
+  vr
+
+
+Please post any issues to this forum:
+
+
+http://www.ruby-forum.com/forum/gnome2
+
+
+==Install in Linux http://visualruby.net/img/linux_logo.jpg
+
+1. {Install Ruby 1.9.3}[http://www.techotopia.com/index.php/] if it isn't on your computer.
+
+2. Run this command by pressing Ctrl-Alt-T to open a Command Prompt.  Then hilight this text with your mouse:
+
+     sudo apt-get install -y glade-gtk2 libgtksourceview2.0-dev gtk2-engines-pixbuf
+  
+   Then click on the terminal window and, paste the text by clicking on the center wheel of your mouse.  Essentially, you need to manage to enter the above text into the command terminal.  In Ubuntu the
+   terminal can also be found in the menus:  <b>Applications > Accessories > Terminal</b> 
+
+3. Install the visualruby gem:
+
+ sudo gem install visualruby
+
+Note:  If you're using rvm, you may need to omit the "sudo" command.
+
+Please post any issues to this forum:
+
+
+http://www.ruby-forum.com/forum/gnome2
+
+
+==Install on a Mac  http://visualruby.net/img/mac_logo.jpg    
+
+
+Install {Homebrew}[http://mxcl.github.com/homebrew/] by following {these instructions}[https://github.com/mxcl/homebrew/wiki/installation]
+
+Install {GTK+}[http://www.gtk.org/] by typing the following command in Terminal:
+
+  brew install gtk+
+
+Install {GTK Source View}[http://projects.gnome.org/gtksourceview/] by typing the following command in Terminal:
+
+  brew install gtksourceview
+
+Install the {Visual Ruby Gem}[http://www.visualruby.net/]:
+
+  gem install visualruby
+
+To run visualruby, at the prompt, type:
+
+  vr
+
+
+
