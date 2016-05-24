@@ -1,0 +1,17 @@
+--- !ruby/object:VR_ENV
+settings_file_version: 1
+width: 1121
+height: 880
+panel_pos: 609
+run_command_line: ruby main.rb
+open_files:
+- "/home/eric/vrp/vr3/examples/listview/main.rb"
+- "/home/eric/vrp/vr3/examples/listview/bin/SongListView.rb"
+- "/home/eric/vrp/vr3/examples/listview/bin/SongListViewGUI.rb"
+- "/home/eric/vrp/vr3/examples/listview/bin/audio-x-generic.png"
+open_folders:
+- "/home/eric/vrp/vr3/examples/listview"
+- "/home/eric/vrp/vr3/examples/listview/bin"
+- "/home/eric/vrp/vr3/examples/listview/bin/glade"
+current_file: "/home/eric/vrp/vr3/examples/listview/bin/audio-x-generic.png"
+rdoc_command_line: rdoc -x README
