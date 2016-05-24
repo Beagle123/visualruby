@@ -8,12 +8,15 @@ run_command_line: 'ruby vr '
 open_files:
 - "/home/eric/vrp/vr3/vr"
 - "/home/eric/vrp/vr3/vrlib/lib/Dialog.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
+- "/home/eric/vrp/vr3/bin"
+- "/home/eric/vrp/vr3/bin/main"
 - "/home/eric/vrp/vr3/vrlib"
 - "/home/eric/vrp/vr3/vrlib/lib"
-current_file: "/home/eric/vrp/vr3/vrlib/lib/Dialog.rb"
-current_line: 73
+current_file: "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
+current_line: 312
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

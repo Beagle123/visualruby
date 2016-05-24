@@ -254,9 +254,9 @@ class VR_Main
     @file_tree.open_folders($VR_ENV.open_folders)
 	end
 
-	def window1__key_press_event(*args)
-		@tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
-	end
+#	def window1__key_press_event(*args)
+#		@tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
+#	end
 
 
 	def menuCreateGemspec__activate(*a)
