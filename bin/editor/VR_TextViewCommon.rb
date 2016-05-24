@@ -10,7 +10,6 @@ module VR_TextViewCommon
 		s = buffer.get_iter_at(:line => line)
 		e = get_end_iter(s)
 		if !search_str.nil?
-# depricated			s, e = s.forward_search(search_str, Gtk::TextIter::SEARCH_TEXT_ONLY, e)
 		s, e = s.forward_search(search_str, :text_only, e)
 		end
 		return s, e
@@ -18,6 +17,7 @@ module VR_TextViewCommon
 
 	def select_text(line, search_str = nil)
 			s, e = get_line_iters(line, search_str)
+			return if s.nil? or e.nil?
     	buffer.move_mark(buffer.get_mark("insert"),s)
 			buffer.move_mark(buffer.get_mark("selection_bound"), e)
 	end
@@ -53,7 +53,8 @@ module VR_TextViewCommon
    	os = buffer.cursor_position
 		return if os > buffer.char_count - 1 or os == 0
 		iter = buffer.get_iter_at(:offset => os)  #get_iter_at_offset depricated
-		scroll_to_iter(iter, 0.0, true, 1.0, 0.5)
+#		scroll_to_iter(iter, 0.0, true, 1.0, 0.5)
+		scroll_to_iter(iter, 0.0, true, 0, 0.5)
 	end
 
 end

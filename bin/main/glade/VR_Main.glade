@@ -2,9 +2,8 @@
 <!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
-  <object class="GtkWindow" id="window1">
+  <object class="GtkApplicationWindow" id="window1">
     <property name="can_focus">False</property>
-    <property name="window_position">center</property>
     <child>
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>
@@ -20,7 +19,6 @@
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">File</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu1">
                     <property name="visible">True</property>
@@ -30,7 +28,6 @@
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">New Project</property>
                       </object>
                     </child>
                     <child>
@@ -39,7 +36,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Create a new, blank document in a tab.</property>
-                        <property name="label" translatable="yes">New Blank Document</property>
                       </object>
                     </child>
                     <child>
@@ -48,7 +44,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Creates a working window script that you can edit.</property>
-                        <property name="label" translatable="yes">New Skeleton Window Script</property>
                       </object>
                     </child>
                     <child>
@@ -57,7 +52,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Saves all documents in the tabs to disk.</property>
-                        <property name="label" translatable="yes">Save All</property>
                       </object>
                     </child>
                     <child>
@@ -66,7 +60,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Saves the current tab to a file.</property>
-                        <property name="label" translatable="yes">Save As</property>
                       </object>
                     </child>
                     <child>
@@ -75,7 +68,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Close all documents opened in the tabs.</property>
-                        <property name="label" translatable="yes">Close All</property>
                       </object>
                     </child>
                     <child>
@@ -89,8 +81,6 @@
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Quit</property>
-                        <signal name="activate" handler="destroy_window" swapped="no"/>
                       </object>
                     </child>
                   </object>
@@ -102,7 +92,6 @@
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Tools</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu3">
                     <property name="visible">True</property>
@@ -113,7 +102,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Will create a .gemspec file that defines this project.  When you build your gem, it uses this file.</property>
-                        <property name="label" translatable="yes">Create Gemspec File</property>
                       </object>
                     </child>
                     <child>
@@ -122,7 +110,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Create a free account on rubygems.org so you can upload and share your gems.</property>
-                        <property name="label" translatable="yes">Start RubyGems Account</property>
                       </object>
                     </child>
                     <child>
@@ -131,7 +118,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Creates a launcher on your destop for this project.</property>
-                        <property name="label" translatable="yes">Create Desktop Launcher</property>
                       </object>
                     </child>
                     <child>
@@ -139,7 +125,6 @@
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Global Settings</property>
                       </object>
                     </child>
                     <child>
@@ -148,7 +133,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Edit all user preferences for Visual Ruby.</property>
-                        <property name="label" translatable="yes">Project Settings</property>
                       </object>
                     </child>
                   </object>
@@ -160,7 +144,6 @@
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Help</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu">
                     <property name="visible">True</property>
@@ -171,7 +154,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Visit visualruby.net for complete tutorials on using Visual Ruby</property>
-                        <property name="label" translatable="yes">Online Tutorials</property>
                       </object>
                     </child>
                     <child>
@@ -180,7 +162,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">This will copy exaple code into a folder named visualruby_examples in your home directory.</property>
-                        <property name="label" translatable="yes">Install Examples</property>
                       </object>
                     </child>
                   </object>
@@ -552,7 +533,6 @@
                   <object class="GtkBox" id="box3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">10</property>
                     <property name="spacing">10</property>
                     <child>
                       <object class="GtkRadioButton" id="radioOnDisk">
@@ -579,7 +559,6 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="xalign">0</property>
-                        <property name="active">True</property>
                         <property name="draw_indicator">True</property>
                         <property name="group">radioOnDisk</property>
                       </object>

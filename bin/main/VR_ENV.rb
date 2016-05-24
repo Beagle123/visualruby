@@ -2,15 +2,15 @@ class VR_ENV < VR::SavableClass
 
 	include GladeGUI
 
-	SETTINGS_FILE = ".vr_settings.yaml"
+	SETTINGS_FILE = "project_settings.yaml"
 
 	attr_accessor :width, :height, :panel_pos, :rdoc_command_line
 	attr_accessor :run_command_line, :open_files, :open_folders, :current_file
-  attr_accessor :notebook_panel_position, :filename
+  attr_accessor :notebook_panel_position, :filename, :current_line
 
 	#to add setting, just add to list
 	def defaults
-		@filename ||= SETTINGS_FILE  # ".vr_settings.yaml"
+		@filename ||= SETTINGS_FILE 
 		@width ||= 800
 		@height ||= 600
 		@panel_pos ||= 360
@@ -19,6 +19,7 @@ class VR_ENV < VR::SavableClass
 		@open_files ||= []
 		@open_folders ||= []
 		@current_file ||= ""
+		@current_line ||= 1
 		@rdoc_command_line ||= "rdoc -x README"
 	end 
 

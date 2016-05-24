@@ -1,0 +1,19 @@
+--- !ruby/object:VR_ENV
+filename: project_settings.yaml
+width: 1048
+height: 657
+panel_pos: 257
+notebook_panel_position: 400
+run_command_line: 'ruby vr '
+open_files:
+- "/home/eric/vrp/vr3/vr"
+- "/home/eric/vrp/vr3/vrlib/lib/Dialog.rb"
+open_folders:
+- "/home/eric/vrp/vr3"
+- "/home/eric/vrp/vr3/vrlib"
+- "/home/eric/vrp/vr3/vrlib/lib"
+current_file: "/home/eric/vrp/vr3/vrlib/lib/Dialog.rb"
+current_line: 73
+rdoc_command_line: rdoc -x README
+builder: !ruby/object:Gtk::Builder {}
+top_level_window: false

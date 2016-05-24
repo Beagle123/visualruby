@@ -128,14 +128,24 @@ class VR_Document < GtkSource::View
 		return false
   end
 
+#	def scroll_to_line(line_num)
+#		iter = buffer.get_iter_at(:line => line_num)
+#    buffer.place_cursor(iter)
+#		scroll_to_cursor
+##		mark = buffer.create_mark("current_position", iter, true)
+##		scroll_to_mark(mark, 0.0, true, 1.0, 0.5)
+##		scroll_mark_onscreen(mark)
+##		buffer.delete_mark(mark)
+#	end
+
  def jump_to_line(line_num, search_str="")
 		hilight_line(line_num)
     iter = buffer.get_iter_at(:line => line_num)
     mark = buffer.create_mark("error", iter, true)
-    scroll_to_mark(mark, 0.0, true, 0.0, 0.5)
+#    scroll_to_mark(mark, 0.0, true, 0.0, 0.5)
     buffer.place_cursor(iter)	
-		scroll_to_cursor
 		select_text(line_num, search_str)
+		scroll_to_cursor
   end
 	
 	def hilight_line(line)
