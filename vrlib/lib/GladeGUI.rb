@@ -406,10 +406,9 @@ end
 		before_show() if respond_to? :before_show
 		parse_signals()
 		set_glade_all()
-		@builder["window1"].show_all
+		@builder["window1"].show  #show_all can't hide widgets in before_show
 		@top_level_window = Gtk.main_level == 0 ? true : false
-		Gtk.main if @top_level_window or @builder["window1"].modal?
-		after_show() if respond_to? :after_show		
+		Gtk.main if @top_level_window or @builder["window1"].modal?	
 	end
 
 	def window1__destroy(*args)

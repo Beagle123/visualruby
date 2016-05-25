@@ -1,4 +1,11 @@
+def alert(msg = "ok", flags = {})
+	VR::msg(msg)
+end
+
+
 module VR
+
+
 
 	def VR.msg(*a)  Dialog.message_box(*a) end
 

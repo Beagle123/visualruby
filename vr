@@ -11,14 +11,9 @@ require "rubygems/uninstaller"
 require "rubygems/package"
 require "rubygems/specification"
 
-#make program output in real time so errors visible
-STDOUT.sync = true
-STDERR.sync = true
-
 require 'require_all'
 require_rel 'vrlib/lib/'
 require_rel 'bin/'
-
 
 VR_Main.new(ARGV).show
 
