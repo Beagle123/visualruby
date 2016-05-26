@@ -2,4 +2,5 @@
 doc/**/*
 vrlib/doc/**/*
 /**/*.html
+/**/*.gem
 

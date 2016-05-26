@@ -1,28 +1,22 @@
 --- !ruby/object:VR_ENV
-filename: ".vr_settings.yaml"
-width: 1325
-height: 673
-panel_pos: 268
-notebook_panel_position: 400
-run_command_line: ruby vr
+width: 1095
+height: 600
+panel_pos: 360
+run_command_line: ruby main.rb
 open_files:
-- "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_ENV.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/SavableClass.rb"
 - "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
-- "/home/eric/vrp/vr3/bin/tools/VR_Tools.rb"
-- "/home/eric/vrp/vr3/bin/editor/VR_TextShell.rb"
-- "/home/eric/vrp/vr3/bin/editor/VR_TextViewCommon.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/Alert.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_ENV.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
 - "/home/eric/vrp/vr3/bin/main"
-- "/home/eric/vrp/vr3/bin/main/glade"
+- "/home/eric/vrp/vr3/bin/tools"
 - "/home/eric/vrp/vr3/vrlib"
 - "/home/eric/vrp/vr3/vrlib/lib"
-current_file: "/home/eric/vrp/vr3/vrlib/lib/Alert.rb"
-current_line: 84
+current_file: "/home/eric/vrp/vr3/bin/main/VR_ENV.rb"
 rdoc_command_line: rdoc -x README
-builder: !ruby/object:Gtk::Builder {}
-top_level_window: false
+settings_file_version: 1
+filename: ".vr_settings.yaml"
+notebook_panel_position: 400
+current_line: -1

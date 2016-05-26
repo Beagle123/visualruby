@@ -12,6 +12,7 @@ class VR_Main
 		#load global settings
 		unless $VR_ENV_GLOBAL = VR_ENV_GLOBAL.load_yaml(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
 			$VR_ENV_GLOBAL = VR_ENV_GLOBAL.new(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
+			$VR_ENV_GLOBAL.save_yaml()
 		end
 
 		#try to open right project
@@ -247,6 +248,7 @@ class VR_Main
 	def load_state
 		unless $VR_ENV = VR_ENV.load_yaml(VR_ENV::SETTINGS_FILE) 
 			$VR_ENV = VR_ENV.new(VR_ENV::SETTINGS_FILE)
+			$VR_ENV.save_yaml()
 		end
     @builder["window1"].resize($VR_ENV.width, $VR_ENV.height)
     @builder['panelMain'].set_position($VR_ENV.panel_pos)
