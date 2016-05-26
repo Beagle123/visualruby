@@ -48,11 +48,12 @@ module VR
 		end
 
 		def buttonYes__clicked(but)
-			@answer.answer = :ok # @input_text ? @builder[:entryText].text : :ok
+			@answer.answer = @input_text ? @builder[:entryText].text : true
 			@builder[:window1].destroy
 		end
 
-		def buttonNo__clicked(but)		
+		def buttonNo__clicked(but)
+			@answer.answer = false		
 			@builder[:window1].destroy
 		end
 
@@ -66,7 +67,7 @@ module VR
 end  
 
 
-def alert(msg = "Ok", flags = {})
+def alert(msg, flags = {})
 	@answer = VR::DialogAnswer.new()
 	VR::Alert.new(msg, @answer, flags).show
 	return @answer.answer 

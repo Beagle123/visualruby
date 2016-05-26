@@ -110,9 +110,6 @@ def set_drag_drop(hash)
 	hash.each do |key,val|
 		src = key.is_a?(Gtk::Widget) ? key : @builder[key]
 		target = @builder[val]
-#		src.extend(VR::DragDrop) unless src.is_a?(VR::DragDrop)
-#		target.extend(VR::DragDrop) unless target.is_a?(VR::DragDrop) 
-#		src.drag_to(target)
 		src.extend(VR::Draggable) unless src.is_a?(VR::Draggable)
 		src.add_target_widget(target)
 	end
@@ -163,9 +160,6 @@ end
   				end
   			end
   		end
-#puts self.class.instance_methods.to_s
-#puts self.instance_variables.to_s
-#puts caller
 			obj = glade_name == "self" ? self : self.instance_variable_get("@" + glade_name)
 			obj ||= eval(glade_name) if respond_to?(glade_name) and method(glade_name.to_sym).arity == 0 # no arguments!
 			obj.signal_connect(signal_name) { |*args| method(meth.to_sym).call(*args) } if obj.respond_to?("signal_connect") 
@@ -357,6 +351,7 @@ end
 	end
 
 
+
 	def self.included(obj)
 		temp = caller[0].split(":") #correct for windows  C:\Users\george etc.
 		caller_path_to_class_file, = temp[0].size == 1 ? temp[0] + ":" + temp[1] : temp[0] 
@@ -366,29 +361,6 @@ end
 			end
 		end
 	end
-
-##
-# Sets the parent window, so when the parent closes, this child window closes too.
-# Argument is a reference to a Gtk::Window.
-#
-#  def set_parent(parent) # :nodoc: parent = class derived from class GladeGUI
-#			if parent
-##    		@builder["window1"].transient_for = parent.builder["window1"]
-#				@builder["window1"].modal = false
-#		  else
-#				VR::msg("setting modal")
-#				@builder["window1"].modal = true
-#			end
-#  end
-
-
-##
-# Returns a reference to a window's parent window.
-# Returns a Gtk::Wondow object.
-#
-#	def get_parent()
-#		@builder["window1"].transient_for
-#	end
 
 
 #
@@ -410,6 +382,7 @@ end
 		@top_level_window = Gtk.main_level == 0 ? true : false
 		Gtk.main if @top_level_window or @builder["window1"].modal?	
 	end
+
 
 	def window1__destroy(*args)
 		Gtk.main_quit if @top_level_window or @builder["window1"].modal?  

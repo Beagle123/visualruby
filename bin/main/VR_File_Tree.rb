@@ -103,11 +103,9 @@ class VR_File_Tree < VR::FileTreeView
 	def self__key_press_event(view, evt)
 		return unless evt.keyval == 65535 #delete
 		return unless file_name = get_selected_path()
-		ok = alert("Delete: " + File.basename(file_name) + "?" , :button_no => "Cancel")  
-puts "result: " + ok.class.name 
-		return unless ok # alert("Delete: " + File.basename(file_name) + "?" , :button_no=>"Cancel")  
+#		ok = alert("Delete: " + File.basename(file_name) + "?" , :button_no => "Cancel")  
+		return unless alert("Delete: " + File.basename(file_name) + "?" , :button_no=>"Cancel")  
 # VR::Dialog.ok_box("Delete: " + File.basename(file_name) + "?")
-		alert "Deleteing: " + file_name
   	if File.file?(file_name)
 			@main.tabs.destroy_file_tab(file_name)
   		File.delete(file_name)

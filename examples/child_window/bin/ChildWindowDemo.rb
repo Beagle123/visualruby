@@ -8,12 +8,13 @@
 #  halt the main window until they are closed.  They're good for
 #  dialogs etc.  
 #
-#  Normal non-modal child windows operate concurrently with the main
+#  Normal non-modal windows operate concurrently with the main
 #  window and each other.  You can open many child windows, and they 
 #  will all function at the same time.  For example, they're useful if you're
 #  opening several documents at the same time.
 #  
-#  To open a modal window, just call the show() method with the parent
+#  To open a modal window, set the "modal" property in glade then call the show() 
+#  method with the parent
 #  as the aregument.  Almost always, you will be calling the show method
 #  from within the parent window so you would pass "self" as the argument:
 #
@@ -28,14 +29,17 @@ class ChildWindowDemo #(change name)
 
 	include GladeGUI
 
-	def buttonOpenChild__clicked(*argv)
-		win = MyChildClass.new("Child Non-Modal Window", "You can open as many of these as you want")
-		win.show() #normal child window
+	def buttonOpenModeless__clicked(*argv)
+		ModelessWindow.new.show() # no parent given so windows can overlap
 	end
 
+# This modal window has its "modal" property set to true in glade.
+# I pass a reference to "self" in the show method, setting the parent to this window,
+# making it always on top.  Its a good idea to have modal windows always on top
+# because the parent is frozen, so the next action must be in the modal window.
+
 	def buttonOpenModal__clicked(*argv)
-		win = MyChildClass.new("Modal Window", "Everything freezes until you close me!.\nI will always appear on top of main window.")
-		win.show(self)  # modal window that appears always on top of this window
+		ModalWindow.new.show(self)  # self = parent, so always on top of parent
 	end
 
 	def buttonCancel__clicked(*argv)

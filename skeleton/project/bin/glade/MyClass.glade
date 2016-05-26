@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
-  <object class="GtkWindow" id="window1">
-    <property name="visible">True</property>
+  <object class="GtkApplicationWindow" id="window1">
     <property name="can_focus">False</property>
-    <property name="modal">True</property>
-    <property name="window_position">center-always</property>
-    <property name="default_width">300</property>
-    <property name="default_height">200</property>
-    <signal name="destroy" handler="destroy_window" swapped="no"/>
     <child>
       <object class="GtkButtonBox" id="buttonbox1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
         <property name="orientation">vertical</property>
-        <property name="layout_style">spread</property>
+        <property name="layout_style">start</property>
         <child>
           <object class="GtkButton" id="button1">
             <property name="label" translatable="yes">button</property>
@@ -24,7 +20,7 @@
             <property name="receives_default">True</property>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">0</property>
           </packing>

@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
+    <property name="default_width">400</property>
     <child>
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_left">20</property>
+        <property name="margin_right">20</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel" id="label1">
@@ -16,9 +19,8 @@
             <property name="can_focus">False</property>
             <property name="xpad">10</property>
             <property name="ypad">10</property>
-            <property name="label" translatable="yes">Open as many child windows as you want.
-You can switch between windows because they're not modal.
-Then click the close button, to close everything.</property>
+            <property name="label" translatable="yes">Open as many modeless windows as you want.  You can switch between windows because they're not modal.  When you open a Modal window it will block everything until its closed.</property>
+            <property name="wrap">True</property>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -33,8 +35,8 @@ Then click the close button, to close everything.</property>
             <property name="can_focus">False</property>
             <property name="layout_style">spread</property>
             <child>
-              <object class="GtkButton" id="buttonOpenChild">
-                <property name="label" translatable="yes">Open Child Window</property>
+              <object class="GtkButton" id="buttonOpenModeless">
+                <property name="label" translatable="yes">Open Modeless Window</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>

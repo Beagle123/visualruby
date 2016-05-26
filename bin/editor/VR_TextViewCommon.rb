@@ -53,8 +53,7 @@ module VR_TextViewCommon
    	os = buffer.cursor_position
 		return if os > buffer.char_count - 1 or os == 0
 		iter = buffer.get_iter_at(:offset => os)  #get_iter_at_offset depricated
-#		scroll_to_iter(iter, 0.0, true, 1.0, 0.5)
-		scroll_to_iter(iter, 0.0, true, 0, 0.5)
+		scroll_to_iter(iter, 0.0, true, 1.0, 0.5)
 	end
 
 end

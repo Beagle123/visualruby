@@ -1,14 +1,12 @@
-require 'vrlib.rb'
+
 require 'active_record'
 
-#make program output in real time so errors visible in VR.
-STDOUT.sync = true
-STDERR.sync = true
+# ignore -- this is for development, same as require 'vrlib'
+require File.exists?("./../../vrlib/vrlib.rb") ?  "./../../vrlib/vrlib.rb" : "vrlib"
 
-#everything in these directories will be included
-my_path = File.expand_path(File.dirname(__FILE__))
-require_all Dir.glob(my_path + "/lib/**/*.rb") 
-require_all Dir.glob(my_path + "/bin/**/*.rb") 
+# from require_all gem:
+require_rel 'bin/'
+
 
 ActiveRecord::Base.establish_connection(  
 :adapter => "sqlite3",    

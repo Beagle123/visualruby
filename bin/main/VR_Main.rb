@@ -16,8 +16,10 @@ class VR_Main
 
 		#try to open right project
 		@proj_path = argv[0] ? argv[0] : Dir.pwd
-		@proj_path = @proj_path.chomp("/") unless @proj_path.nil?
-		@proj_path = $VR_ENV_GLOBAL.default_project if project_valid?($VR_ENV_GLOBAL.default_project)
+		@proj_path = @proj_path.chomp("/")
+		if not project_valid?(@proj_path) 
+			@proj_path = $VR_ENV_GLOBAL.default_project if project_valid?($VR_ENV_GLOBAL.default_project)
+		end
 		@proj_path = ENV["HOME"] unless File.split(@proj_path).length >= 2 and File.directory?(@proj_path)
 
 	end
@@ -50,11 +52,12 @@ class VR_Main
 			VR_Tools.copy_recursively(File.dirname(__FILE__) + "/../../skeleton/project", @proj_path)
 		end
 
-		if not File.file?(@proj_path + "/" + VR_ENV::SETTINGS_FILE)
+		while not project_valid?(@proj_path)
 			toolOpenFolder_clicked
-		else
-			load_project
 		end
+
+		load_project
+
   end
 
 
@@ -100,7 +103,6 @@ class VR_Main
 	end
 
 	def toolOpenFolder_clicked
-		puts @builder["window1"].application.class.name
 		save_state
 		return unless @tabs.try_to_save_all()
 		old_path = @proj_path

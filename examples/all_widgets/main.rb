@@ -1,19 +1,12 @@
 #!/usr/bin/ruby
 
-my_path = File.expand_path(File.dirname(__FILE__))
-if my_path =~ /^\/home\/eric\/vrp\/.*/  
-	require File.expand_path(my_path + "../../../../vrlib") + "/vrlib.rb"  
-else
-	require "vrlib"
-end
 
-#make program output in real time so errors visible in VR.
-STDOUT.sync = true
-STDERR.sync = true
+# ignore -- this is for development, same as require 'vrlib'
+require File.exists?("./../../vrlib/vrlib.rb") ?  "./../../vrlib/vrlib.rb" : "vrlib"
 
-#everything in these directories will be included
-my_path = File.expand_path(File.dirname(__FILE__))
-require_all Dir.glob(my_path + "/bin/**/*.rb") 
+# from require_all gem:
+require_rel 'bin/'
+
 
 AllWidgets.new.show
 

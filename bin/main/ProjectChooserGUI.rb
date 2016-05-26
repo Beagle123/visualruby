@@ -10,7 +10,8 @@ class ProjectChooserGUI < ProjectChooserView
 	end
 	
 	def before_show()	
-		@builder["scrolledwindowProjTree"].add(self)  
+		@builder["scrolledwindowProjTree"].add(self)
+		@builder["window1"].show_all  
 		refresh(false)
 	end
  

@@ -17,7 +17,7 @@ class MyClass #(change name)
 		harvey = @tree.add_row(top)
 		harvey[:name] = "Harvey"
 		harvey[:age] = 60
-		@scrolledwindow1 = @tree
+		@scrolledwindow1 = @tree #adds tree to the scrolledwindow
 	end	
 
 end

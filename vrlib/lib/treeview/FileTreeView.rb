@@ -56,7 +56,7 @@ class FileTreeView < VR::TreeView # :nodoc:
 
 	def add_file(filename, parent)
 			fn = filename.gsub("\\", "/")
-			parent[id(:empty)] = false
+			parent[id(:empty)] = false unless parent.nil?
   		child = add_row(parent)
   		child[:pix] = @icons.get_icon(File.directory?(fn) ? "x.folder" : fn) 	if @icons
   		child[:file_name] = File.basename(fn)

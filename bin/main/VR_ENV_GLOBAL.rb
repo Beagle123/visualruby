@@ -1,7 +1,7 @@
 
 class VR_ENV_GLOBAL < VR::SavableClass
 		
-	GLOBAL_SETTINGS_FILE = File.join(ENV["HOME"], "visualruby", "global_settings.yaml")
+	GLOBAL_SETTINGS_FILE = File.join(ENV["HOME"], "visualruby", ".global_settings.yaml")
 
 	include GladeGUI
 	
@@ -14,7 +14,7 @@ class VR_ENV_GLOBAL < VR::SavableClass
 		@tab_spaces ||= 2
 		@font_name ||= "Monospace 10"
 		@glade_path ||= "glade"
-		@default_project ||= ""
+		@default_project ||= File.join(ENV["HOME"], "visualruby", "examples", "treeview")
 	end
 
 	def before_show
