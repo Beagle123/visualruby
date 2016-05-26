@@ -5,7 +5,7 @@
 
 * Ruby 2.x.x  
 
-* Glade Interface Designer  
+* Glade Interface Designer for gtk3  
 
 
 ==Install in http://visualruby.net/img/windows_logo.jpg
@@ -39,16 +39,10 @@ http://www.ruby-forum.com/forum/gnome2
 
 ==Install in Linux http://visualruby.net/img/linux_logo.jpg
 
-1. {Install Ruby 1.9.3}[http://www.techotopia.com/index.php/] if it isn't on your computer.
+1. {Install Ruby}[https://www.ruby-lang.org/en/documentation/installation/] if it isn't on your computer.  
+There are several ways to install it. 
 
-2. Run this command by pressing Ctrl-Alt-T to open a Command Prompt.  Then hilight this text with your mouse:
-
-     sudo apt-get install -y glade-gtk2 libgtksourceview2.0-dev gtk2-engines-pixbuf
-  
-   Then click on the terminal window and, paste the text by clicking on the center wheel of your mouse.  Essentially, you need to manage to enter the above text into the command terminal.  In Ubuntu the
-   terminal can also be found in the menus:  <b>Applications > Accessories > Terminal</b> 
-
-3. Install the visualruby gem:
+2. Install the visualruby gem:
 
  sudo gem install visualruby
 

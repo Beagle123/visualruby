@@ -9,9 +9,9 @@ class VR_Tabs < Gtk::Notebook
     @docs = Array.new
     @main = main
     @pix_close = Gdk::Pixbuf.new(File.dirname(__FILE__) + '/../../img/close.png')
-		 @close_filename = File.dirname(__FILE__) + '/../../img/close.png'
+		@close_filename = File.dirname(__FILE__) + '/../../img/close.png'
     super()
-		 self.expand = true
+		self.expand = true
   end
 
 	def update_style_all()

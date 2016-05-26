@@ -1,0 +1,5 @@
+/**/*.yaml
+doc/*
+vrlib/doc/*
+*.html
+
