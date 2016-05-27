@@ -24,7 +24,6 @@ module VR
 				@builder[:input_text].show 
 			end 
 
-			#what to do with cancel button?
 			@builder[:button_no].show if @flags[:button_no]
 			@builder[:button_cancel].show if @flags[:button_cancel]
 			set_glade_hash(@flags)
@@ -40,8 +39,7 @@ module VR
 			@builder[:window1].destroy
 		end
 
-		def button_cancel__clicked(but)
-			@answer.answer = false		
+		def button_cancel__clicked(but) #answer stays nil	
 			@builder[:window1].destroy
 		end
 
