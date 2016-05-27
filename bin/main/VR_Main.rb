@@ -255,7 +255,12 @@ class VR_Main
 		@builder["panelNotebook"].set_position($VR_ENV.notebook_panel_position)
     @tabs.open_file_names($VR_ENV.open_files)
     @tabs.switch_to($VR_ENV.current_file)
+		@builder[:window1].show_all
+#		@tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
+#		@builder[:window1].show_all
     @file_tree.open_folders($VR_ENV.open_folders)
+#		@tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
+#		@builder[:window1].show_all
 	end
 
 #	def window1__key_press_event(*args)

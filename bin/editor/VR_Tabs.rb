@@ -36,6 +36,8 @@ class VR_Tabs < Gtk::Notebook
 		i = @docs.index{ |d| d.full_path_file == path }
 		return false if i.nil? 
 		self.page = i if i != self.page
+		@main.builder['window1'].show_all
+		show
 		return true
   end  
 

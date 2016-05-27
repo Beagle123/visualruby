@@ -1,5 +1,5 @@
 
-module VR_TabSearch #grh
+module VR_TabSearch 
 
 	def find_in_tabs(str)
 		out = "Search Results for:  " + str + "\n"
