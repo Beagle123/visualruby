@@ -1,61 +1,50 @@
 
 module VR
 
-	class Alert #nodoc
+	class Alert 
 
 		attr_accessor :answer		
 
 		include GladeGUI
 		
-		def initialize(msg, answer, flags = {})
+		def initialize(message, answer, flags = {})
+			@flags = flags
 			@answer = answer
-			@msg = msg
-			@headline = flags[:headline]
-			@input_text = flags[:input_text] 
-			@title = flags[:title] ? flags[:title] : "Visual Ruby"
-			@width = flags[:width]
-			@button_yes = flags[:button_yes] 
-			@button_no = flags[:button_no] # ? flags[:button_no] : "Cancel"
+			@message = message
 		end
 
 		def before_show
-			@builder[:labelMessage].label = @msg
-			@builder[:window1].title = @title if @title
-			@builder[:window1].resize(@width,70)  if @width
-			if @headline
-				@builder[:labelHeadline].label = @headline 
-			else
-				@builder[:labelHeadline].hide
-			end
-			if @input_text
-				@button_yes ||= "Save"
-				@button_no ||= "Cancel"
-				@builder[:entryText].text = @input_text 
-			else
-				@button_yes ||= "Ok"
-				@builder[:entryText].hide
+			@builder[:window1].title = @flags[:title] if @flags[:title]
+			@builder[:window1].resize(@flags[:width],100) if @flags[:width].to_i > 100
+			@builder[:headline].show if @flags[:headline]
+		
+			if text = @flags[:input_text]
+				@flags[:button_yes] ||= "Save"
+				@flags[:button_no] ||= "Cancel"
+				@builder[:input_text].show 
 			end 
 
-			@builder[:buttonYes].label = @button_yes
-
 			#what to do with cancel button?
-			if @button_no
-				@builder[:buttonNo].label = @button_no
-			else #just message so eliminate Cancel button
-				 @builder[:buttonNo].hide
-			end	
-	
+			@builder[:button_no].show if @flags[:button_no]
+			@builder[:button_cancel].show if @flags[:button_cancel]
+			set_glade_hash(@flags)
 		end
 
-		def buttonYes__clicked(but)
-			@answer.answer = @input_text ? @builder[:entryText].text : true
+		def button_yes__clicked(but)
+			@answer.answer = @flags[:input_text] ? @builder[:input_text].text : true
 			@builder[:window1].destroy
 		end
 
-		def buttonNo__clicked(but)
+		def button_no__clicked(but)
 			@answer.answer = false		
 			@builder[:window1].destroy
 		end
+
+		def button_cancel__clicked(but)
+			@answer.answer = false		
+			@builder[:window1].destroy
+		end
+
 
 	end
 
@@ -73,13 +62,6 @@ def alert(msg, flags = {})
 	return @answer.answer 
 end
 
+puts Object.inspect
 
-#ans = alert("This is a message from the programmer.  Enter Text:  This is a longer message to test wrapping etc.  I'm going to just keep typing until I get a really long message."  ,
-#			:headline => "Important Message",
-#			:title => "Come On Man...",
-#			:input_text => "Hello",
-#			:button_yes => "Stash It.",
-#			:button_no => "Ditch It.",
-#			:width => 500)
-#
 

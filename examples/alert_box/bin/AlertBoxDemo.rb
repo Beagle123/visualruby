@@ -17,8 +17,12 @@ class AlertBoxDemo
 		alert "I'll be back"
 	end
 
+	def buttonSimpleInput__clicked(*a)
+		alert("Enter your age:", :input_text => "")
+	end
+
 	def buttonYesNo__clicked(*a)
-		if alert("Do you wnt to continue?", :button_yes => "Yes", :button_no => "No")
+		if alert("Do you want to continue?", :button_yes => "Yes", :button_no => "No")
 			alert "Ok we'll contine..."
 		end
 	end
@@ -38,7 +42,7 @@ class AlertBoxDemo
 	end
 
 	def buttonQuestion__clicked(*a)
-		if answer = alert("Your pants are on fire.  What do you want to do?", 
+		if answer = alert("Your pants are on fire.  What do you want to do?", :width => 500, :button_cancel => "Quit",
 			:button_yes => "Jump in Pool", :button_no => "Panic!", :title => "Pants on Fire", :headline => "Warning")
 			alert "Get going!"
 		end

@@ -1,16 +1,15 @@
 --- !ruby/object:VR_ENV
-settings_file_version: 1
-width: 1411
-height: 777
+width: 1366
+height: 692
 panel_pos: 490
 run_command_line: ruby main.rb
 open_files:
-- "/home/eric/vrp/vr3/visualruby_examples/simple_ruby_gui/main.rb"
-- "/home/eric/vrp/vr3/visualruby_examples/simple_ruby_gui/bin/DataObjectGUI.rb"
-open_folders:
-- "/home/eric/vrp/vr3/visualruby_examples/simple_ruby_gui"
-- "/home/eric/vrp/vr3/visualruby_examples/simple_ruby_gui/bin"
-- "/home/eric/vrp/vr3/visualruby_examples/simple_ruby_gui/bin/glade"
-current_file: "/home/eric/vrp/vr3/visualruby_examples/simple_ruby_gui/main.rb"
+- "/home/eric/vrp/vr3/examples/alert_box/Untitled"
+open_folders: []
+current_file: "/home/eric/vrp/vr3/examples/alert_box/Untitled"
 rdoc_command_line: rdoc -x README
+settings_file_version: 1
+filename: ".vr_settings.yaml"
+notebook_panel_position: 400
+current_line: -1
 builder: !ruby/object:Gtk::Builder {}

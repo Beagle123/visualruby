@@ -178,6 +178,7 @@ end
 	def set_glade_all(obj = self) 
  		set_glade_active_record(obj)
 		set_glade_variables(obj)
+#		set_glade_hash(obj) if obj.is_a?(Hash) #only needed for Hash subclass. needed?
 	end
 
 #  This method is the most useful method to retreive values from a glade form.  It will
@@ -218,6 +219,11 @@ end
 		obj.attributes.each_pair { |key, val| fill_control(class_name(obj) + "." + key, val) }
 	end
 
+	def set_glade_hash(hash)
+		return unless hash.is_a?(Hash)
+		hash.each { |key,val| fill_control( key.to_s, val.to_s) }
+	end
+
 #Populates the glade form from the instance variables of the class.
 #This works for Gtk:Button, Gtk::Entry, Gtk::Label and Gtk::Checkbutton.
 #So instead of having to assign each widget a value:
@@ -238,7 +244,10 @@ end
 #obj - type Object
 #
 
-	def set_glade_variables(obj = self) 
+
+		
+	def set_glade_variables(obj = self)
+#		set_glade_hash(obj) if obj.is_a?(Hash) 
 		obj.instance_variables.each do |name|
 			name = name.to_s #ruby 1.9 passes symbol!
 			v = obj.instance_variable_get(name)
@@ -253,25 +262,12 @@ end
 		end
 	end
 	
-#	def assign_widget_variables()
-#		@builder.objects.each do |obj|
-#			next if not obj.respond_to?(:builder_name)
-#			n = obj.builder_name.split(".")[-1]
-#			begin
-#				n = "@_" + "#{n}"
-#				instance_variable_set(n, obj) if not n.include?("[")
-#				puts "setting instance variable: #{n} to " + obj.to_s
-#			rescue NameError
-#				puts "Error: vrlib: assign_widget_variables.  Bad name: #{n}"
-#			end
-#		end
-#	end
 
 
 	def fill_control(glade_name, val) # :nodoc:
 		control = @builder[glade_name]
 		control_name = glade_name.split(".")[1]
-		control ||= @builder[control_name]
+		control ||= @builder[control_name] if control_name
 		case control
   		when Gtk::Window then control.title = val
   		when Gtk::CheckButton then control.active = val
@@ -289,6 +285,33 @@ end
 		end			
 	end
 
+
+#
+#	def fill_control(glade_name, val) # :nodoc:
+#		return unless glade_name and val
+#puts glade_name + val.to_s
+#		control = @builder[glade_name]
+#puts control.class
+#		control_name = glade_name.split(".")[1]
+#		control ||= @builder[control_name] unless control_name.nil?
+#		return if control.nil?
+#		case control.class
+#  		when Gtk::Window then control.title = val
+#  		when Gtk::CheckButton then control.active = val
+#			when Gtk::TextView then control.buffer.text = val.to_s
+#  		when Gtk::Entry then control.text = val.to_s
+#			when Gtk::FontButton then control.font_name = val.to_s
+#			when Gtk::LinkButton then control.uri = control.label = val.to_s 
+#  		when Gtk::Label, Gtk::Button then control.label = val.to_s
+#			when Gtk::Image then control.file = val.to_s 
+#			when Gtk::SpinButton then control.value = val.to_f
+#			when Gtk::ProgressBar then control.fraction = val.to_f
+#			when Gtk::Calendar then control.select_month(val.month, val.year) ; control.select_day(val.day) ; control.mark_day(val.day)
+#			when Gtk::Adjustment then control.value = val.to_f
+#			when Gtk::ScrolledWindow, Gtk::Frame, Gtk::Box then control.add(val)
+#		end			
+#	end
+#
 #  Populates the instance variables from the glade form.
 #  This works for Gtk:Button, Gtk::Entry, Gtk::Label and Gtk::Checkbutton.
 #  So instead of having to assign instance variable:
