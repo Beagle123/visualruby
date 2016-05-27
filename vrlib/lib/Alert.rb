@@ -62,6 +62,5 @@ def alert(msg, flags = {})
 	return @answer.answer 
 end
 
-puts Object.inspect
 
 
