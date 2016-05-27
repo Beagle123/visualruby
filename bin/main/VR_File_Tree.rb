@@ -87,7 +87,7 @@ class VR_File_Tree < VR::FileTreeView
     end
   end
 
-  def self__button_release_event(w, event)					# right mouse button
+  def self__button_release_event(w, event)					# right click
     return unless path = get_selected_path() and event.button == 3
     if File.file?(path) and (File.extname(path) == ".rb" or File.extname(path) == "") 
     		@builder['popFile'].popup(nil, nil, event.button, event.time)
@@ -103,9 +103,7 @@ class VR_File_Tree < VR::FileTreeView
 	def self__key_press_event(view, evt)
 		return unless evt.keyval == 65535 #delete
 		return unless file_name = get_selected_path()
-#		ok = alert("Delete: " + File.basename(file_name) + "?" , :button_no => "Cancel")  
 		return unless alert("Delete: " + File.basename(file_name) + "?" , :button_no=>"Cancel")  
-# VR::Dialog.ok_box("Delete: " + File.basename(file_name) + "?")
   	if File.file?(file_name)
 			@main.tabs.destroy_file_tab(file_name)
   		File.delete(file_name)

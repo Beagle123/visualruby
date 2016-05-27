@@ -14,6 +14,7 @@ module VR
 		end
 
 		def before_show
+			@flags[:title] = @flags[:title] ? @flags[:title] : @flags[:headline]
 			@builder[:window1].title = @flags[:title] if @flags[:title]
 			@builder[:window1].resize(@flags[:width],100) if @flags[:width].to_i > 100
 			@builder[:headline].show if @flags[:headline]
@@ -56,7 +57,7 @@ end
 
 def alert(msg, flags = {})
 	@answer = VR::DialogAnswer.new()
-	VR::Alert.new(msg, @answer, flags).show
+	VR::Alert.new(msg, @answer, flags).show(flags[:parent])
 	return @answer.answer 
 end
 

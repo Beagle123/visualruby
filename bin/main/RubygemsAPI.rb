@@ -3,7 +3,7 @@ class RubygemsAPI
 
 	include GladeGUI
 
-	CREDENTIALS_FILE = ENV['HOME'] + "/.gem/credentials"
+	CREDENTIALS_FILE = File.join(ENV['HOME'], ".gem", "credentials")
 
 	def initialize
 		uri = URI.parse("https://rubygems.org")

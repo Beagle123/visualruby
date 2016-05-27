@@ -6,8 +6,8 @@ class VR_Local_Gem_Tree < GemTree
 	def initialize(main)
 		super()
 		@main = main
-#		set_title(PIX => "Gems on this Computer")
 		load_glade()
+		parse_signals()
 	end
 	
 	def refresh()
@@ -21,9 +21,8 @@ class VR_Local_Gem_Tree < GemTree
 		end
 	end
 
-
 	#todo
-	def popViewSpec_clicked; 
+	def popViewSpec_clicked
 		gem, ver = selected_gem()
 		spec = `gem specification #{gem} -v #{ver}`
 		@main.tabs.load_tab()
@@ -55,19 +54,6 @@ class VR_Local_Gem_Tree < GemTree
 		refresh()
 	end
 
-
-#	def popUninstall_clicked
-#		gem, ver = selected_gem()
-#		#command = "gem uninstall " + gem_name.gsub("("," -x -v ").gsub(")","")
-#		command = "gem uninstall #{gem} -x -v '#{ver}' 2>&1" 		
-#		@main.shell.buffer.text = VR_Tools.sudo_command(command)
-#		refresh()
-#	end
-
-#	def get_name_ver(line)
-#		match = /^(.*)\s+\((.*)\)/.match(line)
-#		return match[1], match[2]
-#	end
 
 	def selected_gem
 		row = self.selection.selected[1].split(" (")

@@ -14,7 +14,7 @@ class NewProjectGUI
 		fn = fn.gsub(/[^\w\.]/, '_')
 		path = File.expand_path(File.join("~", "visualruby", fn))
 		if File.directory?(path)
-			VR::msg "That folder already exists.  You can delete it and try again."
+			alert "That folder is already present.  You can open it using the <b>Open Project</b> button.", :headline=> "Project Already Exists", :parent => self, :width => 320
 		else
 			Dir.mkdir path
 			@parent.proj_path = path
