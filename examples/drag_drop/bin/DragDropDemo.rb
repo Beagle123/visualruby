@@ -28,7 +28,6 @@ class DragDropDemo
 	end
 
 	def textview1__drag_drop(widget, context, *args)
-#VR::msg("dropped: " + context.targets[0].class.name)
 		tv1 = @builder["textview1"]
 		if tv1.dragged_widget == @view
 			path = @view.get_selected_path()

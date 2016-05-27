@@ -116,13 +116,13 @@ class VR_Document < GtkSource::View
                                      :buttons => [["_Cancel", :cancel],
                       																		["_Save", :accept]])
 
-   dialog.current_folder = File.dirname(@full_path_file)
+   	dialog.current_folder = File.dirname(@full_path_file)
 		dialog.current_name = VR_Document.get_class_title(buffer.text) 
 		resp = dialog.run 
 		dialog.hide
 		if resp == :accept
 			write_to_disk(dialog.filename)
-			@main.file_tree.insert(dialog.filename)
+			@main.file_tree.refresh()
 			return true
 		end 
 		return false

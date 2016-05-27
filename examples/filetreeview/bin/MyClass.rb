@@ -20,7 +20,7 @@ class MyClass #(change name)
   def ftv__row_activated(_self, path, col)
 		iter = @ftv.get_iter(path)
 		size = File.size( iter[:path] )
- 		VR::msg("You selected:		\n\n" + iter[:file_name] + " \n\nsize: " + size.to_s)
+ 		alert "You selected:		\n\n" + iter[:file_name] + " \n\nsize: " + size.to_s
 	end
 
 end

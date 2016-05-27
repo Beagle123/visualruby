@@ -1,7 +1,3 @@
-def alert(msg = "ok", flags = {})
-	VR::msg(msg)
-end
-
 
 module VR
 
@@ -10,20 +6,7 @@ module VR
 	def VR.msg(*a)  Dialog.message_box(*a) end
 
   module Dialog
-  
-	
-  	def Dialog.message_box(message, title = "Visual Ruby")
-    	dialog = Gtk::MessageDialog.new(
-        :parent => nil,
-        :flags => :modal,
-        :type => :info,
-        :buttons => :ok,
-        :message => message)
-  		dialog.title = title
-  		dialog.show_all
-  		dialog.run
-  		dialog.destroy
-  	end	
+ 
   	
   	def Dialog.input_box(message, default="", title = "Visual Ruby")
         dialog = Gtk::MessageDialog.new(

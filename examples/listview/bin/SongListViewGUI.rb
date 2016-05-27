@@ -10,7 +10,7 @@ class SongListViewGUI < SongListView
 	def self__row_activated(*args)
 		return unless rows = selected_rows
 		row = rows[0]
-		VR::msg("You selected\n#{row[:song]}\nby  #{row[:artist]}")
+		alert "You selected\n#{row[:song]}\nby  #{row[:artist]}"
 	end
 
 	def invisible__toggled(*args)

@@ -37,7 +37,7 @@ class RubygemsAPI
 					if key
       			File.open(CREDENTIALS_FILE,"w",0600) { |f| f.write(YAML.dump(obj)) }
 					else
-						VR::msg(obj.values[0])
+						alert obj.values[0]
 					end 
 				end
 			end

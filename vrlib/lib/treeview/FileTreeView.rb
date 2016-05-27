@@ -20,8 +20,10 @@ class FileTreeView < VR::TreeView # :nodoc:
   end
 
 	def refresh()
+		folders = get_open_folders()
 		model.clear
 		add_file(@root, nil)
+		open_folders(folders)
   end
 
 	def fill_folder(parent_iter = @root, glob = @glob)
@@ -72,6 +74,8 @@ class FileTreeView < VR::TreeView # :nodoc:
 	end
 
 	def insert(filename)  #fn is absolute path
+		open_folders = get_open_folders()
+		model.clear
 		open_folders(get_open_folders)
 	end
 

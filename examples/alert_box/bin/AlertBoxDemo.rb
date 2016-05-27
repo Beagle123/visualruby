@@ -28,6 +28,14 @@ class AlertBoxDemo
 	include GladeGUI
 
 	def buttonSimple__clicked(*a)
+
+path = ENV["HOME"] 
+		alert("The example projects are installed in this folder:\n\n<b>#{path}</b>\n\n "+
+			"Use your <b>/home/visualruby</b> folder for all your visualruby projects.", 
+			:parent => self,	
+			:headline => "Installing Example Projects...",
+			:width => 500)
+
 		alert "I'll be back"
 	end
 

@@ -26,7 +26,7 @@ module VR
   					self.set_cell_data_func(ren) do |col, ren, model, iter|
   						fmt = "%.#{ren.digits}f"
 #puts "Spin:" + iter[ren.model_col].class.name + ":" + iter[ren.model_col].to_s + ren.class.name.to_s
-#VR::msg( col.class.name + renderer.class.name + model.class.name + iter.class.name + iter[renderer.model_col].value.to_s )
+#alert( col.class.name + renderer.class.name + model.class.name + iter.class.name + iter[renderer.model_col].value.to_s )
 							str = fmt % iter[ren.model_col].value
   						ren.text = str		
   					end  

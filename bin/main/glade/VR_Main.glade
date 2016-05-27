@@ -124,15 +124,6 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="menuCreateLauncher">
-                        <property name="use_action_appearance">False</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Creates a launcher on your destop for this project.</property>
-                        <property name="label" translatable="yes">Create Desktop Launcher</property>
-                      </object>
-                    </child>
-                    <child>
                       <object class="GtkMenuItem" id="menuGlobalSettings">
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>

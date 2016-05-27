@@ -130,9 +130,9 @@ class VR_Main
 		end
 	end
 
-	def menuCreateLauncher__activate(*a)
-		VR_Tools.create_desktop_launcher
-	end
+#	def menuCreateLauncher__activate(*a)
+#		VR_Tools.create_desktop_launcher
+#	end
 
 	def menuCloseAll__activate(*a)
 		@tabs.try_to_close_all() 
@@ -256,11 +256,11 @@ class VR_Main
     @tabs.open_file_names($VR_ENV.open_files)
     @tabs.switch_to($VR_ENV.current_file)
 		@builder[:window1].show_all
-#		@tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
-#		@builder[:window1].show_all
     @file_tree.open_folders($VR_ENV.open_folders)
-#		@tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
-#		@builder[:window1].show_all
+		#fix this not working:
+		@tabs.show
+		@tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
+		@builder[:window1].show_all
 	end
 
 #	def window1__key_press_event(*args)
@@ -304,7 +304,11 @@ class VR_Main
 	def menuInstallExamples__activate(*a)
 		path = File.join(ENV["HOME"], "", "visualruby", "examples")
 		VR_Tools.copy_recursively(File.expand_path(File.join(File.dirname(__FILE__),"","..","..","examples")), path) 
-		VR::Dialog.message_box("The example projects are installed in:\n#{path}\nIf you want to uninstall them, just delete the folder.\n\nUse the /home/visualruby folder for all your visualruby projects.")			
+		alert("The example projects are installed in this folder:\n\n<b>#{path}</b>\n\n "+
+			"Use your <b>/home/visualruby</b> folder for all your visualruby projects.", 
+			:parent => self,	
+			:headline => "Installing Example Projects...",
+			:width => 500) 	
 	end
 
 	#needed so tabs can be saved, called before destroy, must return false to close wndow.
