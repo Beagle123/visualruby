@@ -70,7 +70,10 @@ class VR_Main
 			VR_Tools.copy_recursively(File.dirname(__FILE__) + "/../../skeleton/project", proj_path)
 			return true
 		elsif not File.file?(File.join(proj_path, VR_ENV::SETTINGS_FILE))
-			return VR::Dialog.ok_box("No Visual Ruby project file was found in this folder:\n " + proj_path +  "    Do you wan to open it anyway?")
+			return alert("No Visual Ruby project file was found in this folder:\n\n<b>" + proj_path +  "</b>\n\nDo you wan to open it anyway?",
+					:parent => self, :width =>450, 
+					:button_yes => "Yes", :button_no => "No",
+					:headline => "Project Not Found")
 		end #success!
  		return true
 	end
@@ -272,7 +275,7 @@ class VR_Main
 		if file_name = VR_Tools.create_gemspec()
 			@tabs.destroy_file_tab(file_name)
   		@tabs.load_tab(file_name)
-  		@file_tree.insert(file_name)
+  		@file_tree.refresh()
 		end
 	end
 

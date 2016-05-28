@@ -73,11 +73,11 @@ class FileTreeView < VR::TreeView # :nodoc:
 			return child
 	end
 
-	def insert(filename)  #fn is absolute path
-		open_folders = get_open_folders()
-		model.clear
-		open_folders(get_open_folders)
-	end
+#	def insert(filename)  #fn is absolute path
+#		open_folders = get_open_folders()
+#		model.clear
+#		open_folders(get_open_folders)
+#	end
 
 	def folder?(iter) iter[id(:sort_on)][0,1] == "0" end
 

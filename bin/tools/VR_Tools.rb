@@ -94,12 +94,16 @@ Gem::Specification.new do |s|
 	s.rubyforge_project = "nowarning" # supress warning message 
 end
 END
-		name =  Dir.pwd + "/" + File.basename(Dir.pwd).downcase + ".gemspec"
+		name =  File.basename(Dir.pwd).downcase + ".gemspec"
 		if File.file?(name)
-			return false if not VR::Dialog.ok_box("Do you want to overwrite existing #{name}?")
+			unless alert("Do you want to overwrite existing file?:\n<b>#{name}</b>?", 
+						:headline => "File Already Exists", :button_yes => "Overwrite", :button_no => "Cancel", :width => 400)
+				return false
+			end
 		end
-		File.open(name, "w") { |f| f.puts(str) }
-		return name
+		file_name = File.join(Dir.pwd,name)
+		File.open(file_name, "w") { |f| f.puts(str) }
+		return file_name
   end
 
 	#this works on Dir.pwd that's maybe different from project
