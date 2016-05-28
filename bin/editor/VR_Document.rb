@@ -1,4 +1,6 @@
 
+
+
 class VR_Document < GtkSource::View
 	
 	include GladeGUI
@@ -93,19 +95,31 @@ class VR_Document < GtkSource::View
   end
 
 	def save_changes?
-		d = @builder["dialogSave"]
-		@builder["labelSave"].markup = "Save changes to:  <b>#{File.basename(@full_path_file)}</b>?"
-		resp = d.run
-		d.hide
-    if resp == 2 # Save Changes
-			return @title.label == "Untitled" ? save_as() : write_to_disk()
-		elsif resp == 1 # Discard Changes
+		answer = alert "Save chages to:  <b> #{File.basename(@full_path_file)}</b> ?",
+				:parent => @main, :button_yes => "Save", :button_no => "Discard Changes",  :headline => "Save Changes?", :button_cancel => "Cancel"
+		if answer
+			return @title.label == "Untitled" ? save_as() : write_to_disk()			
+		elsif answer == false # Discard Changes
 			reload_from_disk()
 			return true #continue without saving
-		else 
-			return false #abort!
 		end
+		return false #abort!	
 	end
+
+#	def save_changes?
+#		d = @builder["dialogSave"]
+#		@builder["labelSave"].markup = "Save changes to:  <b>#{File.basename(@full_path_file)}</b>?"
+#		resp = d.run
+#		d.hide
+#    if resp == 2 # Save Changes
+#			return @title.label == "Untitled" ? save_as() : write_to_disk()
+#		elsif resp == 1 # Discard Changes
+#			reload_from_disk()
+#			return true #continue without saving
+#		else 
+#			return false #abort!
+#		end
+#	end
 
 #todo update file tree, parent window?
   def save_as()  # returns false or complete file name.

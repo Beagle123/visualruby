@@ -6,7 +6,7 @@ class FileTreeView < VR::TreeView # :nodoc:
 
 	include GladeGUI
 
-	attr_accessor :root, :glob
+	attr_accessor :root, :glob, :test_block
 
 	def initialize(root = Dir.pwd, icon_path = nil, glob = "*")
 		@root = root
@@ -14,9 +14,10 @@ class FileTreeView < VR::TreeView # :nodoc:
 		super(:file => {:pix => Gdk::Pixbuf, :file_name => String}, :empty => TrueClass, :path => String, :modified_date => VR::DateCol, :sort_on => String)
 		col_visible( :path => false, :modified_date => false, :sort_on => false, :empty => false)
 		self.headers_visible = false
-		@icons = File.directory?(icon_path.to_s) ? VR::IconHash.new(icon_path) : nil
+		@icons = File.directory?(icon_path) ? VR::IconHash.new(icon_path) : nil
 		parse_signals()
 		model.set_sort_column_id(id(:sort_on), :ascending )
+		@root_iter = add_file(@root, nil)
   end
 
 	def refresh()
@@ -26,16 +27,18 @@ class FileTreeView < VR::TreeView # :nodoc:
 		open_folders(folders)
   end
 
-	def fill_folder(parent_iter = @root, glob = @glob)
+	def fill_folder(parent_iter=@root_iter)
 		model.remove(parent_iter.first_child)  #remove dummy record
-	  Dir.glob(File.join(parent_iter[id(:path)],glob)).each do |fn|
+	  files = Dir.glob(File.join(parent_iter[id(:path)],@glob))
+		files = files.select &@test_block if @test_block
+		files.each do |fn|
  			add_file(fn, parent_iter)
   	end	
 	end
 
 	def self__row_expanded(view, iter, path)
 		iter = model.get_iter(path)  #bug fix
-   fill_folder(iter) if iter[id(:empty)]
+   	fill_folder(iter) if iter[id(:empty)]
 		expand_row(iter.path, false)
 	end
 

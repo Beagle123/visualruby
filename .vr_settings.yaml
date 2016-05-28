@@ -1,29 +1,31 @@
 --- !ruby/object:VR_ENV
-width: 1449
-height: 847
+width: 1351
+height: 600
 panel_pos: 360
 run_command_line: ruby vr
 open_files:
+- "/home/eric/vrp/vr3/vrlib/lib/Dialog.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
+- "/home/eric/vrp/vr3/bin/main/NewProjectGUI.rb"
+- "/home/eric/vrp/vr3/examples/drag_drop/bin/DragDropDemo.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
 - "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
 - "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
-- "/home/eric/vrp/vr3/bin/editor/VR_Tabs.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/treeview/ViewCommon.rb"
-- "/home/eric/vrp/vr3/README.md"
-- "/home/eric/vrp/vr3/vrlib/README"
-- "/home/eric/vrp/vr3/bin/tools/VR_Tools.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/GladeGUI.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/Alert.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/Dialog.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
+- "/home/eric/vrp/vr3/bin"
+- "/home/eric/vrp/vr3/bin/tools"
+- "/home/eric/vrp/vr3/img"
 - "/home/eric/vrp/vr3/vrlib"
-current_file: "/home/eric/vrp/vr3/vrlib/lib/Dialog.rb"
+- "/home/eric/vrp/vr3/vrlib/lib"
+- "/home/eric/vrp/vr3/vrlib/lib/glade"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview"
+- "/home/eric/vrp/vr3/vrlib/site"
+current_file: "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
 rdoc_command_line: rdoc -x README
 settings_file_version: 1
 filename: ".vr_settings.yaml"
-notebook_panel_position: 565
-current_line: 74
+notebook_panel_position: 306
+current_line: 256
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
