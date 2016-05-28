@@ -5,8 +5,8 @@ class VR_ENV_GLOBAL < VR::SavableClass
 
 	include GladeGUI
 	
-	attr_accessor :browser, :tab_spaces, :glade_path, :default_project
-	attr_accessor :font_name, :settings_file_version, :filename
+	attr_accessor :browser, :tab_spaces, :glade_path, :default_project, :projects_home_open_folders
+	attr_accessor :font_name, :settings_file_version, :filename, :projects_home
 
 	def defaults()
 		@filename ||= GLOBAL_SETTINGS_FILE
@@ -14,6 +14,8 @@ class VR_ENV_GLOBAL < VR::SavableClass
 		@tab_spaces ||= 2
 		@font_name ||= "Monospace 10"
 		@glade_path ||= "glade"
+		@projects_home ||= File.join(ENV["HOME"], "visualruby")
+		@projects_home_open_folders ||= [@projects_home]
 		@default_project ||= File.join(ENV["HOME"], "visualruby", "examples", "treeview")
 	end
 

@@ -9,6 +9,7 @@ class MyClass #(change name)
 		@ftv = ProjectTree.new()
 		@builder["scrolledwindow1"].add(@ftv)  #needs show_all
 		@builder["scrolledwindow1"].show_all
+		@ftv.open_folders([File.join(ENV["HOME"],"visualruby")])
 	end	
 
 end
