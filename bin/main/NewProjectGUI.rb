@@ -3,6 +3,8 @@ class NewProjectGUI
 
 	include GladeGUI
 
+	attr_accessor :my_var
+
 	def initialize(parent)
 		@parent = parent
 		@parent.proj_path = nil
@@ -23,7 +25,8 @@ class NewProjectGUI
 	end
 
 	def buttonCancel__clicked(*args)
-		@builder["window1"].destroy
+		@my_var = "Hello"
+#		@builder["window1"].destroy
 	end
 
 end

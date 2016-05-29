@@ -11,6 +11,8 @@ module VR
 			@flags = flags
 			@answer = answer
 			@message = message
+			@p = nil
+
 		end
 
 		def before_show

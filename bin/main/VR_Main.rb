@@ -188,8 +188,9 @@ class VR_Main
 		save_state
 		return unless @tabs.try_to_save_all()
 		old_path = @proj_path
-		NewProjectGUI.new(self).show(self)
-		if project_valid?(@proj_path)
+		x = NewProjectGUI.new(self).show(self)
+alert 	x.proj_path	
+if project_valid?(@proj_path)
  			@tabs.try_to_close_all()
 			load_project()
 		else
