@@ -184,16 +184,10 @@ class VR_Main
 		save_state
 		return unless @tabs.try_to_save_all(:ask=>true)
 		old_path = @proj_path
-<<<<<<< HEAD
 		NewProjectGUI.new(self).show(self)
 		if old_path != @proj_path
  			@tabs.try_to_save_all(:ask=>false, :close=>true)
-=======
-		x = NewProjectGUI.new(self).show(self)
-alert 	x.proj_path	
-if project_valid?(@proj_path)
- 			@tabs.try_to_close_all()
->>>>>>> f36ba406f4d9d8b9d6c8f7232979c3bd14a5ecba
+			NewProjectGUI.new(self).show(self)
 			load_project()
 		end	
 	end

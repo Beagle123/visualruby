@@ -1,7 +1,7 @@
 --- !ruby/object:VR_ENV
 width: 1351
 height: 714
-panel_pos: 270
+panel_pos: 482
 run_command_line: ruby vr
 open_files:
 - "/home/eric/vrp/vr3/bin/main/ProjectTree.rb"
@@ -12,13 +12,14 @@ open_files:
 - "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
 - "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
 - "/home/eric/vrp/vr3/bin/main/VR_ENV_GLOBAL.rb"
+- "/home/eric/vrp/vr3/vr.gemspec"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
 - "/home/eric/vrp/vr3/bin/editor"
 - "/home/eric/vrp/vr3/bin/main"
 - "/home/eric/vrp/vr3/bin/tools"
-current_file: "/home/eric/vrp/vr3/bin/main/VR_ENV_GLOBAL.rb"
+current_file: "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
 rdoc_command_line: rdoc -x README
 settings_file_version: 1
 filename: ".vr_settings.yaml"
