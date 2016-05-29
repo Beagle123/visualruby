@@ -53,6 +53,10 @@ module VR_Tools
 		VR::Dialog.message_box("Files backed up to:  \n\n" + path) 
   end
 
+	def VR_Tools.copy_skeleton_project(path)
+			VR_Tools.copy_recursively(File.dirname(__FILE__) + "/../../skeleton/project", path)
+	end
+
 	def VR_Tools.copy_recursively(from, out_dir)
     Find.find(from) do |path|
       next if path == from

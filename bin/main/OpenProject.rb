@@ -43,6 +43,13 @@ class OpenProject
 			end
 	end
 
+	def buttonNew__clicked(*a)
+		old_proj_path = @parent.proj_path
+		NewProjectGUI.new(@parent).show(self)
+		@builder[:window1].destroy if @parent.proj_path != old_proj_path  #new path created!
+	end
+
+
 	def buttonCancel__clicked(*a) #save state
 		$VR_ENV_GLOBAL.projects_home_open_folders = @ftv.get_open_folders()
 		$VR_ENV_GLOBAL.save_yaml()

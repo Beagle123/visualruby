@@ -17,10 +17,10 @@
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_left">15</property>
+        <property name="margin_left">20</property>
         <property name="margin_right">15</property>
-        <property name="margin_top">16</property>
-        <property name="margin_bottom">15</property>
+        <property name="margin_top">20</property>
+        <property name="margin_bottom">20</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel" id="label1">
@@ -60,10 +60,10 @@ You are free to move the project later.</property>
             <property name="margin_top">10</property>
             <property name="margin_bottom">10</property>
             <child>
-              <object class="GtkLabel" id="labelHomePath">
+              <object class="GtkLabel" id="projects_home">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">/home/visualruby/</property>
+                <property name="label" translatable="yes">projects_home</property>
                 <property name="xalign">1</property>
               </object>
               <packing>

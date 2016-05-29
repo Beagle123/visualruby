@@ -1,6 +1,4 @@
 
-
-
 class VR_Document < GtkSource::View
 	
 	include GladeGUI
@@ -19,7 +17,7 @@ class VR_Document < GtkSource::View
     show_right_margin = true
     right_margin_position = 80
     auto_indent = true
-    lang = GtkSource::LanguageManager.new.get_language(get_language(full_path_file))  # 'ruby') if [".rb", "", ".gemspec"].include? File.extname(full_path_file)
+    lang = GtkSource::LanguageManager.new.get_language(get_language(full_path_file))  
     buffer.language = lang
     buffer.highlight_syntax = true
     buffer.highlight_matching_brackets = false
@@ -39,6 +37,11 @@ class VR_Document < GtkSource::View
 		end
 	end
 
+	def self__focus_event()
+		puts "Got Focus"
+		jump_to_line(30)
+	end
+
 	def update_style()
     override_font(Pango::FontDescription.new($VR_ENV_GLOBAL.font_name))
     tab_array = Pango::TabArray.new(1, true)
@@ -50,7 +53,7 @@ class VR_Document < GtkSource::View
 		@full_path_file = fn
 		@title.label = File.basename(@full_path_file) 
   	buffer.text = File.open(@full_path_file, "r").read if File.file?(@full_path_file.to_s) #protect against nil to_s    		
-   buffer.modified = false
+   	buffer.modified = false
 		@modified_time = mod_time()
 	end
 
@@ -96,7 +99,7 @@ class VR_Document < GtkSource::View
 
 	def save_changes?
 		answer = alert "Save chages to:  <b> #{File.basename(@full_path_file)}</b> ?",
-				:parent => @main, :button_yes => "Save", :button_no => "Discard Changes",  :headline => "Save Changes?", :button_cancel => "Cancel"
+				:parent => @main, :button_yes => "Save Changes", :button_no => "Discard Changes",  :headline => "Save Changes?", :button_cancel => "Cancel"
 		if answer
 			return @title.label == "Untitled" ? save_as() : write_to_disk()			
 		elsif answer == false # Discard Changes
@@ -156,7 +159,7 @@ class VR_Document < GtkSource::View
 		hilight_line(line_num)
     iter = buffer.get_iter_at(:line => line_num)
     mark = buffer.create_mark("error", iter, true)
-#    scroll_to_mark(mark, 0.0, true, 0.0, 0.5)
+    scroll_to_mark(mark, 0.0, true, 0.0, 0.5)
     buffer.place_cursor(iter)	
 		select_text(line_num, search_str)
 		scroll_to_cursor

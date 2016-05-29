@@ -18,18 +18,30 @@ class VR_Tabs < Gtk::Notebook
 		@docs.each { |doc| doc.update_style() }
 	end
 
-#todo update file_tree!
-	def try_to_save_all(ask = true)
+	def try_to_save_all(flags)
+		ask = flags[:ask]
+		passed = true 
 		@docs.each do |doc|
-			return false unless doc.try_to_save(ask)
-		end
+			unless doc.try_to_save(ask)
+				passed = false
+			end
+		end	
+		(n_pages).times { destroy_tab() }	if flags[:close]
+		return passed	
 	end
 
-#todo update file_tree!
-	def try_to_close_all(ask = true)
-		return false unless try_to_save_all(ask)
-		(n_pages).times { destroy_tab() }
-	end
+##todo update file_tree!
+#	def try_to_save_all(ask = true)
+#		@docs.each do |doc|
+#			return false unless doc.try_to_save(ask)
+#		end
+#	end
+#
+##todo update file_tree!
+#	def try_to_close_all(ask = true)
+#		return false unless try_to_save_all(ask)
+#		(n_pages).times { destroy_tab() }
+#	end
 
 
   def switch_to(path)
@@ -76,7 +88,7 @@ class VR_Tabs < Gtk::Notebook
 	#used when little 'x' image is clicked to close.
 	def remove_id(object_id)
 		i = @docs.index { |doc| doc.object_id == object_id }
-		if @docs[i].try_to_save()
+		if @docs[i].try_to_save(true)
 			destroy_tab(i) 
 		end
 	end

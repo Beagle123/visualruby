@@ -40,7 +40,7 @@ class VR_File_Tree < VR::FileTreeView
 	end
 
 	def menuRDoc_clicked
-		return unless @main.tabs.try_to_save_all(false)
+		return unless @main.tabs.try_to_save_all(:ask => false)
 		fn = get_selected_path() 
 		old_dir = Dir.pwd
 		FileUtils.cd(fn)
@@ -54,7 +54,7 @@ class VR_File_Tree < VR::FileTreeView
 
 	def popBuildGem_clicked
 		file_name = get_selected_path()
-		@main.tabs.try_to_save_all(false)
+		@main.tabs.try_to_save_all(:ask => false)
 		gem_builder = "Invalid .gemspec file:  " + file_name
 		begin #try ruby 2.0.0 way first:
 			spec = Gem::Specification.load(file_name)

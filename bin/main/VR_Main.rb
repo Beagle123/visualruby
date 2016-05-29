@@ -27,8 +27,7 @@ class VR_Main
 
 	def before_show
 
-#	  splash = Splash.new
-#		splash.show(self)
+
 		@file_tree = VR_File_Tree.new(self, File.expand_path(File.dirname(__FILE__) + "/../../img"))
 		@builder["scrolledwindowFileTree"].add(@file_tree) 
 
@@ -104,15 +103,12 @@ class VR_Main
 
 	def toolOpenFolder_clicked
 		save_state
-		return unless @tabs.try_to_save_all()
+		return unless @tabs.try_to_save_all(:ask=>true)
 		old_path = @proj_path
 		OpenProject.new(self).show(self)
-#		ProjectChooserGUI.new(self).show(self) #modal stops execution here, sets @proj_path
-		if project_valid?(@proj_path)
- 			@tabs.try_to_close_all()
+		if old_path != @proj_path
+ 			@tabs.try_to_save_all(:ask => false, :close => true)
 			load_project()
-		else
-			@proj_path = old_path
 		end	
 	end
 
@@ -152,7 +148,7 @@ class VR_Main
 	end
 
 	def menuSaveAll__activate(*a)
-		@tabs.try_to_save_all(false) # don't prompt 
+		@tabs.try_to_save_all(:ask=>false) # don't prompt 
 	end
 
 	def menuNew__activate(*a)
@@ -186,19 +182,32 @@ class VR_Main
 
 	def menuNewProject__activate(*a)
 		save_state
-		return unless @tabs.try_to_save_all()
+		return unless @tabs.try_to_save_all(:ask=>true)
 		old_path = @proj_path
 		NewProjectGUI.new(self).show(self)
-		if project_valid?(@proj_path)
- 			@tabs.try_to_close_all()
+		if old_path != @proj_path
+ 			@tabs.try_to_save_all(:ask=>false, :close=>true)
 			load_project()
-		else
-			@proj_path = old_path
 		end	
 	end
 
+	def toolHome__clicked(*a)
+		default_project = $VR_ENV_GLOBAL.default_project
+		return if default_project == @proj_path	
+		if not File.exists?( File.join(default_project, VR_ENV::SETTINGS_FILE))
+			alert("Your default home project is invalid:\n\n<b>#{default_project}</b>.\n\nGo to: Tools > Global Settings to set it.", 
+					:parent=>self, :headline=>"Invalid Home Project")
+			return
+		end 
+		return unless @tabs.try_to_save_all(:ask=>true)
+		@proj_path = default_project
+		load_project
+	end
+
+	
+
 	def toolBackUp_clicked
-   return unless @tabs.try_to_save_all()
+   return unless @tabs.try_to_save_all(:ask=>true)
 		VR_Tools.back_up()
   end
 
@@ -225,7 +234,7 @@ class VR_Main
 
 	def run_command(cmd)
     save_state()
-    return unless @tabs.try_to_save_all(false) # false = don't prompt for changes to files
+    return unless @tabs.try_to_save_all(:ask => false) # false = don't prompt for changes to files
 		cur_dir = Dir.pwd
     result = "\n#{cur_dir}$ #{cmd}\n"
     result += `#{cmd} 2>&1`
@@ -314,7 +323,7 @@ class VR_Main
 	#needed so tabs can be saved, called before destroy, must return false to close wndow.
   def window1__delete_event(*args)
 		save_state
-    return true unless @tabs.try_to_save_all()
+    return true unless @tabs.try_to_save_all(:ask=>true)
     return false #ok to close
   end
 

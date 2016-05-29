@@ -37,7 +37,10 @@ class VR_ENV_GLOBAL < VR::SavableClass
 			alert("Tab spaces must be between 1 and 9", :parent=>self)
 			return false
 		elsif not File.directory?(projects_home)
-			alert("Projects home fioler is not valid.", :parent=>self)
+			alert("Projects home folder is not valid.", :parent=>self)
+			return false			
+		elsif not File.exists?(File.join(default_project,VR_ENV::SETTINGS_FILE))
+			alert("Default Project is not valid.", :parent=>self)
 			return false			
 		end
 		return true

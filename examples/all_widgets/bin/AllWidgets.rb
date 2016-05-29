@@ -26,7 +26,7 @@
 #  Note: you must add an "adjustment" object to the spinbutton in glade
 #  to make it work.
 #
-
+#
 class AllWidgets
 
 	include GladeGUI

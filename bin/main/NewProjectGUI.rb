@@ -5,18 +5,19 @@ class NewProjectGUI
 
 	def initialize(parent)
 		@parent = parent
-		@parent.proj_path = nil
-		@labelHomePath = File.join(ENV["HOME"], "visualruby" + "/")
+		@projects_home = $VR_ENV_GLOBAL.projects_home + "/"
 	end
 
 	def buttonCreate__clicked(*args)
 		fn = @builder["entryFolderName"].text
-		fn = fn.gsub(/[^\w\.]/, '_')
-		path = File.expand_path(File.join("~", "visualruby", fn))
+		fn = fn.gsub(/[^\w\.\/]/, '_')
+		path = File.join($VR_ENV_GLOBAL.projects_home + "/" + fn)
 		if File.directory?(path)
-			alert "That folder is already present.  You can open it using the <b>Open Project</b> button.", :headline=> "Project Already Exists", :parent => self, :width => 320
+			alert "The folder <b>" + path + "</b> is already ok disk.  You can open it using the <b>Open Project</b> button.",
+				:headline=> "Project Already Exists", :parent => self, :width => 500
 		else
-			Dir.mkdir path
+			FileUtils.mkpath path
+			VR_Tools.copy_skeleton_project(path)
 			@parent.proj_path = path
 			@builder["window1"].destroy
 		end
