@@ -47,11 +47,14 @@ class VR_Main
 		@remote_gem_tree = VR_Remote_Gem_Tree.new(self)
 		@builder["scrolledRemoteGems"].add(@remote_gem_tree)
 
-		menuInstallExamples__activate if not File.directory?(File.join(ENV["HOME"],"","visualruby", "examples","drag_drop"))
+
 
 		if Dir.entries(@proj_path).join == "..." #empty
 			VR_Tools.copy_recursively(File.dirname(__FILE__) + "/../../skeleton/project", @proj_path)
 		end
+
+		menuInstallExamples__activate if not File.directory?(File.join(ENV["HOME"],"","visualruby", "examples","drag_drop"))
+		
 
 		while not project_valid?(@proj_path)
 			toolOpenFolder_clicked
@@ -95,13 +98,6 @@ class VR_Main
 		load_state()
 	end
 
-#	def new_project(proj_path)
-#		return nil unless proj_path
-#		path = File.join(Dir.pwd,proj_path)
-#		FileUtils.mkdir(path) unless File.directory?(path)
-#		return path
-#	end
-
 	def toolBack_clicked 
 		@tabs.back()
 	end
@@ -110,7 +106,8 @@ class VR_Main
 		save_state
 		return unless @tabs.try_to_save_all()
 		old_path = @proj_path
-		ProjectChooserGUI.new(self).show(self) #modal stops execution here, sets @proj_path
+		OpenProject.new(self).show(self)
+#		ProjectChooserGUI.new(self).show(self) #modal stops execution here, sets @proj_path
 		if project_valid?(@proj_path)
  			@tabs.try_to_close_all()
 			load_project()
@@ -254,8 +251,6 @@ class VR_Main
 			$VR_ENV.save_yaml()
 		end
     @builder["window1"].resize($VR_ENV.width, $VR_ENV.height)
-    @builder['panelMain'].set_position($VR_ENV.panel_pos)
-		@builder["panelNotebook"].set_position($VR_ENV.notebook_panel_position)
     @tabs.open_file_names($VR_ENV.open_files)
     @tabs.switch_to($VR_ENV.current_file)
 		@builder[:window1].show_all
@@ -263,6 +258,8 @@ class VR_Main
 		#fix this not working:
 		@tabs.show
 		@tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
+    @builder['panelMain'].set_position($VR_ENV.panel_pos)
+		@builder["panelNotebook"].set_position($VR_ENV.notebook_panel_position)
 		@builder[:window1].show_all
 	end
 

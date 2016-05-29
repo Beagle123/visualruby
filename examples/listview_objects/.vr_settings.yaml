@@ -5,14 +5,9 @@ height: 972
 panel_pos: 843
 run_command_line: ruby main.rb
 open_files:
-- "/home/eric/vrp/vr3/visualruby_examples/listview_objects/bin/ListViewObjectsGUI.rb"
-- "/home/eric/vrp/vr3/visualruby_examples/listview_objects/bin/ListViewObjects.rb"
-- "/home/eric/vrp/vr3/visualruby_examples/listview_objects/main.rb"
-- "/home/eric/vrp/vr3/visualruby_examples/listview_objects/bin/DataObject.rb"
-- "/home/eric/vrp/vr3/visualruby_examples/listview_objects/bin/DataObjectGUI.rb"
+- "/home/eric/vrp/vr3/examples/listview_objects/bin/ListViewObjectsGUI.rb"
 open_folders:
-- "/home/eric/vrp/vr3/visualruby_examples/listview_objects"
-- "/home/eric/vrp/vr3/visualruby_examples/listview_objects/bin"
-- "/home/eric/vrp/vr3/visualruby_examples/listview_objects/bin/glade"
-current_file: "/home/eric/vrp/vr3/visualruby_examples/listview_objects/bin/ListViewObjects.rb"
+- "/home/eric/vrp/vr3/examples/listview_objects"
+- "/home/eric/vrp/vr3/examples/listview_objects/bin"
+current_file: "/home/eric/vrp/vr3/examples/listview_objects/bin/ListViewObjectsGUI.rb"
 rdoc_command_line: rdoc -x README
