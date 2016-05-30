@@ -6,25 +6,23 @@ module VR
   
   	include GladeGUI
   
-  	attr_accessor :root, :glob, :test_block, :clickable_folders
+  	attr_accessor :root, :glob, :test_block
   
   	def initialize(root = Dir.pwd, icon_path = nil, glob = "*")
-  		@root = root
-  		@glob = glob
-			@clickable_folders = true
-  		super(:file => {:pix => Gdk::Pixbuf, :file_name => String}, :empty => TrueClass, :path => String, :modified_date => VR::DateCol, :sort_on => String)
-  		col_visible( :path => false, :modified_date => false, :sort_on => false, :empty => false)
-  		self.headers_visible = false
-  		@icons = File.directory?(icon_path) ? VR::IconHash.new(icon_path) : nil
-  		parse_signals()
-  		model.set_sort_column_id(id(:sort_on), :ascending )
-			refresh
-#			root_iter = add_file(@root, nil)
-# 			fill_folder(root_iter)
-#			expand_row(root_iter.path)
-    end
+      @root = root
+      @glob = glob
+      super(:file => {:pix => Gdk::Pixbuf, :file_name => String}, :empty => TrueClass, :path => String, :modified_date => VR::DateCol, :sort_on => String)
+      col_visible( :path => false, :modified_date => false, :sort_on => false, :empty => false)
+      self.headers_visible = false
+      @icons = File.directory?(icon_path) ? VR::IconHash.new(icon_path) : nil
+      parse_signals()
+      model.set_sort_column_id(id(:sort_on), :ascending )
+			self.set_enable_search(false)
+#			self.fixed_height_mode = true
+#			self.activate_on_single_click = true
+      refresh
+    end	
 
-    
     #can change root here
   	def refresh(root = @root, open_folders = nil) 
 			@root = root
@@ -50,15 +48,24 @@ module VR
      	fill_folder(iter) if iter[id(:empty)]
   		expand_row(iter.path, false)
   	end
-  
-  	def self__cursor_changed(*a)
-  		return unless row = selected_rows.first and @clickable_folders
+
+		def expand_or_collapse_folder()
+  		return unless row = selected_rows.first
   		if row_expanded?(row.path)
   			collapse_row(row.path)
   		else
   			self__row_expanded(self, row, row.path) 
   		end
-  	end
+		end
+
+#  	def self__cursor_changed(*a)
+#  		return unless row = selected_rows.first and @clickable_folders
+#  		if row_expanded?(row.path)
+#  			collapse_row(row.path)
+#  		else
+#  			self__row_expanded(self, row, row.path) 
+#  		end
+#  	end
   
   	def get_open_folders()
   		expanded = []
@@ -74,22 +81,21 @@ module VR
   		end
   	end	
   
-  
   	def add_file(filename, parent)
-  			fn = filename.gsub("\\", "/")
-  			parent[id(:empty)] = false unless parent.nil?
-    		child = add_row(parent)
-    		child[:pix] = @icons.get_icon(File.directory?(fn) ? "x.folder" : fn) 	if @icons
-    		child[:file_name] = File.basename(fn)
-    		child[:path] = fn
-  			if File.directory?(fn)
-  				child[:sort_on] = "0" + child[:file_name]
-  				child[:empty] = true
-  				add_row(child) # dummy record so expander appears	
-  			else
-  				child[id(:sort_on)] = "1" + child[id(:file_name)]			
-       end
-  			return child
+      fn = filename.gsub("\\", "/")
+      parent[id(:empty)] = false unless parent.nil?
+      child = add_row(parent)
+      child[:pix] = @icons.get_icon(File.directory?(fn) ? "x.folder" : fn) 	if @icons
+      child[:file_name] = File.basename(fn)
+      child[:path] = fn
+      if File.directory?(fn)
+      child[:sort_on] = "0" + child[:file_name]
+      child[:empty] = true
+      add_row(child) # dummy record so expander appears	
+      else
+      child[id(:sort_on)] = "1" + child[id(:file_name)]			
+        end
+  		return child
   	end
   
   	def set_show_expanders(expand)

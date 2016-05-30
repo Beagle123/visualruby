@@ -10,8 +10,14 @@ class OpenProject
 
 	def before_show
 		@ftv = ProjectTree.new()
+		@ftv.set_show_expanders(false)
 		@builder["view"].add(@ftv)
 		@builder["view"].show_all
+	end
+
+	def ftv__cursor_changed(*a)
+		return unless row = @ftv.selected_rows.first
+		@ftv.expand_or_collapse_folder() 
 	end
 
   def ftv__row_activated(_self, path, col)
@@ -42,7 +48,8 @@ class OpenProject
  				@parent.proj_path = row[:path]
 				buttonCancel__clicked
 			else
-				alert("This is not a visualruby project.  It's a folder that holds visualruby projects.", :parent=>self, :width=>400)
+#				alert("This is not a visualruby project.  It's a folder that holds visualruby projects.", :parent=>self, :width=>400)
+				@ftv.expand_or_collapse_row()
 			end
 	end
 

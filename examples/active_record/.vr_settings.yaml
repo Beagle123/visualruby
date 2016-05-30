@@ -1,45 +1,43 @@
 --- !ruby/object:VR_ENV
-backup_path: /home/eric
+width: 934
+height: 674
+panel_pos: 453
+run_command_line: ruby active_record.rb
+open_files:
+- "/home/eric/vrp/vr3/Untitled"
+open_folders:
+- "/home/eric/vrp/vr3/examples/active_record"
+current_file: "/home/eric/vrp/vr3/Untitled"
+rdoc_command_line: rdoc -x README
+filename: ".vr_settings.yaml"
+notebook_panel_position: 400
+current_line: -1
+builder: !ruby/object:Gtk::Builder {}
+backup_path: "/home/eric"
 browser: firefox
-current_file: /home/eric/vrp/vrx/visualruby_examples/active_record/active_record.rb
 font_name: Monospace 10
 glade_path: glade-gtk2
-height: 674
-open_files:
-- /home/eric/vrp/vrx/visualruby_examples/active_record/bin/Person.rb
-- /home/eric/vrp/vrx/visualruby_examples/active_record/bin/ChoosePerson.rb
-- /home/eric/vrp/vrx/visualruby_examples/active_record/active_record.rb
-open_folders:
-- /home/eric/vrp/vrx/visualruby_examples/active_record
-- /home/eric/vrp/vrx/visualruby_examples/active_record/bin
-- /home/eric/vrp/vrx/visualruby_examples/active_record/bin/glade
-- /home/eric/vrp/vrx/visualruby_examples/active_record/db
-panel_pos: 453
-rdoc_command_line: rdoc -x README
-run_command_line: ruby active_record.rb
 tab_spaces: 2
-width: 934
-builder: !ruby/object:Gtk::Builder {}
 glade_box: !ruby/object:VR::SimpleComboBoxEntry {}
 browser_box: !ruby/object:VR::SimpleComboBoxEntry {}
-buttonChooseFolder: ! '...'
+buttonChooseFolder: "..."
 vbox1: !ruby/object:Gtk::VBox {}
-label7: ! 'Editor Font:'
-label3: ! 'Back-up Path:'
+label7: 'Editor Font:'
+label3: 'Back-up Path:'
 window1: !ruby/object:Gtk::Window {}
 hbuttonbox1: !ruby/object:Gtk::HButtonBox {}
 buttonCancel: Cancel
-label8: ! 'RDoc Command Line: '
+label8: 'RDoc Command Line: '
 table1: !ruby/object:Gtk::Table {}
 buttonTryBrowser: Try
 buttonSave: Save
 hboxBrowser: !ruby/object:Gtk::HBox {}
 hboxGlade: !ruby/object:Gtk::HBox {}
-label1: <big><big><b>Visual Ruby Settings</b></big></big>
-label2: ! 'Browser Command Line:'
-label4: ! 'Spaces for Each Tab in Editor:'
-label5: ! 'Glade Command Line:'
-label6: ! 'Command Line when "Run" is pressed:'
+label1: "<big><big><b>Visual Ruby Settings</b></big></big>"
+label2: 'Browser Command Line:'
+label4: 'Spaces for Each Tab in Editor:'
+label5: 'Glade Command Line:'
+label6: 'Command Line when "Run" is pressed:'
 hbox1: !ruby/object:Gtk::HBox {}
 hbox2: !ruby/object:Gtk::HBox {}
 hbox3: !ruby/object:Gtk::HBox {}

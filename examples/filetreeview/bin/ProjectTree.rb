@@ -9,7 +9,7 @@ class ProjectTree < VR::FileTreeView  #(change name)
 		path = File.join(ENV["HOME"], "visualruby")
 		super(path,  "/home/eric/vrp/vr3/img")
 		@test_block = proc { |folder| has_settings_file?(folder) }
-		set_show_expanders(false)  #makes folders clickable instead (fast!)
+#		set_show_expanders(false)  #makes folders clickable instead (fast!)
 	end
 
   def self__row_activated(_self, path, col)

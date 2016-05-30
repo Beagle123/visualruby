@@ -8,6 +8,7 @@ class VR_File_Tree < VR::FileTreeView
 		@main = main
 		@api = RubygemsAPI.new
 		load_glade()
+#		set_show_expanders(false)
   end
 
 	def self__row_activated(*args)
@@ -15,8 +16,10 @@ class VR_File_Tree < VR::FileTreeView
 		file_name = rows.first[:path]
     if File.extname(file_name) == ".glade" 
       VR_Tools.popen("#{$VR_ENV_GLOBAL.glade_path} #{file_name} ") 	
+		elsif File.directory?(file_name)	
+			expand_or_collapse_folder()
 		else
-			@main.tabs.load_tab(file_name) if not File.directory?(file_name)			
+			@main.tabs.load_tab(file_name) 		
 		end
 	end
 

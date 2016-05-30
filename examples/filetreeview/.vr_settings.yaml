@@ -14,3 +14,6 @@ open_folders:
 current_file: "/home/eric/vrp/vr3/examples/filetreeview/bin/ProjectTree.rb"
 rdoc_command_line: rdoc -x README
 settings_file_version: 1
+filename: ".vr_settings.yaml"
+notebook_panel_position: 400
+current_line: 12

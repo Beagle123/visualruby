@@ -63,4 +63,3 @@ class VR_Local_Gem_Tree < GemTree
 
 end
 
-
