@@ -391,7 +391,7 @@ end
 #Using show() is better than using Gtk.main and
 #Gtk.main.quit because visualruby automatically opens and closes all windows properly.
 #
-
+#
 	def show(parent = nil)
 		load_glade()
 		if parent then
@@ -403,7 +403,7 @@ end
 		set_glade_all()
 		@builder["window1"].show  #show_all can't hide widgets in before_show
 		@top_level_window = Gtk.main_level == 0 ? true : false
-		Gtk.main if @top_level_window or @builder["window1"].modal?	
+		Gtk.main if @top_level_window or @builder["window1"].modal?	#need new Gtk.main for blocking!
 	end
 
 

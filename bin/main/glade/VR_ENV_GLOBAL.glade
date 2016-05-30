@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.16.1 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
+    <property name="modal">True</property>
     <property name="window_position">center</property>
     <property name="default_width">800</property>
     <child>
@@ -39,12 +40,14 @@
               <object class="GtkLabel" id="label7">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Editor Font:</property>
                 <property name="xalign">1</property>
+                <property name="label" translatable="yes">Editor Font:</property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
                 <property name="top_attach">0</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
               </packing>
             </child>
             <child>
@@ -58,6 +61,8 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">0</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
               </packing>
             </child>
             <child>
@@ -97,6 +102,8 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">2</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
               </packing>
             </child>
             <child>
@@ -134,18 +141,22 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">3</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
               </packing>
             </child>
             <child>
               <object class="GtkLabel" id="label3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Spaces for each tab in editor:</property>
                 <property name="xalign">1</property>
+                <property name="label" translatable="yes">Spaces for each tab in editor:</property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
                 <property name="top_attach">1</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
               </packing>
             </child>
             <child>
@@ -156,44 +167,52 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">1</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
               </packing>
             </child>
             <child>
               <object class="GtkLabel" id="label4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Glade Command Line:</property>
                 <property name="xalign">1</property>
+                <property name="label" translatable="yes">Glade Command Line:</property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
                 <property name="top_attach">2</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
               </packing>
             </child>
             <child>
               <object class="GtkLabel" id="label2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Browser Command Line:</property>
                 <property name="xalign">1</property>
+                <property name="label" translatable="yes">Browser Command Line:</property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
                 <property name="top_attach">3</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
               </packing>
             </child>
             <child>
               <object class="GtkLabel" id="label5">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="xalign">1</property>
                 <property name="label" translatable="yes">Default Startup Project:</property>
                 <property name="justify">right</property>
                 <property name="ellipsize">middle</property>
-                <property name="xalign">1</property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
                 <property name="top_attach">4</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
               </packing>
             </child>
             <child>
@@ -230,19 +249,23 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">4</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
               </packing>
             </child>
             <child>
               <object class="GtkLabel" id="label6">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="xalign">1</property>
                 <property name="label" translatable="yes">Projects Home Folder:</property>
                 <property name="justify">right</property>
-                <property name="xalign">1</property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
                 <property name="top_attach">5</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
               </packing>
             </child>
             <child>
@@ -254,6 +277,8 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">5</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
               </packing>
             </child>
           </object>

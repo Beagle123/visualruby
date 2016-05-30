@@ -49,7 +49,7 @@ class OpenProject
 				buttonCancel__clicked
 			else
 #				alert("This is not a visualruby project.  It's a folder that holds visualruby projects.", :parent=>self, :width=>400)
-				@ftv.expand_or_collapse_row()
+				@ftv.expand_or_collapse_folder()
 			end
 	end
 

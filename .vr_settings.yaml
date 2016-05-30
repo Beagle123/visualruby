@@ -1,7 +1,7 @@
 --- !ruby/object:VR_ENV
 width: 1364
 height: 691
-panel_pos: 509
+panel_pos: 277
 run_command_line: ruby vr
 open_files:
 - "/home/eric/vrp/vr3/bin/main/ProjectTree.rb"
@@ -11,16 +11,20 @@ open_files:
 - "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
 - "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
 - "/home/eric/vrp/vr3/vrlib/lib/GladeGUI.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_ENV_GLOBAL.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
 - "/home/eric/vrp/vr3/bin/main"
 - "/home/eric/vrp/vr3/bin/main/glade"
-current_file: "/home/eric/vrp/vr3/bin/main/OpenProject.rb"
+- "/home/eric/vrp/vr3/vrlib"
+- "/home/eric/vrp/vr3/vrlib/lib"
+- "/home/eric/vrp/vr3/vrlib/lib/glade"
+current_file: "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
 rdoc_command_line: rdoc -x README
 settings_file_version: 1
 filename: ".vr_settings.yaml"
 notebook_panel_position: 455
-current_line: 163
+current_line: 70
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

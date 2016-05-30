@@ -40,7 +40,7 @@ class VR_ENV_GLOBAL < VR::SavableClass
 			alert("Projects home folder is not valid.", :parent=>self)
 			return false			
 		elsif not File.exists?(File.join(default_project,VR_ENV::SETTINGS_FILE))
-			alert("Default Project is not valid.", :parent=>self)
+			alert("Default project is not valid.")
 			return false			
 		end
 		return true
