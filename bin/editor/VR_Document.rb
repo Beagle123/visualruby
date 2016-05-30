@@ -40,7 +40,7 @@ class VR_Document < GtkSource::View
 	def update_style()
     override_font(Pango::FontDescription.new($VR_ENV_GLOBAL.font_name))
     tab_array = Pango::TabArray.new(1, true)
-    tab_array.set_tab(0, Pango::TAB_LEFT, $VR_ENV_GLOBAL.tab_spaces * 8)  
+    tab_array.set_tab(0, Pango::TAB_LEFT, $VR_ENV_GLOBAL.tab_spaces.to_i * 8)  
     set_tabs(tab_array)
 	end
 

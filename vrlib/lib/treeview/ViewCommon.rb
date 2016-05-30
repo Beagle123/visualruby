@@ -3,9 +3,6 @@ module VR
 #  This module holds all the methods that both VR::ListView
 #  and VR::TreeView use.  All the methods listed here can be called from a
 #  VR::ListView or a VR::TreeView.
-
-
-
 #  
 #  ==The col_<propery>, ren_<property>, col_attr, and ren_attr methods
 #  

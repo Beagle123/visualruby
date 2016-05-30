@@ -24,23 +24,23 @@ class VR_ENV_GLOBAL < VR::SavableClass
 	end
 
 	def buttonSave_clicked
-		get_glade_variables
 		if valid?
+			get_glade_variables
 			save_yaml()
 			@builder["window1"].destroy
 		end
 	end
 
-	def valid?
-		@tab_spaces = @builder['tab_spaces'].text.to_i
-		if @tab_spaces < 0 or @tab_spaces > 9
+	def valid?  # must validate form, not variables
+		tab_spaces = @builder['tab_spaces'].text.to_i
+		if tab_spaces < 0 or tab_spaces > 9
 			alert("Tab spaces must be between 1 and 9", :parent=>self)
 			return false
-		elsif not File.directory?(projects_home)
+		elsif not File.directory?(@builder[:projects_home].text)
 			alert("Projects home folder is not valid.", :parent=>self)
 			return false			
-		elsif not File.exists?(File.join(default_project,VR_ENV::SETTINGS_FILE))
-			alert("Default project is not valid.")
+		elsif not File.exists?(File.join(@builder[:default_project].text,VR_ENV::SETTINGS_FILE))
+			alert("Default project is not valid.", :parent=>self)
 			return false			
 		end
 		return true

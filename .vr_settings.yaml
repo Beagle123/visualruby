@@ -12,6 +12,8 @@ open_files:
 - "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
 - "/home/eric/vrp/vr3/vrlib/lib/GladeGUI.rb"
 - "/home/eric/vrp/vr3/bin/main/VR_ENV_GLOBAL.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/SavableClass.rb"
+- "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
@@ -20,11 +22,11 @@ open_folders:
 - "/home/eric/vrp/vr3/vrlib"
 - "/home/eric/vrp/vr3/vrlib/lib"
 - "/home/eric/vrp/vr3/vrlib/lib/glade"
-current_file: "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
+current_file: "/home/eric/vrp/vr3/vrlib/lib/treeview/ViewCommon.rb"
 rdoc_command_line: rdoc -x README
 settings_file_version: 1
 filename: ".vr_settings.yaml"
 notebook_panel_position: 455
-current_line: 70
+current_line: 3
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
