@@ -12,7 +12,7 @@ class OpenProject
 		@ftv = ProjectTree.new()
 		@ftv.set_show_expanders(false)
 		@builder["view"].add(@ftv)
-		@builder["view"].show_all
+		@ftv.visible = true
 	end
 
 	def ftv__cursor_changed(*a)
@@ -27,7 +27,7 @@ class OpenProject
 	def buttonChange__clicked(*a)
 		$VR_ENV_GLOBAL.show(self)
 		@projects_home = $VR_ENV_GLOBAL.projects_home
-		@ftv.refresh(@projects_home)
+		@ftv.refresh(:root => @projects_home)
 		@builder[:projects_home].label = @projects_home
 	end
 

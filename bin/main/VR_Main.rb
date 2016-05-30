@@ -1,6 +1,3 @@
-
-
-
 class VR_Main 
 
 	include GladeGUI
@@ -8,13 +5,11 @@ class VR_Main
 	attr_accessor :proj_path, :tabs, :shell, :builder, :file_tree	
 	
   def initialize(argv)
-
 		#load global settings
 		unless $VR_ENV_GLOBAL = VR_ENV_GLOBAL.load_yaml(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
 			$VR_ENV_GLOBAL = VR_ENV_GLOBAL.new(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
 			$VR_ENV_GLOBAL.save_yaml()
 		end
-
 		#try to open right project
 		@proj_path = argv[0] ? argv[0] : Dir.pwd
 		@proj_path = @proj_path.chomp("/")
@@ -22,12 +17,9 @@ class VR_Main
 			@proj_path = $VR_ENV_GLOBAL.default_project if project_valid?($VR_ENV_GLOBAL.default_project)
 		end
 		@proj_path = ENV["HOME"] unless File.split(@proj_path).length >= 2 and File.directory?(@proj_path)
-
 	end
 
 	def before_show
-
-
 		@file_tree = VR_File_Tree.new(self, File.expand_path(File.dirname(__FILE__) + "/../../img"))
 		@builder["scrolledwindowFileTree"].add(@file_tree) 
 
@@ -46,15 +38,12 @@ class VR_Main
 		@remote_gem_tree = VR_Remote_Gem_Tree.new(self)
 		@builder["scrolledRemoteGems"].add(@remote_gem_tree)
 
-
-
 		if Dir.entries(@proj_path).join == "..." #empty
 			VR_Tools.copy_recursively(File.dirname(__FILE__) + "/../../skeleton/project", @proj_path)
 		end
 
 		menuInstallExamples__activate if not File.directory?(File.join(ENV["HOME"],"","visualruby", "examples","drag_drop"))
 		
-
 		while not project_valid?(@proj_path)
 			toolOpenFolder_clicked
 		end
@@ -72,8 +61,9 @@ class VR_Main
 			VR_Tools.copy_recursively(File.dirname(__FILE__) + "/../../skeleton/project", proj_path)
 			return true
 		elsif not File.file?(File.join(proj_path, VR_ENV::SETTINGS_FILE))
+			# no parent here because main may not exist
 			return alert("No Visual Ruby project file was found in this folder:\n\n<b>" + proj_path +  "</b>\n\nDo you wan to open it anyway?",
-					:parent => self, :width =>450, 
+					:width =>450, 
 					:button_yes => "Yes", :button_no => "No",
 					:headline => "Project Not Found")
 		end #success!
@@ -81,7 +71,7 @@ class VR_Main
 	end
 
 
-	def load_project() #assumes valid_project? is true
+	def load_project() # assumes valid_project? is true
 		FileUtils.cd(@proj_path)
 		@builder['window1'].title = "VR: " + File.basename(Dir.pwd)
 		@builder["labelStatus"].label = Dir.pwd
@@ -154,6 +144,7 @@ class VR_Main
 	def menuNew__activate(*a)
     @tabs.load_tab()
 	end
+
 	def menuSaveAs__activate(*a)
 		@tabs.docs[@tabs.page].save_as()
 	end
@@ -167,13 +158,9 @@ class VR_Main
 	end
 
 	def toolSave_clicked()  # saves open tab
-		@tabs.docs[@tabs.page].try_to_save(false)
+		@tabs.docs[@tabs.page].try_to_save(false) # false = don't ask
 	end	
 
-
-	#returns false to abort!
-
-	
 	def menuNewWindow__activate(*a)
 		fn = File.dirname(__FILE__) + "/../../skeleton/document/NewWindow.rb"
 		@tabs.load_tab()
@@ -205,13 +192,10 @@ class VR_Main
 		load_project
 	end
 
-	
-
 	def toolBackUp_clicked
    return unless @tabs.try_to_save_all(:ask=>true)
 		VR_Tools.back_up()
   end
-
 
 	def toolIndent_clicked
 		@tabs.docs[@tabs.page].indent($VR_ENV_GLOBAL.tab_spaces)
@@ -266,17 +250,12 @@ class VR_Main
 		@builder[:window1].show_all
     @file_tree.open_folders($VR_ENV.open_folders)
 		#fix this not working:
-		@tabs.show
+#		@tabs.show
 		@tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
     @builder['panelMain'].set_position($VR_ENV.panel_pos)
 		@builder["panelNotebook"].set_position($VR_ENV.notebook_panel_position)
-		@builder[:window1].show_all
+#		@builder[:window1].show_all
 	end
-
-#	def window1__key_press_event(*args)
-#		@tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
-#	end
-
 
 	def menuCreateGemspec__activate(*a)
 		if file_name = VR_Tools.create_gemspec()
@@ -321,14 +300,13 @@ class VR_Main
 			:width => 500) 	
 	end
 
-	#needed so tabs can be saved, called before destroy, must return false to close wndow.
+	# needed so tabs can be saved, called before destroy, must return false to close wndow.
   def window1__delete_event(*args)
 		save_state
     return true unless @tabs.try_to_save_all(:ask=>true)
     return false #ok to close
   end
 
-#called from menu selection to quit
 	def menuQuit__activate(*a)   
 		@builder["window1"].destroy
 	end

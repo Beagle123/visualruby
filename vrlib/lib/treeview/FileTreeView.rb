@@ -18,15 +18,13 @@ module VR
       parse_signals()
       model.set_sort_column_id(id(:sort_on), :ascending )
 			self.set_enable_search(false)
-#			self.fixed_height_mode = true
-#			self.activate_on_single_click = true
       refresh
     end	
 
-    #can change root here
-  	def refresh(root = @root, open_folders = nil) 
-			@root = root
-  		open_folders ||= get_open_folders() 
+    # flags:  :root => root path, :open_folders => array of paths to open
+  	def refresh(flags={}) 
+			@root = flags[:root] if flags[:root]
+			open_folders = flags[:open_folders] ? flags[:open_folders] : get_open_folders()
   		model.clear
 			root_iter = add_file(@root, nil)
   		fill_folder(root_iter)

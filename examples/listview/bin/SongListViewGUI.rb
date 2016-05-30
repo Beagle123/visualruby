@@ -5,6 +5,8 @@ class SongListViewGUI < SongListView
 
 	def before_show
 		@builder["scrolledwindow1"].add(self)
+		self.show_all
+#		self.visible = true works too.
 	end
 
 	def self__row_activated(*args)

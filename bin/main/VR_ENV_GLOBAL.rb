@@ -26,6 +26,7 @@ class VR_ENV_GLOBAL < VR::SavableClass
 	def buttonSave_clicked
 		if valid?
 			get_glade_variables
+			@tab_spaces = @builder['tab_spaces'].text.to_i
 			save_yaml()
 			@builder["window1"].destroy
 		end

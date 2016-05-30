@@ -9,5 +9,5 @@ require 'find'
 require_rel 'bin/'
 
 
-MyClass.new.show
+ProjectTreeGUI.new.show
 

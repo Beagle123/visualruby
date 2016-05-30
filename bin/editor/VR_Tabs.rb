@@ -48,8 +48,6 @@ class VR_Tabs < Gtk::Notebook
 		i = @docs.index{ |d| d.full_path_file == path }
 		return false if i.nil? 
 		self.page = i if i != self.page
-		@main.builder['window1'].show_all
-		show
 		return true
   end  
 
@@ -80,7 +78,7 @@ class VR_Tabs < Gtk::Notebook
 			self.remove_page(0)
 		end
  		append_page(child, tab)			
-		@main.builder['window1'].show_all
+		@main.builder['window1'].show_all # needed
 		self.page = self.n_pages-1
 		@docs[self.page] = text
 	end	

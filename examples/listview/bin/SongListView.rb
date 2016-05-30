@@ -21,7 +21,7 @@ class SongListView < VR::ListView
 		@cols[:popular] = VR::ProgressCol
 		@cols[:buy] = VR::ComboCol
 		@cols[:quantity] = Gtk::Adjustment ##VR::SpinCol
-   @cols[:price] = VR::CurrencyCol
+   	@cols[:price] = VR::CurrencyCol
 		@cols[:check] = TrueClass
 		super(@cols)
 
