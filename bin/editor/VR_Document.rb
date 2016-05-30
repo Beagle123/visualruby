@@ -37,11 +37,6 @@ class VR_Document < GtkSource::View
 		end
 	end
 
-	def self__focus_event()
-		puts "Got Focus"
-		jump_to_line(30)
-	end
-
 	def update_style()
     override_font(Pango::FontDescription.new($VR_ENV_GLOBAL.font_name))
     tab_array = Pango::TabArray.new(1, true)

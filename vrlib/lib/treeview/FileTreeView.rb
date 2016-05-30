@@ -18,16 +18,22 @@ module VR
   		@icons = File.directory?(icon_path) ? VR::IconHash.new(icon_path) : nil
   		parse_signals()
   		model.set_sort_column_id(id(:sort_on), :ascending )
-  		add_file(@root, nil)
+			refresh
+#			root_iter = add_file(@root, nil)
+# 			fill_folder(root_iter)
+#			expand_row(root_iter.path)
     end
+
     
     #can change root here
-  	def refresh(root = @root) 
+  	def refresh(root = @root, open_folders = nil) 
 			@root = root
-  		folders = get_open_folders()
+  		open_folders ||= get_open_folders() 
   		model.clear
-  		add_file(@root, nil)
-  		open_folders(folders)
+			root_iter = add_file(@root, nil)
+  		fill_folder(root_iter)
+			expand_row(root_iter.path,false)
+  		open_folders(open_folders)
     end
   
   	def fill_folder(parent_iter)
@@ -61,7 +67,6 @@ module VR
   	end
   
   	def open_folders(folder_paths)
-  		collapse_all
   		model.each do |model, path, iter| 
   			if folder_paths.include?(iter[id(:path)]) 	
   				expand_row(path, false) 

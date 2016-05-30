@@ -15,20 +15,21 @@ class OpenProject
 	end
 
   def ftv__row_activated(_self, path, col)
-		buttonOpen__clicked
+		buttonOpen__clicked 
 	end
 
 	def buttonChange__clicked(*a)
 		$VR_ENV_GLOBAL.show(self)
 		@projects_home = $VR_ENV_GLOBAL.projects_home
 		@ftv.refresh(@projects_home)
+		@builder[:projects_home].label = @projects_home
 	end
 
 	def buttonDelete__clicked(*a)
   	return unless row = @ftv.selected_rows.first
 		return if row[:path] == Dir.pwd  #can't delete current project
-		if alert("Do you really want to delete  <b>" + row[:path] + " </b>?", 
-				:parent=>self, :headline=>"Warning!", :button_yes=>"Delete", :button_no=>"Cancel")
+		if alert("Do you really want to delete  \n<b>" + row[:path] + " </b>?", 
+				:parent=>self, :headline=>"Warning!", :button_yes=>"Delete", :button_no=>"Cancel",:width=>400)
   		FileUtils.remove_dir(row[:path], true)
 			@ftv.refresh()
   	end
@@ -37,9 +38,11 @@ class OpenProject
 	def buttonOpen__clicked(*a)
   		return unless row = @ftv.selected_rows.first
 			test_file = File.join(row[:path], VR_ENV::SETTINGS_FILE)
-			if File.exists?(test_file) or alert("This is not a visualruby project.  It's a folder that holds visualruby projects.  Open it anyway?", :parent=>@parent, :button_no => "Cancel")
+			if File.exists?(test_file) 
  				@parent.proj_path = row[:path]
 				buttonCancel__clicked
+			else
+				alert("This is not a visualruby project.  It's a folder that holds visualruby projects.", :parent=>self, :width=>400)
 			end
 	end
 

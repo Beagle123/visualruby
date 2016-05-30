@@ -11,6 +11,8 @@ require "rubygems/uninstaller"
 require "rubygems/package"
 require "rubygems/specification"
 
+require "date"
+
 require 'require_all'
 require_rel 'vrlib/lib/'
 require_rel 'bin/'
