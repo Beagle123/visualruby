@@ -11,6 +11,7 @@ class VR_Tabs < Gtk::Notebook
     @pix_close = Gdk::Pixbuf.new(File.dirname(__FILE__) + '/../../img/close.png')
 		@close_filename = File.dirname(__FILE__) + '/../../img/close.png'
     super()
+		self.scrollable = true
 		self.expand = true
   end
 

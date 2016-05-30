@@ -4,6 +4,8 @@
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
+    <property name="margin_left">3</property>
+    <property name="margin_right">3</property>
     <property name="window_position">center</property>
     <child>
       <object class="GtkBox" id="box1">
@@ -15,6 +17,7 @@
           <object class="GtkMenuBar" id="menubar">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_right">8</property>
             <child>
               <object class="GtkMenuItem" id="menuitem1">
                 <property name="use_action_appearance">False</property>
@@ -369,6 +372,9 @@
           <object class="GtkPaned" id="panelMain">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="margin_left">8</property>
+            <property name="margin_right">8</property>
+            <property name="wide_handle">True</property>
             <child>
               <object class="GtkBox" id="box2">
                 <property name="visible">True</property>
@@ -611,8 +617,9 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="orientation">vertical</property>
+                <property name="wide_handle">True</property>
                 <child>
-                  <object class="GtkBox" id="vboxTabs">
+                  <object class="GtkBox" id="boxTabs">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="orientation">vertical</property>

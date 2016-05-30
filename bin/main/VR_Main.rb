@@ -25,7 +25,7 @@ class VR_Main
 
 		#add document notebook		
     @tabs = VR_Tabs.new(self)  
-    @builder["vboxTabs"].add(@tabs) 
+    @builder["boxTabs"].add(@tabs) 
 
 		#add shell textview
 		@shell = VR_TextShell.new(@tabs)
