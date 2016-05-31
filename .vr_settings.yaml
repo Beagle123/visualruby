@@ -11,11 +11,11 @@ open_files:
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/vrlib"
-current_file: "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
+current_file: "/home/eric/vrp/vr3/vrlib/vrlib.gemspec"
 rdoc_command_line: rdoc -x README
 settings_file_version: 1
 filename: ".vr_settings.yaml"
 notebook_panel_position: 334
-current_line: 60
+current_line: 18
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
