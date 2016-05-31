@@ -8,42 +8,7 @@ module VR_Tools
 		end
 	end
 
-#	def VR_Tools.sudo_command(command)
-#		@pass ||= ""
-#		if @pass.strip() == ""
-#			@pass = VR::Dialog.input_box("Enter System Password:")
-#		end
-#		result = command + "\n" + `echo #{@pass} | sudo -S #{command}`
-#		@pass = "" if result.include? "incorrect password"
-#		return result 
-#	end
 
-#	def VR_Tools.create_desktop_launcher()
-#		command = "vr " + Dir.pwd
-#		name = File.basename(Dir.pwd) + " Project" 
-#		  str = <<END
-#
-##!/usr/bin/env xdg-open
-#
-#[Desktop Entry]
-#Version=1.0
-#Type=Application
-#Terminal=false
-#Icon[en_US]=gnome-panel-launcher
-#Name[en_US]=#{name}
-#Exec=#{command}
-#Comment[en_US]=Opens a Visual Ruby project
-#Name=#{name}
-#Comment=Opens a Visual Ruby project
-#Icon=gnome-panel-launcher
-#
-#END
-#		return unless File.directory?(ENV["HOME"] + "/Desktop")
-#		fn = ENV["HOME"] + "/Desktop/" + name + ".desktop"
-#    File.open(fn,"w") { |f| f.puts(str) }
-#		File.chmod(0755, fn)
-#		alert("Created launcher:\n" + name + "\non your computer's desktop")
-#	end
 
   def VR_Tools.back_up()
 		path = File.join(ENV["HOME"], "visualruby_backup", Dir.pwd.gsub(ENV["HOME"], ""))
@@ -71,7 +36,7 @@ module VR_Tools
       end
     end
 	end
-
+ 
 	def self.create_gemspec()
 		main_file = $VR_ENV.run_command_line.split(" ")[1]
 		main_path = "."
@@ -109,7 +74,7 @@ END
 		File.open(file_name, "w") { |f| f.puts(str) }
 		return file_name
   end
-
+	#
 	#this works on Dir.pwd that's maybe different from project
 	def VR_Tools.replace_html_in_docs()
 		return if not File.file? "rdoc_replace.yaml"
@@ -125,5 +90,40 @@ END
 	end
 
 end
+#	def VR_Tools.sudo_command(command)
+#		@pass ||= ""
+#		if @pass.strip() == ""
+#			@pass = VR::Dialog.input_box("Enter System Password:")
+#		end
+#		result = command + "\n" + `echo #{@pass} | sudo -S #{command}`
+#		@pass = "" if result.include? "incorrect password"
+#		return result 
+#	end
 
+#	def VR_Tools.create_desktop_launcher()
+#		command = "vr " + Dir.pwd
+#		name = File.basename(Dir.pwd) + " Project" 
+#		  str = <<END
+#
+##!/usr/bin/env xdg-open
+#
+#[Desktop Entry]
+#Version=1.0
+#Type=Application
+#Terminal=false
+#Icon[en_US]=gnome-panel-launcher
+#Name[en_US]=#{name}
+#Exec=#{command}
+#Comment[en_US]=Opens a Visual Ruby project
+#Name=#{name}
+#Comment=Opens a Visual Ruby project
+#Icon=gnome-panel-launcher
+#
+#END
+#		return unless File.directory?(ENV["HOME"] + "/Desktop")
+#		fn = ENV["HOME"] + "/Desktop/" + name + ".desktop"
+#    File.open(fn,"w") { |f| f.puts(str) }
+#		File.chmod(0755, fn)
+#		alert("Created launcher:\n" + name + "\non your computer's desktop")
+#	end
 
