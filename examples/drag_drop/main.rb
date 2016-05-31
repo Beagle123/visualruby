@@ -7,5 +7,5 @@ require File.exists?("./../../vrlib/vrlib.rb") ?  "./../../vrlib/vrlib.rb" : "vr
 require_rel 'bin/'
 
 
-DragDropDemo.new.show
+DragDropDemo.new.show_glade()
 

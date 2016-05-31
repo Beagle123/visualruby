@@ -6,12 +6,12 @@ class VR_Tabs < Gtk::Notebook
 	include VR_TabSearch
 
   def initialize(main)
+    super()
     @docs = Array.new
     @main = main
     @pix_close = Gdk::Pixbuf.new(File.dirname(__FILE__) + '/../../img/close.png')
 		@close_filename = File.dirname(__FILE__) + '/../../img/close.png'
-    super()
-		self.scrollable = true
+		self.scrollable = true #after super
 		self.expand = true
   end
 

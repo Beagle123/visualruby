@@ -10,8 +10,8 @@ open_files:
 open_folders:
 - "/home/eric/vrp/vr3/examples/listview"
 - "/home/eric/vrp/vr3/examples/listview/bin"
-current_file: "/home/eric/vrp/vr3/examples/listview/bin/SongListViewGUI.rb"
+current_file: "/home/eric/vrp/vr3/examples/listview/bin/SongListView.rb"
 rdoc_command_line: rdoc -x README
 filename: ".vr_settings.yaml"
 notebook_panel_position: 400
-current_line: 7
+current_line: -1

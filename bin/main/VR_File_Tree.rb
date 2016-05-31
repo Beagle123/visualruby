@@ -56,19 +56,24 @@ class VR_File_Tree < VR::FileTreeView
 	end
 
 	def popBuildGem_clicked
+		old_path = Dir.pwd
 		file_name = get_selected_path()
-		@main.tabs.try_to_save_all(:ask => false)
+		return unless @main.tabs.try_to_save_all(:ask => false)
+		FileUtils.chdir(File.dirname(file_name)) 
+alert Dir.pwd
 		gem_builder = "Invalid .gemspec file:  " + file_name
 		begin #try ruby 2.0.0 way first:
-			spec = Gem::Specification.load(file_name)
+			spec = Gem::Specification.load(File.basename(file_name))
 			gem_builder = "Built Gem:\n" + Gem::Package.build(spec)
 		rescue #try old way
-			spec = Gem::Specification.load(file_name)
-			b = Gem::Builder.new(spec)
-			b.build()
-			gem_builder = b.success()
+#			gem_builder = "Unable to build gem."
+#			spec = Gem::Specification.load(file_name)
+#			b = Gem::Package.new(spec)
+#			b.build()
+#			gem_builder = b.success()
 		end
-		@main.shell.buffer.text = gem_builder 
+		@main.shell.buffer.text = gem_builder
+		FileUtils.chdir old_path 
 		refresh()           
 	end
 

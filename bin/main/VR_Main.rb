@@ -95,7 +95,7 @@ class VR_Main
 		save_state
 		return unless @tabs.try_to_save_all(:ask=>true)
 		old_path = @proj_path
-		OpenProject.new(self).show(self)
+		OpenProject.new(self).show_glade(self)
 		if old_path != @proj_path
  			@tabs.try_to_save_all(:ask => false, :close => true)
 			load_project()
@@ -121,15 +121,15 @@ class VR_Main
 #	end
 
 	def menuCloseAll__activate(*a)
-		@tabs.try_to_close_all() 
+		@tabs.try_to_save_all(:close=>true) 
 	end
 
 	def menuSettings__activate(*a)
-		$VR_ENV.show(self)
+		$VR_ENV.show_glade(self)
 	end
 
 	def menuGlobalSettings__activate(*a)
-		$VR_ENV_GLOBAL.show(self)
+		$VR_ENV_GLOBAL.show_glade(self)
 		@tabs.update_style_all()
 	end
 
@@ -171,10 +171,10 @@ class VR_Main
 		save_state
 		return unless @tabs.try_to_save_all(:ask=>true)
 		old_path = @proj_path
-		NewProjectGUI.new(self).show(self)
+		NewProjectGUI.new(self).show_glade(self)
 		if old_path != @proj_path
  			@tabs.try_to_save_all(:ask=>false, :close=>true)
-			NewProjectGUI.new(self).show(self)
+			NewProjectGUI.new(self).show_glade(self)
 			load_project()
 		end	
 	end

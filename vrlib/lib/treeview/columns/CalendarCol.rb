@@ -43,7 +43,7 @@ module VR
 			@pm = !@am
 		end
 
-		def show(parent = nil)
+		def show_glade(parent = nil)
 			super			
 			@builder["hboxTime"].hide if @hide_time
 			@builder["date"].hide if @hide_date

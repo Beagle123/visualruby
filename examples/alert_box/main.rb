@@ -8,5 +8,5 @@ require_rel 'bin/'
 
 
 
-AlertBoxDemo.new.show
+AlertBoxDemo.new.show_glade()
 

@@ -53,6 +53,7 @@ class SongListView < VR::ListView
 			end 
 		} 
 		refresh()
+		self.show
 	end		
 
 	# this just loads the data into the model

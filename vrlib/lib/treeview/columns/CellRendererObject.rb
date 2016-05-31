@@ -25,7 +25,7 @@ module VR
 			@edited_callback = nil
 			@visual_attributes_method = "visual_attributes"
 			@view.model.set_sort_func(@model_col) { |m,x,y| x[@model_col] <=> y[@model_col] } 
-			@show_block = Proc.new { |obj| obj.show() if obj.respond_to? "show" }
+			@show_block = Proc.new { |obj| obj.show_glade() if obj.respond_to? "show_glade" }
 			@view.signal_connect("row_activated") do | view, path, col |
 				next if !@edit or !col.eql? @column
 				iter = @view.model.get_iter(path)

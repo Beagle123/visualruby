@@ -9,4 +9,4 @@ require File.exists?("./../../vrlib/vrlib.rb") ?  "./../../vrlib/vrlib.rb" : "vr
 require_rel 'bin/'
 
 
-ListViewObjectsGUI.new.show
+ListViewObjectsGUI.new.show_glade()

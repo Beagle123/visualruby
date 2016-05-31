@@ -8,5 +8,5 @@ require File.exists?("./../../vrlib/vrlib.rb") ?  "./../../vrlib/vrlib.rb" : "vr
 require_rel 'bin/'
 
 
-AllWidgets.new.show
+AllWidgets.new.show_glade()
 

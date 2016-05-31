@@ -15,7 +15,7 @@
 #  
 #  This corresponds to the array @button.  Visual Ruby's GladeGUI interface
 #  will automatically load the values of the array into the form when the
-#  show() method is called.
+#  show_glade() method is called.
 #  
 
 

@@ -8,5 +8,5 @@ require File.exists?("./../../vrlib/vrlib.rb") ?  "./../../vrlib/vrlib.rb" : "vr
 # from require_all gem:
 require_rel 'bin/'
 
-ChildWindowDemo.new.show
+ChildWindowDemo.new.show_glade()
 

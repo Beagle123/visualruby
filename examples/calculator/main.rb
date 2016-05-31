@@ -9,5 +9,5 @@ require File.exists?("./../../vrlib/vrlib.rb") ?  "./../../vrlib/vrlib.rb" : "vr
 require_rel 'bin/'
 
 
-Calculator.new.show
+Calculator.new.show_glade()
 

@@ -14,7 +14,7 @@ ActiveRecord::Base.establish_connection(
 ) 
 
 
-CompanyGUI.new.show
+CompanyGUI.new.show_glade()
 
 # This code just populates the database
 

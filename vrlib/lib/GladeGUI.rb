@@ -42,7 +42,7 @@
 #  GladeGUI adds an instance variable, @builder to your class.
 #  It loads all the windows and widgets from your glade file into @builder.
 #  So, you use @builder to manipulate everything in you class's GUI.
-#  @builder is set when you call the show() method, as this code shows:
+#  @builder is set when you call the show_glade() method, as this code shows:
 #  
 #   class MyClass
 #    
@@ -58,7 +58,7 @@
 #    
 #   end
 #  
-#  After show() is called, you can access any of your form's windows or widgets
+#  After show_glade() is called, you can access any of your form's windows or widgets
 #  using the @builder variable: 
 #  
 #    @builder["window1"].title = "This is the title that appears at the top."
@@ -388,11 +388,11 @@ end
 
 #
 #This shows the window and will start the Gtk.main loop (for top level windows.)
-#Using show() is better than using Gtk.main and
+#Using show_glade() is better than using Gtk.main and
 #Gtk.main.quit because visualruby automatically opens and closes all windows properly.
 #
 #
-	def show(parent = nil)
+	def show_glade(parent = nil)
 		load_glade()
 		if parent then
 				@builder["window1"].transient_for = parent.builder["window1"]

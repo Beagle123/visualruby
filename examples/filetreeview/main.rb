@@ -9,5 +9,5 @@ require 'find'
 require_rel 'bin/'
 
 
-ProjectTreeGUI.new.show
+ProjectTreeGUI.new.show_glade()
 

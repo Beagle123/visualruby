@@ -1,6 +1,6 @@
 ##
 #  This file shows all the widget types that auto-fill when you
-#  call the show() method.   This provides a great shortcut
+#  call the show_glade() method.   This provides a great shortcut
 #  for assigning initial values to widgets in your forms.
 #
 #  So when you might normally write:

@@ -8,8 +8,7 @@ class ProjectTreeGUI #(change name)
 	def before_show()
 		@ftv = ProjectTree.new()
 		@builder["scrolledwindow1"].add(@ftv)  #needs show_all
-		@builder["scrolledwindow1"].show_all
-#		@ftv.open_folders([File.join(ENV["HOME"],"visualruby")])
+		@open_folders = []
 	end	
 
 	def show_expanders__toggled(*a)
@@ -18,6 +17,7 @@ class ProjectTreeGUI #(change name)
 
 	def save_state__clicked(*a)
 		@open_folders = @ftv.get_open_folders()
+		alert("Saving folders: " + @open_folders.to_s, :parent=>self)
 	end
 
 	def load_state__clicked(*a)

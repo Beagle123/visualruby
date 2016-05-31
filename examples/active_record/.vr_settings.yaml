@@ -1,6 +1,6 @@
 --- !ruby/object:VR_ENV
-width: 934
-height: 674
+width: 1139
+height: 737
 panel_pos: 453
 run_command_line: ruby active_record.rb
 open_files:

@@ -13,7 +13,7 @@ ActiveRecord::Base.establish_connection(
 :database => "db/development.sqlite3",
 )
 
-ChoosePerson.new.show
+ChoosePerson.new.show_glade()
 
 
 #ActiveRecord::Schema.define do

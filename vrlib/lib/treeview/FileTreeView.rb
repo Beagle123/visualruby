@@ -19,6 +19,7 @@ module VR
       model.set_sort_column_id(id(:sort_on), :ascending )
 			self.set_enable_search(false)
       refresh
+			self.visible = true # necessary!
     end	
 
     # flags:  :root => root path, :open_folders => array of paths to open

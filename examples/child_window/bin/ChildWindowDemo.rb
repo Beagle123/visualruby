@@ -13,24 +13,24 @@
 #  will all function at the same time.  For example, they're useful if you're
 #  opening several documents at the same time.
 #  
-#  To open a modal window, set the "modal" property in glade then call the show() 
+#  To open a modal window, set the "modal" property in glade then call the show_glade() 
 #  method with the parent
 #  as the aregument.  Almost always, you will be calling the show method
 #  from within the parent window so you would pass "self" as the argument:
 #
-#  ChildWindow.new.show(self)
+#  ChildWindow.new.show_glade(self)
 #
 #  This line would open a new ChildWindow window that always appears on top
 #  of the parent (self) window, and freezes the parent window until it closes.
 #
-#  TO open a non-modal window, just call show() with no argument
+
 
 class ChildWindowDemo #(change name)
 
 	include GladeGUI
 
 	def buttonOpenModeless__clicked(*argv)
-		ModelessWindow.new.show() # no parent given so windows can overlap
+		ModelessWindow.new.show_glade() # no parent given so windows can overlap
 	end
 
 # This modal window has its "modal" property set to true in glade.
@@ -39,7 +39,7 @@ class ChildWindowDemo #(change name)
 # because the parent is frozen, so the next action must be in the modal window.
 
 	def buttonOpenModal__clicked(*argv)
-		ModalWindow.new.show(self)  # self = parent, so always on top of parent
+		ModalWindow.new.show_glade(self)  # self = parent, so always on top of parent
 	end
 
 	def buttonCancel__clicked(*argv)

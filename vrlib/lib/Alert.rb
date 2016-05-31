@@ -59,7 +59,7 @@ end
 
 def alert(msg, flags = {})
 	@answer = VR::DialogAnswer.new()
-	VR::Alert.new(msg, @answer, flags).show(flags[:parent])
+	VR::Alert.new(msg, @answer, flags).show_glade(flags[:parent])
 	return @answer.answer 
 end
 
