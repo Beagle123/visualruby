@@ -16,6 +16,6 @@ rdoc_command_line: rdoc -x README
 settings_file_version: 1
 filename: ".vr_settings.yaml"
 notebook_panel_position: 334
-current_line: 61
+current_line: 60
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
