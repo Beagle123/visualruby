@@ -1,4 +1,4 @@
-class VR_ENV < VR::SavableClass
+class VR_ENV 
 
 	include GladeGUI
 
@@ -6,11 +6,10 @@ class VR_ENV < VR::SavableClass
 
 	attr_accessor :width, :height, :panel_pos, :rdoc_command_line
 	attr_accessor :run_command_line, :open_files, :open_folders, :current_file
-  attr_accessor :notebook_panel_position, :filename, :current_line
+  attr_accessor :notebook_panel_position, :current_line
 
 	#to add setting, just add to list
 	def defaults
-		@filename ||= SETTINGS_FILE 
 		@width ||= 800
 		@height ||= 600
 		@panel_pos ||= 360
@@ -27,7 +26,7 @@ class VR_ENV < VR::SavableClass
 	#todo validate
 	def buttonSave_clicked
 		get_glade_variables
-		save_yaml()
+		VR::save_yaml(self)
 		@builder["window1"].destroy
 	end
 

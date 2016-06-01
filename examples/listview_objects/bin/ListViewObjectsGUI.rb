@@ -7,6 +7,7 @@ class ListViewObjectsGUI < ListViewObjects
 
 	def before_show
 		@builder["scrolledwindow1"].add(self)
+		self.visible = true
 		# edited_callback is a method that is called after a cell has been edited.  It is
 		# used to do housekeeping after the value of the cell has changed. 
 		renderer(:quote).edited_callback = method(:self__cursor_changed) 

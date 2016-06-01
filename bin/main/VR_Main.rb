@@ -6,10 +6,11 @@ class VR_Main
 	
   def initialize(argv)
 		#load global settings
-		unless $VR_ENV_GLOBAL = VR_ENV_GLOBAL.load_yaml(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
-			$VR_ENV_GLOBAL = VR_ENV_GLOBAL.new(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
-			$VR_ENV_GLOBAL.save_yaml()
-		end
+		$VR_ENV_GLOBAL = VR::load_yaml(:class => VR_ENV_GLOBAL, :file_name => VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
+#		unless $VR_ENV_GLOBAL = VR_ENV_GLOBAL.load_yaml(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
+#			$VR_ENV_GLOBAL = VR_ENV_GLOBAL.new(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
+#			$VR_ENV_GLOBAL.save_yaml()
+#		end
 		#try to open right project
 		@proj_path = argv[0] ? argv[0] : Dir.pwd
 		@proj_path = @proj_path.chomp("/")
@@ -82,7 +83,7 @@ class VR_Main
 		test_file = File.join($VR_ENV_GLOBAL.default_project, VR_ENV::SETTINGS_FILE)
 		unless File.file?(test_file)	
 			$VR_ENV_GLOBAL.default_project = @proj_path
-			$VR_ENV_GLOBAL.save_yaml() 
+			VR::save_yaml($VR_ENV_GLOBAL) 
 		end 
 		load_state()
 	end
@@ -187,7 +188,7 @@ class VR_Main
 					:parent=>self, :headline=>"Invalid Home Project")
 			return
 		end 
-		return unless @tabs.try_to_save_all(:ask=>true)
+		return unless @tabs.try_to_save_all(:ask=>true, :close=>true)
 		@proj_path = default_project
 		load_project
 	end
@@ -236,14 +237,15 @@ class VR_Main
     $VR_ENV.open_files = @tabs.get_open_fn()
     $VR_ENV.current_file = @tabs.docs[@tabs.page].full_path_file
 		$VR_ENV.current_line = @tabs.docs[@tabs.page].line_at_cursor()
-    $VR_ENV.save_yaml()
+    VR::save_yaml($VR_ENV)
   end
 
 	def load_state
-		unless $VR_ENV = VR_ENV.load_yaml(VR_ENV::SETTINGS_FILE) 
-			$VR_ENV = VR_ENV.new(VR_ENV::SETTINGS_FILE)
-			$VR_ENV.save_yaml()
-		end
+		$VR_ENV = VR::load_yaml(:class => VR_ENV, :file_name => VR_ENV::SETTINGS_FILE)
+#		unless $VR_ENV = VR_ENV.load_yaml(VR_ENV::SETTINGS_FILE) 
+#			$VR_ENV = VR_ENV.new(VR_ENV::SETTINGS_FILE)
+#			$VR_ENV.save_yaml()
+#		end
     @builder["window1"].resize($VR_ENV.width, $VR_ENV.height)
     @tabs.open_file_names($VR_ENV.open_files)
     @tabs.switch_to($VR_ENV.current_file)

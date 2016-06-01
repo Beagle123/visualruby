@@ -1,0 +1,11 @@
+--- !ruby/object:SavableSettings
+height: 419
+width: 450
+title: Savable Settings Demo
+text: Try changing the window size, title and text in this window.  You will see that
+  it saves its state to a file named settings.yaml.  So when you run this program
+  again, it will be the same as when you left.  To see this file, click the 'Refresh'
+  button. To reset to defaults, just delete settings.yaml.
+vr_yaml_file: settings.yaml
+builder: !ruby/object:Gtk::Builder {}
+top_level_window: false

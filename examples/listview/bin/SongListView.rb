@@ -13,47 +13,49 @@ class SongListView < VR::ListView
 
 	def initialize 
 		@cols = {}
-		@cols[:pix] = {:pix => Gdk::Pixbuf, :song => String } #two renderers in this column
-		@cols[:date] = VR::CalendarCol # DateTime
-		@cols[:artist] = String
+#		@cols[:pix] = {:pix => Gdk::Pixbuf, :song => String } #two renderers in this column
+#		@cols[:date] = VR::CalendarCol # DateTime
+#		@cols[:artist] = String
 		@cols[:first_name] = String	  
-		@cols[:last_name] = String
+#		@cols[:last_name] = String
 		@cols[:popular] = VR::ProgressCol
-		@cols[:buy] = VR::ComboCol
-		@cols[:quantity] = Gtk::Adjustment ##VR::SpinCol
-   	@cols[:price] = VR::CurrencyCol
-		@cols[:check] = TrueClass
+#		@cols[:buy] = VR::ComboCol
+##		@cols[:quantity] = VR::SpinCol
+#   	@cols[:price] = VR::CurrencyCol
+#		@cols[:check] = TrueClass
 		super(@cols)
 
-		col_sort_column_id(:artist => id(:last_name), :song => id(:song), :first_name=> id(:first_name))
-#		col_sort_column_id(:last_name => id(:last_name), :popular => id(:popular))
-		col_sort_column_id(:last_name => id(:last_name), :popular => id(:popular), :buy=> id(:buy))
-		col_sort_column_id(:check => id(:check), :date => id(:date))
-#		col_sort_column_id(:price => id(:price), :check => id(:check), :date => id(:date))
-		col_sort_column_id(:quantity => id(:quantity))
-		col_title(:first_name => "First", :last_name => "Last", :check => "Ok", :quantity => "Qty")
-		ren_width(:popular => 80, :check=> 20, :quantity=>70)
+#		col_sort_column_id(:artist => id(:last_name), :song => id(:song), :first_name=> id(:first_name))
+##		col_sort_column_id(:last_name => id(:last_name), :popular => id(:popular))
+#		col_sort_column_id(:last_name => id(:last_name), :popular => id(:popular), :buy=> id(:buy))
+#		col_sort_column_id(:check => id(:check), :date => id(:date))
+##		col_sort_column_id(:price => id(:price), :check => id(:check), :date => id(:date))
+#		col_sort_column_id(:quantity => id(:quantity))
+#		col_title(:first_name => "First", :last_name => "Last", :check => "Ok", :quantity => "Qty")
+#		ren_width(:popular => 80, :check=> 20, :quantity=>70)
 #		ren_attr(:price, :edit_inline => true)
 		ren_editable(true)
 	
 		# this block executes after ARTIST is edited ("edited" event).   
-		renderer(:artist).edited_callback = Proc.new { | model_col, iter |
-				names = iter[id(:artist)].split
-				iter[id(:first_name)] = names[0]
-				iter[id(:last_name)] = names[1]
-		}
+#		renderer(:artist).edited_callback = Proc.new { | model_col, iter |
+#				names = iter[id(:artist)].split
+#				iter[id(:first_name)] = names[0]
+#				iter[id(:last_name)] = names[1]
+#		}
 		
 		# this block must evaluate to true to allow updating.
-		renderer(:artist).validate_block = Proc.new { |text, model_col, iter, view| 
-			if text.split.size == 2 # insist on two names
-				true
-			else
-				VR::Dialog.message_box("You must enter two names.")
-				false
-			end 
-		} 
+#		renderer(:artist).validate_block = Proc.new { |text, model_col, iter, view| 
+#			if text.split.size == 2 # insist on two names
+#				true
+#			else
+##				alert("You must enter two names.", :parent => self)
+#				false
+#			end 
+#		} 
 		refresh()
-		self.show
+		self.visible = true
+self.hide
+self.show
 	end		
 
 	# this just loads the data into the model
@@ -61,17 +63,17 @@ class SongListView < VR::ListView
 		data = get_data() # returns array of songs
 		(0..6).each do |i|
 			row = add_row()
-  		row[:pix] = AUDIO_ICON   
+#  		row[:pix] = AUDIO_ICON   
   		row[:first_name] = data[i][0]
-  		row[:last_name] = data[i][1]
-  		row[:artist] = row[:first_name] + " " + row[:last_name]
-  		row[:song] = data[i][2]
-  		row[:quantity] = Gtk::Adjustment.new(0,0,100,1,0,0)  # VR::SpinCol.new(0,0,100,1)
-			row[:price] = VR::CurrencyCol.new(2.99)
+#  		row[:last_name] = data[i][1]
+#  		row[:artist] = row[:first_name] + " " + row[:last_name]
+#  		row[:song] = data[i][2]
+## 		row[:quantity] = VR::SpinCol.new(0,0,100,1) # Gtk::Adjustment.new(0,0,100,1,0,0)  # 
+#			row[:price] = VR::CurrencyCol.new(2.99)
   		row[:popular] = data[i][3]
-  		row[:buy] = VR::ComboCol.new("Buy", "Buy", "Rent", "Listen") # all rows use the same combobox
-  		row[:check] = false
-			row[:date] = VR::CalendarCol.new(data[i][4], :format => "%d %b %Y ", :hide_time=>true, :hide_date => false)
+#  		row[:buy] = VR::ComboCol.new("Buy", "Buy", "Rent", "Listen") # all rows use the same combobox
+#  		row[:check] = false
+#			row[:date] = VR::CalendarCol.new(data[i][4], :format => "%d %b %Y ", :hide_time=>true, :hide_date => false)
 		end
 	end
 

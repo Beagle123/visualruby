@@ -1,21 +1,36 @@
 --- !ruby/object:VR_ENV
-width: 873
-height: 704
-panel_pos: 277
+filename: ".vr_settings.yaml"
+width: 1373
+height: 665
+panel_pos: 257
+notebook_panel_position: 400
 run_command_line: ruby vr
 open_files:
-- "/home/eric/vrp/vr3/bin/main/GemTree.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/GladeGUI.rb"
 - "/home/eric/vrp/vr3/bin/tools/VR_Tools.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
-- "/home/eric/vrp/vr3/vrlib/vrlib.gemspec"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/TreeViewColumn.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/ComboCol.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/CellRendererCombo.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/CellRendererObject.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/CellRendererProgress.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
+- "/home/eric/vrp/vr3/bin"
+- "/home/eric/vrp/vr3/bin/main"
+- "/home/eric/vrp/vr3/examples"
+- "/home/eric/vrp/vr3/examples/treeview"
+- "/home/eric/vrp/vr3/examples/treeview/bin"
+- "/home/eric/vrp/vr3/examples/treeview/bin/glade"
+- "/home/eric/vrp/vr3/skeleton"
+- "/home/eric/vrp/vr3/skeleton/document"
 - "/home/eric/vrp/vr3/vrlib"
-current_file: "/home/eric/vrp/vr3/vrlib/vrlib.gemspec"
+- "/home/eric/vrp/vr3/vrlib/lib"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/columns"
+current_file: "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/CellRendererObject.rb"
+current_line: 56
 rdoc_command_line: rdoc -x README
-settings_file_version: 1
-filename: ".vr_settings.yaml"
-notebook_panel_position: 334
-current_line: 15
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
+vr_yaml_file: ".vr_settings.yaml"

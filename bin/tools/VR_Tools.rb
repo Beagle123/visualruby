@@ -15,7 +15,7 @@ module VR_Tools
     t = Time.now
     out_dir = path + "/" + Dir.pwd.split("/").last + " Backup " + t.month().to_s + '-' + t.day().to_s + "-" + t.year().to_s + " at " + t.strftime('%I %M%p')  
     copy_recursively(Dir.pwd, out_dir) 
-		VR::Dialog.message_box("Files backed up to:  \n\n" + path) 
+		alert "Files backed up to:  \n\n" + path 
   end
 
 	def VR_Tools.copy_skeleton_project(path)

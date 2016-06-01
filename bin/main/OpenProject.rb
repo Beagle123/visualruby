@@ -62,7 +62,7 @@ class OpenProject
 
 	def buttonCancel__clicked(*a) #save state
 		$VR_ENV_GLOBAL.projects_home_open_folders = @ftv.get_open_folders()
-		$VR_ENV_GLOBAL.save_yaml()
+		VR::save_yaml($VR_ENV_GLOBAL)
 		@builder["window1"].destroy		
 	end
 

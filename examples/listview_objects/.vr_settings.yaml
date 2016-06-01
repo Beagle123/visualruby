@@ -1,13 +1,19 @@
 --- !ruby/object:VR_ENV
-settings_file_version: 1
-width: 1365
-height: 972
-panel_pos: 843
+width: 1373
+height: 665
+panel_pos: 256
+notebook_panel_position: 400
 run_command_line: ruby main.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/listview_objects/bin/ListViewObjectsGUI.rb"
+- "/home/eric/vrp/vr3/examples/listview_objects/bin/ListViewObjects.rb"
+- "/home/eric/vrp/vr3/examples/listview_objects/bin/DataObject.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/listview_objects"
 - "/home/eric/vrp/vr3/examples/listview_objects/bin"
-current_file: "/home/eric/vrp/vr3/examples/listview_objects/bin/ListViewObjectsGUI.rb"
+- "/home/eric/vrp/vr3/examples/listview_objects/bin/glade"
+current_file: "/home/eric/vrp/vr3/examples/listview_objects/bin/DataObject.rb"
+current_line: 4
 rdoc_command_line: rdoc -x README
+vr_yaml_file: ".vr_settings.yaml"
+settings_file_version: 1

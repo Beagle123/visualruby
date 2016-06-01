@@ -9,8 +9,7 @@ module VR
   		@model_col = model_col
 			@model_sym = model_sym
   		@column = column
-  		@view = view
-			
+  		@view = view	
   	end
   
   end

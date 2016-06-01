@@ -19,13 +19,13 @@ module VR
   					ren = VR::CellRendererToggle.new(*a)
   					self.pack_start( ren, false )
   					self.add_attribute( ren, :active,  model_col)
-    			elsif type == VR::SpinCol or type == Gtk::Adjustment 
+    			elsif type == VR::SpinCol #or type == Gtk::Adjustment 
   					ren = VR::CellRendererSpin.new(*a)
   					self.pack_start( ren, false )
   					self.add_attribute( ren, :adjustment,  model_col)
   					self.set_cell_data_func(ren) do |col, ren, model, iter|
   						fmt = "%.#{ren.digits}f"
-#puts "Spin:" + iter[ren.model_col].class.name + ":" + iter[ren.model_col].to_s + ren.class.name.to_s
+puts "Spin:" + iter[ren.model_col].class.name + ":" + iter[ren.model_col].to_s + ren.class.name.to_s
 #alert( col.class.name + renderer.class.name + model.class.name + iter.class.name + iter[renderer.model_col].value.to_s )
 							str = fmt % iter[ren.model_col].value
   						ren.text = str		
@@ -34,9 +34,14 @@ module VR
   					r = VR::CellRendererCombo.new(*a)
   					self.pack_start( r, false )
   					self.set_cell_data_func(r) do |col, ren, model, iter|
-#iter = model.get_iter(iter.path)
-#puts "Combo:" + iter[ren.model_col].class.name + ":" + iter[ren.model_col].to_s
-  						ren.text = iter[ren.model_col].selected.to_s
+							iter = model.get_iter(iter.path)
+puts "VR::ComboCol Renderer: " + ren.class.name + " model_col: " + ren.model_col.to_s
+puts "VR::ComboCol Iter: " + iter.class.name
+puts "VR::ComboCol Model: " + model.class.name 
+puts "VR::ComboCol Cell: " + iter[ren.model_col].class.name 
+puts "VR::ComboCol iter[ren.model_col]: " + iter[ren.model_col].selected.to_s 
+							display_val = iter[ren.model_col].selected.to_s 
+  						ren.text = display_val #= iter[ren.model_col].selected.to_s
   					end 
     			elsif type == VR::ProgressCol 
   					r = VR::CellRendererProgress.new(*a)
@@ -48,7 +53,7 @@ module VR
   					self.set_cell_data_func(r) do |col, ren, model, iter|
 #iter = model.get_iter(iter.path)
 #puts "DateTime:" + iter[ren.model_col].class.name + ":" + iter[ren.model_col].to_s
-  						ren.text = iter[ren.model_col].strftime(ren.date_format)
+  						ren.text = iter[ren.model_col].strftime(ren.date_format).to_s
   					end
     			elsif type == String or type == Float or type == Integer or type == Fixnum  
   					r = VR::CellRendererText.new(*a)

@@ -1,15 +1,14 @@
 
-class VR_ENV_GLOBAL < VR::SavableClass
+class VR_ENV_GLOBAL
 		
 	GLOBAL_SETTINGS_FILE = File.join(ENV["HOME"], "visualruby", ".global_settings.yaml")
 
 	include GladeGUI
 	
 	attr_accessor :browser, :tab_spaces, :glade_path, :default_project, :projects_home_open_folders
-	attr_accessor :font_name, :settings_file_version, :filename, :projects_home
+	attr_accessor :font_name, :settings_file_version, :projects_home
  
 	def defaults()
-		@filename ||= GLOBAL_SETTINGS_FILE
 		@browser ||= "firefox"
 		@tab_spaces ||= 2
 		@font_name ||= "Monospace 10"
@@ -27,7 +26,7 @@ class VR_ENV_GLOBAL < VR::SavableClass
 		if valid?
 			get_glade_variables
 			@tab_spaces = @builder['tab_spaces'].text.to_i
-			save_yaml()
+			VR::save_yaml(self)
 			@builder["window1"].destroy
 		end
 	end
