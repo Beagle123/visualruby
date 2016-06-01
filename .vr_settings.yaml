@@ -1,6 +1,6 @@
 --- !ruby/object:VR_ENV
 filename: ".vr_settings.yaml"
-width: 1373
+width: 1275
 height: 665
 panel_pos: 257
 notebook_panel_position: 400
@@ -28,8 +28,8 @@ open_folders:
 - "/home/eric/vrp/vr3/vrlib/lib"
 - "/home/eric/vrp/vr3/vrlib/lib/treeview"
 - "/home/eric/vrp/vr3/vrlib/lib/treeview/columns"
-current_file: "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/CellRendererObject.rb"
-current_line: 56
+current_file: "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
+current_line: 123
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
