@@ -414,7 +414,7 @@ end
 	def active_record_valid?(show_errors = true)
   	get_glade_all
   	if not self.valid?
-  		VR.msg(self.errors.full_messages.join("\n\n")) if show_errors
+  		alset(self.errors.full_messages.join("\n\n")) if show_errors
   		self.reload
   		return false
   	end

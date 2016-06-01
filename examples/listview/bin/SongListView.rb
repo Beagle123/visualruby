@@ -18,9 +18,9 @@ class SongListView < VR::ListView
 #		@cols[:artist] = String
 		@cols[:first_name] = String	  
 #		@cols[:last_name] = String
-		@cols[:popular] = VR::ProgressCol
+#		@cols[:popular] = VR::ProgressCol
 #		@cols[:buy] = VR::ComboCol
-##		@cols[:quantity] = VR::SpinCol
+		@cols[:quantity] = VR::SpinCol
 #   	@cols[:price] = VR::CurrencyCol
 #		@cols[:check] = TrueClass
 		super(@cols)
@@ -62,15 +62,15 @@ self.show
 	def refresh()
 		data = get_data() # returns array of songs
 		(0..6).each do |i|
-			row = add_row()
+			row = model.append # add_row()
 #  		row[:pix] = AUDIO_ICON   
-  		row[:first_name] = data[i][0]
+  		row[id(:first_name)] = data[i][0]
 #  		row[:last_name] = data[i][1]
 #  		row[:artist] = row[:first_name] + " " + row[:last_name]
 #  		row[:song] = data[i][2]
-## 		row[:quantity] = VR::SpinCol.new(0,0,100,1) # Gtk::Adjustment.new(0,0,100,1,0,0)  # 
+  		row[id(:quantity)] = VR::SpinCol.new(0,0,100,1) # Gtk::Adjustment.new(0,0,100,1,0,0)  # 
 #			row[:price] = VR::CurrencyCol.new(2.99)
-  		row[:popular] = data[i][3]
+#  		row[id(:popular)] = data[i][3]
 #  		row[:buy] = VR::ComboCol.new("Buy", "Buy", "Rent", "Listen") # all rows use the same combobox
 #  		row[:check] = false
 #			row[:date] = VR::CalendarCol.new(data[i][4], :format => "%d %b %Y ", :hide_time=>true, :hide_date => false)

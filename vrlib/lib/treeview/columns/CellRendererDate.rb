@@ -28,7 +28,7 @@ module VR
 					Date.strptime(text, @date_format)
 					true
 				rescue
-					VR.msg("Unrecognized date format:  " + text)
+					alert("Unrecognized date format:  " + text)
 					false 
 				end } 
 			@edited_block = nil

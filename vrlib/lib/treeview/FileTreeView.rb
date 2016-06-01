@@ -27,9 +27,9 @@ module VR
 			@root = flags[:root] if flags[:root]
 			open_folders = flags[:open_folders] ? flags[:open_folders] : get_open_folders()
   		model.clear
-			root_iter = add_file(@root, nil)
-  		fill_folder(root_iter)
-			expand_row(root_iter.path,false)
+			@root_iter = add_file(@root, nil)
+  		fill_folder(@root_iter)
+			expand_row(@root_iter.path,false)
   		open_folders(open_folders)
     end
   
@@ -80,7 +80,12 @@ module VR
   		end
   	end	
   
-  	def add_file(filename, parent)
+  	def add_file(filename, parent = @root_iter)
+			my_path = File.dirname(filename)
+			model.each do |model, path, iter|
+				return if iter[id(:path)] == filename # duplicate
+				parent = iter if iter[id(:path)] == my_path
+			end
       fn = filename.gsub("\\", "/")
       parent[id(:empty)] = false unless parent.nil?
       child = add_row(parent)
@@ -102,17 +107,11 @@ module VR
   		self.level_indentation  = expand ? 0 : 12
   	end
   
-  	def folder?(iter) iter[id(:sort_on)][0,1] == "0" end
-  
-  	def file_name(iter) iter ? iter[id(:path)] : nil end
-  
-  	def get_selected_file_name() 
-  		selection.selected ? selection.selected[id(:file_name)] : nil
-  	end
+  	def folder?(iter) 
+			iter[id(:sort_on)][0,1] == "0" 
+		end  
   
   	def get_selected_path() (selection.selected ? selection.selected[id(:path)] : nil) end
-  
-  	def delete_selected()	self.model.remove(selection.selected) if selection.selected end
   
   end	
   

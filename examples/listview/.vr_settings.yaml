@@ -12,7 +12,7 @@ open_files:
 open_folders:
 - "/home/eric/vrp/vr3/examples/listview"
 - "/home/eric/vrp/vr3/examples/listview/bin"
-current_file: "/home/eric/vrp/vr3/examples/listview/bin/SongListViewGUI.rb"
-current_line: 11
+current_file: "/home/eric/vrp/vr3/examples/listview/bin/SongListView.rb"
+current_line: 16
 rdoc_command_line: rdoc -x README
 vr_yaml_file: ".vr_settings.yaml"

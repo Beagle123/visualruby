@@ -204,6 +204,16 @@ module VR
 			end
 			rows
 		end  
+
+		def delete_selected()
+			refs = []
+			selection.each do  |mod, path, iter|
+				refs << Gtk::TreeRowReference.new(mod, path)
+			end
+			refs.each do |ref|
+				model.remove(model.get_iter(ref.path))
+			end	 
+		end
   
   	def turn_on_comboboxes() # :nodoc:
   		#detect if comboboxes are present:
@@ -253,8 +263,10 @@ module VR
 
 
 		def vr_row(iter)
-			iter.extend(VR::IterMethods)
-			iter.column_keys = @column_keys
+			unless iter.respond_to?(:id)
+				iter.extend(VR::IterMethods)
+				iter.column_keys = @column_keys
+			end
 			return iter
 		end 
 

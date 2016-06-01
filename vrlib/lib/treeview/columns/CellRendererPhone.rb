@@ -28,7 +28,7 @@ module VR
 				if (only_numbers.size == 10)
 					true
 				else
-					VR.msg("Unrecognized phone number:  " + text)
+					alert("Unrecognized phone number:  " + text)
 					false 
 				end } 
 			@edited_block = nil

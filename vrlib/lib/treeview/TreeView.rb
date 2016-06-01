@@ -30,6 +30,8 @@ module VR
 #
 #	
 
+
+
  		def add_row(parent, hash = {})
 			row = vr_row(model.append(parent))
 			hash.each_pair { |key, val| row[key] = val }
