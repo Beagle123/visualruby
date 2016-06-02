@@ -13,7 +13,7 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/listview_objects/bin"
 - "/home/eric/vrp/vr3/examples/listview_objects/bin/glade"
 current_file: "/home/eric/vrp/vr3/examples/listview_objects/bin/DataObject.rb"
-current_line: 4
+current_line: 3
 rdoc_command_line: rdoc -x README
 vr_yaml_file: ".vr_settings.yaml"
 settings_file_version: 1

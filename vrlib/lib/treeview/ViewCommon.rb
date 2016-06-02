@@ -111,9 +111,11 @@ module VR
 
   module ViewCommon
 
-
+attr_accessor :vr_renderer, :vr_column
   
   	def load_columns(cols) # :nodoc:
+			@vr_renderer = {}
+			@vr_column = {}
   		model_col = 0
   		cols.each_pair do | sym, type|
   			col = VR::TreeViewColumn.new(self, model_col, sym, type)
@@ -216,7 +218,7 @@ module VR
 		end
   
   	def turn_on_comboboxes() # :nodoc:
-  		#detect if comboboxes are present:
+  		# detect if comboboxes are present:
   		found = false
   		self.each_renderer do |r|
   			if r.is_a? VR::CellRendererCombo
@@ -289,7 +291,7 @@ module VR
 
   
   	def column(id)
-  		renderer(id).column 
+  		@vr_column[id] 
   	end
   	
   	def each_renderer
@@ -331,13 +333,17 @@ module VR
 # @view.renderer(:name).width = 100
 #
 #This is perfectly valid even though there are better ways of setting these properties in visualruby.
-  
-  	def renderer(id)
-  		each_renderer do |r| 
-  			return r if r.model_col == id(id) 
-  		end
-  		return nil
-  	end
+
+		def renderer(sym)
+			@vr_renderer[sym]
+		end
+ 
+#  	def renderer(id)
+#  		each_renderer do |r| 
+#  			return r if r.model_col == id(id) 
+#  		end
+#  		return nil
+#  	end
 
 #  Returns the number of the given column ID.  This is very useful when you're
 #  working with Gtk's methods because they require column numbers (not Column IDs)

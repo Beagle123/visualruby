@@ -42,7 +42,7 @@ module VR
   	end
 	
 		def render_object(iter)
-			obj = iter[@model_col]
+			obj = iter[@view.id(@model_col)]
 			self.text = obj.respond_to?(:to_s) ?  obj.to_s : "Define to_s!"
 			if obj.respond_to? @visual_attributes_method
 				return unless attrib = obj.send(@visual_attributes_method)
