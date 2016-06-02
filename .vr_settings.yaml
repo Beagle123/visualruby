@@ -8,17 +8,19 @@ run_command_line: ruby vr
 open_files:
 - "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/TreeViewColumn.rb"
 - "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/ComboCol.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/treeview/TreeView.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/treeview/ViewCommon.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
-- "/home/eric/vrp/vr3/examples/drag_drop/bin/DragDropDemo.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/SpinCol.rb"
+- "/home/eric/vrp/vr3/README.md"
+- "/home/eric/vrp/vr3/vr"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/CellRendererProgress.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
-current_file: "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/TreeViewColumn.rb"
-current_line: 28
+- "/home/eric/vrp/vr3/vrlib"
+- "/home/eric/vrp/vr3/vrlib/lib"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/columns"
+current_file: "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/CellRendererProgress.rb"
+current_line: 16
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

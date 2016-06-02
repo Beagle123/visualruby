@@ -5,6 +5,9 @@ class SongListViewGUI < SongListView
 
 	def before_show
 		@builder["scrolledwindow1"].add(self)
+#
+## try uncommenting this line, and watch erros:
+#		@builder[:window1].show_all
 	end
 
 	def self__row_activated(*args)
