@@ -25,33 +25,33 @@ class SongListView < VR::ListView
 		@cols[:check] = TrueClass
 		super(@cols)
 
-#		col_sort_column_id(:artist => id(:last_name), :song => id(:song), :first_name=> id(:first_name))
-##		col_sort_column_id(:last_name => id(:last_name), :popular => id(:popular))
-#		col_sort_column_id(:last_name => id(:last_name), :popular => id(:popular), :buy=> id(:buy))
-#		col_sort_column_id(:check => id(:check), :date => id(:date))
-##		col_sort_column_id(:price => id(:price), :check => id(:check), :date => id(:date))
-#		col_sort_column_id(:quantity => id(:quantity))
-#		col_title(:first_name => "First", :last_name => "Last", :check => "Ok", :quantity => "Qty")
-#		ren_width(:popular => 80, :check=> 20, :quantity=>70)
+		col_sort_column_id(:artist => id(:last_name), :song => id(:song), :first_name=> id(:first_name))
+		col_sort_column_id(:last_name => id(:last_name), :popular => id(:popular))
+		col_sort_column_id(:last_name => id(:last_name), :popular => id(:popular), :buy=> id(:buy))
+		col_sort_column_id(:check => id(:check), :date => id(:date))
+		col_sort_column_id(:price => id(:price), :check => id(:check), :date => id(:date))
+		col_sort_column_id(:quantity => id(:quantity))
+		col_title(:first_name => "First", :last_name => "Last", :check => "Ok", :quantity => "Qty")
+		ren_width(:popular => 80, :check=> 20, :buy => 80, :quantity=>90)
 #		ren_attr(:price, :edit_inline => true)
 		ren_editable(true)
 	
 		# this block executes after ARTIST is edited ("edited" event).   
-#		renderer(:artist).edited_callback = Proc.new { | model_col, iter |
-#				names = iter[id(:artist)].split
-#				iter[id(:first_name)] = names[0]
-#				iter[id(:last_name)] = names[1]
-#		}
+		renderer(:artist).edited_callback = Proc.new { | model_col, iter |
+				names = iter[id(:artist)].split
+				iter[id(:first_name)] = names[0]
+				iter[id(:last_name)] = names[1]
+		}
 		
 		# this block must evaluate to true to allow updating.
-#		renderer(:artist).validate_block = Proc.new { |text, model_col, iter, view| 
-#			if text.split.size == 2 # insist on two names
-#				true
-#			else
-##				alert("You must enter two names.", :parent => self)
-#				false
-#			end 
-#		} 
+		renderer(:artist).validate_block = Proc.new { |text, model_col, iter, view| 
+			if text.split.size == 2 # insist on two names
+				true
+			else
+				alert("You must enter two names.", :parent => self)
+				false
+			end 
+		} 
 		refresh()
 		self.visible = true
 	end		

@@ -5,9 +5,6 @@ class SongListViewGUI < SongListView
 
 	def before_show
 		@builder["scrolledwindow1"].add(self)
-#
-## try uncommenting this line, and watch erros:
-#		@builder[:window1].show_all
 	end
 
 	def self__row_activated(*args)
@@ -29,7 +26,8 @@ class SongListViewGUI < SongListView
 
 	def background__toggled(*args)
 		val = @builder["background"].active? ? "yellow" : "white"
-		ren_attr(:song, :background => val) # same as set_background( SONG => val)
+		renderer(:pix).background = val
+		ren_attr(:song, :background => val) # same as set_background( :song => val)
 		repaint
 	end
 
