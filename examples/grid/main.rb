@@ -6,5 +6,5 @@ require "vrlib"
 require_rel 'bin/'
 
 
-TableDemoGUI.new.show_glade()
+GridDemoGUI.new.show_glade()
 

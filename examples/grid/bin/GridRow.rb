@@ -1,5 +1,5 @@
 
-class TableRow < Hash
+class GridRow < Hash
 
 	def initialize(parent)
 		@parent = parent		

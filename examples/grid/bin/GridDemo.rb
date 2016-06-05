@@ -1,5 +1,5 @@
 
-class TableDemo < VR::Table
+class GridDemo < VR::Grid
 
 	include GladeGUI
 
@@ -7,18 +7,19 @@ class TableDemo < VR::Table
 #	AUDIO_ICON = Gtk::Image.new(File.dirname(__FILE__) + "/audio-x-generic.png")
 
 	def initialize()
+#		self.add_events(:button_press_mask)
 		super 
 		width=200
 		height= 200 
-		self.add_events(:button_press_mask)
 		self.column_spacing = 5
 		refresh()
 		parse_signals
 		show
 	end		
 
-	def self__button_press_event(*a)
+	def event_box__button_press_event(*a)
 		alert "Hello"
+		return true
 	end
 
 	def refresh()
@@ -30,7 +31,7 @@ class TableDemo < VR::Table
   		row[:first_name] = TextWidget.new(data[i][0])
   		row[:last_name] = ClickableLabel.new(data[i][1])
   		row[:artist] = ClickableLabel.new(data[i][0] + " " + data[i][1])
-  		row[:song] = ClickableLabel.new(data[i][2])
+  		row[:song] = Gtk::Label.new(data[i][2])
 #  		row[id(:quantity)] = VR::SpinCol.new(0,0,100,1) # Gtk::Adjustment.new(0,0,100,1,0,0)  # 
 #			row[id(:price)] = VR::CurrencyCol.new(2.99)
 #  		row[id(:popular)] = data[i][3]

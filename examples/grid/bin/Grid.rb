@@ -1,12 +1,16 @@
 
-class VR::Table < Gtk::Grid
+class VR::Grid < Gtk::Grid
 
-	attr_reader :current_row
+	attr_accessor :current_row, :event_box
 
 	def initialize()
+		super
+		@event_box = Gtk::EventBox.new()
+		@event_box.visible = true
+		@event_box.above_child = true
 		@rows = []
 		@current_row = 0
-		super
+		@event_box.add(self)
 	end
 
 	def cursor
@@ -24,7 +28,7 @@ class VR::Table < Gtk::Grid
 	
 
 	def add_row()
-		@rows << new_row = TableRow.new(self)
+		@rows << new_row = GridRow.new(self)
 		@current_row = @rows.length - 1
 		return new_row
 	end
