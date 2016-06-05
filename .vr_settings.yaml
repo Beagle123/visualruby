@@ -2,13 +2,18 @@
 vr_yaml_file: ".vr_settings.yaml"
 width: 1014
 height: 636
-panel_pos: 360
-notebook_panel_position: 400
-run_command_line: ruby main.rb
+panel_pos: 278
+notebook_panel_position: 437
+run_command_line: ruby vr
 open_files:
 - "/home/eric/vrp/vr3/Untitled"
 open_folders:
 - "/home/eric/vrp/vr3"
+- "/home/eric/vrp/vr3/bin"
+- "/home/eric/vrp/vr3/bin/main"
+- "/home/eric/vrp/vr3/bin/main/glade"
 current_file: "/home/eric/vrp/vr3/Untitled"
 current_line: -1
 rdoc_command_line: rdoc -x README
+builder: !ruby/object:Gtk::Builder {}
+top_level_window: false
