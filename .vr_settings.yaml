@@ -3,7 +3,7 @@ filename: ".vr_settings.yaml"
 width: 1275
 height: 665
 panel_pos: 257
-notebook_panel_position: 400
+notebook_panel_position: 470
 run_command_line: ruby vr
 open_files:
 - "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/TreeViewColumn.rb"
@@ -16,15 +16,18 @@ open_files:
 - "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/CellRendererDate.rb"
 - "/home/eric/vrp/vr3/vrlib/lib/treeview/IterMethods.rb"
 - "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/grid/GridCalendar.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
+- "/home/eric/vrp/vr3/examples"
+- "/home/eric/vrp/vr3/examples/grid"
 - "/home/eric/vrp/vr3/vrlib"
 - "/home/eric/vrp/vr3/vrlib/lib"
 - "/home/eric/vrp/vr3/vrlib/lib/treeview"
 - "/home/eric/vrp/vr3/vrlib/lib/treeview/columns"
-current_file: "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
-current_line: 13
+current_file: "/home/eric/vrp/vr3/vrlib/lib/grid/GridCalendar.rb"
+current_line: 26
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

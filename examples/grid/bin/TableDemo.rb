@@ -1,27 +1,36 @@
 
 class TableDemo < VR::Table
 
+	include GladeGUI
 
-	AUDIO_ICON = Gdk::Pixbuf.new(File.dirname(__FILE__) + "/audio-x-generic.png")
-
+#	AUDIO_ICON = Gdk::Pixbuf.new(File.dirname(__FILE__) + "/audio-x-generic.png")
+#	AUDIO_ICON = Gtk::Image.new(File.dirname(__FILE__) + "/audio-x-generic.png")
 
 	def initialize()
 		super 
 		width=200
 		height= 200 
+		self.add_events(:button_press_mask)
+		self.column_spacing = 5
 		refresh()
+		parse_signals
+		show
 	end		
+
+	def self__button_press_event(*a)
+		alert "Hello"
+	end
 
 	def refresh()
 		clear()
 		data = get_data() # returns array of songs
 		(0..6).each do |i|
 			row = add_row()
-#  		row[:pix] = AUDIO_ICON   
+  		row[:pix] = Gtk::Image.new(:file => File.dirname(__FILE__) + "/audio-x-generic.png")  
   		row[:first_name] = TextWidget.new(data[i][0])
-  		row[:last_name] = Gtk::Label.new(data[i][1])
-  		row[:artist] = Gtk::Label.new(data[i][0] + " " + data[i][1])
-  		row[:song] = Gtk::Label.new(data[i][2])
+  		row[:last_name] = ClickableLabel.new(data[i][1])
+  		row[:artist] = ClickableLabel.new(data[i][0] + " " + data[i][1])
+  		row[:song] = ClickableLabel.new(data[i][2])
 #  		row[id(:quantity)] = VR::SpinCol.new(0,0,100,1) # Gtk::Adjustment.new(0,0,100,1,0,0)  # 
 #			row[id(:price)] = VR::CurrencyCol.new(2.99)
 #  		row[id(:popular)] = data[i][3]

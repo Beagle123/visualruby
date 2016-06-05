@@ -12,6 +12,7 @@ class TextWidget < Gtk::Box
 		@evt.destroy if @evt
 		@evt = Gtk::EventBox.new()
 		@label = Gtk::Label.new(@text)
+		@label.xalign = 0
 		@evt.add(@label)		
 		@evt.signal_connect("button_press_event")  { show_entry() }		
 		pack_start(@evt, :expand => false)
