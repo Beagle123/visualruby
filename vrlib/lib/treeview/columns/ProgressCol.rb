@@ -3,7 +3,7 @@
 #  
 #  ===GladeGUI -- loads glade form 
 #  ===VR::ListView -- makes Gtk::TreeView easy!
-#  ===VR::Dialog -- Dialog boxes: Message Box, Ok Box, Folder selector etc.
+
 
 module VR
 

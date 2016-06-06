@@ -5,28 +5,36 @@ class VR_Main
 	attr_accessor :proj_path, :tabs, :shell, :builder, :file_tree	
 	
   def initialize(argv)
-		#load global settings
-		$VR_ENV_GLOBAL = VR::load_yaml(:class => VR_ENV_GLOBAL, :file_name => VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
-#		unless $VR_ENV_GLOBAL = VR_ENV_GLOBAL.load_yaml(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
-#			$VR_ENV_GLOBAL = VR_ENV_GLOBAL.new(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
-#			$VR_ENV_GLOBAL.save_yaml()
-#		end
-		#try to open right project
+		# there must be a visualruby directory:
+#		menuInstallExamples__activate if not File.directory?(File.join(ENV["HOME"],"","visualruby", "examples","drag_drop"))
+		# load global settings
+#		$VR_ENV_GLOBAL = VR::load_yaml(:class => VR_ENV_GLOBAL, :file_name => VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
+		# try to open right project
 		@proj_path = argv[0] ? argv[0] : Dir.pwd
+		@proj_path = @proj_path.chomp("/")
+#		if not project_valid?(@proj_path) 
+#			@proj_path = $VR_ENV_GLOBAL.default_project if project_valid?($VR_ENV_GLOBAL.default_project)
+#		end
+#		@proj_path = ENV["HOME"] unless File.split(@proj_path).length >= 2 and File.directory?(@proj_path)
+	end
+
+	def before_show
+		# there must be a visualruby directory:
+		menuInstallExamples__activate if not File.directory?(File.join(ENV["HOME"],"","visualruby", "examples","drag_drop"))
+		# load global settings
+		$VR_ENV_GLOBAL = VR::load_yaml(:class => VR_ENV_GLOBAL, :file_name => VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
+		# try to open right project
 		@proj_path = @proj_path.chomp("/")
 		if not project_valid?(@proj_path) 
 			@proj_path = $VR_ENV_GLOBAL.default_project if project_valid?($VR_ENV_GLOBAL.default_project)
 		end
 		@proj_path = ENV["HOME"] unless File.split(@proj_path).length >= 2 and File.directory?(@proj_path)
-	end
-
-	def before_show
 		@file_tree = VR_File_Tree.new(self, File.expand_path(File.dirname(__FILE__) + "/../../img"))
 		@builder["scrolledwindowFileTree"].add(@file_tree) 
 
 		#add document notebook		
-    @tabs = VR_Tabs.new(self)  
-    @builder["boxTabs"].add(@tabs) 
+		@tabs = VR_Tabs.new(self)  
+		@builder["boxTabs"].add(@tabs) 
 
 		#add shell textview
 		@shell = VR_TextShell.new(@tabs)
@@ -43,7 +51,7 @@ class VR_Main
 			VR_Tools.copy_recursively(File.dirname(__FILE__) + "/../../skeleton/project", @proj_path)
 		end
 
-		menuInstallExamples__activate if not File.directory?(File.join(ENV["HOME"],"","visualruby", "examples","drag_drop"))
+
 		
 		while not project_valid?(@proj_path)
 			toolOpenFolder_clicked
@@ -51,7 +59,7 @@ class VR_Main
 
 		load_project
 
-  end
+	end
 
 
 	def project_valid?(proj_path)
@@ -80,8 +88,7 @@ class VR_Main
 		@file_tree.refresh()
 		@shell.buffer.text = ""
 		# if default project invalid, set default
-		test_file = File.join($VR_ENV_GLOBAL.default_project, VR_ENV::SETTINGS_FILE)
-		unless File.file?(test_file)	
+		unless project_valid?($VR_ENV_GLOBAL.default_project)	
 			$VR_ENV_GLOBAL.default_project = @proj_path
 			VR::save_yaml($VR_ENV_GLOBAL) 
 		end 

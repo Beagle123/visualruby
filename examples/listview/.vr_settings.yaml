@@ -14,6 +14,6 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/listview/bin"
 - "/home/eric/vrp/vr3/examples/listview/bin/glade"
 current_file: "/home/eric/vrp/vr3/examples/listview/bin/SongListViewGUI.rb"
-current_line: 26
+current_line: 22
 rdoc_command_line: rdoc -x README
 filename: ".vr_settings.yaml"

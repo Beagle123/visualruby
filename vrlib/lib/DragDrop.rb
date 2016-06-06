@@ -1,4 +1,4 @@
- #nodoc
+#nodoc
 
 module VR
 
