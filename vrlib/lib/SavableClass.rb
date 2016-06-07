@@ -4,11 +4,11 @@ module VR
 		me = nil
 		if File.file?(flags[:file_name]) 
 		 	me = YAML.load(File.open(flags[:file_name]).read)
-			me.defaults() if me.respond_to?(:defaults)
 		elsif flags[:class]
 			me = flags[:class].new()
 		end
 		me.instance_variable_set(:@vr_yaml_file, flags[:file_name])
+		me.defaults() if me.respond_to?(:defaults)
 		VR::save_yaml(me)
 		return me
 	end

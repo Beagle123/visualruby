@@ -11,22 +11,9 @@ class VR_TextShell < Gtk::TextView
 		self.editable = false
 		@blue = buffer.create_tag("blue", { "foreground" => "#0000A0", "underline" => Pango::UNDERLINE_SINGLE  })
 		@hilight = buffer.create_tag("hilight", { "background" => "#FFF0A0" } )
-		signal_connect("button_release_event") { jump_to(line_at_cursor() +1) }  #buffer's lines start at 1  
-		signal_connect("key_release_event") { jump_to(line_at_cursor() +1) }  #buffer's lines start at 1  
-#		self.buffer.signal_connect("changed") { buffer__changed() }
-	end
-
-# @buffer.signal_connect("changed") {
-#      eob_mark = 
-#@output.buffer.create_mark(nil,@output.buffer.start_iter.forward_to_end,false)
-#      @output.scroll_mark_onscreen(eob_mark)
-#    }
-
-	def buffer__move_cursor
-		remove_tag(@hilight)
-#		place_cursor_onscreen
-		line = line_at_cursor()
-		apply_tag_to_line(line, @hilight)
+		signal_connect("button_press_event") { jump_to(line_at_cursor() - 1 ) }  #buffer's lines start at 1  
+		signal_connect("button_release_event") { jump_to(line_at_cursor() - 1) ; sleep(1); jump_to(line_at_cursor() - 1) }  #buffer's lines start at 1  
+		signal_connect("key_release_event") { jump_to(line_at_cursor() - 1) }  #buffer's lines start at 1  
 	end
 
 

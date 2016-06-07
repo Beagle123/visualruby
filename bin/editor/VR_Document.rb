@@ -12,7 +12,6 @@ class VR_Document < GtkSource::View
     super()
     @title = title_label #reference to label on tab
     reload_from_disk(full_path_file) 
-    signal_connect("visibility_notify_event") { scroll_to_cursor() }
     hilight_current_line = true
     show_right_margin = true
     right_margin_position = 80
@@ -21,11 +20,11 @@ class VR_Document < GtkSource::View
     buffer.language = lang
     buffer.highlight_syntax = true
     buffer.highlight_matching_brackets = false
-#    wrap_mode = Gtk::TextTag::WRAP_WORD
     @hilight = buffer.create_tag("hilight", { "background" => "#FFF0A0" })
     buffer.signal_connect("changed") { remove_tag(@hilight) }
     self.show_line_numbers = true 
-    load_glade() #for save dialogs
+		self.insert_spaces_instead_of_tabs = true
+		self.indent_width = $VR_ENV_GLOBAL.tab_spaces.to_i
     update_style()
   end
 
@@ -53,19 +52,19 @@ class VR_Document < GtkSource::View
 	end
 
 	def modified_time_matches()	
-		return true if @modified_time == mod_time()	
-		d = @builder["dialogModifiedTime"]
-		@builder["labelModified"].markup = "<big><big><b>WARNING!</b></big></big>\n\nThe file: <b>#{@full_path_file}</b>\n has been modified since you loaded it:\n\nYou loaded: #{@modified_time}\nOn disk: #{mod_time().to_s}\n\nDo you wnat to keep this version?\n"
-		resp = d.run
-		d.hide
-    if resp == 2 # Keep Current Version
+		return true if @modified_time == mod_time()
+		text = "The file: <b>#{@full_path_file}</b>\n has been modified since you loaded it:\n\nYou loaded: #{@modified_time}\nOn disk: #{mod_time().to_s}\n\nDo you wnat to keep this version?\n"	
+		ans = alert(text, headline: "Warning!", width: 400, button_yes: "Keep Current Version", 
+						button_no: "Reload Disk Version", button_cancel: "Cancel", parent: @main)
+		if ans == true # yes, keep current 
 			write_to_disk()
 			return true
-		elsif resp == 1 # Reload From Disk
+		elsif ans == false # Reload From Disk
 			reload_from_disk()
 		end 
 		return false #abort!
 	end
+
 
 	def try_to_save(ask = true)
 		return false if not modified_time_matches()
@@ -83,7 +82,6 @@ class VR_Document < GtkSource::View
 	end
 
   def write_to_disk(fn = @full_path_file)
-#		modify_base(Gtk::STATE_NORMAL, Gdk::Color.parse("#FFFFFF"))
 		@full_path_file = fn
     File.open(fn, "w")  { |f| f.puts(buffer.text) }
     buffer.modified = false
@@ -94,8 +92,10 @@ class VR_Document < GtkSource::View
 
 	def save_changes?
 		answer = alert "Save chages to:  <b> #{File.basename(@full_path_file)}</b> ?",
-				:parent => @main, :button_yes => "Save Changes", :button_no => "Discard Changes",  :headline => "Save Changes?", :button_cancel => "Cancel"
-		if answer
+							parent: @main, 
+							button_yes: "Save Changes", button_no: "Discard Changes",  
+							headline: "Save Changes?", button_cancel: "Cancel"
+		if answer == true # save
 			return @title.label == "Untitled" ? save_as() : write_to_disk()			
 		elsif answer == false # Discard Changes
 			reload_from_disk()
@@ -104,29 +104,15 @@ class VR_Document < GtkSource::View
 		return false #abort!	
 	end
 
-#	def save_changes?
-#		d = @builder["dialogSave"]
-#		@builder["labelSave"].markup = "Save changes to:  <b>#{File.basename(@full_path_file)}</b>?"
-#		resp = d.run
-#		d.hide
-#    if resp == 2 # Save Changes
-#			return @title.label == "Untitled" ? save_as() : write_to_disk()
-#		elsif resp == 1 # Discard Changes
-#			reload_from_disk()
-#			return true #continue without saving
-#		else 
-#			return false #abort!
-#		end
-#	end
+
 
 #todo update file tree, parent window?
   def save_as()  # returns false or complete file name.
     dialog = Gtk::FileChooserDialog.new(
-																							:title => "Save File As...",
-                                     :parent => @builder['window1'],
-                                     :action => :save,
-                                     :buttons => [["_Cancel", :cancel],
-                      																		["_Save", :accept]])
+							title: "Save File As...",
+              parent: @main.builder[:window1],
+              action: :save,
+              buttons: [["_Cancel", :cancel], ["_Save", :accept]])
 
    	dialog.current_folder = File.dirname(@full_path_file)
 		dialog.current_name = VR_Document.get_class_title(buffer.text) 
@@ -152,10 +138,8 @@ class VR_Document < GtkSource::View
 
  def jump_to_line(line_num, search_str="")
 		hilight_line(line_num)
-    iter = buffer.get_iter_at(:line => line_num)
-    mark = buffer.create_mark("error", iter, true)
-    scroll_to_mark(mark, 0.0, true, 0.0, 0.5)
-    buffer.place_cursor(iter)	
+    iter = buffer.get_iter_at(:line => line_num - 1)
+    buffer.place_cursor(iter)		
 		select_text(line_num, search_str)
 		scroll_to_cursor
   end
