@@ -41,10 +41,8 @@ module VR_TabSearch
 
 	def jump_to(line)
 		return if line.nil?	
-	  if not switch_to(line[:path]) #full path file
-			load_tab(line[:path])
-		end 
-    @docs[self.page].jump_to_line(line[:line] - 1, line[:search_str])
+		load_tab(line[:path]) 
+    @docs[self.page].jump_to_line(line[:line], line[:search_str])
   end
 
 end

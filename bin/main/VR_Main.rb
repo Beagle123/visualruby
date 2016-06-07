@@ -24,22 +24,27 @@ class VR_Main
 		@builder["scrolledwindowFileTree"].add(@file_tree) 
 
 		#add document notebook		
-		@tabs = VR_Tabs.new(self)  
+		@tabs = VR_Tabs.new(self) 
 		@builder["boxTabs"].add(@tabs)
+    @tabs.show
 
 		#add shell textview
 		@shell = VR_TextShell.new(@tabs)
-		@builder["scrollShell"].add(@shell) 
+		@builder["scrollShell"].add(@shell)
+    @shell.show
 
 		#add local gem tab
 		@gem_tree = VR_Local_Gem_Tree.new(self)
-		@builder['scrolledLocalGems'].add(@gem_tree) 
+		@builder['scrolledLocalGems'].add(@gem_tree)
+    @gem_tree.show
+ 
 		#add remote gem tab
 		@remote_gem_tree = VR_Remote_Gem_Tree.new(self)
 		@builder["scrolledRemoteGems"].add(@remote_gem_tree)
+    @remote_gem_tree.show
 	
     unless project_valid?(@proj_path)
-			toolOpenFolder_clicked
+			toolOpenFolder__clicked
 		end
 
     if project_valid?(@proj_path)
@@ -74,7 +79,7 @@ class VR_Main
 		load_state()
 	end
 
-	def toolOpenFolder_clicked
+	def toolOpenFolder__clicked(*a)
 		save_state
 		return unless @tabs.try_to_save_all(:ask=>true)
 		old_path = @proj_path
@@ -94,8 +99,8 @@ class VR_Main
 	
 	def window1_key_press(win, key)
 		case x = key.keyval
-		 	when 65474 then toolRun_clicked # F5
-#			when 115 then toolSave_clicked # Ctrl-S
+		 	when 65474 then toolRun__clicked # F5
+#			when 115 then toolSave__clicked # Ctrl-S
 		end
 	end
 
@@ -128,7 +133,7 @@ class VR_Main
 		@tabs.docs[@tabs.page].save_as()
 	end
 
-	def toolRefresh_clicked
+	def toolRefresh__clicked(*a)
 		case @builder['notebookTree'].page
 			when 0 then @file_tree.refresh()
 			when 1 then @gem_tree.refresh()
@@ -136,7 +141,7 @@ class VR_Main
 		end
 	end
 
-	def toolSave_clicked()  # saves open tab
+	def toolSave__clicked(*a)  # saves open tab
 		@tabs.docs[@tabs.page].try_to_save(false) # false = don't ask
 	end	
 
@@ -159,11 +164,12 @@ class VR_Main
 	end
 
 	def toolHome__clicked(*a)
+puts "Problem with this button. Spits out warnings."
 		default_project = $VR_ENV_GLOBAL.default_project
 		return if default_project == @proj_path	
-		if not File.exists?( File.join(default_project, VR_ENV::SETTINGS_FILE))
+		if not project_valid?(default_project)
 			alert("Your default home project is invalid:\n\n<b>#{default_project}</b>.\n\nGo to: Tools > Global Settings to set it.", 
-					:parent=>self, :headline=>"Invalid Home Project")
+					 parent: self, headline: "Invalid Home Project")
 			return
 		end 
 		return unless @tabs.try_to_save_all(:ask=>true, :close=>true)
@@ -171,28 +177,28 @@ class VR_Main
 		load_project
 	end
 
-	def toolBackUp_clicked
+	def toolBackUp__clicked(*a)
    return unless @tabs.try_to_save_all(:ask=>true)
 		VR_Tools.back_up()
   end
 
-	def toolIndent_clicked
+	def toolIndent__clicked(*a)
 		@tabs.docs[@tabs.page].indent($VR_ENV_GLOBAL.tab_spaces)
   end
 
-	def toolUnIndent_clicked
+	def toolUnIndent__clicked(*a)
 		@tabs.docs[@tabs.page].unindent($VR_ENV_GLOBAL.tab_spaces)
   end
 
-	def toolComment_clicked
+	def toolComment__clicked(*a)
 		@tabs.docs[@tabs.page].comment()
   end
 
-	def toolUnComment_clicked
+	def toolUnComment__clicked(*a)
 		@tabs.docs[@tabs.page].un_comment()
 	end
 
-	def toolRun_clicked
+	def toolRun__clicked(*a)
    	run_command($VR_ENV.run_command_line)
   end 		
 
@@ -223,21 +229,10 @@ class VR_Main
     @builder["window1"].resize($VR_ENV.width, $VR_ENV.height)
     @builder['panelMain'].set_position($VR_ENV.panel_pos)
 		@builder["panelNotebook"].set_position($VR_ENV.notebook_panel_position)
-#    @builder[:window1].show_all
     @tabs.open_file_names($VR_ENV.open_files)
-    @tabs.show
-    @tabs.switch_to($VR_ENV.current_file)
-		@tabs.show
     @file_tree.open_folders($VR_ENV.open_folders)
-		#fix this not working:
-#		@tabs.show
-    @tabs.switch_to($VR_ENV.current_file)
-    @tabs.docs[@tabs.page].show_all
+    @tabs.load_tab($VR_ENV.current_file)
 		@tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
-    @tabs.switch_to($VR_ENV.current_file)
-    @tabs.docs[@tabs.page].show_all
-		@tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
-#		@builder[:window1].show_all
 	end
 
 	def menuCreateGemspec__activate(*a)

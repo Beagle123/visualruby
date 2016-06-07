@@ -1,5 +1,5 @@
 
-class VR_TextShell < Gtk::TextView
+class VR_TextShell < GtkSource::View
 
 	include VR_TextViewCommon
 
@@ -10,9 +10,10 @@ class VR_TextShell < Gtk::TextView
 		@lines = [] #needed
 		self.editable = false
 		@blue = buffer.create_tag("blue", { "foreground" => "#0000A0", "underline" => Pango::UNDERLINE_SINGLE  })
-		@hilight = buffer.create_tag("hilight", { "background" => "#FFF0A0" } )
-		signal_connect("button_press_event") { jump_to(line_at_cursor() - 1 ) }  #buffer's lines start at 1  
-		signal_connect("button_release_event") { jump_to(line_at_cursor() - 1) ; sleep(1); jump_to(line_at_cursor() - 1) }  #buffer's lines start at 1  
+    self.highlight_current_line = true
+#		@hilight = buffer.create_tag("hilight", { "background" => "#FFF0A0" } )
+#		signal_connect("button_press_event") { jump_to(line_at_cursor() - 1 ) }  #buffer's lines start at 1  
+		signal_connect("button_release_event") { jump_to(line_at_cursor() - 1) }  #buffer's lines start at 1  
 		signal_connect("key_release_event") { jump_to(line_at_cursor() - 1) }  #buffer's lines start at 1  
 	end
 
@@ -52,8 +53,8 @@ class VR_TextShell < Gtk::TextView
 	def jump_to(line_no = @current_line+1)
 		return false if line_no > @lines.size - 1
 		@current_line = line_no
-		remove_tag(@hilight)
-		apply_tag_to_line(@current_line, @hilight, nil)
+#		remove_tag(@hilight)
+#		apply_tag_to_line(@current_line, @hilight, nil)
 		@tabs.jump_to(@lines[@current_line])
 		return false #must return false for button_up event
 	end

@@ -237,7 +237,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkToolButton" id="toolRun">
+                  <object class="GtkToolButton" id="toolbuttonRun">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Run</property>

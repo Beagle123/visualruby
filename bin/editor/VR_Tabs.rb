@@ -49,6 +49,7 @@ class VR_Tabs < Gtk::Notebook
 		i = @docs.index{ |d| d.full_path_file == path }
 		return false if i.nil? 
 		self.page = i if i != self.page
+    @docs[self.page].show_all
 		return true
   end  
 
@@ -72,15 +73,17 @@ class VR_Tabs < Gtk::Notebook
 		text = VR_Document.new(full_path_file, title, @main)
 		child = Gtk::ScrolledWindow.new
 		child.add(text)
+    child.show_all
 		box.signal_connect("button_release_event") {remove_id(text.object_id)}
 		#remove blank tab
 		if @docs.size == 1 and @docs[0].buffer.text.strip == "" 
 			@docs[0] = text
 			self.remove_page(0)
 		end
- 		append_page(child, tab)			
-		@main.builder['window1'].show_all # needed
-		self.page = self.n_pages-1
+ 		append_page(child, tab)
+    self.show_all			
+		self.page = self.n_pages - 1
+		@main.builder['boxTabs'].show_all # needed
 		@docs[self.page] = text
 	end	
 	

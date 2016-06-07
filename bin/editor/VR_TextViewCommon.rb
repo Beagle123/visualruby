@@ -1,11 +1,5 @@
 module VR_TextViewCommon
 
-	def get_line_text(line)
-		return nil if line > buffer.line_count - 1
-		iter, iter_end = get_line_iters(line)
-		return buffer.get_text(iter, iter_end, false)
-	end
-
 	def get_line_iters(line, search_str = nil)
 		s = buffer.get_iter_at(:line => line)
 		e = get_end_iter(s)
@@ -18,7 +12,8 @@ module VR_TextViewCommon
 	def select_text(line, search_str = nil)
 			s, e = get_line_iters(line, search_str)
 			return if s.nil? or e.nil?
-    	buffer.move_mark(buffer.get_mark("insert"),s)
+      buffer.place_cursor(s)
+#    	buffer.move_mark(buffer.get_mark("insert"),s)
 			buffer.move_mark(buffer.get_mark("selection_bound"), e)
 	end
 
@@ -42,21 +37,10 @@ module VR_TextViewCommon
 		buffer.remove_tag(tag, s, e)	
 	end
 
-
 	def line_at_cursor()
     cursor_pos = buffer.cursor_position
     iter = buffer.get_iter_at(:offset => cursor_pos)  #get_iter_at_offset depricated
 		return iter.line + 1
-	end
-
-	def scroll_to_cursor()
-    mark = buffer.get_mark("insert")
-    scroll_to_mark(mark, 0.0, true, 1.0, 0.5)
-#   	os = buffer.cursor_position
-#		return if os > buffer.char_count - 1 or os == 0
-#		iter = buffer.get_iter_at(:offset => os)  #get_iter_at_offset depricated
-#    mark = buffer.iter_at_
-#		scroll_to_iter(iter, 0.0, true, 1.0, 0.5)
 	end
 
 end

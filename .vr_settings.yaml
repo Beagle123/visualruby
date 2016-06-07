@@ -6,19 +6,20 @@ panel_pos: 270
 notebook_panel_position: 437
 run_command_line: ruby vr
 open_files:
-- "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
-- "/home/eric/vrp/vr3/bin/editor/VR_TabSearch.rb"
 - "/home/eric/vrp/vr3/bin/editor/VR_Tabs.rb"
 - "/home/eric/vrp/vr3/bin/editor/VR_TextShell.rb"
 - "/home/eric/vrp/vr3/bin/editor/VR_TextViewCommon.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
+- "/home/eric/vrp/vr3/bin/editor/VR_TabSearch.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
+- "/home/eric/vrp/vr3/bin/editor"
 - "/home/eric/vrp/vr3/bin/main"
 - "/home/eric/vrp/vr3/vrlib"
 - "/home/eric/vrp/vr3/vrlib/lib"
-current_file: "/home/eric/vrp/vr3/bin/editor/VR_Tabs.rb"
-current_line: 117
+current_file: "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
+current_line: 293
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
