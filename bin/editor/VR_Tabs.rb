@@ -47,9 +47,8 @@ class VR_Tabs < Gtk::Notebook
 
   def switch_to(path)
 		i = @docs.index{ |d| d.full_path_file == path }
-		return false if i.nil? 
-		self.page = i if i != self.page
-    @docs[self.page].show_all
+		return false if i.nil?  
+    self.page = i if i != self.page
 		return true
   end  
 
@@ -69,21 +68,19 @@ class VR_Tabs < Gtk::Notebook
 		title = Gtk::Label.new(File.basename(full_path_file))
 		tab.pack_start(title, :expand=>true, :fill=>true, :padding=>2)
 		tab.pack_start(box)
-		tab.show_all
+    tab.show_all #needed
 		text = VR_Document.new(full_path_file, title, @main)
 		child = Gtk::ScrolledWindow.new
 		child.add(text)
-    child.show_all
 		box.signal_connect("button_release_event") {remove_id(text.object_id)}
 		#remove blank tab
 		if @docs.size == 1 and @docs[0].buffer.text.strip == "" 
 			@docs[0] = text
 			self.remove_page(0)
 		end
- 		append_page(child, tab)
-    self.show_all			
+    child.show_all #needed
+ 		append_page(child, tab)	
 		self.page = self.n_pages - 1
-		@main.builder['boxTabs'].show_all # needed
 		@docs[self.page] = text
 	end	
 	
@@ -102,9 +99,11 @@ class VR_Tabs < Gtk::Notebook
 
 # this spits out a bunch of warnings on remove_page
 	def destroy_tab(tab = self.page)
-    self.page = self.page - 1
+    self.page = self.page - 1 # stops some warnings
+    VR_Tools.clear_events
 #		self.set_tab_label(get_nth_page(tab), nil)
-  	self.remove_page(tab)
+  	self.remove_page(tab) 
+    VR_Tools.clear_events  
   	@docs.delete_at(tab)
   	load_tab() if @docs.empty?
 	end

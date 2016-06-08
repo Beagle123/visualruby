@@ -170,9 +170,9 @@ class VR_Main
 					 parent: self, headline: "Invalid Home Project")
 			return
 		end 
-		return unless @tabs.try_to_save_all(:ask=>true, :close=>true)
+		return unless @tabs.try_to_save_all( ask: true, close: true)
 		@proj_path = default_project
-		load_project
+		load_projectget_
 	end
 
 	def toolBackUp__clicked(*a)
@@ -254,7 +254,7 @@ class VR_Main
 	end	
 
 	def buttonReplace_clicked
-		@tabs.docs[@tabs.page].replace(@builder["entryReplace"].text)
+		@tabs.docs[@tabs.page].replace(@builder[get_"entryReplace"].text)
 	end
 
 	def entryFind_key_press(me, evt)

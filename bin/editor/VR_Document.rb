@@ -26,6 +26,7 @@ class VR_Document < GtkSource::View
 		self.insert_spaces_instead_of_tabs = true
 		self.indent_width = $VR_ENV_GLOBAL.tab_spaces.to_i
     self.highlight_current_line = true
+    self.set_cursor_visible(true)
     update_style()
   end
 
@@ -127,15 +128,16 @@ class VR_Document < GtkSource::View
 		return false
   end
 
- def jump_to_line(line_num, search_str="")
+ def jump_to_line(line_num, search_str = nil)
+    while (Gtk.events_pending?)
+      Gtk.main_iteration
+    end
 		hilight_line(line_num)
     iter = buffer.get_iter_at(:line => line_num - 1)
-    buffer.place_cursor(iter)
-#    self.cursor_visible = true		
+    buffer.place_cursor(iter)		
     mark = buffer.get_mark("insert")
-#scroll_mark_onscreen(mark)
     scroll_to_mark(mark, 0.1, true, 0.0, 0.5)
-		select_text(line_num-1, search_str)
+		select_text(line_num - 1, search_str) if search_str
   end
 	
 	def hilight_line(line)

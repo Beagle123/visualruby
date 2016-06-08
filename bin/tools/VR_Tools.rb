@@ -1,5 +1,11 @@
 module VR_Tools
 
+  def VR_Tools.clear_events
+    while (Gtk.events_pending?)
+      Gtk.main_iteration
+    end
+  end
+
 	def VR_Tools.popen(cmd)
   	begin
 			IO.popen(cmd)

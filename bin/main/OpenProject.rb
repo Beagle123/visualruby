@@ -35,7 +35,7 @@ class OpenProject
   	return unless row = @ftv.selected_rows.first
 		return if row[:path] == Dir.pwd  #can't delete current project
 		if alert("Do you really want to delete  \n<b>" + row[:path] + " </b>?", 
-				:parent=>self, :headline=>"Warning!", :button_yes=>"Delete", :button_no=>"Cancel",:width=>400)
+				parent: self, headline: "Warning!", button_yes: "Delete", button_no: "Cancel", width: 400)
   		FileUtils.remove_dir(row[:path], true)
 			@ftv.refresh()
   	end
