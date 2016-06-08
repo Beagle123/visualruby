@@ -1,4 +1,4 @@
-
+ 
 module VR_TabSearch 
 
 	def find_in_tabs(str)
@@ -13,7 +13,7 @@ module VR_TabSearch
 	end
 
 	def find_in_all(str)
-		out = "Search Res ults for:  " + str + "\n"
+		out = "Search Results for:  " + str + "\n"
 		Find.find(Dir.pwd) do |path|
 			Find.prune if path =~ /\/glade$/ or path =~ /\/doc$/ #or File.directory?(path)
 			if (File.extname(path) == ".rb" or File.extname(path) == ".erb") and not File.directory?(path) 

@@ -47,7 +47,7 @@
 #   class MyClass
 #    
 #     include GladeGUI
-#     
+#      
 #     def initialize()
 #       puts @builder.to_s  #  => nil
 #     end
@@ -395,15 +395,16 @@ end
 	def show_glade(parent = nil)
 		load_glade()
 		if parent then
-				@builder["window1"].transient_for = parent.builder["window1"]
-				@builder["window1"].modal = true
+				@builder[:window1].transient_for = parent.builder[:window1]
+#				@builder[:window1].modal = true
 		end
 		before_show() if respond_to? :before_show
 		parse_signals()
 		set_glade_all()
-		@builder["window1"].show  #show_all can't hide widgets in before_show
+		@builder[:window1].show  #show_all can't hide widgets in before_show
 		@top_level_window = Gtk.main_level == 0 ? true : false
-		Gtk.main if @top_level_window or @builder["window1"].modal?	#need new Gtk.main for blocking!
+ puts Gtk.main_level.to_s + @builder[:window1].modal?.to_s
+		Gtk.main if @top_level_window or @builder[:window1].modal?	#need new Gtk.main for blocking!
 	end
 
 

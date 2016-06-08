@@ -158,13 +158,11 @@ class VR_Main
 		NewProjectGUI.new(self).show_glade(self)
 		if old_path != @proj_path
  			@tabs.try_to_save_all(:ask=>false, :close=>true)
-			NewProjectGUI.new(self).show_glade(self)
-			load_project()
+			load_project
 		end	
 	end
 
 	def toolHome__clicked(*a)
-puts "Problem with this button. Spits out warnings."
 		default_project = $VR_ENV_GLOBAL.default_project
 		return if default_project == @proj_path	
 		if not project_valid?(default_project)

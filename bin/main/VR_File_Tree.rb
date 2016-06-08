@@ -2,7 +2,7 @@
 class VR_File_Tree < VR::FileTreeView 
 
 	include GladeGUI
-
+  
 	def initialize(main, icon_path)
 		super(Dir.pwd,icon_path)
 		@main = main

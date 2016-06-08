@@ -100,10 +100,12 @@ class VR_Tabs < Gtk::Notebook
 		destroy_tab() if switch_to(file_name)
 	end
 
+# this spits out a bunch of warnings on remove_page
 	def destroy_tab(tab = self.page)
-  	@docs.delete_at(tab)
-		self.set_tab_label(get_nth_page(tab), nil)
+    self.page = self.page - 1
+#		self.set_tab_label(get_nth_page(tab), nil)
   	self.remove_page(tab)
+  	@docs.delete_at(tab)
   	load_tab() if @docs.empty?
 	end
 

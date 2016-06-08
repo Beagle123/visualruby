@@ -65,7 +65,7 @@ class VR_Document < GtkSource::View
 		end 
 		return false #abort!
 	end
-
+ 
 
 	def try_to_save(ask = true)
 		return false if not modified_time_matches()

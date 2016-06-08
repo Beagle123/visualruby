@@ -1,7 +1,6 @@
 
 module VR
 
-
   class FileTreeView < VR::TreeView # :nodoc:
   
   	include GladeGUI
@@ -29,7 +28,7 @@ module VR
   		model.clear
 			@root_iter = add_file(@root, nil)
   		fill_folder(@root_iter)
-			expand_row(@root_iter.path,false)
+			expand_row(@root_iter.path, false)
   		open_folders(open_folders)
     end
   
@@ -56,15 +55,6 @@ module VR
   			self__row_expanded(self, row, row.path) 
   		end
 		end
-
-#  	def self__cursor_changed(*a)
-#  		return unless row = selected_rows.first and @clickable_folders
-#  		if row_expanded?(row.path)
-#  			collapse_row(row.path)
-#  		else
-#  			self__row_expanded(self, row, row.path) 
-#  		end
-#  	end
   
   	def get_open_folders()
   		expanded = []

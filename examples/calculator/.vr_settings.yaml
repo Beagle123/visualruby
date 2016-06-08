@@ -1,7 +1,7 @@
 --- !ruby/object:VR_ENV
-filename: ".vr_settings.yaml"
+vr_yaml_file: ".vr_settings.yaml"
 width: 1028
-height: 711
+height: 691
 panel_pos: 365
 notebook_panel_position: 400
 run_command_line: ruby main.rb
@@ -14,4 +14,5 @@ open_folders:
 current_file: "/home/eric/vrp/vr3/examples/calculator/main.rb"
 current_line: 5
 rdoc_command_line: rdoc -x README
+filename: ".vr_settings.yaml"
 settings_file_version: 1
