@@ -10,6 +10,7 @@ class RubygemsAPI
 		@http = Net::HTTP.new(uri.host, uri.port)
 		@http.use_ssl = true
   	@http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    load_glade()
 	end
   
 	def get_key()
@@ -33,6 +34,7 @@ class RubygemsAPI
         	req.basic_auth @username, @password
       		response = h.request(req)
       		obj = YAML.load(response.body)
+          alert obj.to_s
       		key = obj[:rubygems_api_key]
 					if key
       			File.open(CREDENTIALS_FILE,"w",0600) { |f| f.write(YAML.dump(obj)) }
@@ -61,7 +63,9 @@ class RubygemsAPI
 # also, you must set a variable (bod) to close the io stream
 
 	def push_gem(fn)
-    return unless key = get_key()
+    unless key = get_key()
+      return "No Rubygems Credentials" 
+    end
     path = "https://rubygems.org/api/v1/gems"
     req = Net::HTTP::Post.new(path)	
     req.add_field('Authorization', key) 	

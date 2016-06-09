@@ -24,8 +24,7 @@ def load_everything
 end
 
 $splash = Gtk::Window.new()
-image = Gtk::Image.new(:file => "img/splash.png")
-$splash.add image
+$splash.add Gtk::Image.new(:file => File.join(File.dirname(__FILE__), "img", "splash.png"))
 $splash.decorated = false
 $splash.position = :center_always
 $splash.show_all

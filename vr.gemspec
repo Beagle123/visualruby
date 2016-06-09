@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = "visualruby"  # i.e. visualruby.  This name will show up in the gem list.
 	s.licenses = ["MIT"]
-  s.version = "3.0.0"   
+  s.version = "3.0.2"   
 	s.has_rdoc = false
 #	s.add_dependency('rdoc')
 	s.add_dependency('vrlib', '>=3.0.0') # for examples

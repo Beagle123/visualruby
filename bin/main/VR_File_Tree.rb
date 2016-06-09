@@ -63,14 +63,16 @@ class VR_File_Tree < VR::FileTreeView
 			return
 		end
 		@main.tabs.try_to_save_all(:ask => false)
-		gem_builder = "Invalid .gemspec file:  " + file_name
-		begin #try ruby 2.0.0 way first:
+		gem_builder = "Loading .gemspec file:  " + file_name + "\n"
+		begin 
+      Gem::Specification.reset
 			spec = Gem::Specification.load(file_name)
 			gem_file_name = Gem::Package.build(spec)
-			gem_builder = "Built Gem:\n" + gem_file_name
+			gem_builder = gem_builder + "Built Gem:  " + gem_file_name + "\n"
 			gem_path = File.join(root, gem_file_name)
 			add_file(gem_path) if File.exists?(gem_path)
 		rescue
+      gem_builder = gem_builder + "Error: " + gem_file_name.to_s
 		end
 		@main.shell.buffer.text = gem_builder          
 	end
