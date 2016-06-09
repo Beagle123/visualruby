@@ -52,7 +52,8 @@ class VR_Main
     else
       exit
     end
-
+    $splash.destroy if $splash
+    Gtk.main_quit
 	end
 
 	def project_valid?(proj_path)
@@ -254,7 +255,7 @@ class VR_Main
 	end	
 
 	def buttonReplace_clicked
-		@tabs.docs[@tabs.page].replace(@builder[get_"entryReplace"].text)
+		@tabs.docs[@tabs.page].replace(@builder[:entryReplace].text)
 	end
 
 	def entryFind_key_press(me, evt)

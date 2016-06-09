@@ -30,6 +30,7 @@ class MainApp #(change name)
 	end
 
 	def buttonCancel__clicked(*a)
+    window1__delete_event
 		@builder[:window1].destroy
 	end
 

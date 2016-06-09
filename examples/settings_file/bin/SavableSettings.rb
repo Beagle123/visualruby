@@ -17,10 +17,12 @@ class SavableSettings
 		@height ||= 200
 		@width ||= 350
 		@title ||= "Savable Settings Demo"
-		@text ||= "Try changing the window size, title and text in this window.  You will see that it saves its state " +
-			"to a file named settings.yaml.  So when you run this program again, it will be the same as " +
-			"when you left.  To see this file, click the 'Refresh' button. To reset to " +
-			"defaults, just delete settings.yaml."
+		@text ||= "Try running this program multiple times.\n\n" +
+              "It will create a file named settings.yaml that stores " +
+              "the height, width, title, and text from this window, so the " +
+              "window will be restored to the same state as when you exited.\n\n " +
+              "If you want to reset the file to the defaults, just delete the settings.yaml file.\n\n" +
+              "You may need to click the 'Refresh' to see the settings.yaml file."
 	end	
 
 	def buttonSave__clicked(*a)

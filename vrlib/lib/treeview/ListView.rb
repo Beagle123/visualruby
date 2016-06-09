@@ -55,9 +55,9 @@ module VR
   		model.get_iter(Gtk::TreePath.new("#{row}"))[col]
   	end
 
-#This method will select a given row number.  The row will be hilighted, and the
-#GtkSelection object will point to that row.  It uses the GtkTreeView#set_cursor
-#method to move the cursor to the specified row.
+# This method will select a given row number.  The row will be hilighted, and the
+# GtkSelection object will point to that row.  It uses the GtkTreeView#set_cursor
+# method to move the cursor to the specified row.
 #
 #- row_number:  Integer (FixNum)
 #

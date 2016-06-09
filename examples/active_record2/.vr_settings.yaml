@@ -1,16 +1,23 @@
 --- !ruby/object:VR_ENV
-width: 1641
+vr_yaml_file: ".vr_settings.yaml"
+width: 1046
 height: 718
 panel_pos: 360
+notebook_panel_position: 400
 run_command_line: ruby main.rb
 open_files:
-- "/home/eric/vrp/vr3/examples/active_record/Untitled"
+- "/home/eric/vrp/vr3/examples/active_record2/main.rb"
+- "/home/eric/vrp/vr3/examples/active_record2/bin/CompanyGUI.rb"
+- "/home/eric/vrp/vr3/examples/active_record2/bin/Employer.rb"
+- "/home/eric/vrp/vr3/examples/active_record2/bin/Employee.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/active_record2"
-current_file: "/home/eric/vrp/vr3/examples/active_record/Untitled"
+- "/home/eric/vrp/vr3/examples/active_record2/bin"
+- "/home/eric/vrp/vr3/examples/active_record2/bin/glade"
+- "/home/eric/vrp/vr3/examples/active_record2/db"
+current_file: "/home/eric/vrp/vr3/examples/active_record2/bin/Employee.rb"
+current_line: 22
 rdoc_command_line: rdoc -x README
-settings_file_version: 1
-filename: ".vr_settings.yaml"
-notebook_panel_position: 400
-current_line: -1
 builder: !ruby/object:Gtk::Builder {}
+filename: ".vr_settings.yaml"
+settings_file_version: 1

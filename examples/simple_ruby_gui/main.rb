@@ -9,7 +9,8 @@ require File.exists?("./../../vrlib/vrlib.rb") ?  "./../../vrlib/vrlib.rb" : "vr
 require_rel 'bin/'
 
 
-x = DataObjectGUI.new("Harvey Milktoast", "123 Main, Hemet, CA 90090", "harvey@harveyserver.com", "132-243-4323") 
+x = DataObjectGUI.new("Harvey Milktoast", "123 Main, Hemet, CA 90090",
+     "harvey@harveyserver.com", "132-243-4323") 
 x.show_glade()
 
 

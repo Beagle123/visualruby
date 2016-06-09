@@ -7,12 +7,12 @@ class CompanyGUI
 	def before_show()
   	@employer_view = VR::ListView.new(:employer => Employer, :address => String, :company_type => String)
   	@builder["scroll_employer"].add(@employer_view)
-		@employer_view.selection.signal_connect("changed") { employer_view__changed }
+#		@employer_view.selection.signal_connect("changed") { employer_view__changed }
 		@employer_view.col_width(:employer => 160, :address => 340, :company_type => 180)
 
   	@employee_view = VR::ListView.new(:employer => Employer, :employee => Employee, :address => String, :balance => String)
   	@builder["scroll_employee"].add(@employee_view)
-		@employee_view.selection.signal_connect("changed") { employee_view__changed }
+##		@employee_view.selection.signal_connect("changed") { employee_view__changed }
 		@employee_view.col_width(:employer => 160, :employee => 150, :address => 320)
 
   	@paycheck_view = VR::ListView.new(:employee => Employee, :date => DateTime, :description => String, :amt => Paycheck)
@@ -24,12 +24,12 @@ class CompanyGUI
 			row[:employer] = e
 			row.load_object(e)
 		end
-
-		@employer_view.select_row(0)
+    @builder[:window1].show_all
+#		@employer_view.select_row()
 	end
 
 
-	def employer_view__changed
+	def employer_view__cursor_changed(*a)
 		return unless row = @employer_view.selected_rows[0]
 		@employee_view.model.clear
 		Employee.where(:employer_id => row[:employer].id).each do |e|
@@ -37,10 +37,10 @@ class CompanyGUI
 			row[:employee] = e
 			row.load_object(e)
 		end
-		@employee_view.select_row(0)
+#		@employee_view.select_row(0)
 	end
 
-	def employee_view__changed
+	def employee_view__cursor_changed(*a)
 		return unless row = @employee_view.selected_rows[0]
 		@paycheck_view.model.clear
 		Paycheck.where(:employee_id => row[:employee].id).each do |e|

@@ -406,10 +406,17 @@ end
 		Gtk.main if @top_level_window or @builder[:window1].modal?	#need new Gtk.main for blocking!
 	end
 
+  
+
 
 	def window1__destroy(*args)
 		Gtk.main_quit if @top_level_window or @builder["window1"].modal?  
 	end
+
+  def buttonCancel__clicked(*a)
+    @builder[:window1].destroy
+  end
+
 
 	def active_record_valid?(show_errors = true)
   	get_glade_all

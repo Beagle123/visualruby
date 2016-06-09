@@ -1,8 +1,15 @@
 
-require 'active_record'
-
 # ignore -- this is for development, same as require 'vrlib'
 require File.exists?("./../../vrlib/vrlib.rb") ?  "./../../vrlib/vrlib.rb" : "vrlib"
+
+begin
+  require 'active_record'
+  require 'sqlite3'
+rescue LoadError
+  alert "You must install activerecord gem to use this example.  " +
+      "Just enter at command prompt:\n\n<b>gem install activerecord\ngem install sqlite3</b>"
+  exit
+end
 
 # from require_all gem:
 require_rel 'bin/'

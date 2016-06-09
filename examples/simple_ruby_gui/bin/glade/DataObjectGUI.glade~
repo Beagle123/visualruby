@@ -4,6 +4,8 @@
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
+    <property name="margin_left">20</property>
+    <property name="margin_right">20</property>
     <property name="title" translatable="yes">Basic Ruby Object Demo</property>
     <property name="window_position">center</property>
     <property name="default_width">400</property>
@@ -16,7 +18,6 @@
         <property name="margin_top">20</property>
         <property name="margin_bottom">20</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">10</property>
         <child>
           <object class="GtkLabel" id="label5">
             <property name="visible">True</property>
@@ -36,8 +37,7 @@ This was created with visualruby.  See visualruby.net.</property>
           <object class="GtkGrid" id="grid1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="row_spacing">10</property>
-            <property name="column_spacing">10</property>
+            <property name="column_homogeneous">True</property>
             <child>
               <object class="GtkLabel" id="label6">
                 <property name="visible">True</property>
@@ -154,6 +154,8 @@ This was created with visualruby.  See visualruby.net.</property>
           <object class="GtkButtonBox" id="buttonbox1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_top">20</property>
+            <property name="margin_bottom">20</property>
             <property name="spacing">10</property>
             <property name="layout_style">end</property>
             <child>

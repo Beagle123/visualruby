@@ -16,9 +16,6 @@ class DataObjectGUI
 		alert "Curent values:\n\n#{@name}\n#{@address}\n#{@email}\n#{@phone}\n"	
 	end
 
-	def buttonCancel__clicked(*args)
-		@builder["window1"].destroy
-	end
 
 end
 
