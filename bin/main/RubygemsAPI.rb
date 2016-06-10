@@ -20,33 +20,34 @@ class RubygemsAPI
 		return set_up_key()
 	end
 
-	def set_up_key()
-		@username = ""
-		@password = ""
-		key = nil
-		set_glade_all()
-		@builder["dialog1"].run do |response_id|
-			if response_id == 1 #Ok Button
-    		get_glade_all() #gets @username, @password
-    		path = "/api/v1/api_key.yaml"
-    		@http.start() do |h|
-        	req = Net::HTTP::Get.new(path)
-        	req.basic_auth @username, @password
-      		response = h.request(req)
-      		obj = YAML.load(response.body)
-          alert obj.to_s
-      		key = obj[:rubygems_api_key]
-					if key
-      			File.open(CREDENTIALS_FILE,"w",0600) { |f| f.write(YAML.dump(obj)) }
-					else
-						alert obj.values[0]
-					end 
-				end
-			end
-		end
-		@builder["dialog1"].hide
-		return key
-	end
+def set_up_key()
+    @username = ""
+    @password = ""
+    key = nil
+    set_glade_all()
+    response_id = @builder["dialog1"].run  
+    @builder["dialog1"].hide
+    return unless response_id == 1    
+    get_glade_all() #gets @username, @password
+    begin
+      @http.start() do |h|
+        req = Net::HTTP::Get.new("/api/v1/api_key.yaml")
+        req.basic_auth @username, @password
+        response = h.request(req)
+        obj = YAML.load(response.body)
+        key = obj[:rubygems_api_key]
+        if key
+          File.open(CREDENTIALS_FILE,"w",0600) { |f| f.write(YAML.dump(obj)) } 
+        else
+          alert "Rubygems response:  \n" + obj.to_s
+        end
+      end
+    rescue
+      alert "Problem connecting to rubygems.org"
+    end 
+    return key
+  end
+
 
 
 	def get_obj_url(path)
