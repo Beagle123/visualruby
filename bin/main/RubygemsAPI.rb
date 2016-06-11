@@ -74,9 +74,13 @@ def set_up_key()
     bod = File.open(fn, "rb") {|io| io.read } # no good in win: File.open(fn).read
     req.body = bod #must do it like this to close io ??!?!
     req.content_length = req.body.size
-    @http.start() do |h|
-      response = h.request(req)
-      return response.message	
+    begin 
+      @http.start() do |h|
+        response = h.request(req)
+        return response.message	
+      end
+    rescue
+      alert "Problem connecting to rubygems.org"
     end
 	end
 

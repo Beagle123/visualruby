@@ -18,7 +18,7 @@ open_folders:
 - "/home/eric/vrp/vr3/vrlib"
 - "/home/eric/vrp/vr3/vrlib/lib"
 current_file: "/home/eric/vrp/vr3/bin/main/RubygemsAPI.rb"
-current_line: 97
+current_line: 80
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
