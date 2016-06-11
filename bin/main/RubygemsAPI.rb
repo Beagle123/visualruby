@@ -81,6 +81,7 @@ def set_up_key()
       end
     rescue
       alert "Problem connecting to rubygems.org"
+      return "Problem connecting to rubygems.org"
     end
 	end
 
@@ -92,10 +93,15 @@ def set_up_key()
     req.add_field 'Connection', 'keep-alive'
     req.add_field 'Keep-Alive', '30'
     req.content_type = 'application/x-www-form-urlencoded'
-    @http.start() do |h|
-      response = h.request(req)
-      return response.message	
+    begin
+      @http.start() do |h|
+        response = h.request(req)
+        return response.message	
+      end
+    rescue
+      alert "Problem connecting to rubygems.org"
+      return "Problem connecting to rubygems.org"
     end
-    end
+  end
 	
 end

@@ -173,7 +173,7 @@ class VR_Main
 		end 
 		return unless @tabs.try_to_save_all( ask: true, close: true)
 		@proj_path = default_project
-		load_projectget_
+		load_project
 	end
 
 	def toolBackUp__clicked(*a)
