@@ -15,28 +15,28 @@ module VR
 
   class CellRendererCombo < Gtk::CellRendererCombo
   
-  	attr_accessor :edited_callback, :validate_block 
-		attr_reader :model_col, :column, :model_sym
+    attr_accessor :edited_callback, :validate_block 
+    attr_reader :model_col, :column, :model_sym
   
-  	def initialize(model_col, column, view, model_sym) # :nodoc:
-  		super()
-  		@model_col = model_col
-  		@column = column
-  		@view = view
-			@model_sym = model_sym
-			@view.model.set_sort_func(@model_col) { |m,x,y| x[@model_col].selected <=> y[@model_col].selected }
-  		@validate_block = Proc.new { |text, model_sym, row, view | true } 
-			self.editable = true
-			self.has_entry = false
-			@edited_callback = nil
-    	self.signal_connect('edited') do |ren, path, text| # iter for
-    		iter = @view.model.get_iter(path)
-  			if @validate_block.call(text, @model_sym, @view.vr_row(iter), @view)
-  				iter[@model_col].selected = text 
-					@edited_callback.call(@model_sym, @view.vr_row(iter)) if @edited_callback
-  			end	
-    	end
-  	end
+    def initialize(model_col, column, view, model_sym) # :nodoc:
+      super()
+      @model_col = model_col
+      @column = column
+      @view = view
+      @model_sym = model_sym
+      @view.model.set_sort_func(@model_col) { |m,x,y| x[@model_col].selected <=> y[@model_col].selected }
+      @validate_block = Proc.new { |text, model_sym, row, view | true } 
+      self.editable = true
+      self.has_entry = false
+      @edited_callback = nil
+      self.signal_connect('edited') do |ren, path, text| # iter for
+        iter = @view.model.get_iter(path)
+        if @validate_block.call(text, @model_sym, @view.vr_row(iter), @view)
+          iter[@model_col].selected = text 
+          @edited_callback.call(@model_sym, @view.vr_row(iter)) if @edited_callback
+        end  
+      end
+    end
 
 #  This sets the renderer's "editable" property to true, and makes it save
 #  the edited value to the model.  When a user edits a row in the ListView
@@ -55,11 +55,11 @@ module VR
 #  is_editable = boolean
 #  
  
-  	def set_model(vr_combo) # :nodoc:
-  		self.model = Gtk::ListStore.new(String)
-  		vr_combo.selections.each { |s| r = self.model.append ; r[0] = s }
-  		self.text_column = 0
-  	end
+    def set_model(vr_combo) # :nodoc:
+      self.model = Gtk::ListStore.new(String)
+      vr_combo.selections.each { |s| r = self.model.append ; r[0] = s }
+      self.text_column = 0
+    end
   
   end
 

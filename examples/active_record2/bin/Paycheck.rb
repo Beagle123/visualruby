@@ -1,11 +1,11 @@
 
 class Paycheck < ActiveRecord::Base
-	belongs_to :employee
+  belongs_to :employee
 
-	include GladeGUI
+  include GladeGUI
 
-	def to_s
-		sprintf("%.2f", amount)
-	end
+  def to_s
+    sprintf("%.2f", amount)
+  end
 
 end

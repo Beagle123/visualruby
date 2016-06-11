@@ -9,7 +9,7 @@
 #
 #  with GladeGui, you can write:
 #
-#		@window1 = "All Widgets"
+#    @window1 = "All Widgets"
 #
 #  them yourself using @builder["widget_name"].property=  statement
 # 
@@ -29,22 +29,22 @@
 #
 class AllWidgets
 
-	include GladeGUI
+  include GladeGUI
 
-	def window1__show(*args)
-		@window1 = "Showing All Widgets"
-		@label1 = "I'm a Label"
-		@checkbutton1 = true
-		@builder["checkbutton1"].label = "I'm a Check Button" #this could be set in glade
-		@image1 = "bin/splash.png"
-		@linkbutton1 = "http://www.visualruby.net"
-		@entry1 = "I'm an Entry Box"
-		@progressbar1 = 0.85  # text property set in glade
-		@textview1 = "I'm a Textview"
-		@spinbutton1 = 10.5
-		@fontbutton1 = "Courier 10"
-		@calendar1 = DateTime.new(2011, 5, 14) 
-	end	
+  def window1__show(*args)
+    @window1 = "Showing All Widgets"
+    @label1 = "I'm a Label"
+    @checkbutton1 = true
+    @builder["checkbutton1"].label = "I'm a Check Button" #this could be set in glade
+    @image1 = "bin/splash.png"
+    @linkbutton1 = "http://www.visualruby.net"
+    @entry1 = "I'm an Entry Box"
+    @progressbar1 = 0.85  # text property set in glade
+    @textview1 = "I'm a Textview"
+    @spinbutton1 = 10.5
+    @fontbutton1 = "Courier 10"
+    @calendar1 = DateTime.new(2011, 5, 14) 
+  end  
 
 
 end

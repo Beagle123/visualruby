@@ -21,15 +21,15 @@
 
 class Calculator
 
-	include GladeGUI
+  include GladeGUI
 
-	def before_show()
-		@window1 = "Calculator"  #sets window1's title to "Calculator"
-		@button =		[	1,	2,	3, "C" ] +
-							[	4,	5,	6, "+" ] +
-							[ 7,	8,	9, "-" ] +
-							[ 0, ".","/","=" ]
-	end	
+  def before_show()
+    @window1 = "Calculator"  #sets window1's title to "Calculator"
+    @button =    [  1,  2,  3, "C" ] +
+              [  4,  5,  6, "+" ] +
+              [ 7,  8,  9, "-" ] +
+              [ 0, ".","/","=" ]
+  end  
 
 #  This method is called when any key is clicked.  It follows
 #  this naming convention: <glade_name>__<signal_name>.  (Separator is
@@ -43,20 +43,20 @@ class Calculator
 #  each button!
 
 
-	def button__clicked(button)
-		case button.label
-			when "C" then 
-				@builder["display"].text = ""
-			when "=" then
-				begin # this doesn't catch all errors
-				 	@builder["display"].text = eval(@builder["display"].text).to_s
-				rescue
-					@builder["display"].text = "error"
-				end
-			else 
-				@builder["display"].text = @builder["display"].text + button.label
-		end	 
-	end	
+  def button__clicked(button)
+    case button.label
+      when "C" then 
+        @builder["display"].text = ""
+      when "=" then
+        begin # this doesn't catch all errors
+           @builder["display"].text = eval(@builder["display"].text).to_s
+        rescue
+          @builder["display"].text = "error"
+        end
+      else 
+        @builder["display"].text = @builder["display"].text + button.label
+    end   
+  end  
 
 
 

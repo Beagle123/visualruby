@@ -1,15 +1,15 @@
 class Person < ActiveRecord::Base
 
-		include GladeGUI
+    include GladeGUI
 
-		def before_show
+    def before_show
       @builder[:labelName].label = "<big>#{name}</big>" 
-			set_glade_all() # updates entry boxes
-		end
+      set_glade_all() # updates entry boxes
+    end
     
     # this is what shows in the listview
-		def to_s 
-			"#{self.name}  (#{self.email})  #{self.phone}" 
+    def to_s 
+      "#{self.name}  (#{self.email})  #{self.phone}" 
     end
 
     def buttonSave__clicked(*a)

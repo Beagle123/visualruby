@@ -13,24 +13,24 @@ module VR
 
   class CellRendererSpin < Gtk::CellRendererSpin
   
-  	attr_reader :model_col, :column, :model_sym
-		attr_accessor :edited_callback  
+    attr_reader :model_col, :column, :model_sym
+    attr_accessor :edited_callback  
 
-  	def initialize(model_col, column, view, model_sym) # :nodoc:
-  		super()
-  		@model_col = model_col
-			@model_sym = model_sym
-  		@column = column
-  		@view = view
-  		self.editable = true
-			@view.model.set_sort_func(@model_col) { |m,x,y| x[@model_col].value <=> y[@model_col].value }
-			@edited_callback = nil
-    	self.signal_connect('edited') do |ren, path, text|
-    		next unless iter = @view.model.get_iter(path)
-    		iter[@model_col].value = text.to_f if (iter)
-				@edited_callback.call(@model_sym, @view.vr_row(iter)) if @edited_callback
-    	end
-  	end
+    def initialize(model_col, column, view, model_sym) # :nodoc:
+      super()
+      @model_col = model_col
+      @model_sym = model_sym
+      @column = column
+      @view = view
+      self.editable = true
+      @view.model.set_sort_func(@model_col) { |m,x,y| x[@model_col].value <=> y[@model_col].value }
+      @edited_callback = nil
+      self.signal_connect('edited') do |ren, path, text|
+        next unless iter = @view.model.get_iter(path)
+        iter[@model_col].value = text.to_f if (iter)
+        @edited_callback.call(@model_sym, @view.vr_row(iter)) if @edited_callback
+      end
+    end
   
   end
 

@@ -1,24 +1,24 @@
 
 class RubygemsAPI 
 
-	include GladeGUI
+  include GladeGUI
 
-	CREDENTIALS_FILE = File.join(ENV['HOME'], ".gem", "credentials")
+  CREDENTIALS_FILE = File.join(ENV['HOME'], ".gem", "credentials")
 
-	def initialize
-		uri = URI.parse("https://rubygems.org")
-		@http = Net::HTTP.new(uri.host, uri.port)
-		@http.use_ssl = true
-  	@http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  def initialize
+    uri = URI.parse("https://rubygems.org")
+    @http = Net::HTTP.new(uri.host, uri.port)
+    @http.use_ssl = true
+    @http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     load_glade()
-	end
+  end
   
-	def get_key()
-		if File.file?(CREDENTIALS_FILE)
-			return Gem.configuration.rubygems_api_key
-		end
-		return set_up_key()
-	end
+  def get_key()
+    if File.file?(CREDENTIALS_FILE)
+      return Gem.configuration.rubygems_api_key
+    end
+    return set_up_key()
+  end
 
 def set_up_key()
     @username = ""
@@ -50,26 +50,26 @@ def set_up_key()
 
 
 
-	def get_obj_url(path)
-		return nil unless key = get_key()
-		@http.start() {|h|
+  def get_obj_url(path)
+    return nil unless key = get_key()
+    @http.start() {|h|
       req = Net::HTTP::Get.new(path)
-			response = h.request_get(path, 'Authorization' => key)
-			return obj = YAML.load(response.body)	
+      response = h.request_get(path, 'Authorization' => key)
+      return obj = YAML.load(response.body)  
     }
-	end
+  end
 
 
 # in Windows, the File.open { read } doesn't work for the gemfile.
 # also, you must set a variable (bod) to close the io stream
 
-	def push_gem(fn)
+  def push_gem(fn)
     unless key = get_key()
       return "No Rubygems Credentials" 
     end
     path = "https://rubygems.org/api/v1/gems"
-    req = Net::HTTP::Post.new(path)	
-    req.add_field('Authorization', key) 	
+    req = Net::HTTP::Post.new(path)  
+    req.add_field('Authorization', key)   
     req.content_type = 'application/octet-stream'
     bod = File.open(fn, "rb") {|io| io.read } # no good in win: File.open(fn).read
     req.body = bod #must do it like this to close io ??!?!
@@ -77,18 +77,18 @@ def set_up_key()
     begin 
       @http.start() do |h|
         response = h.request(req)
-        return response.message	
+        return response.message  
       end
     rescue
       alert "Problem connecting to rubygems.org"
       return "Problem connecting to rubygems.org"
     end
-	end
+  end
 
-	def yank_gem(name, ver)
+  def yank_gem(name, ver)
     return unless key = get_key()
     path = "/api/v1/gems/yank?gem_name=#{URI.encode(name)}&version=#{URI.encode(ver)}"
-    req = Net::HTTP::Delete.new(path)		
+    req = Net::HTTP::Delete.new(path)    
     req.add_field('Authorization', key) 
     req.add_field 'Connection', 'keep-alive'
     req.add_field 'Keep-Alive', '30'
@@ -96,12 +96,12 @@ def set_up_key()
     begin
       @http.start() do |h|
         response = h.request(req)
-        return response.message	
+        return response.message  
       end
     rescue
       alert "Problem connecting to rubygems.org"
       return "Problem connecting to rubygems.org"
     end
   end
-	
+  
 end

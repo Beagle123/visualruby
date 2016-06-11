@@ -28,8 +28,8 @@ ChoosePerson.new.show_glade()
 #    create_table :people do |table|
 #      table.column :name, :string
 #      table.column :address, :string
-#			table.column :phone, :string
-#			table.column :email, :string
+#      table.column :phone, :string
+#      table.column :email, :string
 #    end
 #end
 #

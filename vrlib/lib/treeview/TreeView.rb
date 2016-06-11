@@ -8,17 +8,17 @@ module VR
 #  Also, most of the useful methods for VR::TreeView are found in VR::ViewCommon.
 #  All the methods in VR::ViewCommon work on VR::TreeViews and VR::ListViews. 
 #
-	class TreeView < Gtk::TreeView
-	
-		include ViewCommon
+  class TreeView < Gtk::TreeView
+  
+    include ViewCommon
 
 #  See VR::ListView constructor. (exactly the same)
 
-		def initialize(cols)
-			super()
-			self.model = Gtk::TreeStore.new(*flatten_hash(cols).values)
-			load_columns(cols)
-		end
+    def initialize(cols)
+      super()
+      self.model = Gtk::TreeStore.new(*flatten_hash(cols).values)
+      load_columns(cols)
+    end
 #
 #  Adds row to the model.  This will return a "row" type iter that responds
 #  to column IDs (symbols).  You need to provide a parent row (iter).
@@ -28,16 +28,16 @@ module VR
 # 
 #  @view.add_row(iter, :name => "Chester", :email => "chester@chesterizer.com")
 #
-#	
+#  
 
 
 
- 		def add_row(parent, hash = {})
-			row = vr_row(model.append(parent))
-			hash.each_pair { |key, val| row[key] = val }
-  		return row
-  	end
+     def add_row(parent, hash = {})
+      row = vr_row(model.append(parent))
+      hash.each_pair { |key, val| row[key] = val }
+      return row
+    end
 
-	end
+  end
 
 end

@@ -113,47 +113,47 @@ module VR
 
 attr_accessor :vr_renderer, :vr_column
   
-  	def load_columns(cols) # :nodoc:
-			@vr_renderer = {}
-			@vr_column = {}
-  		model_col = 0
-  		cols.each_pair do | sym, type|
-  			col = VR::TreeViewColumn.new(self, model_col, sym, type)
-  			model_col = model_col + (type.class == Hash ? type.size : 1)
-  			self.append_column(col)
-  		end
-  		turn_on_comboboxes()
-			@column_keys = flatten_hash(cols).keys
-  	end
+    def load_columns(cols) # :nodoc:
+      @vr_renderer = {}
+      @vr_column = {}
+      model_col = 0
+      cols.each_pair do | sym, type|
+        col = VR::TreeViewColumn.new(self, model_col, sym, type)
+        model_col = model_col + (type.class == Hash ? type.size : 1)
+        self.append_column(col)
+      end
+      turn_on_comboboxes()
+      @column_keys = flatten_hash(cols).keys
+    end
   
-   	def method_missing(meth, *args) # :nodoc:
-    	unless m = /^(ren_|col_)(.+)$/.match(meth.to_s)
-				super
-				return
-			end     
-  		if args.first.is_a? Hash
-  			args.first.each_pair { |key, val| method(m[1] + "attr").call(key, m[2] => val) }
-  		else
-  			method(m[1] + "attr").call(m[2] => args.first) 
-  		end
+     def method_missing(meth, *args) # :nodoc:
+      unless m = /^(ren_|col_)(.+)$/.match(meth.to_s)
+        super
+        return
+      end     
+      if args.first.is_a? Hash
+        args.first.each_pair { |key, val| method(m[1] + "attr").call(key, m[2] => val) }
+      else
+        method(m[1] + "attr").call(m[2] => args.first) 
+      end
     end
 
 # Sets properties on renderers (and columns)  See VR::ViewCommon#col_attr for more.
 
-  	def ren_attr(*args)
-			cols = args.select { |arg| !arg.is_a? Hash }
-			return unless hash = args.detect { |arg| arg.is_a? Hash }
-			cols = @column_keys if cols.empty?
-  		cols.each do |c|
-  			hash.each_pair do | key, val |
-  				if renderer(c).respond_to?(key.to_s + "=")  
-   					renderer(c).send(key.to_s + '=', val) 
-  				elsif column(c).respond_to?(key.to_s + "=")
-  					column(c).send(key.to_s + '=', val) 
-  				end 
-  			end
-			end		
-		end	
+    def ren_attr(*args)
+      cols = args.select { |arg| !arg.is_a? Hash }
+      return unless hash = args.detect { |arg| arg.is_a? Hash }
+      cols = @column_keys if cols.empty?
+      cols.each do |c|
+        hash.each_pair do | key, val |
+          if renderer(c).respond_to?(key.to_s + "=")  
+             renderer(c).send(key.to_s + '=', val) 
+          elsif column(c).respond_to?(key.to_s + "=")
+            column(c).send(key.to_s + '=', val) 
+          end 
+        end
+      end    
+    end  
 
 #  Sets properties on many columns at once.  It can be called with many columns and many attributes.
 #  Also, if you don't specify any columns, it will set the properties on all of them.  There are
@@ -176,20 +176,20 @@ attr_accessor :vr_renderer, :vr_column
 #  In the vast majority of cases, VR::ViewCommon#col_attr and VR::ViewCommon#ren_attr are interchangable.
   
 
-  	def col_attr(*args)
-			cols = args.select { |arg| !arg.is_a? Hash }
-			return unless hash = args.detect { |arg| arg.is_a? Hash }
-			cols = @column_keys if cols.empty?
-  		cols.each do |c|
-  			hash.each_pair do | key, val |
-  				if column(c).respond_to?(key.to_s + "=")
-  					column(c).send(key.to_s + '=', val)
-  				elsif renderer(c).respond_to?(key.to_s + "=")  
-   					renderer(c).send(key.to_s + '=', val) 
-  				end 
-  			end
-			end		
-		end
+    def col_attr(*args)
+      cols = args.select { |arg| !arg.is_a? Hash }
+      return unless hash = args.detect { |arg| arg.is_a? Hash }
+      cols = @column_keys if cols.empty?
+      cols.each do |c|
+        hash.each_pair do | key, val |
+          if column(c).respond_to?(key.to_s + "=")
+            column(c).send(key.to_s + '=', val)
+          elsif renderer(c).respond_to?(key.to_s + "=")  
+             renderer(c).send(key.to_s + '=', val) 
+          end 
+        end
+      end    
+    end
 
 
 #  Returns an array of rows that are selected in the VR::TreeView or VR::ListView.
@@ -198,54 +198,54 @@ attr_accessor :vr_renderer, :vr_column
 #  selection mode, it will return an array with one row.  These rows are
 #  able to respond to column IDs.  They are the same types of rows as returned by
 #  VR::ViewCommon#vr_row.
-		
-		def selected_rows()
-			rows = []
-			selection.each do |model, path, iter|
-				rows << vr_row(iter) 
-			end
-			rows
-		end  
+    
+    def selected_rows()
+      rows = []
+      selection.each do |model, path, iter|
+        rows << vr_row(iter) 
+      end
+      rows
+    end  
 
-		def delete_selected()
-			refs = []
-			selection.each do  |mod, path, iter|
-				refs << Gtk::TreeRowReference.new(mod, path)
-			end
-			refs.each do |ref|
-				model.remove(model.get_iter(ref.path))
-			end	 
-		end
+    def delete_selected()
+      refs = []
+      selection.each do  |mod, path, iter|
+        refs << Gtk::TreeRowReference.new(mod, path)
+      end
+      refs.each do |ref|
+        model.remove(model.get_iter(ref.path))
+      end   
+    end
   
-  	def turn_on_comboboxes() # :nodoc:
-  		# detect if comboboxes are present:
-  		found = false
-  		self.each_renderer do |r|
-  			if r.is_a? VR::CellRendererCombo
-  				found = true
-  				break
-  			end
-  		end	
-  		return unless found
-    	self.signal_connect("cursor_changed") do |view|
-      	next unless iter = view.selection.selected 
-    		view.each_renderer do |r|
-    			r.set_model( iter[r.model_col] ) if r.is_a? VR::CellRendererCombo
-  			end
-    	end		
-  	end
+    def turn_on_comboboxes() # :nodoc:
+      # detect if comboboxes are present:
+      found = false
+      self.each_renderer do |r|
+        if r.is_a? VR::CellRendererCombo
+          found = true
+          break
+        end
+      end  
+      return unless found
+      self.signal_connect("cursor_changed") do |view|
+        next unless iter = view.selection.selected 
+        view.each_renderer do |r|
+          r.set_model( iter[r.model_col] ) if r.is_a? VR::CellRendererCombo
+        end
+      end    
+    end
 
-		def flatten_hash(hash) # :nodoc:
-			h = {}
-			hash.each do | k, v |
-				if v.class == Hash
-					v.each_pair { |key, val| h[key] = val }
-				else
-					h[k] = v
-				end
-			end 
- 			return h
-		end
+    def flatten_hash(hash) # :nodoc:
+      h = {}
+      hash.each do | k, v |
+        if v.class == Hash
+          v.each_pair { |key, val| h[key] = val }
+        else
+          h[k] = v
+        end
+      end 
+       return h
+    end
 
 #  Enumerates each row in the model and returns an instance of GtkTreeIter.
 #  However, the iters returned have been converted into a "row" using VR::ViewCommon#vr_row
@@ -254,9 +254,9 @@ attr_accessor :vr_renderer, :vr_column
 #   @view.each_row { |row| puts row[:name] }  # works!
 #
 
-		def each_row
-			self.model.each { |mod, pth, itr| yield vr_row(itr) }
-		end
+    def each_row
+      self.model.each { |mod, pth, itr| yield vr_row(itr) }
+    end
 
 #  Converts a normal GtkTreeIter to use VR's column IDs.  You can use it like this:
 #  
@@ -264,17 +264,17 @@ attr_accessor :vr_renderer, :vr_column
 #   row[:name] = "Chester"  # works!
 
 
-		def vr_row(iter)
-			unless iter.respond_to?(:id)
-				iter.extend(VR::IterMethods)
-				iter.column_keys = @column_keys
-			end
-			return iter
-		end 
+    def vr_row(iter)
+      unless iter.respond_to?(:id)
+        iter.extend(VR::IterMethods)
+        iter.column_keys = @column_keys
+      end
+      return iter
+    end 
 
-		def get_iter(path)
-			vr_row(model.get_iter(path))
-		end
+    def get_iter(path)
+      vr_row(model.get_iter(path))
+    end
 
 
 #  Returns a VR::TreeViewColumn object for the column.  You can pass this method either
@@ -290,17 +290,17 @@ attr_accessor :vr_renderer, :vr_column
 #  methods instead.  See VR::ViewCommon for more.
 
   
-  	def column(id)
-  		@vr_column[id] 
-  	end
-  	
-  	def each_renderer
-  		self.columns.each do |c| 
-  			c.cells.each do |r| 
-  				yield r 
-  			end
-  		end
-  	end
+    def column(id)
+      @vr_column[id] 
+    end
+    
+    def each_renderer
+      self.columns.each do |c| 
+        c.cells.each do |r| 
+          yield r 
+        end
+      end
+    end
 
 #Returns the renderer for a given column ID.
 #
@@ -334,16 +334,16 @@ attr_accessor :vr_renderer, :vr_column
 #
 #This is perfectly valid even though there are better ways of setting these properties in visualruby.
 
-		def renderer(sym)
-			@vr_renderer[sym]
-		end
+    def renderer(sym)
+      @vr_renderer[sym]
+    end
  
-#  	def renderer(id)
-#  		each_renderer do |r| 
-#  			return r if r.model_col == id(id) 
-#  		end
-#  		return nil
-#  	end
+#    def renderer(id)
+#      each_renderer do |r| 
+#        return r if r.model_col == id(id) 
+#      end
+#      return nil
+#    end
 
 #  Returns the number of the given column ID.  This is very useful when you're
 #  working with Gtk's methods because they require column numbers (not Column IDs)
@@ -362,9 +362,9 @@ attr_accessor :vr_renderer, :vr_column
 #  you also have the option of converting the whole iter to use column IDs (symbols)
 #  using VR::ViewCommon#vr_row.
 
-		def id(id)
-			return (id.is_a? Fixnum or id.is_a? Integer) ? id : @column_keys.index(id)
-		end  
+    def id(id)
+      return (id.is_a? Fixnum or id.is_a? Integer) ? id : @column_keys.index(id)
+    end  
 
   end
 end

@@ -29,18 +29,18 @@ CompanyGUI.new.show_glade()
 #    create_table :employers do |table|
 #      table.column :name, :string
 #      table.column :address, :string
-#			table.column :company_type, :string
+#      table.column :company_type, :string
 #    end
 #    create_table :employees do |table|
-#			table.column :employer_id, :integer
+#      table.column :employer_id, :integer
 #      table.column :name, :string
 #      table.column :address, :string
 #    end
 #    create_table :paychecks do |table|
-#			table.column :employee_id, :integer
+#      table.column :employee_id, :integer
 #      table.column :date, :date
 #      table.column :description, :string
-#			table.column :amount, :float
+#      table.column :amount, :float
 #    end
 #
 #end

@@ -27,24 +27,24 @@
 
 class ChildWindowDemo #(change name)
 
-	include GladeGUI
+  include GladeGUI
 
-	def buttonOpenModeless__clicked(*argv)
-		ModelessWindow.new.show_glade() # no parent given so windows can overlap
-	end
+  def buttonOpenModeless__clicked(*argv)
+    ModelessWindow.new.show_glade() # no parent given so windows can overlap
+  end
 
 # This modal window has its "modal" property set to true in glade.
 # I pass a reference to "self" in the show method, setting the parent to this window,
 # making it always on top.  Its a good idea to have modal windows always on top
 # because the parent is frozen, so the next action must be in the modal window.
 
-	def buttonOpenModal__clicked(*argv)
-		ModalWindow.new.show_glade(self)  # self = parent, so always on top of parent
-	end
+  def buttonOpenModal__clicked(*argv)
+    ModalWindow.new.show_glade(self)  # self = parent, so always on top of parent
+  end
 
-	def buttonCancel__clicked(*argv)
-		@builder["window1"].destroy
-	end
+  def buttonCancel__clicked(*argv)
+    @builder["window1"].destroy
+  end
 
 end
 

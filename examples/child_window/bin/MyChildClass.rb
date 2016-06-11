@@ -5,17 +5,17 @@
 
 class MyChildClass 
 
-	include GladeGUI
+  include GladeGUI
 
-	def initialize(title, message)
-			@labelMessage = message
-			@window1 = title
-	end
-	
-	# When cancel clicked in MyChildClass.glade
-	def buttonCancel__clicked(*args)  
-		@builder["window1"].destroy 
-	end
+  def initialize(title, message)
+      @labelMessage = message
+      @window1 = title
+  end
+  
+  # When cancel clicked in MyChildClass.glade
+  def buttonCancel__clicked(*args)  
+    @builder["window1"].destroy 
+  end
 
 end
 
