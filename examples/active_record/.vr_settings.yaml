@@ -2,7 +2,7 @@
 vr_yaml_file: ".vr_settings.yaml"
 width: 1139
 height: 691
-panel_pos: 453
+panel_pos: 276
 notebook_panel_position: 400
 run_command_line: ruby active_record.rb
 open_files:

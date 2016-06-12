@@ -16,12 +16,16 @@ class OpenProject
   end
 
   def ftv__cursor_changed(*a)
-#    return unless row = @ftv.selected_rows.first
     @ftv.expand_or_collapse_folder() 
   end
 
   def ftv__row_activated(_self, path, col)
-    buttonOpen__clicked 
+    return unless row = @ftv.selected_rows.first
+    if @parent.project_valid?(row[:path])
+      buttonOpen__clicked
+    else
+      @ftv.expand_or_collapse_folder()
+    end
   end
 
   def buttonChange__clicked(*a)

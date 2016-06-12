@@ -1,7 +1,9 @@
 --- !ruby/object:VR_ENV
+vr_yaml_file: ".vr_settings.yaml"
 width: 1125
 height: 688
 panel_pos: 327
+notebook_panel_position: 400
 run_command_line: ruby main.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/all_widgets/bin/AllWidgets.rb"
@@ -10,9 +12,7 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/all_widgets"
 - "/home/eric/vrp/vr3/examples/all_widgets/bin"
 current_file: "/home/eric/vrp/vr3/examples/all_widgets/bin/AllWidgets.rb"
-rdoc_command_line: rdoc -x README
-vr_yaml_file: ".vr_settings.yaml"
-notebook_panel_position: 400
 current_line: 35
-settings_file_version: 1
+rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
+settings_file_version: 1

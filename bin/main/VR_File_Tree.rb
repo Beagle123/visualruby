@@ -14,8 +14,14 @@ class VR_File_Tree < VR::FileTreeView
   def self__row_activated(*args)
     return unless rows = selected_rows
     file_name = rows.first[:path]
-    if File.extname(file_name) == ".glade" 
-      VR_Tools.popen("#{$VR_ENV_GLOBAL.glade_path} #{file_name} ")   
+    basename = File.basename(file_name)
+    ext = File.extname(file_name)
+    if ext == ".glade" 
+      VR_Tools.popen("#{$VR_ENV_GLOBAL.glade_path} #{file_name} ")
+    elsif ext == ".gem"
+      if alert("Do you want to install <b>#{basename}</b>?", parent: @main, button_cancel: "Cancel")
+        popInstallGem_clicked    
+      end
     elsif File.directory?(file_name)  
       expand_or_collapse_folder()
     else

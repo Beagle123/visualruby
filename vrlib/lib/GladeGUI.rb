@@ -138,7 +138,7 @@ end
     file_name = File.split(caller__FILE__)[0] + '/glade/' + class_name(self) + ".glade" 
     @builder = Gtk::Builder.new
     @builder << file_name
-   @builder.connect_signals{ |handle| method(handle) }
+    @builder.connect_signals{ |handle| method(handle) }
 #    parse_signals() should be called after before_show()
   end
 
@@ -146,7 +146,15 @@ end
     /.*\b(\w+)$/.match(obj.class.name)[1]
   end    
 
-  def parse_signals() # :nodoc:
+#  The parse_signals() method is what connects gtk's signals to your methods.  For example,
+#  when you place a button called "button1" in your glade form, and declare a method called 
+#  "button1__clicked", they aren't connected to each other.  Clicking on the button does nothing
+#  and the method never gets called.  After running parse_signals(), the "clicked" signal is
+#  connected to the method named "button1__clicked" so when the user clicks the button, the method is called.  
+#  
+#  Remember that it will enforce the naming convention:  gladename__signal.  No arguments.
+
+  def parse_signals() 
     meths = self.class.instance_methods()
     meths.each do |meth|
       meth = meth.to_s #bug fix ruby 1.9 gives stmbol
@@ -176,7 +184,7 @@ end
 #  So, to set all the values of a form, simply call the set_glade_all() method instead.
 
   def set_glade_all(obj = self) 
-     set_glade_active_record(obj)
+    set_glade_active_record(obj)
     set_glade_variables(obj)
 #    set_glade_hash(obj) if obj.is_a?(Hash) #only needed for Hash subclass. needed?
   end
@@ -191,7 +199,7 @@ end
 #  So, to retreive all the values of a form back into your ActiveRecord object and instance variables, simply call the set_glade_all() method instead.
 
   def get_glade_all(obj = self)
-     get_glade_active_record(obj)
+    get_glade_active_record(obj)
     get_glade_variables(obj)
   end
 
@@ -263,7 +271,6 @@ end
   end
   
 
-
   def fill_control(glade_name, val) # :nodoc:
     control = @builder[glade_name]
     control_name = glade_name.split(".")[1]
@@ -285,32 +292,6 @@ end
     end      
   end
 
-
-#
-#  def fill_control(glade_name, val) # :nodoc:
-#    return unless glade_name and val
-#puts glade_name + val.to_s
-#    control = @builder[glade_name]
-#puts control.class
-#    control_name = glade_name.split(".")[1]
-#    control ||= @builder[control_name] unless control_name.nil?
-#    return if control.nil?
-#    case control.class
-#      when Gtk::Window then control.title = val
-#      when Gtk::CheckButton then control.active = val
-#      when Gtk::TextView then control.buffer.text = val.to_s
-#      when Gtk::Entry then control.text = val.to_s
-#      when Gtk::FontButton then control.font_name = val.to_s
-#      when Gtk::LinkButton then control.uri = control.label = val.to_s 
-#      when Gtk::Label, Gtk::Button then control.label = val.to_s
-#      when Gtk::Image then control.file = val.to_s 
-#      when Gtk::SpinButton then control.value = val.to_f
-#      when Gtk::ProgressBar then control.fraction = val.to_f
-#      when Gtk::Calendar then control.select_month(val.month, val.year) ; control.select_day(val.day) ; control.mark_day(val.day)
-#      when Gtk::Adjustment then control.value = val.to_f
-#      when Gtk::ScrolledWindow, Gtk::Frame, Gtk::Box then control.add(val)
-#    end      
-#  end
 #
 #  Populates the instance variables from the glade form.
 #  This works for Gtk:Button, Gtk::Entry, Gtk::Label and Gtk::Checkbutton.
@@ -396,7 +377,6 @@ end
     load_glade()
     if parent then
         @builder[:window1].transient_for = parent.builder[:window1]
-#        @builder[:window1].modal = true
     end
     before_show() if respond_to? :before_show
     parse_signals()
@@ -405,9 +385,6 @@ end
     @top_level_window = Gtk.main_level == 0 ? true : false
     Gtk.main if @top_level_window or @builder[:window1].modal?  #need new Gtk.main for blocking!
   end
-
-  
-
 
   def window1__destroy(*args)
     Gtk.main_quit if @top_level_window or @builder["window1"].modal?  
