@@ -23,7 +23,7 @@ open_folders:
 - "/home/eric/vrp/vr3/vrlib"
 - "/home/eric/vrp/vr3/vrlib/lib"
 current_file: "/home/eric/vrp/vr3/vr.gemspec"
-current_line: 6
+current_line: 9
 rdoc_command_line: rdoc -x README -x /*.glade -x /*.yaml -x /*.gemspec -x /*.css
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
