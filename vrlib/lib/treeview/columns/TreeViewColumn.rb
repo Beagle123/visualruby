@@ -1,6 +1,6 @@
 module VR 
 
-  class TreeViewColumn < Gtk::TreeViewColumn
+  class TreeViewColumn < Gtk::TreeViewColumn # :nodoc:
   
     def initialize(view, model_col, sym, type)
         super()
@@ -81,11 +81,6 @@ module VR
       self.sort_column_id = id(sym)
       self.clickable = id(sym).to_b
     end
-  
-#    def sortable=(is_sortable) 
-#      self.sort_column_id = cell_renderers[0].model_col
-#       self.clickable = is_sortable 
-#    end
 
   end
 

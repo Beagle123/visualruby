@@ -2,7 +2,6 @@
 width: 1373
 height: 665
 panel_pos: 256
-notebook_panel_position: 400
 run_command_line: ruby main.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/listview_objects/bin/ListViewObjectsGUI.rb"
@@ -13,7 +12,8 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/listview_objects/bin"
 - "/home/eric/vrp/vr3/examples/listview_objects/bin/glade"
 current_file: "/home/eric/vrp/vr3/examples/listview_objects/bin/DataObject.rb"
-current_line: 3
 rdoc_command_line: rdoc -x README
 vr_yaml_file: ".vr_settings.yaml"
+notebook_panel_position: 400
+current_line: 3
 settings_file_version: 1

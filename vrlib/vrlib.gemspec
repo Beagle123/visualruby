@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "vrlib"  # i.e. visualruby.  This name will show up in the gem list.
-  s.version = "3.0.2"  # i.e.  (major,non-backwards compatable).(backwards compatable).(bugfix)
+  s.version = "3.0.3"  # i.e.  (major,non-backwards compatable).(backwards compatable).(bugfix)
 	s.has_rdoc = false
 	s.licenses = ["MIT"]
 	s.add_dependency('require_all', '>= 1.2')

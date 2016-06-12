@@ -16,7 +16,7 @@ class OpenProject
   end
 
   def ftv__cursor_changed(*a)
-    return unless row = @ftv.selected_rows.first
+#    return unless row = @ftv.selected_rows.first
     @ftv.expand_or_collapse_folder() 
   end
 

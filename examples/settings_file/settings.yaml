@@ -1,6 +1,6 @@
 --- !ruby/object:SavableSettings
 height: 415
-width: 765
+width: 408
 title: Savable Settings Demo
 text: |-
   Try running this program multiple times.

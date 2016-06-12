@@ -9,7 +9,7 @@ class DragDropDemo
     @view = VR::FileTreeView.new(Dir.pwd,"./img")
     @view.refresh()
     @view.expand_row(@view.model.iter_first.path, false)
-   @builder["scrolledwindow1"].add(@view)
+    @builder["scrolledwindow1"].add(@view)
     set_drag_drop("button1" => "textview1", @view => "textview1", "textview1" => "button1")
   end  
 

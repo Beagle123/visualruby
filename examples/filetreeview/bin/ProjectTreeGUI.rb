@@ -8,6 +8,7 @@ class ProjectTreeGUI #(change name)
   def before_show()
     @ftv = ProjectTree.new()
     @builder["scrolledwindow1"].add(@ftv)  #needs show_all
+    @ftv.set_show_expanders(false)
     @open_folders = []
   end  
 

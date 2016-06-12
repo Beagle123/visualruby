@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name = "visualruby"  # i.e. visualruby.  This name will show up in the gem list.
 	s.licenses = ["MIT"]
-  s.version = "3.0.2"   
+  s.version = "3.0.3"   
 	s.has_rdoc = false
 #	s.add_dependency('rdoc')
-	s.add_dependency('vrlib', '>=3.0.0') # for examples
+	s.add_dependency('vrlib', '>=3.0.3') # for examples
 	s.add_dependency('gtksourceview3', '>= 3.0.0')
   s.authors = ["Eric Cunningham"] 
   s.email = "eric@visualruby.net" # optional
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 	s.require_paths = ['vrlib']  # optional, default = lib 
 	s.bindir = ['.']    # optional, default = bin
 #	s.require_paths = ['lib']  # optional, default = lib
-	s.files = Dir.glob("./**/*.{rb,glade,png,yaml,sqlite3}")
+	s.files = Dir.glob("./**/*.{rb,glade,png,yaml,sqlite3}", File::FNM_DOTMATCH) 
 #	s.files = s.files + Dir.glob(File.join("bin", "**", "*.{rb,glade,png,yaml}"))
 #	s.files = s.files + Dir.glob(File.join("lib", "**", "*.{rb,glade,png,yaml}"))
 #	s.files = s.files + Dir.glob(File.join("img", "**", "*.{rb,glade,png,yaml}"))

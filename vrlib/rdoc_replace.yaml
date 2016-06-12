@@ -1,7 +1,6 @@
 ---
 - - <nav id="home-section" class="section">
-  - ! "<nav id=\"home-section\" class= \"section\" >\n  <a  href=/index.html><img
-    src=http://visualruby.net/img/splash_small.png></a><br>"
+  - <nav id="home-section" class= "section" ><a  href=/index.html><img src=http://visualruby.net/img/splash_small.png></a><br>
 - - Video:uploading_gems.avi
   - <iframe width="640" height="480" src="http://www.youtube.com/embed/6VsXlCjU89c"
     frameborder="0" allowfullscreen></iframe>
@@ -15,63 +14,64 @@
   - <iframe width="640" height="480" src="http://www.youtube.com/embed/y_IPPs-cqpk"
     frameborder="0" allowfullscreen></iframe>
 - - GtkTreeIter
-  - ! '<a href="http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ATreeIter">Gtk::TreeIter</a> '
+  - <a href="http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ATreeIter">Gtk::TreeIter</a>
 - - GtkTreeViewColumn
   - <a href="http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ATreeViewColumn">Gtk::TreeViewColumn</a>
 - - GtkCellRendererText
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererText>Gtk::CellRendererText</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererText>Gtk::CellRendererText</a>"
 - - GtkTreeView
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ATreeView>Gtk::TreeView</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ATreeView>Gtk::TreeView</a>"
 - - GtkCellRendererText
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererText>Gtk::CellRendererText</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererText>Gtk::CellRendererText</a>"
 - - GtkCellRendererCombo
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererCombo>Gtk::CellRendererCombo</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererCombo>Gtk::CellRendererCombo</a>"
 - - GtkCellRendererToggle
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererCombo>Gtk::CellRendererToggle</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererCombo>Gtk::CellRendererToggle</a>"
 - - GtkCellRendererSpin
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererSpin>Gtk::CellRendererSpin</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererSpin>Gtk::CellRendererSpin</a>"
 - - GtkCellRendererProgress
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererProgress>Gtk::CellRendererProgress</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererProgress>Gtk::CellRendererProgress</a>"
 - - GtkCellRendererPixbuf
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererPixbuf>Gtk::CellRendererPixbuf</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererPixbuf>Gtk::CellRendererPixbuf</a>"
 - - GtkEntry
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3AEntry>Gtk::Entry</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3AEntry>Gtk::Entry</a>"
 - - GtkSpinButton
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ASpinButton>Gtk::SpinButton</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ASpinButton>Gtk::SpinButton</a>"
 - - GdkPixbuf
-  - <a href=http://ruby-gnome2.sourceforge.jp/ja/hiki.cgi?Gdk%3A%3APixbuf>Gdk::Pixbuf</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/ja/hiki.cgi?Gdk%3A%3APixbuf>Gdk::Pixbuf</a>"
 - - ActiveRecordBase
-  - <a href=http://api.rubyonrails.org/classes/ActiveRecord/Base.html>ActiveRecord::Base</a>
+  - "<a href=http://api.rubyonrails.org/classes/ActiveRecord/Base.html>ActiveRecord::Base</a>"
 - - GtkComboBoxEntry
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3AComboBoxEntry>Gtk::ComboBoxEntry</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3AComboBoxEntry>Gtk::ComboBoxEntry</a>"
 - - GtkProgressBar
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3AProgressBar>Gtk::ProgressBar</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3AProgressBar>Gtk::ProgressBar</a>"
 - - GtkSelection
-  - <A href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ASelection>Gtk::Selection</a>
+  - "<A href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ASelection>Gtk::Selection</a>"
 - - <div id="home-section" class="section">
-  - ! "<div id=\"home-section\" class= \"section\" >\n  <a  href=/index.html><img
-    src=http://visualruby.net/img/splash_small.png></a><br>"
-- - <title>index - RDoc Documentation</title>
-  - <title>Visual Ruby -- GUI with Ruby and Glade</title>
-- - <title>Download - RDoc Documentation</title>
-  - <title>Download Visual Ruby -- Make GUIs with Ruby!</title>
-- - <title>RubyGems Tutorial - RDoc Documentation</title>
-  - <title>RubyGems Tutorial - Use Visual Ruby to Push Gems!</title>
-- - <title>Signals Tutorial - RDoc Documentation</title>
-  - <title>Ruby Signals Tutorial -- signal_connect with Visual Ruby!</title>
-- - <title>ListView Tutorial - RDoc Documentation</title>
-  - <title>Ruby ListView Tutorial</title>
-- - <title>Child Windows Tutorial - RDoc Documentation</title>
-  - <title>Ruby Child Windows Tutorial</title>
-- - <title>Help--Contact Info - RDoc Documentation</title>
-  - <title>Visual Ruby Help</title>
+  - <div id="home-section" class= "section" ><a  href=/index.html><img src=http://visualruby.net/img/splash_small.png></a><br>
+- - "<title>index - RDoc Documentation</title>"
+  - "<title>Visual Ruby -- GUI with Ruby and Glade</title>"
+- - "<title>Download - RDoc Documentation</title>"
+  - "<title>Download Visual Ruby -- Make GUIs with Ruby!</title>"
+- - "<title>RubyGems Tutorial - RDoc Documentation</title>"
+  - "<title>RubyGems Tutorial - Use Visual Ruby to Push Gems!</title>"
+- - "<title>Signals Tutorial - RDoc Documentation</title>"
+  - "<title>Ruby Signals Tutorial -- signal_connect with Visual Ruby!</title>"
+- - "<title>ListView Tutorial - RDoc Documentation</title>"
+  - "<title>Ruby ListView Tutorial</title>"
+- - "<title>Child Windows Tutorial - RDoc Documentation</title>"
+  - "<title>Ruby Child Windows Tutorial</title>"
+- - "<title>Help--Contact Info - RDoc Documentation</title>"
+  - "<title>Visual Ruby Help</title>"
 - - video:activerecord.avi
   - <iframe width="640" height="480" src="http://www.youtube.com/embed/uySVKltD7fk"
     frameborder="0" allowfullscreen></iframe>
 - - GLibInstantiatable#signal_connect
-  - <a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?GLib%3A%3AInstantiatable#signal_connect>Glib::Instaniatable#signal_connect</a>
+  - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?GLib%3A%3AInstantiatable#signal_connect>Glib::Instaniatable#signal_connect</a>"
 - - ActiveRecordBase
-  - <a href=http://ar.rubyonrails.org/classes/ActiveRecord/Base.html#M000341>ActiveRecord::Base</a>
+  - "<a href=http://ar.rubyonrails.org/classes/ActiveRecord/Base.html#M000341>ActiveRecord::Base</a>"
 - - video:activerecord2.avi
   - <iframe width="640" height="480" src="http://www.youtube.com/embed/3f1Lj5Q2Q8g"
     frameborder="0" allowfullscreen></iframe>
+- - <a href="./index.html" rel="home">Home</a>
+  - "<a  href=/index.html><img src=http://visualruby.net/img/splash_small.png></a>"

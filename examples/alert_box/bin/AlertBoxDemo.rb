@@ -28,25 +28,15 @@ class AlertBoxDemo
   include GladeGUI
 
   def buttonSimple__clicked(*a)
-
-path = ENV["HOME"] 
-    alert("The example projects are installed in this folder:\n\n<b>#{path}</b>\n\n "+
-      "Use your <b>/home/visualruby</b> folder for all your visualruby projects.", 
-      :parent => self,  
-      :headline => "Installing Example Projects...",
-      :width => 500)
-
     alert "I'll be back"
-  end
-
-  def buttonSimpleInput__clicked(*a)
-    alert("Enter your age:", :input_text => "")
   end
 
   #its best to include a parent so alert box always on top:
   def buttonYesNo__clicked(*a)
     if alert("Do you want to continue?", :button_yes => "Yes", :button_no => "No", :parent => self) #on top
       alert "Ok we'll contine..."  # not always on top
+    else
+      alert "Ok we'll abort!"
     end
   end
 
@@ -60,20 +50,20 @@ path = ENV["HOME"]
     elsif answer.nil?
       alert "You pressed the <b>'X'</b> button"
     else
-      alert "Error: Should return String (yes), false (no) or nil (quit button)"
+      # will never get here
     end
   end
 
   def buttonQuestion__clicked(*a)
     if answer = alert("Your pants are on <b><u>fire</u></b>.  What do you want to do?", :width => 500, :button_cancel => "Quit",
-      :button_yes => "Jump in Pool", :button_no => "Panic!", :title => "Pants on Fire", :headline => "Warning")
-      alert "Get going!"
+            :button_yes => "Jump in Pool", :button_no => "Panic!", 
+            :title => "Pants on Fire", :headline => "Warning")
+      alert "Get going!\n(alert() returned true)"
+    elsif answer == false # Panic
+      alert "Start Panicing!\n(alert() returned false)"
+    else
+      alert "Ok Avoid the question.\n(alert() returned nil)"
     end
-  end
-
-
-  def buttonQuit__clicked(*a)
-    @builder[:window1].destroy
   end
 
 end

@@ -2,14 +2,15 @@
 width: 1307
 height: 698
 panel_pos: 423
-notebook_panel_position: 400
 run_command_line: ruby main.rb
 open_files:
-- "/home/eric/vrp/vr3/examples/listview_objects/Untitled"
+- "/home/eric/vrp/vr3/examples/drag_drop/bin/DragDropDemo.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/drag_drop"
-current_file: "/home/eric/vrp/vr3/examples/listview_objects/Untitled"
-current_line: -1
+- "/home/eric/vrp/vr3/examples/drag_drop/bin"
+current_file: "/home/eric/vrp/vr3/examples/drag_drop/bin/DragDropDemo.rb"
 rdoc_command_line: rdoc -x README
 vr_yaml_file: ".vr_settings.yaml"
+notebook_panel_position: 400
+current_line: 12
 settings_file_version: 1

@@ -4,7 +4,8 @@ class VR_Main
 
   attr_accessor :proj_path, :tabs, :shell, :builder, :file_tree  
   
-  def initialize(argv)
+  def initialize(argv, splash)
+    @splash = splash
     @proj_path = argv[0] ? argv[0] : Dir.pwd
     @proj_path = @proj_path.chomp("/")
   end
@@ -42,6 +43,9 @@ class VR_Main
     @remote_gem_tree = VR_Remote_Gem_Tree.new(self)
     @builder["scrolledRemoteGems"].add(@remote_gem_tree)
     @remote_gem_tree.show
+
+    @splash[:window1].destroy 
+    Gtk.main_quit
   
     unless project_valid?(@proj_path)
       toolOpenFolder__clicked
@@ -52,8 +56,7 @@ class VR_Main
     else
       exit
     end
-    $splash.destroy if $splash
-    Gtk.main_quit
+
   end
 
   def project_valid?(proj_path)

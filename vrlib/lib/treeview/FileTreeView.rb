@@ -27,8 +27,9 @@ module VR
       open_folders = flags[:open_folders] ? flags[:open_folders] : get_open_folders()
       model.clear
       @root_iter = add_file(@root, nil)
-      fill_folder(@root_iter)
-      expand_row(@root_iter.path, false)
+      open_folders([@root_iter[:path]])
+#      fill_folder(@root_iter)
+#      expand_row(@root_iter.path, false)
       open_folders(open_folders)
     end
   
@@ -43,7 +44,7 @@ module VR
   
     def self__row_expanded(view, iter, path)
       iter = model.get_iter(path)  #bug fix
-       fill_folder(iter) if iter[id(:empty)]
+      fill_folder(iter) if iter[id(:empty)]
       expand_row(iter.path, false)
     end
 
@@ -83,12 +84,12 @@ module VR
       child[:file_name] = File.basename(fn)
       child[:path] = fn
       if File.directory?(fn)
-      child[:sort_on] = "0" + child[:file_name]
-      child[:empty] = true
-      add_row(child) # dummy record so expander appears  
+        child[:sort_on] = "0" + child[:file_name]
+        child[:empty] = true
+        add_row(child) # dummy record so expander appears  
       else
-      child[id(:sort_on)] = "1" + child[id(:file_name)]      
-        end
+        child[id(:sort_on)] = "1" + child[id(:file_name)]      
+      end
       return child
     end
   

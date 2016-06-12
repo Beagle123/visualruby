@@ -19,15 +19,14 @@ def load_everything
   require_rel 'vrlib/lib/'
   require_rel 'bin/'
 
-  VR_Main.new(ARGV).show_glade()
+  VR_Main.new(ARGV, @bldr).show_glade()
 
 end
-
-$splash = Gtk::Window.new()
-$splash.add Gtk::Image.new(:file => File.join(File.dirname(__FILE__), "img", "splash.png"))
-$splash.decorated = false
-$splash.position = :center_always
-$splash.show_all
+ 
+@bldr = Gtk::Builder.new
+@bldr << File.join(File.dirname(__FILE__), "bin", "main", "glade", "Splash.glade")
+@bldr[:image1].file = File.join(File.dirname(__FILE__), "img", "splash.png")
+@bldr[:window1].show_all
 
 
 GLib::Timeout.add(40) {     

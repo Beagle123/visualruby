@@ -11,9 +11,10 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/filetreeview"
 - "/home/eric/vrp/vr3/examples/filetreeview/bin"
 - "/home/eric/vrp/vr3/examples/filetreeview/bin/glade"
-current_file: "/home/eric/vrp/vr3/examples/filetreeview/bin/ProjectTreeGUI.rb"
+current_file: "/home/eric/vrp/vr3/examples/filetreeview/bin/ProjectTree.rb"
 rdoc_command_line: rdoc -x README
+vr_yaml_file: ".vr_settings.yaml"
+notebook_panel_position: 400
+current_line: 11
 settings_file_version: 1
 filename: ".vr_settings.yaml"
-notebook_panel_position: 400
-current_line: 27

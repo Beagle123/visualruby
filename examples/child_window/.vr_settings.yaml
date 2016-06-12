@@ -1,9 +1,7 @@
 --- !ruby/object:VR_ENV
-vr_yaml_file: ".vr_settings.yaml"
 width: 1084
 height: 691
 panel_pos: 437
-notebook_panel_position: 400
 run_command_line: ruby main.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/child_window/main.rb"
@@ -16,6 +14,8 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/child_window/bin"
 - "/home/eric/vrp/vr3/examples/child_window/bin/glade"
 current_file: "/home/eric/vrp/vr3/examples/child_window/bin/ChildWindowDemo.rb"
-current_line: 1
 rdoc_command_line: rdoc -x README
+vr_yaml_file: ".vr_settings.yaml"
+notebook_panel_position: 400
+current_line: 1
 settings_file_version: 1

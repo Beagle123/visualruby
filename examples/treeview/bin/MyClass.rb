@@ -18,7 +18,8 @@ class MyClass #(change name)
     harvey[:name] = "Harvey"
     harvey[:age] = 60
     @scrolledwindow1 = @tree #adds tree to the scrolledwindow
-  end  
+    @tree.show
+end  
 
 end
 

@@ -255,7 +255,10 @@ attr_accessor :vr_renderer, :vr_column
 #
 
     def each_row
-      self.model.each { |mod, pth, itr| yield vr_row(itr) }
+      self.model.each do |mod, pth, itr|
+        iter = model.get_iter(pth) #bug? 
+        yield vr_row(iter) 
+      end
     end
 
 #  Converts a normal GtkTreeIter to use VR's column IDs.  You can use it like this:

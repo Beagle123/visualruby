@@ -2,7 +2,6 @@
 class SavableSettings 
  
   include GladeGUI
-#  include Savable
 
   attr_accessor :height, :width, :title, :text
 
@@ -12,7 +11,10 @@ class SavableSettings
 
   # defaults are set on new and loaded objects.  You can add to this list
   # and it will not cause errors.  New variables will be added
-  # and loaded objects will function flawlessly. 
+  # and loaded objects will function flawlessly.  When you load a yaml
+  # file using VR::load_yaml, it will look for a method named "defaults"
+  # and execute it, so use the name "defaults, and it will automatically run.
+
   def defaults()
     @height ||= 200
     @width ||= 350
@@ -31,9 +33,6 @@ class SavableSettings
     @builder[:window1].destroy
   end
 
-  def buttonCancel__clicked(*a)
-    @builder[:window1].destroy
-  end
 
 end
 
