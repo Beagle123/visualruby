@@ -18,19 +18,10 @@ open_files:
 - "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
-- "/home/eric/vrp/vr3/bin"
-- "/home/eric/vrp/vr3/bin/main"
-- "/home/eric/vrp/vr3/bin/tools"
-- "/home/eric/vrp/vr3/examples"
-- "/home/eric/vrp/vr3/examples/settings_file"
-- "/home/eric/vrp/vr3/examples/settings_file/bin"
-- "/home/eric/vrp/vr3/vrlib"
-- "/home/eric/vrp/vr3/vrlib/lib"
-- "/home/eric/vrp/vr3/vrlib/lib/treeview"
-current_file: "/home/eric/vrp/vr3/bin/editor/VR_TextShell.rb"
+current_file: "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
 rdoc_command_line: rdoc -x README -x /*.glade -x /*.yaml -x /*.gemspec -x /*.css
 vr_yaml_file: ".vr_settings.yaml"
 notebook_panel_position: 474
-current_line: 18
+current_line: 227
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
