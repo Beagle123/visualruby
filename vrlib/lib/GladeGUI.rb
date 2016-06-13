@@ -126,20 +126,25 @@ end
 #  
 #    widget = @builder["name"]
 #  
-#  Normally, you should give your widgets names of instance variables: i.e. "MyClass.var"
-#  so they can be autoloaded using the set_glade_all() method.
+#  Normally, you should give your widgets names of instance variables: i.e. @email
+#  so they can be autoloaded using the set_glade_all() method.  For example,
+#  the value of the @email vaiable would be loaded into a Gtk:Entry named "email"
+#  in your glade form.  It saves you from having to do this:
+#
+#  @builder[:email] = @email
 #  
 #  You can also pass a reference to a parent class that also includes GladeGUI.
 #  Then the child window will run simultaniously with the parent.
 #  
 
   def load_glade()
+    return if @builder
     caller__FILE__ = my_class_file_path() 
     file_name = File.split(caller__FILE__)[0] + '/glade/' + class_name(self) + ".glade" 
     @builder = Gtk::Builder.new
     @builder << file_name
     @builder.connect_signals{ |handle| method(handle) }
-#    parse_signals() should be called after before_show()
+    parse_signals() # parses everything available
   end
 
   def class_name(obj) # :nodoc:
@@ -170,9 +175,23 @@ end
       end
       obj = glade_name == "self" ? self : self.instance_variable_get("@" + glade_name)
       obj ||= eval(glade_name) if respond_to?(glade_name) and method(glade_name.to_sym).arity == 0 # no arguments!
-      obj.signal_connect(signal_name) { |*args| method(meth.to_sym).call(*args) } if obj.respond_to?("signal_connect") 
+      if obj.respond_to?("signal_connect") and !obj.respond_to?(signal_name)
+        obj.signal_connect(signal_name) { |*args| method(meth.to_sym).call(*args) }
+      end
     end
   end
+
+# parses instance variables added in before_show
+  def parse_instance_signals(dig = true)
+    instance_variables.each do |var|
+      obj = instance_variable_get(var)
+      if obj.respond_to?(:load_glade)
+        obj.load_glade
+        obj.parse_signals                         # dig one level
+        obj.parse_instance_signals(false) if dig  # never ending loop if instance vaiables are in 2 objects
+      end
+    end
+  end    
 
 #  This method is the most useful method to populate a glade form.  It will
 #  populate from active_record fields and instance variables.  It will simply 
@@ -380,6 +399,7 @@ end
     end
     before_show() if respond_to? :before_show
     parse_signals()
+    parse_instance_signals()
     set_glade_all()
     @builder[:window1].show  #show_all can't hide widgets in before_show
     @top_level_window = Gtk.main_level == 0 ? true : false

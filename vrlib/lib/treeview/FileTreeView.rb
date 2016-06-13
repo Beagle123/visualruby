@@ -14,7 +14,7 @@ module VR
       col_visible( :path => false, :modified_date => false, :sort_on => false, :empty => false)
       self.headers_visible = false
       @icons = File.directory?(icon_path) ? VR::IconHash.new(icon_path) : nil
-      parse_signals()
+#      parse_signals()
       model.set_sort_column_id(id(:sort_on), :ascending )
       self.set_enable_search(false)
       refresh
