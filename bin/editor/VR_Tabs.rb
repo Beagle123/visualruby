@@ -60,7 +60,8 @@ class VR_Tabs < Gtk::Notebook
   end
 
   def load_tab(full_path_file = Dir.pwd + "/Untitled")
-   return if switch_to(full_path_file)
+    full_path_file = Dir.pwd + "/Untitled" if full_path_file == ""
+    return if switch_to(full_path_file) 
     box = Gtk::EventBox.new
     tab = Gtk::Box.new(:horizontal)
     img = Gtk::Image.new(:pixbuf => @pix_close)
@@ -79,7 +80,7 @@ class VR_Tabs < Gtk::Notebook
       self.remove_page(0)
     end
     child.show_all #needed
-     append_page(child, tab)  
+    append_page(child, tab)  
     self.page = self.n_pages - 1
     @docs[self.page] = text
   end  
@@ -113,7 +114,7 @@ class VR_Tabs < Gtk::Notebook
   end
 
   def open_file_names(ar)
-    ar.each { |fn| load_tab(fn) if File.file?(fn) and fn.include? Dir.pwd}
+   ar.each { |fn| load_tab(fn) if File.file?(fn) and fn.include? Dir.pwd}
    load_tab() if @docs.empty?
   end
 

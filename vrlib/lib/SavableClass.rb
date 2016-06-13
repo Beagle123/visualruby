@@ -3,7 +3,7 @@ module VR
   def self.load_yaml(flags)
     me = nil
     if File.file?(flags[:file_name]) 
-       me = YAML.load(File.open(flags[:file_name]).read)
+      me = YAML.load(File.open(flags[:file_name]).read)
     elsif flags[:class]
       me = flags[:class].new()
     end
