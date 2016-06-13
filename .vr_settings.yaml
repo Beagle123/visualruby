@@ -1,29 +1,32 @@
 --- !ruby/object:VR_ENV
-vr_yaml_file: ".vr_settings.yaml"
 width: 1364
 height: 691
 panel_pos: 270
-notebook_panel_position: 474
 run_command_line: ruby vr
 open_files:
-- "/home/eric/vrp/vr3/vr"
 - "/home/eric/vrp/vr3/vr.gemspec"
-- "/home/eric/vrp/vr3/vrlib/vrlib.rb"
-- "/home/eric/vrp/vr3/skeleton/project/bin/MyClass.rb"
-- "/home/eric/vrp/vr3/skeleton/project/main.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_Tools.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_ENV.rb"
 - "/home/eric/vrp/vr3/bin/main/OpenProject.rb"
-- "/home/eric/vrp/vr3/bin/main/ProjectTree.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/GladeGUI.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/treeview/ListView.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
+- "/home/eric/vrp/vr3/examples/filetreeview/bin/ProjectTree.rb"
+- "/home/eric/vrp/vr3/examples/listview/bin/SongListViewGUI.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/columns/CellRendererObject.rb"
+- "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
 - "/home/eric/vrp/vr3/bin/main"
+- "/home/eric/vrp/vr3/examples"
+- "/home/eric/vrp/vr3/examples/active_record2"
+- "/home/eric/vrp/vr3/examples/active_record2/db"
 - "/home/eric/vrp/vr3/vrlib"
 - "/home/eric/vrp/vr3/vrlib/lib"
 current_file: "/home/eric/vrp/vr3/vr.gemspec"
-current_line: 9
 rdoc_command_line: rdoc -x README -x /*.glade -x /*.yaml -x /*.gemspec -x /*.css
+vr_yaml_file: ".vr_settings.yaml"
+notebook_panel_position: 474
+current_line: 4
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

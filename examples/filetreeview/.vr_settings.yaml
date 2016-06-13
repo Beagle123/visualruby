@@ -1,7 +1,9 @@
 --- !ruby/object:VR_ENV
+vr_yaml_file: ".vr_settings.yaml"
 width: 1337
 height: 691
 panel_pos: 490
+notebook_panel_position: 400
 run_command_line: ruby main.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/filetreeview/main.rb"
@@ -10,11 +12,9 @@ open_files:
 open_folders:
 - "/home/eric/vrp/vr3/examples/filetreeview"
 - "/home/eric/vrp/vr3/examples/filetreeview/bin"
-- "/home/eric/vrp/vr3/examples/filetreeview/bin/glade"
+- "/home/eric/vrp/vr3/examples/filetreeview/img"
 current_file: "/home/eric/vrp/vr3/examples/filetreeview/bin/ProjectTree.rb"
+current_line: 12
 rdoc_command_line: rdoc -x README
-vr_yaml_file: ".vr_settings.yaml"
-notebook_panel_position: 400
-current_line: 11
 settings_file_version: 1
 filename: ".vr_settings.yaml"

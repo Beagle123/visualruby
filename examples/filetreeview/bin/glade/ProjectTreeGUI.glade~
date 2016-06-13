@@ -37,6 +37,10 @@
           <object class="GtkFrame" id="frame1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_left">5</property>
+            <property name="margin_right">5</property>
+            <property name="margin_top">5</property>
+            <property name="margin_bottom">5</property>
             <property name="label_xalign">0</property>
             <property name="shadow_type">in</property>
             <child>
@@ -48,11 +52,7 @@
                   <object class="GtkLabel" id="label3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">10</property>
-                    <property name="margin_right">10</property>
-                    <property name="margin_top">10</property>
-                    <property name="margin_bottom">10</property>
-                    <property name="label" translatable="yes">This filetreeview shows only the folders that contain the hidden file, .vr_settings.  This is how a visualruby project is identified.  You will only be able to select valid visualruby project folders. </property>
+                    <property name="label" translatable="yes">This filetreeview shows only the folders that contain the hidden file, .vr_settings.  This is how a visualruby project is identified.  You will only be able to select valid visualruby project folders.  Using the expanders you can see other files, but you can't select them.</property>
                     <property name="wrap">True</property>
                   </object>
                 </child>

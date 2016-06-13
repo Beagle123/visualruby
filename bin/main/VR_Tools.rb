@@ -10,7 +10,8 @@ module VR_Tools
     begin
       IO.popen(cmd)
     rescue
-      alert("The following command couldn't run:\n\n<b>#{cmd}</b>\n\nCheck the path in Tools > Settings")
+      alert("The following command couldn't run:\n\n<b>#{cmd}</b>\n\nCheck the path in Tools > Settings." + 
+          "\n\nIn MS Windows you may need to add the 'start' command i.e. <b>'start glade'</b>")
     end
   end
 

@@ -5,7 +5,7 @@ module VR
   
     include GladeGUI
   
-    attr_accessor :root, :glob, :test_block
+    attr_accessor :root, :glob, :validation_block
   
     def initialize(root = Dir.pwd, icon_path = nil, glob = "*")
       @root = root
@@ -36,7 +36,7 @@ module VR
     def fill_folder(parent_iter)
       model.remove(parent_iter.first_child)   #remove dummy record
       files = Dir.glob(File.join(parent_iter[id(:path)],@glob))
-      files = files.select &@test_block if @test_block
+      files = files.select &@validation_block if @validation_block
       files.each do |fn|
          add_file(fn, parent_iter)
       end  

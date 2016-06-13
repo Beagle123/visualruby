@@ -15,7 +15,7 @@ class VR_ENV_GLOBAL
     @glade_path ||= "glade"
     @projects_home ||= File.join(ENV["HOME"], "visualruby")
     @projects_home_open_folders ||= [@projects_home]
-    @default_project ||= File.join(ENV["HOME"], "visualruby", "examples", "treeview")
+    @default_project ||= File.join(ENV["HOME"], "visualruby", "examples", "alert_box")
   end
 
   def before_show
@@ -51,11 +51,11 @@ class VR_ENV_GLOBAL
   end    
 
   def buttonTryGlade__clicked(*argv)
-    VR_Tools.popen(@glade_path)
+    VR_Tools.popen(@builder[:glade_path].text)
   end
 
   def buttonTryBrowser__clicked(*argv)
-    VR_Tools.popen(@browser)
+    VR_Tools.popen(@builder[:browser].text)
   end
 
   def buttonCurrent__clicked(*argv)

@@ -12,7 +12,7 @@ class VR_Main
 
   def before_show
     # there must be a visualruby directory:
-    menuInstallExamples__activate if not File.directory?(File.join(ENV["HOME"],"","visualruby", "examples","drag_drop"))
+    menuInstallExamples__activate if not File.directory?(File.join(ENV["HOME"],"","visualruby", "examples","alert_box"))
     # load global settings (requires /home/visuaruby folder exists
     $VR_ENV_GLOBAL = VR::load_yaml(:class => VR_ENV_GLOBAL, :file_name => VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
     # try to open right project
@@ -185,6 +185,10 @@ class VR_Main
   end
 
   def toolIndent__clicked(*a)
+#    @tabs.docs[@tabs.page].indent_selected_lines()
+#    evt = Gdk::EventKey.new(:key_press)
+#    evt.keyval = Gdk::Keyval::GDK_6
+#    evt.put
     @tabs.docs[@tabs.page].indent($VR_ENV_GLOBAL.tab_spaces)
   end
 
