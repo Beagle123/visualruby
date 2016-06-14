@@ -7,12 +7,14 @@ open_files:
 - "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
 - "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
 - "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
+- "/home/eric/vrp/vr3/vr.gemspec"
+- "/home/eric/vrp/vr3/bin/main/OpenProject.rb"
+- "/home/eric/vrp/vr3/examples/settings_file/bin/SavableSettings.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/SavableClass.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
-- "/home/eric/vrp/vr3/bin"
-- "/home/eric/vrp/vr3/bin/main"
-current_file: "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
+current_file: "/home/eric/vrp/vr3/vrlib/lib/SavableClass.rb"
 rdoc_command_line: rdoc -x README
 vr_yaml_file: ".vr_settings.yaml"
 notebook_panel_position: 400
-current_line: 98
+current_line: 14
