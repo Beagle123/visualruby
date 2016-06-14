@@ -1,7 +1,7 @@
 
 module VR
-
-  class Alert  # :nodoc:
+# :nodoc:
+  class Alert  
 
     attr_accessor :answer    
 
@@ -56,53 +56,40 @@ module VR
 
 end  
 
-#  The alert method creates a pop-up alert in your program.  It creates a modal
-#  window that halts execution of your code until the user closes it.  Its great
-#  for displaying messages and debugging.  It also has the option of displaying
-#  a text entry box for getting text input from the user.  This small tool can save
-#  hundreds of lines of code in your programs.  It can be used extesnively to
-#  display all types of messages and request all types of user input.
-#  
-#  There is an example project called "alert_box" in the home/visualruby/examples folder
-#  that shows several ways to use this versitle method.
-#  
-#  The alert box can disply 1, 2 or 3 buttons.  The first button is denoted using the symbol: :button_yes
-#  button and is always displayed.  You can add a :button_no button and a :button_cancel
-#  as well.  The alert method will return a value based on the button pressed:
-#  
-#   Returns:
-#   true or String = :button_yes pressed (returns user input String when its a text entry box)
-#   false = :button_no pressed
-#   nil = :button_cancel pressed
-#   nil = "x" button closed window
-#  
-#  The first argument is a text message to display.  It is the only required argument.
-#  If you just provide a text message, the message will pop-up with a button that says "Ok"
-#  that closes the window.
-#  
-#  The second, optional argument is a hash of flags that can configure the alert box to
-#  have much more functionality:
-#  
-#    :buton_yes = label for button that returns true (default: "Ok", "Save" when input_text is set))
-#    :button_no = label for button that returns false (default "Cancel" when input_text is set)
-#    :button_cancel = label for button that returns nil
-#    :input_text = default text for input box.  Triggers appearance of input box.
-#    :width = with of window (used to make longer messages with wrapping look good.)
-#    :title = title of the window (appears in bar at top) Default = :headline
-#    :headline = large text that appears at the top.
-#    :parent = reference to parent window.  Alert box will always be on top of this parent. Usually=self!
-#    
-#    ALL THESE FLAGS ARE OPTIONAL
-#  
-#  If you want to add these buttons, just set their values to whatever text you want them to
-#  display.  For example, :button_no => "Abort Process" will cause the second button, to display
-#  "Abort Process" and if the user clicks it, the alert method will return false.
-#  
-#  There are many examples in the "alert_box" example project. 
-#  
-def alert(msg, flags = {})
+# The alert method creates a pop-up alert in your program.  It creates a modal
+# window that halts execution of your code until the user closes it.  Its great
+# for displaying messages and debugging.  It also has the option of displaying
+# a text entry box for getting text input from the user.  This small tool can save
+# hundreds of lines of code in your programs.  It can be used extesnively to
+# display all types of messages and request all types of user input.
+#
+# @example
+#  alert("Continue?", button_no: "Nope", button_cancel: "Quit", parent: self) 
+#     
+# The alert box can disply 1, 2 or 3 buttons.  The first button is denoted using the symbol: :button_yes
+# button and is always displayed.  You can add :button_no and :button_cancel.      
+# If you want to add these buttons, just set their values to whatever text you want them to
+# display and they will appear.  Likewise, if you add the option, :input_text, a text entry box will
+# appear.
+#      
+# There are many examples in the "alert_box" example project. 
+# @param [String] message text message to display in alert box. Uses markup.
+# @param [Hash] options -- Hash of options:  :button_yes => text on the button that returns true.
+# @option options [String] :button_yes Text that appears on the "yes" button.
+# @option options [String] :button_no Text taht appears on "no" button. (set to make no button appear)
+# @option options [String] :button_cancel Text taht appears on "cancel" button. (set to make cancel button appear)
+# @option options [String] :input_text Text that appears in entry box. (set to make entry box appear)
+# @option options [String] :headline Larger headline over text message.
+# @option options [String] :title Title of the alert box window.  Defaults to :headline.
+# @option options [Integer] :width The width in pixels of the window for wrapping text. 
+# @option options [Object #builder] :parent The window that the alert box is always on top of.
+# @return [String] text in the text entry field when the :button_yes button is pressed
+# @return [true] When the :button_yes button is selected and there's no text entry box.
+# @return [false] When :button_no is pressed
+# @return [nil] When :button_cancel os the "X" button is pressed.
+def alert(message, options = {})
   @answer = VR::DialogAnswer.new()
-  VR::Alert.new(msg, @answer, flags).show_glade(flags[:parent])
+  VR::Alert.new(message, @answer, flags).show_glade(flags[:parent])
   return @answer.answer 
 end
 

@@ -1,4 +1,4 @@
-# 
+# ==GladeGUI
 #  GladeGUI connects your class to a glade form. 
 #  It will load a .glade
 #  file into memory, enabling your ruby programs to have a GUI interface.
@@ -86,8 +86,6 @@
 #  the “email” widget in glade using the @email variable. so 
 #  you don’t need to include the above line of code. (see 
 #  set_glade_variables() method.)
-
-
 module GladeGUI
 
   attr_accessor :builder
@@ -145,18 +143,24 @@ end
     @builder.connect_signals{ |handle| method(handle) }
   end
 
-  def class_name(obj) # :nodoc:
+  private def class_name(obj) # :nodoc:
     /.*\b(\w+)$/.match(obj.class.name)[1]
   end    
 
-#  The parse_signals() method is what connects gtk's signals to your methods.  For example,
+#  Connects gtk's signals to your methods according to the naming convention widget__signal.  For example,
 #  when you place a button called "button1" in your glade form, and declare a method called 
 #  "button1__clicked", they aren't connected to each other.  Clicking on the button does nothing
 #  and the method never gets called.  After running parse_signals(), the "clicked" signal is
 #  connected to the method named "button1__clicked" so when the user clicks the button, the method is called.  
 #  
-#  Remember that it will enforce the naming convention:  gladename__signal.  No arguments.
-
+# @example methods
+#  button1__clicked(*args)
+#  self__row_activated(*args)
+#  instance_variable__key_press_event(*args)
+#
+# Remember that it will enforce the naming convention:  name__signal (two underscores).
+# @param none.
+# @return none.  
   def parse_signals()
     meths = self.class.instance_methods()
     meths.each do |meth|
@@ -384,12 +388,12 @@ end
   end
 
 
-#
-#This shows the window and will start the Gtk.main loop (for top level windows.)
-#Using show_glade() is better than using Gtk.main and
-#Gtk.main.quit because visualruby automatically opens and closes all windows properly.
-#
-#
+
+# The method you call to show the glade form.  
+# It loads the glade form, sets all the form's widgets to your instance variables,
+# connects all your methods to their signals, and starts Gtk.main loop if necessary.
+# @param [Object #builder] parent  Optional parent that this window will always be on top of.
+# @return nothing.
   def show_glade(parent = nil)
     load_glade()
     if parent then
@@ -403,10 +407,13 @@ end
     Gtk.main if @top_level_window or @builder[:window1].modal?  #need new Gtk.main for blocking!
   end
 
+# Called when window is destroyed when you execute:  @builder[:window1].destroy
+# It manages the Gtk.main loop for all the windows.
   def window1__destroy(*args)
     Gtk.main_quit if @top_level_window or @builder["window1"].modal?  
   end
 
+# Convenience method so you can just make a button named "buttonCancel" and it will work.
   def buttonCancel__clicked(*a)
     @builder[:window1].destroy
   end
