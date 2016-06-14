@@ -39,9 +39,9 @@
           <object class="GtkLabel" id="label2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Enter the path for your new project.  If the directory doesn't exist, it will be created.  
+            <property name="label" translatable="yes">Enter the path for your new project.  A directory will be created under your projects directory with that name if it doesn't already exist.  
 
-If the directory already exists, it will be opened and marked as a visualruby project so you can open it in the future.
+If the directory already exists, it will be marked as a visualruby project so you can open it.
 
 Use only letters and underscores. 
 

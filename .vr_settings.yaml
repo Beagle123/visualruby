@@ -1,38 +1,18 @@
 --- !ruby/object:VR_ENV
-width: 1364
-height: 691
-panel_pos: 270
-run_command_line: ruby vr
+width: 1261
+height: 720
+panel_pos: 360
+run_command_line: ruby main.rb
 open_files:
-- "/home/eric/vrp/vr3/bin/main/NewProjectGUI.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/SavableClass.rb"
+- "/home/eric/vrp/vr3/bin/editor/VR_Document.rb"
 - "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_Local_Gem_Tree.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_Remote_Gem_Tree.rb"
-- "/home/eric/vrp/vr3/vrlib/lib/GladeGUI.rb"
 - "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
-- "/home/eric/vrp/vr3/bin/main/RubygemsAPI.rb"
-- "/home/eric/vrp/vr3/bin/main/GemTree.rb"
-- "/home/eric/vrp/vr3/examples/listview/bin/SongListViewGUI.rb"
-- "/home/eric/vrp/vr3/examples/listview/bin/SongListView.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
-- "/home/eric/vrp/vr3/bin/editor"
 - "/home/eric/vrp/vr3/bin/main"
-- "/home/eric/vrp/vr3/bin/main/glade"
-- "/home/eric/vrp/vr3/examples"
-- "/home/eric/vrp/vr3/examples/active_record2"
-- "/home/eric/vrp/vr3/examples/active_record2/db"
-- "/home/eric/vrp/vr3/examples/listview"
-- "/home/eric/vrp/vr3/examples/listview/bin"
-- "/home/eric/vrp/vr3/vrlib"
-- "/home/eric/vrp/vr3/vrlib/lib"
 current_file: "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
-rdoc_command_line: rdoc -x README -x /*.glade -x /*.yaml -x /*.gemspec -x /*.css
+rdoc_command_line: rdoc -x README
 vr_yaml_file: ".vr_settings.yaml"
-notebook_panel_position: 474
-current_line: 17
-builder: !ruby/object:Gtk::Builder {}
-top_level_window: false
+notebook_panel_position: 400
+current_line: 98

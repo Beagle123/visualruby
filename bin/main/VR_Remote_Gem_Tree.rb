@@ -6,8 +6,8 @@ class VR_Remote_Gem_Tree < GemTree
     super()
     @main = main
     @gems = Hash.new
-#    load_glade()  #for pop-up menu
-#    parse_signals()
+    load_glade()  #for pop-up menu
+    parse_signals()
   end
 
   def refresh(force = true)

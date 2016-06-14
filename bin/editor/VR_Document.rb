@@ -145,29 +145,6 @@ class VR_Document < GtkSource::View
     apply_tag_to_line(line-1, @hilight, nil)
   end
 
-  def indent(spaces)
-    return unless buffer.has_selection?
-    s,e = get_selected_lines()
-    (s..e).each do |i|
-      iter = buffer.get_iter_at(:line => i)
-      buffer.insert(iter, " " * spaces)
-    end
-  end
-
-  def unindent(spaces)
-    return unless buffer.has_selection?
-    s,e = get_selected_lines()
-    (s..e).each do |i|
-      iter, iter_end = get_line_iters(i)
-      if iter_end.offset >= iter.offset + 2
-        iter_end.offset = iter.offset + 2
-        t = buffer.get_text(iter, iter_end, false)
-        buffer.delete(iter, iter_end)
-        buffer.insert(iter,t.lstrip)
-      end
-    end
-  end
-
   def comment()
     return unless buffer.has_selection?
     s,e = get_selected_lines()

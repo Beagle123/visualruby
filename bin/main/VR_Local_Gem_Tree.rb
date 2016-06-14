@@ -6,8 +6,8 @@ class VR_Local_Gem_Tree < GemTree
   def initialize(main)
     super()
     @main = main
-#    load_glade()
-#    parse_signals()
+    load_glade()
+    parse_signals()
   end
   
   def refresh()

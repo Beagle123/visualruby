@@ -14,7 +14,7 @@ module VR
       col_visible( :path => false, :modified_date => false, :sort_on => false, :empty => false)
       self.headers_visible = false
       @icons = File.directory?(icon_path) ? VR::IconHash.new(icon_path) : nil
-#      parse_signals()
+      parse_signals()
       model.set_sort_column_id(id(:sort_on), :ascending )
       self.set_enable_search(false)
       refresh
@@ -65,8 +65,8 @@ module VR
   
     def open_folders(folder_paths)
       model.each do |model, path, iter| 
-        if folder_paths.include?(iter[id(:path)])   
-          expand_row(path, false) 
+        if folder_paths.include?(iter[id(:path)])
+          self__row_expanded(self, iter, path)    
         end
       end
     end  

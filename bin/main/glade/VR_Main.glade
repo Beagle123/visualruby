@@ -436,7 +436,6 @@
                             <property name="invisible_char">●</property>
                             <property name="primary_icon_activatable">False</property>
                             <property name="secondary_icon_activatable">False</property>
-                            <signal name="key-press-event" handler="entryFind_key_press" swapped="no"/>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>

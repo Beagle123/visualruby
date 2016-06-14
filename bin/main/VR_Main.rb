@@ -11,14 +11,21 @@ class VR_Main
   end
 
   def before_show
+
     # there must be a visualruby directory:
-    menuInstallExamples__activate if not File.directory?(File.join(ENV["HOME"],"","visualruby", "examples","alert_box"))
+    required_project = File.join(ENV["HOME"],"","visualruby", "examples","alert_box")
+    menuInstallExamples__activate if not File.directory?(required_project)
+
     # load global settings (requires /home/visuaruby folder exists
     $VR_ENV_GLOBAL = VR::load_yaml(:class => VR_ENV_GLOBAL, :file_name => VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
-    # try to open right project
 
+    # try to open right project
     if not project_valid?(@proj_path) 
-      @proj_path = $VR_ENV_GLOBAL.default_project if project_valid?($VR_ENV_GLOBAL.default_project)
+      if not project_valid?($VR_ENV_GLOBAL.default_project)
+        $VR_ENV_GLOBAL.default_project = required_project
+        VR::save_yaml($VR_ENV_GLOBAL) 
+      end
+      @proj_path = $VR_ENV_GLOBAL.default_project       
     end
 
     @file_tree = VR_File_Tree.new(self, File.expand_path(File.dirname(__FILE__) + "/../../img"))
@@ -48,7 +55,7 @@ class VR_Main
     Gtk.main_quit
   
     unless project_valid?(@proj_path)
-      toolOpenFolder__clicked
+      toolOpenFolder__clicked # should never gets here.
     end
 
     if project_valid?(@proj_path)
@@ -100,13 +107,6 @@ class VR_Main
       when 2 then @remote_gem_tree.refresh(false) #false = don't force refresh
     end
   end 
-  
-  def window1_key_press(win, key)
-    case x = key.keyval
-       when 65474 then toolRun__clicked # F5
-#      when 115 then toolSave__clicked # Ctrl-S
-    end
-  end
 
   def menuCloseAll__activate(*a)
     @tabs.try_to_save_all(:close=>true) 
@@ -185,16 +185,20 @@ class VR_Main
   end
 
   def toolIndent__clicked(*a)
-#    @tabs.docs[@tabs.page].indent_selected_lines()
-#    evt = Gdk::EventKey.new(:key_press)
-#    evt.keyval = Gdk::Keyval::GDK_6
-#    evt.put
-    @tabs.docs[@tabs.page].indent($VR_ENV_GLOBAL.tab_spaces)
+    press_key(65289) #tab
   end
 
   def toolUnIndent__clicked(*a)
-    @tabs.docs[@tabs.page].unindent($VR_ENV_GLOBAL.tab_spaces)
+    press_key(65056, :shift_mask) # shift+tab
   end
+
+  def press_key(keyval, mask = nil)
+    evt = Gdk::EventKey.new(:key_press)
+    evt.state = mask if mask
+    evt.keyval = keyval
+    @tabs.docs[@tabs.page].signal_emit(:key_press_event,  evt) 
+  end
+
 
   def toolComment__clicked(*a)
     @tabs.docs[@tabs.page].comment()
@@ -265,7 +269,7 @@ class VR_Main
     @tabs.docs[@tabs.page].replace(@builder[:entryReplace].text)
   end
 
-  def entryFind_key_press(me, evt)
+  def entryFind__key_press_event(me, evt)
     return if evt.keyval != 65293 #enter key
     buttonFind_clicked
   end
