@@ -5,30 +5,30 @@ module VR
   
     include ViewCommon
 
-#The new() constructor takes a Hash that defines the columns as its only argument.  The Hash defines
-#symbols as the keys to give an ID to each column.  The Hash also defines the type (class) of the column.
-#A simple constructor looks like this:
+# The new() constructor takes a Hash that defines the columns as its only argument.  The Hash defines
+# symbols as the keys to give an ID to each column.  The Hash also defines the type (class) of the column.
+# A simple constructor looks like this:
+# @example
+#  @view = VR::ListView.new(:name => String, :date => DateTime)
 #
-# @view = VR::ListView.new(:name => String, :date => DateTime)
+# You can create columns with any type of data including your own classes, and classes subclassed
+# from ActiveRecordBase.  The common types that are included by default are:
 #
-#You can create columns with any type of data including your own classes, and classes subclassed
-#from ActiveRecordBase.  The common types that are included by default are:
+# * String - Displays and edits as a String.
+# * Integer - Displays number, edits like a String.
+# * FixNum - ditto
+# * Integer - ditto
+# * Float - ditto
+# * DateTime - Displays in a default date format(editable), edits like a String
+# * TrueClass - Displays as a GtkCheckButton, click checkbox to edit
+# * GdkPixbuf - Just an Image, uneditable
+# * VR::CalendarCol - Displays in a default date format(editable), calendar window to edit.
+# * VR::SpinCol - Displays as a number with default number of digits, edits like a GtkSpinButton
+# * VR::ComboCol - Displays String, edits like a GtkComboBoxEntry
+# * VR::ProgressCol - Displays a GtkProgressBar, uneditable
+# * VR::TextCol - For long strings.  Displays first 20 characters in view, edits with simple text editor.
 #
-#- String - Displays and edits as a String.
-#- Integer - Displays number, edits like a String.
-#- FixNum - ditto
-#- Integer - ditto
-#- Float - ditto
-#- DateTime - Displays in a default date format(editable), edits like a String
-#- TrueClass - Displays as a GtkCheckButton, click checkbox to edit
-#- GdkPixbuf - Just an Image, uneditable
-#- VR::CalendarCol - Displays in a default date format(editable), calendar window to edit.
-#- VR::SpinCol - Displays as a number with default number of digits, edits like a GtkSpinButton
-#- VR::ComboCol - Displays String, edits like a GtkComboBoxEntry
-#- VR::ProgressCol - Displays a GtkProgressBar, uneditable
-#- VR::TextCol - For long strings.  Displays first 20 characters in view, edits with simple text editor.
-#
-#You can also add your own user-defined column types.  See: {Adding Your Own Objects to ListView}[link:/site/ListView%20Tutorial.html#objects].
+# You can also add your own user-defined column types.  See: {Adding Your Own Objects to ListView}[link:/site/ListView%20Tutorial.html#objects].
 #
 
     def initialize(cls)

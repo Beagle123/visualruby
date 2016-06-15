@@ -55,7 +55,7 @@ class VR_File_Tree < VR::FileTreeView
     FileUtils.cd(fn)
     @main.shell.buffer.text = $VR_ENV.rdoc_command_line + fn + "\n" 
     @main.shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`
-    VR_Tools.replace_html_in_docs()
+#    VR_Tools.replace_html_in_docs()
     FileUtils.cd(old_dir)
     VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{fn}/doc/index.html")
     @main.file_tree.refresh()
@@ -115,7 +115,6 @@ class VR_File_Tree < VR::FileTreeView
   end
 
   def self__key_press_event(view, evt)
-alert evt.keyval.to_s
     return unless evt.keyval == 65535 #delete
     return unless file_name = get_selected_path()
     return unless alert("Delete:   <b>" + File.basename(file_name) + "</b> ?" , :button_yes => "Delete", :button_no=>"Cancel", :parent=>self, :headline => "Delete FIle?")  

@@ -1,0 +1,61 @@
+hr {
+  width: 80%;
+}
+p {
+  font-size: 120%;
+}
+
+/* Styles for how the route & method display as well as their color. */
+.route-outer {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+.route-method {
+  display: inline-block;
+  font-weight: bold;
+  padding: 5px 10px;
+  color: white;
+}
+.route-path {
+  display: inline-block;
+  padding: 5px 10px;
+}
+.method-get, .method-head {
+  background-color: #009C5d;
+}
+.method-post {
+  background-color: #e58500;
+}
+.method-put, .method-patch {
+  background-color: #075494;
+}
+.method-delete {
+  background-color: #e54400;
+}
+
+/* Styles to make rendered markdown output fonts smaller than defaults, to avoid gigantic headers etc. */
+.rain-doc-markdown p,
+.rain-doc-markdown h1, .rain-doc-markdown h2, .rain-doc-markdown h3,
+.rain-doc-markdown h4, .rain-doc-markdown h5, .rain-doc-markdown h6 {
+  font-size: 1.2em;
+}
+.rain-doc-markdown h1 { font-size: 2em; }
+.rain-doc-markdown h2 { font-size: 1.8em; }
+.rain-doc-markdown h3 { font-size: 1.6em; }
+.rain-doc-markdown h4 { font-size: 1.4em; }
+.rain-doc-markdown h5 { font-size: 1.2em; }
+.rain-doc-markdown h6 { font-size: 1em; }
+.rain-doc-markdown table > tbody > tr > td > p { font-size: 1em !important; margin: 0 !important; }
+
+/* Footer and rain version information styles */
+.rain-version-info {
+  text-align: center;
+}
+
+.rain-version-info p {
+  font-size: 80%;
+  color: #ccc;
+  margin: 4px 0;
+}

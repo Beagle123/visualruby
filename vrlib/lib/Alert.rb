@@ -1,6 +1,7 @@
 
 module VR
-# :nodoc:
+
+  # @see #alert
   class Alert  
 
     attr_accessor :answer    
@@ -89,7 +90,7 @@ end
 # @return [nil] When :button_cancel os the "X" button is pressed.
 def alert(message, options = {})
   @answer = VR::DialogAnswer.new()
-  VR::Alert.new(message, @answer, flags).show_glade(flags[:parent])
+  VR::Alert.new(message, @answer, options).show_glade(options[:parent])
   return @answer.answer 
 end
 

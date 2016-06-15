@@ -2,28 +2,24 @@
 width: 1261
 height: 691
 panel_pos: 360
-run_command_line: ruby main.rb
+run_command_line: ruby vr
 open_files:
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/ListView.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
 - "/home/eric/vrp/vr3/vrlib/lib/Alert.rb"
 - "/home/eric/vrp/vr3/vrlib/lib/GladeGUI.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
 - "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
-- "/home/eric/vrp/vr3/vrlib/doc/rdoc.css"
-- "/home/eric/vrp/vr3/vrlib/doc/VR.html"
-- "/home/eric/vrp/vr3/vrlib/doc/css/style.css"
-- "/home/eric/vrp/vr3/vrlib/doc/css/common.css"
-- "/home/eric/vrp/vr3/vrlib/doc/css/full_list.css"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/vrlib"
-- "/home/eric/vrp/vr3/vrlib/doc"
-- "/home/eric/vrp/vr3/vrlib/doc/css"
-- "/home/eric/vrp/vr3/vrlib/doc/js"
-- "/home/eric/vrp/vr3/vrlib/doc/VR"
 - "/home/eric/vrp/vr3/vrlib/lib"
-current_file: "/home/eric/vrp/vr3/vrlib/doc/css/full_list.css"
-rdoc_command_line: yardoc
+- "/home/eric/vrp/vr3/vrlib/lib/treeview"
+- "/home/eric/vrp/vr3/vrlib/site"
+current_file: "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
+rdoc_command_line: yardoc - site/*.doc
 vr_yaml_file: ".vr_settings.yaml"
 notebook_panel_position: 400
-current_line: 1
+current_line: 117
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

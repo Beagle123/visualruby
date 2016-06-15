@@ -1,24 +1,22 @@
-# ==GladeGUI
-#  GladeGUI connects your class to a glade form. 
-#  It will load a .glade
-#  file into memory, enabling your ruby programs to have a GUI interface.
+# =GladeGUI
+#
+# GladeGUI connects your class to a glade form. 
+# It will load a .glade
+# file into memory, enabling your ruby programs to have a GUI interface.
 #  
-#  GladeGUI works by adding an instance variable, @builder to your class.  The @builder
-#  variable is an instance of {Gtk::Builder}[http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ABuilder]
-#  It holds references to all your windows and widgets.
+# GladeGUI works by adding an instance variable, @builder to your class.  The @builder
+# variable is an instance of {Gtk::Builder}[http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ABuilder]
+# It holds references to all your windows and widgets.
 #  
-#  ==Include the GladeGUI interface
+# =Include the GladeGUI interface
 #  
-#  To use the GladeGUI interface, include this line after your 
-#  “class” declaration:
-#  
-#   include GladeGUI
-#  
-#  Here is an example of a class that uses GladeGUI:
-#  
-#   class MyClass
-#     include GladeGUI
-#   end
+# To use the GladeGUI interface, include this line after your 
+# “class” declaration:
+# @example
+#  class MyClass
+#    include GladeGUI
+#    ...
+#  End
 #  
 #  GladeGUI will load a corresponding 
 #  glade file for this class.  It knows which glade file to load by using a naming 
@@ -88,6 +86,7 @@
 #  set_glade_variables() method.)
 module GladeGUI
 
+  # @attribute A Builder object that holds references to everyhting from the galde form.
   attr_accessor :builder
 
 ##
@@ -116,25 +115,23 @@ end
 
 
 ##
-#  This will Load the glade form.  
-#  It will create a Gtk::Builder object from your glade file.
-#  The Gtk::Builder object is stored in the instance variable, @builder.
-#  You can get a reference to any of the widgets on the glade form by
-#  using the @builder object:
-#  
-#    widget = @builder["name"]
-#  
-#  Normally, you should give your widgets names of instance variables: i.e. @email
-#  so they can be autoloaded using the set_glade_all() method.  For example,
-#  the value of the @email vaiable would be loaded into a Gtk:Entry named "email"
-#  in your glade form.  It saves you from having to do this:
+# This will Load the glade form according to the naming convention: MyClass.rb => MyClass.glade.  
+# It will create a Gtk::Builder object from your glade file.
+# The Gtk::Builder object is stored in the instance variable, @builder.
+# You can get a reference to any of the widgets on the glade form by
+# using the @builder object:
 #
-#  @builder[:email] = @email
+# @example 
+#  widget = @builder["name"]
 #  
-#  You can also pass a reference to a parent class that also includes GladeGUI.
-#  Then the child window will run simultaniously with the parent.
-#  
-
+# Normally, you should give your widgets names of instance variables: i.e. @email
+# so they can be autoloaded when the glade form is shown using the #show_glade method.  For example,
+# the value of the @email vaiable would be loaded into a Gtk:Entry named "email"
+# in your glade form.  It saves you from having to do this:
+#
+# @example
+#  @builder[:email].text = @email
+#   
   def load_glade() 
     caller__FILE__ = my_class_file_path() 
     file_name = File.join(File.split(caller__FILE__)[0] , "glade", class_name(self) + ".glade")
@@ -158,9 +155,7 @@ end
 #  self__row_activated(*args)
 #  instance_variable__key_press_event(*args)
 #
-# Remember that it will enforce the naming convention:  name__signal (two underscores).
-# @param none.
-# @return none.  
+# Remember that it will enforce the naming convention:  name__signal (two underscores). 
   def parse_signals()
     meths = self.class.instance_methods()
     meths.each do |meth|
@@ -224,25 +219,24 @@ end
     get_glade_variables(obj)
   end
 
-#  Populates the glade form from the fields of an ActiveRecord object.
-#  So instead of having to assign each widget a value:
+# Populates the glade form from the fields of an ActiveRecord object.
+# So instead of having to assign each widget a value:
+# @example 
+#  @builder["name"].text = @name
+#  @builder["address"].text = @address
+#  @builder["email"].text = @eamil
+#  @builder["phone"].text = @phone
+# 
+# You can write one line of code:
+# @example 
+#  set_glade_active_record()
 #  
-#      @builder["ARObject.name"].text = @name
-#      @builder["ARObject.address"].text = @address
-#      @builder["ARObject.email"].text = @eamil
-#      @builder["ARObject.phone"].text = @phone
+# The optional parameter is seldom used because you usually want the
+# glade form to populate from the calling class.  If you passed another object,
+# the form would populate from it.
 #  
-#  you can write one line of code:
-#  
-#    set_glade_active_record()
-#  
-#  The optional parameter is seldom used because you usually want the
-#  glade form to populate from the calling class.  If you passed another object,
-#  the form would populate from it.
-#  
-#  obj - type ActiveRecord::Base
-#  
-
+# @param [ActiveRecord::Base] obj Any activerecod base object.
+# @return none 
   def set_glade_active_record(obj = self) 
     return if not defined? @attributes
     obj.attributes.each_pair { |key, val| fill_control(class_name(obj) + "." + key, val) }
@@ -314,26 +308,26 @@ end
   end
 
 #
-#  Populates the instance variables from the glade form.
-#  This works for Gtk:Button, Gtk::Entry, Gtk::Label and Gtk::Checkbutton.
-#  So instead of having to assign instance variable:
-#  
-#    @name = @builder["DataObjectGUI.name"].text 
-#    @address = @builder["DataObjectGUI.address"].text 
-#    @eamil = @builder["DataObjectGUI.email"].text 
-#    @phone = @builder["DataObjectGUI.phone"].text 
+# Populates your instance variables from the glade form.
+# This works for Gtk:Button, Gtk::Entry, Gtk::Label and Gtk::Checkbutton.
+# So instead of having to assign instance variable:
+# 
+# @example 
+#    @name = @builder["name"].text 
+#    @address = @builder["address"].text 
+#    @eamil = @builder["email"].text 
+#    @phone = @builder["phone"].text 
 #    
-#  you can write one line of code:
+# You can write one line of code:
+# 
+# @example   
+#   get_glade_variables()
 #    
-#    get_glade_variables()
-#    
-#  The optional parameter is seldom used because you usually want the
-#  glade form to populate from the calling class.  If you passed another object,
-#  the form would populate from it.
-#  
-#  obj - type Object
-#
-
+# The optional parameter is seldom used because you usually want the
+# glade form to populate from the calling class.  If you passed another object,
+# the form would populate from it.
+# @param [Object] obj Any object with instance variables with same names as in galde form.
+# @return none 
   def get_glade_variables(obj = self)
     obj.instance_variables.each do |v|
       v = v.to_s  #fix for ruby 1.9 giving symbols
@@ -355,7 +349,7 @@ end
   end
 
 
-  def get_glade_active_record(obj) # :nodoc:
+  private def get_glade_active_record(obj) # :nodoc:
     return if not defined? @attributes
     obj.attributes.each_pair do |key, val|
       control = @builder[class_name(obj) + "." + key]
@@ -376,7 +370,7 @@ end
   end
 
 
-
+# Ignore, just helps figure out name of class including GladeGUI
   def self.included(obj)
     temp = caller[0].split(":") #correct for windows  C:\Users\george etc.
     caller_path_to_class_file, = temp[0].size == 1 ? temp[0] + ":" + temp[1] : temp[0] 
@@ -407,27 +401,28 @@ end
     Gtk.main if @top_level_window or @builder[:window1].modal?  #need new Gtk.main for blocking!
   end
 
-# Called when window is destroyed when you execute:  @builder[:window1].destroy
+# Called when window is destroyed when you execute: <tt>@builder[:window1].destroy</tt>
 # It manages the Gtk.main loop for all the windows.
   def window1__destroy(*args)
     Gtk.main_quit if @top_level_window or @builder["window1"].modal?  
   end
 
-# Convenience method so you can just make a button named "buttonCancel" and it will work.
+# Convenience method so you can just make a button named "buttonCancel" and it will work.  This
+# method isn't called in code, its triggered by a user clicking a button named "buttonCancel".
   def buttonCancel__clicked(*a)
     @builder[:window1].destroy
   end
 
-
-  def active_record_valid?(show_errors = true)
-    get_glade_all
-    if not self.valid?
-      alset(self.errors.full_messages.join("\n\n")) if show_errors
-      self.reload
-      return false
-    end
-    return true
-  end
+#
+#  private def active_record_valid?(show_errors = true)
+#    get_glade_all
+#    if not self.valid?
+#      alset(self.errors.full_messages.join("\n\n")) if show_errors
+#      self.reload
+#      return false
+#    end
+#    return true
+#  end
 
 
 end
