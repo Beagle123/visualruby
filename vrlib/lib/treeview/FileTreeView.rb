@@ -5,12 +5,12 @@ module VR
   
     include GladeGUI
   
-    attr_reader :root, :glob
+
 
     # A code block that further eliminates files included in the tree. If this block returns false 
     # for the entry, it will be excluded.
     
-    attr_accessor :validation_block
+    attr_accessor :validation_block, :root, :glob
 
     # FileTreeView creates a TreeView of files with folders and icons.  
     # Often you should subclass this class for a particular use.
@@ -18,7 +18,7 @@ module VR
     # @param [String] icon_path Path to a folder where icons are stored.  See VR::IconHash
     # @param [String] glob Glob designating the files to be included.  Google: "ruby glob" for more.  
     def initialize(root = Dir.pwd, icon_path = nil, glob = "*")
-      @root = File.expandpath(root)
+      @root = File.expand_path(root)
       @glob = glob
       super(:file => {:pix => Gdk::Pixbuf, :file_name => String}, :empty => TrueClass, :path => String, :modified_date => VR::DateCol, :sort_on => String)
       col_visible( :path => false, :modified_date => false, :sort_on => false, :empty => false)

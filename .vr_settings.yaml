@@ -1,7 +1,9 @@
 --- !ruby/object:VR_ENV
+vr_yaml_file: ".vr_settings.yaml"
 width: 1261
 height: 691
 panel_pos: 360
+notebook_panel_position: 400
 run_command_line: ruby vr
 open_files:
 - "/home/eric/vrp/vr3/vrlib/lib/treeview/ListView.rb"
@@ -10,6 +12,7 @@ open_files:
 - "/home/eric/vrp/vr3/vrlib/lib/GladeGUI.rb"
 - "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
 - "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
+- "/home/eric/vrp/vr3/vrlib/lib/treeview/ViewCommon.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/vrlib"
@@ -17,9 +20,7 @@ open_folders:
 - "/home/eric/vrp/vr3/vrlib/lib/treeview"
 - "/home/eric/vrp/vr3/vrlib/site"
 current_file: "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
+current_line: 8
 rdoc_command_line: yardoc - site/*.doc
-vr_yaml_file: ".vr_settings.yaml"
-notebook_panel_position: 400
-current_line: 117
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
