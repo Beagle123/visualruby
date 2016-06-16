@@ -55,8 +55,11 @@ class VR_File_Tree < VR::FileTreeView
     FileUtils.cd(fn)
     @main.shell.buffer.text = $VR_ENV.rdoc_command_line + fn + "\n" 
     @main.shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`
-#    VR_Tools.replace_html_in_docs()
-    FileUtils.cd(old_dir)
+    VR_Tools.replace_html_in_docs()
+    FileUtils.copy("yard_hack/common.css", "#{fn}/doc/css/common.css") if File.exists?("yard_hack/common.css")
+    FileUtils.copy("yard_hack/index.html", "#{fn}/doc/index.html") if File.exists?("yard_hack/index.html")
+    FileUtils.copy("yard_hack/index.html", "#{fn}/doc/frames.html") if File.exists?("yard_hack/index.html")
+    FileUtils.cd(old_dir)    
     VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{fn}/doc/index.html")
     @main.file_tree.refresh()
   end

@@ -1,19 +1,10 @@
-
-# @title Visual Ruby 3!
-# @author Eric Cunningham
-
 #  Visual Ruby for Gtk 3!
-## Create Great GUIs using Ruby and Glade
+
+# Create Great GUIs using Ruby and Glade
 
 <p>
   <iframe width="640" height="480" src="https://www.youtube.com/embed/CY-0OYkg7b8" frameborder="0" allowfullscreen></iframe>
 </p>
-
-
-
-
-
-Video:coinflip.avi
 
 Visualruby was designed specifically for rubyists who want to add
 a GUI to their ruby scripts.  It enormously simplifies the process
@@ -32,13 +23,13 @@ just one mouse-click.
 
 ## Write your code 
 
-http://visualruby.net/img/index_listview.jpg
+<img src=http://visualruby.net/img/index_listview.jpg>
 
 ## Create your GUI with Glade
 
-http://visualruby.net/img/index_glade.jpg
+<img src=http://visualruby.net/img/index_glade.jpg>
 
 ## Click the Run button
 
-http://visualruby.net/img/index_listviewdemo.jpg
+<img src=http://visualruby.net/img/index_listviewdemo.jpg>
 

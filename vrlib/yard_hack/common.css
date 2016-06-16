@@ -1,0 +1,14 @@
+/* Override this file with custom rules */
+
+body {
+  font-size: 16px;
+  margin: 35px;
+#  padding: 25px;  
+}
+
+h1 {
+  font-size: 2em
+  color: #faa
+}
+
+

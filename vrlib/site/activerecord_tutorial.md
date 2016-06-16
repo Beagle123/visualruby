@@ -1,8 +1,6 @@
-# @author Eric Cunningham
-# @markup markdown
-# @title ActiveRecord Tutorial
 
-=ActiveRecord Tutorial
+
+# ActiveRecord Tutorial
 
 video:activerecord.avi
 
@@ -35,6 +33,7 @@ The <b>people</b> table consists of these fields:
 
 To add a GUI to the <b>Person</b> class, you need to add these lines of code:
 
+@example
  class Person < ActiveRecord::Base
    include GladeGUI
 
@@ -63,7 +62,7 @@ screen:
 
 http://visualruby.net/img/person.jpg
 
-=Editing Records
+#Editing Records
 
 The above glade form only shows the fields from the <b>people</b> table on the screen.  If you
 want to edit the records you simply need to add a "Save" button to the form and attach code to it.

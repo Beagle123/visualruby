@@ -349,7 +349,7 @@ end
   end
 
 
-  private def get_glade_active_record(obj) # :nodoc:
+  def get_glade_active_record(obj) # :nodoc:
     return if not defined? @attributes
     obj.attributes.each_pair do |key, val|
       control = @builder[class_name(obj) + "." + key]

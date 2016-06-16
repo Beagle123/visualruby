@@ -57,7 +57,7 @@ module VR
       end  
     end
   
-    private def self__row_expanded(view, iter, path)
+    def self__row_expanded(view, iter, path)
       iter = model.get_iter(path)  #bug fix
       fill_folder(iter) if iter[id(:empty)]
       expand_row(iter.path, false)
