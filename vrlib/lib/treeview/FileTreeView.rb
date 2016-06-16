@@ -10,16 +10,18 @@ module VR
     # A code block that further eliminates files included in the tree. If this block returns false 
     # for the entry, it will be excluded.
     
-    attr_accessor :validation_block, :root, :glob
+    attr_accessor :validate_block, :root, :glob
 
     # FileTreeView creates a TreeView of files with folders and icons.  
     # Often you should subclass this class for a particular use.
     # @param [String] root Root folder of the tree  
     # @param [String] icon_path Path to a folder where icons are stored.  See VR::IconHash
-    # @param [String] glob Glob designating the files to be included.  Google: "ruby glob" for more.  
-    def initialize(root = Dir.pwd, icon_path = nil, glob = "*")
+    # @param [String] glob Glob designating the files to be included.  Google: "ruby glob" for more.
+    # @param [Proc] validate_block Block that limits files and folders to include. When block returns true file is includud. (false = excluded)  
+    def initialize(root = Dir.pwd, icon_path = nil, glob = "*", validate_block = nil)
       @root = File.expand_path(root)
       @glob = glob
+      @validate_block = validate_block
       super(:file => {:pix => Gdk::Pixbuf, :file_name => String}, :empty => TrueClass, :path => String, :modified_date => VR::DateCol, :sort_on => String)
       col_visible( :path => false, :modified_date => false, :sort_on => false, :empty => false)
       self.headers_visible = false
@@ -50,8 +52,8 @@ module VR
     # reads a folder from the disk and expands it.
     private def fill_folder(parent_iter)
       model.remove(parent_iter.first_child)   #remove dummy record
-      files = Dir.glob(File.join(parent_iter[id(:path)],@glob))
-      files = files.select &@validation_block if @validation_block
+      files = Dir.glob(File.join(parent_iter[id(:path)], @glob))
+      files = files.select &@validate_block if @validate_block
       files.each do |fn|
          add_file(fn, parent_iter)
       end  

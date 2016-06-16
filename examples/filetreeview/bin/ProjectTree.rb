@@ -5,7 +5,7 @@
 #  It does this:
 #  
 #  files = Dir.glob(folder_path, glob)
-#  files = files.select &@validation_block
+#  files = files.select &@validate_block
 #  
 #  It takes the root of the file tree as the first argument, and a path to the icon files
 #  to display next to the files and folders.  THe icons are named according to the extension.
@@ -23,7 +23,7 @@ class ProjectTree < VR::FileTreeView  #(change name)
     icon_path = File.join(File.dirname(__FILE__), "/../img")
     glob = "*"
     super(root_path, icon_path, glob)
-    @validation_block = proc { |folder| has_settings_file?(folder) } 
+    @validate_block = proc { |folder| has_settings_file?(folder) } 
   end
 
   def self__row_activated(_self, path, col)
