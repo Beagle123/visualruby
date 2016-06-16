@@ -1,5 +1,3 @@
-#  Visual Ruby for Gtk 3!
-
 # Create Great GUIs using Ruby and Glade
 
 <p>
