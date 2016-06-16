@@ -6,9 +6,20 @@ body {
 #  padding: 25px;  
 }
 
-h1 {
-  font-size: 2em
-  color: #faa
+p {
+  width: 60%;
 }
 
+h1 {
+  font-size: 2.2em;
+  color: #621;
+}
+
+ul.class {
+  font-size: 0.8em;
+}
+
+ul.file {
+  font-size: 1.2em;
+}
 

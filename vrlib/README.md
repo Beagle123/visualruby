@@ -1,4 +1,5 @@
-# Create Great GUIs using Ruby and Glade
+# Create Great GUIs with Ruby!
+## Visual Ruby makes writing GTK graphical user interfaces easy using the Glade Interface Designer.
 
 <p>
   <iframe width="640" height="480" src="https://www.youtube.com/embed/CY-0OYkg7b8" frameborder="0" allowfullscreen></iframe>

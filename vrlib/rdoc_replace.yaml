@@ -1,6 +1,6 @@
 ---
-- - <nav id="home-section" class="section">
-  - <nav id="home-section" class= "section" ><a  href=/index.html><img src=http://visualruby.net/img/splash_small.png></a><br>
+- - "<title>File List</title>"
+  - "<a  href=file.README.html><img src=http://visualruby.net/img/splash_small.png></a><p><p>"
 - - Video:uploading_gems.avi
   - <iframe width="640" height="480" src="http://www.youtube.com/embed/6VsXlCjU89c"
     frameborder="0" allowfullscreen></iframe>
@@ -47,22 +47,10 @@
   - "<a href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3AProgressBar>Gtk::ProgressBar</a>"
 - - GtkSelection
   - "<A href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ASelection>Gtk::Selection</a>"
-- - <div id="home-section" class="section">
-  - <div id="home-section" class= "section" ><a  href=/index.html><img src=http://visualruby.net/img/splash_small.png></a><br>
-- - "<title>index - RDoc Documentation</title>"
+- - <li class="r1"><span class="object_link"><a href="index.html" title="README">README</a></a></li>
+  - "<!-- README deleted makes problem. -->"
+- - '<div id="search">Search: <input type="text" /></div>'
   - "<title>Visual Ruby -- GUI with Ruby and Glade</title>"
-- - "<title>Download - RDoc Documentation</title>"
-  - "<title>Download Visual Ruby -- Make GUIs with Ruby!</title>"
-- - "<title>RubyGems Tutorial - RDoc Documentation</title>"
-  - "<title>RubyGems Tutorial - Use Visual Ruby to Push Gems!</title>"
-- - "<title>Signals Tutorial - RDoc Documentation</title>"
-  - "<title>Ruby Signals Tutorial -- signal_connect with Visual Ruby!</title>"
-- - "<title>ListView Tutorial - RDoc Documentation</title>"
-  - "<title>Ruby ListView Tutorial</title>"
-- - "<title>Child Windows Tutorial - RDoc Documentation</title>"
-  - "<title>Ruby Child Windows Tutorial</title>"
-- - "<title>Help--Contact Info - RDoc Documentation</title>"
-  - "<title>Visual Ruby Help</title>"
 - - video:activerecord.avi
   - <iframe width="640" height="480" src="http://www.youtube.com/embed/uySVKltD7fk"
     frameborder="0" allowfullscreen></iframe>
@@ -73,5 +61,5 @@
 - - video:activerecord2.avi
   - <iframe width="640" height="480" src="http://www.youtube.com/embed/3f1Lj5Q2Q8g"
     frameborder="0" allowfullscreen></iframe>
-- - <a href="./index.html" rel="home">Home</a>
-  - "<a  href=/index.html><img src=http://visualruby.net/img/splash_small.png></a>"
+- - <h1 id="full_list_header">File List</h1>
+  - "<!-  deleted -->"
