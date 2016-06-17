@@ -4,15 +4,15 @@ vrlib/lib/IconHash.rb 6c075e8172797a278aa7e85e9ffcf61efac44930
 vrlib/lib/GladeGUI.rb f1740cf90f235eda2344484762d8e68a3dda2273
 vrlib/lib/DragDrop.rb 169a9fcef3a0de5c5c895104836f81061226d479
 vrlib/lib/SavableClass.rb 4d360acc079739b420c045a57e8cc2f984200a9a
-vrlib/lib/treeview/ListView.rb 69fb2b14268b736ce9db7fd003de121cf7a483ea
 vrlib/lib/treeview/TreeView.rb b4024a617daf3ba478da21b9f4b5305b024fa2db
+vrlib/lib/treeview/ListView.rb 69fb2b14268b736ce9db7fd003de121cf7a483ea
 vrlib/lib/treeview/ViewCommon.rb c254d0f1378436ce4e4e3f97b37777310a5c41c0
 vrlib/lib/SimpleComboBoxEntry.rb 073396d5b36b36084caee2ab012fab69587cd581
 vrlib/lib/treeview/IterMethods.rb a183eb02217e9373e45b7be3a6c1dbb4ad3b3f22
 vrlib/lib/treeview/FileTreeView.rb 5183b186ce4b09abb9565a2c8e9122c0c62f141a
-vrlib/lib/treeview/columns/TextCol.rb 3d560287e4a3b1c29ff883986d7efb672f2be12d
 vrlib/lib/treeview/columns/SpinCol.rb 720fbc1c79e932a06840e28b9021928acc966cea
 vrlib/lib/treeview/columns/DateCol.rb da37a4bff741b06e624440e47fb25030868cce90
+vrlib/lib/treeview/columns/TextCol.rb 3d560287e4a3b1c29ff883986d7efb672f2be12d
 vrlib/lib/treeview/columns/ImageCol.rb ec8a25c70e73596aa8d44d62a86c5d15622c24d4
 vrlib/lib/treeview/columns/ComboCol.rb a4d9c6a8eddcfa8f077a479c3f5415c399086b20
 vrlib/lib/treeview/columns/CurrencyCol.rb adec853fd455d4552646ff1261005853189fe86e
@@ -24,7 +24,7 @@ vrlib/lib/treeview/columns/CellRendererText.rb 14a2a5e9beee2df556d7f4f979fa5c0d8
 vrlib/lib/treeview/columns/CellRendererSpin.rb 09e088864daa9d9ac58ade0e5dd00bc06b21c563
 vrlib/lib/treeview/columns/CellRendererPhone.rb 259bf41fa0dadef616d371be111f8b2d35849cb4
 vrlib/lib/treeview/columns/CellRendererCombo.rb 09cad234b565cd5ef67a4a02cebef7527f00dad6
-vrlib/lib/treeview/columns/CellRendererToggle.rb 1707de3261172b6e3bb2078b8067d6498c49e40a
-vrlib/lib/treeview/columns/CellRendererPixbuf.rb 23d229877846e52b33379ad2ea2440dcef6134bb
 vrlib/lib/treeview/columns/CellRendererObject.rb 1e223c0ff327f1a88ab5ccf6ed1e3d740276a308
+vrlib/lib/treeview/columns/CellRendererPixbuf.rb 23d229877846e52b33379ad2ea2440dcef6134bb
+vrlib/lib/treeview/columns/CellRendererToggle.rb 1707de3261172b6e3bb2078b8067d6498c49e40a
 vrlib/lib/treeview/columns/CellRendererProgress.rb 3c99ea8498f1d8d930790543ec3fc77de9d9f911

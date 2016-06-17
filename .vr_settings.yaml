@@ -1,6 +1,6 @@
 --- !ruby/object:VR_ENV
 vr_yaml_file: ".vr_settings.yaml"
-width: 1639
+width: 1364
 height: 691
 panel_pos: 360
 notebook_panel_position: 400
@@ -12,21 +12,17 @@ open_files:
 - "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
 - "/home/eric/vrp/vr3/bin/main/VR_Tools.rb"
 - "/home/eric/vrp/vr3/yard_hack/common.css"
-- "/home/eric/vrp/vr3/doc/file.Download.html"
-- "/home/eric/vrp/vr3/doc/class_list.html"
-- "/home/eric/vrp/vr3/doc/css/style.css"
+- "/home/eric/vrp/vr3/vrlib/site/README.md"
+- "/home/eric/vrp/vr3/yard_hack/index.html"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
-- "/home/eric/vrp/vr3/doc"
-- "/home/eric/vrp/vr3/doc/css"
+- "/home/eric/vrp/vr3/bin/main"
 - "/home/eric/vrp/vr3/vrlib"
-- "/home/eric/vrp/vr3/vrlib/lib"
-- "/home/eric/vrp/vr3/vrlib/lib/treeview"
 - "/home/eric/vrp/vr3/vrlib/site"
 - "/home/eric/vrp/vr3/yard_hack"
-current_file: "/home/eric/vrp/vr3/yard_hack/common.css"
-current_line: 5
+current_file: "/home/eric/vrp/vr3/yard_hack/index.html"
+current_line: 31
 rdoc_command_line: yardoc vrlib - vrlib/site/*.*
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
