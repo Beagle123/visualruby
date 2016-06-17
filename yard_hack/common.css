@@ -2,8 +2,16 @@
 
 body {
   font-size: 16px;
-  margin: 35px;
+#  margin: 35px;
 #  padding: 25px;  
+}
+
+#content {
+  margin: 10px;
+}
+
+#filecontents {
+  margin: 35px;
 }
 
 p {
@@ -11,7 +19,7 @@ p {
 }
 
 h1 {
-  font-size: 2.2em;
+  font-size: 2em;
   color: #621;
 }
 

@@ -6,23 +6,27 @@ panel_pos: 360
 notebook_panel_position: 400
 run_command_line: ruby vr
 open_files:
-- "/home/eric/vrp/vr3/vrlib/yard_hack/common.css"
-- "/home/eric/vrp/vr3/vrlib/README.md"
-- "/home/eric/vrp/vr3/vrlib/doc/top-level-namespace.html"
-- "/home/eric/vrp/vr3/bin/main/OpenProject.rb"
+- "/home/eric/vrp/vr3/vrlib/site/ListView_Tutorial.rdoc"
 - "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
-- "/home/eric/vrp/vr3/bin/main/ProjectTree.rb"
-- "/home/eric/vrp/vr3/examples/filetreeview/bin/ProjectTree.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
+- "/home/eric/vrp/vr3/bin/main/VR_Tools.rb"
+- "/home/eric/vrp/vr3/yard_hack/common.css"
+- "/home/eric/vrp/vr3/doc/file.Download.html"
+- "/home/eric/vrp/vr3/doc/class_list.html"
+- "/home/eric/vrp/vr3/doc/css/style.css"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/bin"
-- "/home/eric/vrp/vr3/bin/main"
+- "/home/eric/vrp/vr3/doc"
+- "/home/eric/vrp/vr3/doc/css"
 - "/home/eric/vrp/vr3/vrlib"
 - "/home/eric/vrp/vr3/vrlib/lib"
 - "/home/eric/vrp/vr3/vrlib/lib/treeview"
-- "/home/eric/vrp/vr3/vrlib/yard_hack"
-current_file: "/home/eric/vrp/vr3/bin/main/ProjectTree.rb"
-current_line: 11
-rdoc_command_line: yardoc - site/*.md
+- "/home/eric/vrp/vr3/vrlib/site"
+- "/home/eric/vrp/vr3/yard_hack"
+current_file: "/home/eric/vrp/vr3/yard_hack/common.css"
+current_line: 5
+rdoc_command_line: yardoc vrlib - vrlib/site/*.*
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

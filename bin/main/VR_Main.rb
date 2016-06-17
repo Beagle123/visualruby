@@ -145,8 +145,10 @@ class VR_Main
     end
   end
 
-  def toolSave__clicked(*a)  # saves open tab
+  def toolSave__clicked(*a)  # saves open tab 
     @tabs.docs[@tabs.page].try_to_save(false) # false = don't ask
+    command = $VR_ENV.rdoc_command_line.split(" ")[0]
+    run_command(command + " " + @tabs.docs[@tabs.page].full_path_file)
   end  
 
   def menuNewWindow__activate(*a)
@@ -180,7 +182,7 @@ class VR_Main
   end
 
   def toolBackUp__clicked(*a)
-   return unless @tabs.try_to_save_all(:ask=>true)
+    return unless @tabs.try_to_save_all(:ask=>true)
     VR_Tools.back_up()
   end
 

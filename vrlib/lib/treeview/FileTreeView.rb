@@ -5,16 +5,15 @@ module VR
   
     include GladeGUI
   
-
+    attr_accessor :root, :glob
 
     # A code block that further eliminates files included in the tree. If this block returns false 
-    # for the entry, it will be excluded.
-    
-    attr_accessor :validate_block, :root, :glob
+    # for the entry, it will be excluded. If it returns true, it will be included...  
+    attr_accessor :validate_block
 
     # FileTreeView creates a TreeView of files with folders and icons.  
     # Often you should subclass this class for a particular use.
-    # @param [String] root Root folder of the tree  
+    # @param [String] Root Root folder of the tree  
     # @param [String] icon_path Path to a folder where icons are stored.  See VR::IconHash
     # @param [String] glob Glob designating the files to be included.  Google: "ruby glob" for more.
     # @param [Proc] validate_block Block that limits files and folders to include. When block returns true file is includud. (false = excluded)  
@@ -44,8 +43,6 @@ module VR
       model.clear
       @root_iter = add_file(@root, nil)
       open_folders([@root_iter[:path]])
-#      fill_folder(@root_iter)
-#      expand_row(@root_iter.path, false)
       open_folders(open_folders)
     end
 
@@ -58,7 +55,8 @@ module VR
          add_file(fn, parent_iter)
       end  
     end
-  
+
+    #Ignore this, it is called when a folder is clicked, and expands the folder.
     def self__row_expanded(view, iter, path)
       iter = model.get_iter(path)  #bug fix
       fill_folder(iter) if iter[id(:empty)]
@@ -75,14 +73,17 @@ module VR
       end
     end
 
-    # returns an array of open folders.
+    # returns an array of open folders.  The array of folders can be saved, and then you can
+    # pass the array to #open_folders to restore the state of the file tree.
+    # @return [Array] Returns array of strings with the full expanded paths of the open folders.
     def get_open_folders()
       expanded = []
       map_expanded_rows {|view, path| expanded << model.get_iter(path)[id(:path)] }
       return expanded
     end
 
-    # Opens a list of folders.
+    # Opens a list of folders.  
+    # @param [Array] folder_paths Array of Strings of folder names to expand, possibly from the #get_open_folders method.
     def open_folders(folder_paths)
       model.each do |model, path, iter| 
         if folder_paths.include?(iter[id(:path)])
@@ -92,6 +93,7 @@ module VR
     end  
 
     # Adds a file to the tree under a given parent iter. 
+    # @param [String] filename Full path to file to add.
     def add_file(filename, parent = @root_iter)
       my_path = File.dirname(filename)
       model.each do |model, path, iter|
@@ -121,7 +123,8 @@ module VR
       self.level_indentation  = expand ? 0 : 12
     end
   
-    # Returns the full filename with path of the selected file
+    # Returns the full filename with path of the selected file.
+    # @return [String, nil]  Full file path to selected file.
     def get_selected_path() 
       selection.selected ? selection.selected[id(:path)] : nil 
     end

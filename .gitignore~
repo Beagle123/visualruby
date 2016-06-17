@@ -3,5 +3,4 @@ vrlib/.vr_settings.yaml
 vrlib/doc/**/*
 /**/*.html
 /**/*.gem
-doc/**/*
 

@@ -84,8 +84,8 @@ END
   #
   #this works on Dir.pwd that's maybe different from project
   def VR_Tools.replace_html_in_docs()
-    return if not File.file? "rdoc_replace.yaml"
-    ar = YAML.load_file "rdoc_replace.yaml"  
+    return if not File.file? "vrlib/rdoc_replace.yaml"
+    ar = YAML.load_file "vrlib/rdoc_replace.yaml"  
     Dir.glob("#{Dir.pwd}/doc/**/*.html") do |f|
       str = File.open(f).read
       ar.each do |pair|
@@ -93,7 +93,7 @@ END
       end
       File.open(f, "w") { |file| file.puts(str) }
     end
-    FileUtils.cp "#{Dir.pwd}/rdoc.css", "#{Dir.pwd}/doc/rdoc.css" if File.file?("#{Dir.pwd}/rdoc.css") and File.directory?("#{Dir.pwd}/doc")
+#    FileUtils.cp "#{Dir.pwd}/rdoc.css", "#{Dir.pwd}/doc/rdoc.css" if File.file?("#{Dir.pwd}/rdoc.css") and File.directory?("#{Dir.pwd}/doc")
   end
 
 end

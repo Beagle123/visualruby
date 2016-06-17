@@ -16,7 +16,8 @@ class VR_Document < GtkSource::View
     show_right_margin = true
     right_margin_position = 80
     auto_indent = true
-    lang = GtkSource::LanguageManager.new.get_language(get_language(full_path_file))  
+#    lang = GtkSource::LanguageManager.new.get_language(get_language(full_path_file))  
+    lang = GtkSource::LanguageManager.new.guess_language(full_path_file) 
     buffer.language = lang
     buffer.highlight_syntax = true
     buffer.highlight_matching_brackets = false
@@ -30,13 +31,13 @@ class VR_Document < GtkSource::View
     update_style()
   end
 
-  def get_language(fn)
-    case File.extname(full_path_file)
-      when ".rb", "", ".gemspec" ; return "ruby"
-      when ".erb", ".html" ; return "html"
-      else ; return ""
-    end
-  end
+#  def get_language(fn)
+#    case File.extname(full_path_file)
+#      when ".rb", "", ".gemspec" ; return "ruby"
+#      when ".erb", ".html" ; return "html"
+#      else ; return ""
+#    end
+#  end
 
   def update_style()
     override_font(Pango::FontDescription.new($VR_ENV_GLOBAL.font_name))

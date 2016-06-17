@@ -54,13 +54,13 @@ be placed in the "glade" directory, so the method, GladeGUI#load_glade can find 
 Then you need to add 4 entry boxes with the names, <b>name, address,
 phone, email</b> to correspond to the names of the fields in the table.
 
-When the glade file is finished, the <b>load_glade</b> method will load the
-glade form into memory, the <b>set_glade_all()</b> method will automatically fill
+When the glade file is finished, the __load_glade__ method will load the
+glade form into memory, the __set_glade_all()__ method will automatically fill
 all the form's fields with their corresponding values (i.e. the entry box named "address" will
-be filled with the address field.)  And the <b>show_window()</b> method will simply show the window on the
+be filled with the address field.)  And the *show_glade()* method will simply show the window on the
 screen:
 
-http://visualruby.net/img/person.jpg
+![Person Object](http://visualruby.net/img/person.jpg)
 
 #Editing Records
 
