@@ -22,7 +22,7 @@ open_folders:
 - "/home/eric/vrp/vr3/vrlib/site"
 - "/home/eric/vrp/vr3/yard_hack"
 current_file: "/home/eric/vrp/vr3/yard_hack/index.html"
-current_line: 31
+current_line: 22
 rdoc_command_line: yardoc vrlib - vrlib/site/*.*
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
