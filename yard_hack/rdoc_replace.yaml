@@ -49,7 +49,7 @@
   - "<A href=http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ASelection>Gtk::Selection</a>"
 - - <li class="r1"><span class="object_link"><a href="index.html" title="README">README</a></a></li>
   - "<!-- README deleted makes problem. -->"
-- - '<div id="search">Search: <input type="text" /></div>'
+- - '<div id="search">Search: <input type="text" /></div>x'
   - "<title>Visual Ruby -- GUI with Ruby and Glade</title>"
 - - video:activerecord.avi
   - <iframe width="640" height="480" src="http://www.youtube.com/embed/uySVKltD7fk"

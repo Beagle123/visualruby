@@ -66,7 +66,16 @@ end
 #
 # @example
 #  alert("Continue?", button_no: "Nope", button_cancel: "Quit", parent: self) 
-#     
+# 
+# @example
+#  alert "The file you selected is already on disk.  Do you want to overwrite it?",
+#    headline: "Overwrite FIle?",
+#    button_yes: "Overwrite",
+#    button_no: "Reload From Disk",
+#    button_cancel: "Cancel"
+# 
+# http://visualruby.net/img/alert_overwrite.jpg  
+#   
 # The alert box can disply 1, 2 or 3 buttons.  The first button is denoted using the symbol: :button_yes
 # button and is always displayed.  You can add :button_no and :button_cancel.      
 # If you want to add these buttons, just set their values to whatever text you want them to
