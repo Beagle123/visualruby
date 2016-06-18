@@ -4,4 +4,5 @@ vrlib/doc/**/*
 /**/*.html
 /**/*.gem
 doc/**/*
+.yardoc/**/*
 

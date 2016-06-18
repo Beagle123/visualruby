@@ -1,4 +1,4 @@
-.vr_settings.yaml
+/**/.vr_settings.yaml
 vrlib/.vr_settings.yaml
 vrlib/doc/**/*
 /**/*.html
