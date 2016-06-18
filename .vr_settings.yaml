@@ -17,8 +17,8 @@ open_folders:
 - "/home/eric/vrp/vr3/src"
 - "/home/eric/vrp/vr3/src/main"
 - "/home/eric/vrp/vr3/src/main/glade"
-current_file: "/home/eric/vrp/vr3/src/main/VR_Main.rb"
-current_line: 97
+current_file: "/home/eric/vrp/vr3/vr.gemspec"
+current_line: 21
 rdoc_command_line: yardoc lib - site/*.*
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
