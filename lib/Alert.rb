@@ -57,6 +57,20 @@ module VR
 
 end  
 
+# @param [String] message text message to display in alert box. Uses markup.
+# @param [Hash] options -- Hash of options:  :button_yes => text on the button that returns true.
+# @option options [String] :button_yes Text that appears on the "yes" button.
+# @option options [String] :button_no Text taht appears on "no" button. (set to make no button appear)
+# @option options [String] :button_cancel Text taht appears on "cancel" button. (set to make cancel button appear)
+# @option options [String] :input_text Text that appears in entry box. (set to make entry box appear)
+# @option options [String] :headline Larger headline over text message.
+# @option options [String] :title Title of the alert box window.  Defaults to :headline.
+# @option options [Integer] :width The width in pixels of the window for wrapping text. 
+# @option options [Object #builder] :parent The window that the alert box is always on top of.
+# @return [String] text in the text entry field when the :button_yes button is pressed
+# @return [true] When the :button_yes button is selected and there's no text entry box.
+# @return [false] When :button_no is pressed
+# @return [nil] When :button_cancel os the "X" button is pressed.
 # The alert method creates a pop-up alert in your program.  It creates a modal
 # window that halts execution of your code until the user closes it.  Its great
 # for displaying messages and debugging.  It also has the option of displaying
@@ -83,20 +97,7 @@ end
 # appear.
 #      
 # There are many examples in the "alert_box" example project. 
-# @param [String] message text message to display in alert box. Uses markup.
-# @param [Hash] options -- Hash of options:  :button_yes => text on the button that returns true.
-# @option options [String] :button_yes Text that appears on the "yes" button.
-# @option options [String] :button_no Text taht appears on "no" button. (set to make no button appear)
-# @option options [String] :button_cancel Text taht appears on "cancel" button. (set to make cancel button appear)
-# @option options [String] :input_text Text that appears in entry box. (set to make entry box appear)
-# @option options [String] :headline Larger headline over text message.
-# @option options [String] :title Title of the alert box window.  Defaults to :headline.
-# @option options [Integer] :width The width in pixels of the window for wrapping text. 
-# @option options [Object #builder] :parent The window that the alert box is always on top of.
-# @return [String] text in the text entry field when the :button_yes button is pressed
-# @return [true] When the :button_yes button is selected and there's no text entry box.
-# @return [false] When :button_no is pressed
-# @return [nil] When :button_cancel os the "X" button is pressed.
+
 def alert(message, options = {})
   @answer = VR::DialogAnswer.new()
   VR::Alert.new(message, @answer, options).show_glade(options[:parent])

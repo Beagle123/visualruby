@@ -13,7 +13,7 @@ module VR
 
     # FileTreeView creates a TreeView of files with folders and icons.  
     # Often you should subclass this class for a particular use.
-    # @param [String] Root Root folder of the tree  
+    # @param [String] root Root folder of the tree  
     # @param [String] icon_path Path to a folder where icons are stored.  See VR::IconHash
     # @param [String] glob Glob designating the files to be included.  Google: "ruby glob" for more.
     # @param [Proc] validate_block Block that limits files and folders to include. When block returns true file is includud. (false = excluded)  
