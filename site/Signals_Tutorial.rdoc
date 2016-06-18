@@ -1,53 +1,49 @@
 
 =Signals Tutorial
 
-==Visualruby streamlines handling of signals by using a naming convention.
+==Visual Ruby handles signals Using a Naming Convention.
 
-Signals are events that occur when you interact with your program.
+Signals are events that occur when a user interacts with your program.
 For example, when a user clicks on a button, a "clicked" signal occurs.
-When you click on an Gtk::Entry field, a "focus" event occurs, then
-as you edit it, "keypress" events occur.  It is your responsibility as
-the programmer to react to these signals.
+You need to write code that reacts to the user clicking the button, and 
+takes the proper action.
 
-Typically, you "attach" a method to a signal, so when the signal occurs,
-it calls a method that you define.  For example, if you have a Gtk::Button
-in your form, you could set its "clicked" signal using glade to "button_clicked."
+Visual Ruby uses a simple naming convention for methods that react to signals.
 
-Here is a picture of a button's signal being set to the "button_clicked":
+Just write a method like so:
 
-http://visualruby.net/img/signals_glade.jpg
+  def button1__clicked(*args)
+    puts "Do something"
+  end
 
-Then in your script, you must define a procedure that's called when the user
-clicks on the button:
+And that's it!  
 
+When the user clicks the button, the program prints "Do Something"
 
- def button_clicked
-   puts "Someone clicked the button."
- end
+This assumes that you have a button in your glade form names "button1".  Then visualruby
+attaches the button's "clicked" signal to this method.  The two underscores in the
+method's name indicate that this method will handle a signal using the maming convention *widget__signal*.
 
+There's no need to assign signal handlers in glade, or use Gtk's #signal_connect() method.
 
-This method works fine, and you are welcome to use it, but visualruby offers an easier way:
+Other examples of signal handlers are:
 
-==Naming your methods so signals are handled "automagically"
+  def listview1__row_activated(*args)
+    # user double clicked on a row in a Gtk::Listview
+  end
 
-You can have visualruby automatically handle signals for you, just by naming your
-methods by a naming convention.  You won't need to set your signal's in glade,
-as described above.  Simply name your methods in the following format:
+  def notebook1__changed(*args)
+    # user selected tab in Gtk::Notebook
+  end
 
-<glade_name>__<signal_name>   (Note 2 underscores!)
+  def menuOption1__activate(*args)
+    # user selcted menu option named "menuOption1"
+  end
 
-So in our previous example, there was a Gtk::Button on our glade form with the name "button."
-and we want to respond to the "clicked" signal.  so our method name would be:
+There are hundreds of events to use.  See Gtk's documentation for each widget to see what signals it uses.
 
- def button__clicked(*argv)
-   puts "Someone clicked the button."
- end
-
-The only differences are that the name has 2 underscores, and we must add a splat of
-arguments.  Usually, you won't need to use the arguments in your method, but they
-are necessary.  
-
-There is no need to define signals in glade.  You can ignore the "Signals" tab altogether.
+The **args* splat is the arguments passed by the signal.  They are different for each widget.  For example,
+the Gtk::Button widget's clicked signal passes a single argument:  a reference to the button itself.
 
 ==Attach Signals to instance variables
 
@@ -57,28 +53,25 @@ rows of data.  It has a signal named "row_activated" for when a user double-clic
 a row in the grid.  So, we can simply use the same naming convention, and the
 "row_activated" signal will be handled automatically:
 
- class MyClass
+  class MyClass
    
-   include GladeGUI
+    include GladeGUI
 
-   def show
+    def before_show  # 
      @list_view = VR::ListView.new(:myfield => String)
      @list_view.add_row(:myfield => "Hello World")
-     load_glade(__FILE__) #must be called after @list_view is set!
      @builder["scrolledwindow1"].add_child(@builder, @list_view)
-     show_window
-   end
+    end
 
-   def list_view__row_activated(*args)
-     row = vr_row(@list_view.selection.selected)
+    def list_view__row_activated(*args)
+     row = @list_view.selected_row()
      puts row[:myfield]  # =>  "Hello World"
-   end
+    end
 
- end
+  end
 
-Note: @list_view must be initialized BEFORE load_glade() is called, or load_glade
-won't be able to set the signal for it!  Also, the @builder#add_child line must be
-called AFTER load_glade() because load_glade() creates the @builder variable.
+When the user double clicks on "Hello World" in the listview, it outputs "Hello World" to the
+console.
 
 By naming the method "list_view__row_activated" its telling GladeGUI to attach the 
 "row_activated" signal to @list_view.  We're telling it to do this by separating
@@ -90,29 +83,34 @@ Often, you will prefer to subclass VR::ListView (and its good coding practice).
 So, you'll need a way to attach signals to "self."  Luckily, you can do that
 by simply using "self" as the glade_name:
 
- class MyClass < VR::ListView
-   
-   include GladeGUI
+  class MyListView < VR::ListView
 
-   def show
-     add_row(:myfield => "Hello World")
-     load_glade(__FILE__) #must be called after @list_view is set!
-     @builder["scrolledwindow1"].add_child(@builder, self)
-     show_window
-   end
+    include GladeGUI
 
-   def self__row_activated(*args)
-     row = vr_row(selection.selected)
-     puts row[:myfield]  # =>  "Hello World"
-   end
+    def initialize(rows)
 
- end
+      parse_signals()  # activates self__row_activated method
+      add_row(:myfield => "Hello World")
+      @builder["scrolledwindow1"].add_child(@builder, self)
+    end
 
-Notice that MyClass is a subclass of MyListView, so MyClass IS the VR::ListView
-that we want to attach signals to.  So, essentially, we're trying to
-attach signals to "self."  Therefore we changed the name of our method
-to "self__row__activated" telling GladeGUI to attach the "row_activated"
-signal of the current insance to a method named "self__row_activated."
+    def self__row_activated(*args)
+      row = selected_row()
+      puts row[:myfield]  # =>  "Hello World"
+    end
+
+  end
+
+Notice that MyListView is a subclass of VR::ListView which is a subclass of Gtk::TreeView which emits a
+signal called "row_activated" when the user double-clicks on a row.
+So, we're trying to attach the "row_activated" signal of "self."  Therefore we changed the name of our method
+to "self__row__activated"  Now when the superclass, Gtk::TreeView emits its "row_activated" signal, this method is 
+called.
+
+Note:  In this case, we needed to call the parse_signals() method manually.  Normally, the parse_signals()
+method is called automatically by the show_glade() method when the main window is shown.  However, 
+this class isn't a window, so we're never going to call show_glade on it.  THerefore, we need to run
+parse_signals() to get the self__row_activated method to work. 
 
 ==Attaching Signals to a method
 
@@ -137,8 +135,8 @@ has a "Signal_connect" method.  Then when it knows that "button1" can have a sig
 it, it attaches the "clicked" signal to it.
 
 
-[Here's the rule]
-  ===You can use the naming convention:  <name>__<signal>   for anything that can have a signal attached to it.
+[Rule]
+  Use the naming convention:  *obj_name__signal*   for anything that can have a signal attached to it.
 
 Here's an example of were it can be very useful:  The VR::ListView class has a weird way of handling
 when the user selects a new row.  For some reason the poeple who designed its parent, Gtk:TreeView,
@@ -214,8 +212,7 @@ When you subclass VR::ListView, there are two method names you should remember:
 These names will always be the same, and they will be very useful because you often want
 to have your program respond to double-clicking a row or when the selection changes.
 
-==Attaching Signals to Arrays 
-
+==Signal Handler for Multiple Widgets 
 
 The GladeGUI#load_glade method will automatically fill-in arrays of data into
 a glade form. See Calculator example project for more)  But when 
@@ -231,15 +228,12 @@ Here is a portion of the Calculator project as an example:
 
    include GladeGUI
 
-   def show()
-     load_glade(__FILE__)
+   def before_show()
      @builder["window1"].title = "Calculator"
      @keys = [ 1, 2, 3, "C" ] +
              [ 4, 5, 6, "+" ] +
              [ 7, 8, 9, "-" ] +
              [ 0, ".","/","="]
-     set_glade_variables(self)  
-     show_window()
    end	
 
    def keys__clicked(button)
@@ -252,29 +246,20 @@ Here is a portion of the Calculator project as an example:
 http://visualruby.net/img/signals_calculator.jpg
 
 
+In the glade form, there are 16 buttons with the names:
 
-Here @keys is an array with 16 elements.  The GladeGUI#set_glade_variables
-sets the Gtk::Button#label property of all the buttons.  The names of the buttons
-match the names of each element of the @keys array:
+  "keys[0]"
+  "keys[1]"
+  "keys[2]"
+  etc...
 
-
-So, in the glade form, the names of the buttons are:
-
- "keys[0]"  # key 1
- "keys[1]"  # key 2
- "Calculator.keys[2]"   (all Strings)
- etc...
-
-Those are all valid glade names for our buttons.  When GladeGUI is
-attaching signals, it will match any of those glade names to the "keys__clicked"
-method.  All of these names match the criteria:
-
- keys
- keys[0]
- Calculator.keys[0]
+There is a @keys instance variable that maps to the 16 glade buttons.  The all the labels on the buttons are
+set when the show_glade method is called on this class.  When visualruby parses the signals for widgets that
+have have the array brackets in the name it will call he same signal handler:  *keys_clicked* for all
+16 buttons.
 
 Also, remember that the @keys variable has no impact on this.  This is just GladeGUI scanning
 the names of the widgts, and matching them to your signal methods (denoted with
 2 underscores).
 
-
+See the calculator example for more.

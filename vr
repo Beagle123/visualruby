@@ -16,16 +16,18 @@ def load_everything
   
   require 'require_all'
 
-  require_rel 'vrlib/lib/'
-  require_rel 'bin/'
+  require_rel 'lib/'
+  require_rel 'src/'
 
   VR_Main.new(ARGV, @bldr).show_glade()
 
 end
+
+$root = File.dirname(__FILE__)
  
 @bldr = Gtk::Builder.new
-@bldr << File.join(File.dirname(__FILE__), "bin", "main", "glade", "Splash.glade")
-@bldr[:image1].file = File.join(File.dirname(__FILE__), "img", "splash.png")
+@bldr << File.join($root, "src", "main", "glade", "Splash.glade")
+@bldr[:image1].file = File.join($root, "img", "splash.png")
 @bldr[:window1].show_all
 
 

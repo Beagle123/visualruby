@@ -3,5 +3,5 @@ require "require_all"
 require "date"
 require "yaml"
 
-require_rel 'lib/'
+require_rel '/'
 

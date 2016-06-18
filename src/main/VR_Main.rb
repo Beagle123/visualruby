@@ -147,8 +147,9 @@ class VR_Main
 
   def toolSave__clicked(*a)  # saves open tab 
     @tabs.docs[@tabs.page].try_to_save(false) # false = don't ask
-    command = $VR_ENV.rdoc_command_line.split(" ")[0]
-    run_command(command + " " + @tabs.docs[@tabs.page].full_path_file)
+#    command = $VR_ENV.rdoc_command_line.split(" ")[0]
+#    file = @tabs.docs[@tabs.page].full_path_file
+#    run_command("#{command} #{file}")
   end  
 
   def menuNewWindow__activate(*a)

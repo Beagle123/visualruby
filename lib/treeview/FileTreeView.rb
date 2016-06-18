@@ -7,7 +7,7 @@ module VR
   
     attr_accessor :root, :glob
 
-    # A code block that further eliminates files included in the tree. If this block returns false 
+    # A Code block that further excludes files and folders included in the tree. If this block returns false 
     # for the entry, it will be excluded. If it returns true, it will be included...  
     attr_accessor :validate_block
 
@@ -32,8 +32,8 @@ module VR
       self.visible = true # necessary!
     end  
 
-    # Refreshes the file tree, optionally with a new root folder, and optionally opening an array of folders.
-    # @param [Hash] flags Optionally pass a root or array of folders to open.
+    # Refresh the file tree, optionally with a new root folder, and optionally opening an array of folders.
+    # @param [Hash] flags You can change the root and/or  open an array of folders.
     # @option flags [String] :root Path to root folder to open
     # @option flags [Array] :open_folders A list of folders to open, possibly from #get_open_folders.
     #    Default: the currently open folders, so the tree doesn't collapse when refreshed. 

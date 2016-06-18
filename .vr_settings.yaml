@@ -6,23 +6,19 @@ panel_pos: 360
 notebook_panel_position: 400
 run_command_line: ruby vr
 open_files:
-- "/home/eric/vrp/vr3/vrlib/site/ListView_Tutorial.rdoc"
-- "/home/eric/vrp/vr3/vrlib/lib/treeview/FileTreeView.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_Main.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_File_Tree.rb"
-- "/home/eric/vrp/vr3/bin/main/VR_Tools.rb"
-- "/home/eric/vrp/vr3/yard_hack/common.css"
-- "/home/eric/vrp/vr3/vrlib/site/README.md"
-- "/home/eric/vrp/vr3/yard_hack/index.html"
+- "/home/eric/vrp/vr3/vr.gemspec"
+- "/home/eric/vrp/vr3/vr"
+- "/home/eric/vrp/vr3/lib/vrlib.rb"
+- "/home/eric/vrp/vr3/lib/treeview/columns/ProgressCol.rb"
+- "/home/eric/vrp/vr3/src/main/VR_Tools.rb"
+- "/home/eric/vrp/vr3/src/main/VR_Main.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
-- "/home/eric/vrp/vr3/bin"
-- "/home/eric/vrp/vr3/bin/main"
-- "/home/eric/vrp/vr3/vrlib"
-- "/home/eric/vrp/vr3/vrlib/site"
-- "/home/eric/vrp/vr3/yard_hack"
-current_file: "/home/eric/vrp/vr3/yard_hack/index.html"
-current_line: 22
-rdoc_command_line: yardoc vrlib - vrlib/site/*.*
+- "/home/eric/vrp/vr3/src"
+- "/home/eric/vrp/vr3/src/main"
+- "/home/eric/vrp/vr3/src/main/glade"
+current_file: "/home/eric/vrp/vr3/src/main/VR_Main.rb"
+current_line: 97
+rdoc_command_line: yardoc lib - site/*.*
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

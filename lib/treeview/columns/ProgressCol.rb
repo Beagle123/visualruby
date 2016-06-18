@@ -1,10 +1,3 @@
-
-#  ==The VR Module hold all the classes of the vrlib gem.  The most useful APIs are:
-#  
-#  ===GladeGUI -- loads glade form 
-#  ===VR::ListView -- makes Gtk::TreeView easy!
-
-
 module VR
 
 #  This class is simply a wrapper for an Integer.  It signals VR::Listview's

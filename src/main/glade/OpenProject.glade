@@ -9,6 +9,7 @@
     <property name="title" translatable="yes">Open Project</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
+    <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <child>
       <object class="GtkBox" id="box1">

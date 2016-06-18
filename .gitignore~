@@ -1,6 +1,0 @@
-.vr_settings.yaml
-vrlib/.vr_settings.yaml
-vrlib/doc/**/*
-/**/*.html
-/**/*.gem
-
