@@ -4,7 +4,7 @@ module VR::ObjectInspector
     
     include GladeGUI
 
-    def initialize(obj)
+    def initialize(obj=self)
       @obj = obj
       @obj_to_s = obj.to_s
       @meth_view = MethodsListView.new(@obj)
@@ -33,7 +33,7 @@ end
 # Displays object on screen and halts the program.  Anywhere in your code you can halt 
 # the execution, and display an object in a window like this:
 #   alert anyobject
-def oinspect(obj)
+def oinspect(obj=self)
   VR::ObjectInspector::ObjectInspectorGUI.new(obj).show_glade()
 end
 

@@ -4,7 +4,7 @@ module VR::ObjectInspector
 
     def initialize(obj)
       super(:method => String, :arity => String, :parameters => String)
-      obj.methods.each do |meth|
+      obj.public_methods.each do |meth|
         row = add_row
         row[:method] = meth.to_s
         row[:arity] = obj.method(meth).arity.to_s
