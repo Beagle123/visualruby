@@ -13,34 +13,32 @@
 # To use the GladeGUI interface, include this line after your 
 # “class” declaration:
 # @example
-#  class MyClass
-#    include GladeGUI
-#    ...
-#  end
+#   class MyClass
+#     include GladeGUI
+#   end
 #  
-#  GladeGUI will load a corresponding 
-#  glade file for this class.  It knows which glade file to load by using a naming 
-#  convention:
+# GladeGUI will load a corresponding 
+# glade file for this class.  It knows which glade file to load by using a naming 
+# convention:
 #  
-#   /home/me/visualruby/projectname/bin/MyClass.rb 
+#   /folder/MyClass.rb 
 #  
-#  Will load this glade file:
+# Will load this glade file:
 #  
-#   /home/me/visualrubyprojectname/bin/glade/MyClass.glade
+#   /folder/glade/MyClass.glade
 #  
-#  Note: it will use this format: /my/path/glade/<class_name>.glade.
-#  In the example, the class and the file have the same name,
-#  MyClass.  You should always name your class, script, and glade file
-#  the same name (case sensitive).
+# The class, the class file name and the glade file name must match.
+# You should always name your class, script, and glade file
+# the same name (case sensitive).
 #  
-#  ==@builder holds all your widgets
+# ==@builder holds all your widgets
 #  
-#  So when you "load" your class's glade file where is it loaded?
+# So when you "load" your class's glade file where is it loaded?
 #  
-#  GladeGUI adds an instance variable, @builder to your class.
-#  It loads all the windows and widgets from your glade file into @builder.
-#  So, you use @builder to manipulate everything in you class's GUI.
-#  @builder is set when you call the show_glade() method, as this code shows:
+# GladeGUI adds an instance variable, @builder to your class.
+# It loads all the windows and widgets from your glade file into @builder.
+# So, you use @builder to manipulate everything in you class's GUI.
+# @builder is set when you call the show_glade() method, as this code shows:
 #  
 #   class MyClass
 #    
@@ -56,34 +54,34 @@
 #    
 #   end
 #  
-#  After show_glade() is called, you can access any of your form's windows or widgets
-#  using the @builder variable: 
+# After show_glade() is called, you can access any of your form's windows or widgets
+# using the @builder variable: 
 #  
-#    @builder["window1"].title = "This is the title that appears at the top."
+#   @builder["window1"].title = "This is the title that appears at the top."
 #  
 #  
-#  Here's another example:  Suppose you have a glade form with a Gtk::Entry box on it named "email."
-#  You could set the text that appears in the Gtk::Entry by setting the Gtk::Entry#text property:
+# Here's another example:  Suppose you have a glade form with a Gtk::Entry box on it named "email."
+# You could set the text that appears in the Gtk::Entry by setting the Gtk::Entry#text property:
 #  
 #   @builder["email"].text = "harvey@harveyserver.com"
 #  
-#  Now the email adddess is set with a new value:
+# Now the email adddess is set with a new value:
 # 
-#  http://visualruby.net/img/gladegui_simple.jpg
+# http://visualruby.net/img/gladegui_simple.jpg
 #  
-#  ==Auto fill your glade form
-#  You can streamline the process of setting-up your forms by
-#  auto-filling the widgets from instance variables with the same name.
+# ==Auto fill your glade form
+# You can streamline the process of setting-up your forms by
+# auto-filling the widgets from instance variables with the same name.
 #
-#  When assigning names to widgets in glade, give them names that 
-#  correspond to your instance variables. For example, if you want 
-#  to edit an email address on the glade form, create an instance 
-#  variable named @email in your class. Then, in glade, you 
-#  add a Gtk::Entry widget to your form and set its name to 
-#  “email”. The advantage of this is that GladeGUI will populate 
-#  the “email” widget in glade using the @email variable. so 
-#  you don’t need to include the above line of code. (see 
-#  set_glade_variables() method.)
+# When assigning names to widgets in glade, give them names that 
+# correspond to your instance variables. For example, if you want 
+# to edit an email address on the glade form, create an instance 
+# variable named @email in your class. Then, in glade, you 
+# add a Gtk::Entry widget to your form and set its name to 
+# “email”. The advantage of this is that GladeGUI will populate 
+# the “email” widget in glade using the @email variable. so 
+# you don’t need to include the above line of code. (see 
+# set_glade_variables() method.)
 module GladeGUI
 
   # @attribute A Builder object that holds references to everything from the galde form.
@@ -140,7 +138,7 @@ end
     @builder.connect_signals{ |handle| method(handle) }
   end
 
-  private def class_name(obj) # :nodoc:
+  private def class_name(obj) 
     /.*\b(\w+)$/.match(obj.class.name)[1]
   end    
 
@@ -286,7 +284,7 @@ end
   end
   
 
-  def fill_control(glade_name, val) # :nodoc:
+  def fill_control(glade_name, val) 
     control = @builder[glade_name]
     control_name = glade_name.split(".")[1]
     control ||= @builder[control_name] if control_name
@@ -349,7 +347,7 @@ end
   end
 
 
-  def get_glade_active_record(obj) # :nodoc:
+  def get_glade_active_record(obj) 
     return if not defined? @attributes
     obj.attributes.each_pair do |key, val|
       control = @builder[class_name(obj) + "." + key]

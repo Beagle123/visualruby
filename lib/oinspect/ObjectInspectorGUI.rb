@@ -1,5 +1,7 @@
-module VR::ObjectInspector
 
+# ObjectInspector isn't meant to be called directly, #oinspect for API.
+module VR::ObjectInspector
+  # ObjectInspector isn't meant to be called directly, see #oinspect for API.
   class ObjectInspectorGUI
     
     include GladeGUI

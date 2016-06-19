@@ -1,5 +1,5 @@
 module VR::ObjectInspector
-
+  # Listview that holds variables in the ObjectInspectorGUI
   class VariablesListView < VR::ListView
 
     def initialize(obj)

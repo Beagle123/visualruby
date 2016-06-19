@@ -1,5 +1,4 @@
-#nodoc
-
+# The main namespace for visualruby.
 module VR
 
   module Draggable

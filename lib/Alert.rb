@@ -48,7 +48,7 @@ module VR
     end
 
     # Helper to VR::Alert so :answer can be passed by reference.
-    class DialogAnswer # :nodoc:
+    class DialogAnswer 
       attr_accessor :answer
     end
 

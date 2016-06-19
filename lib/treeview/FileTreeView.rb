@@ -130,8 +130,15 @@ module VR
       selection.selected ? selection.selected[id(:path)] : nil 
     end
 
-    class IconHash < Hash # :nodoc:
-    
+    # Creates a Hash of icons for VR::FileTreeView. The folder should contain
+    # .png files that correspond to file extensions.  For example, rb.png
+    # would be an icon that displays next to files with an .rb extension.
+    # A file named "unknown.png" should be in the folder for file types that
+    # aren't found.
+    class IconHash < Hash 
+
+      # Sets the path to find the icons
+      # @param [String] path Path to folder where icons are.
       def initialize(path)
         Dir.glob(path + "/*.png").each do |f|
           ext = File.basename(f, ".png")

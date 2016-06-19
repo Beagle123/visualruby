@@ -4,11 +4,14 @@
 
 ##  Requirements
 
-* Ruby version 1.9.3 or greater
+* Ruby version 1.9.3 or greater (2.3.0 for Windows)
 
 * Glade Interface Designer for gtk3  
 
 ## Install in Windows ![Windows](http://visualruby.net/img/windows_logo.jpg)  
+
+*Note* Windows requires a later version of Ruby after 2.0.0.  I know it works with 2.3.0+
+Users have reported problems with 2.0.0 that have been fixed in later versions of Ruby.
 
 1. Install Ruby using [Ruby's one-click installer](http://rubyinstaller.org/downloads/) for windows.
 
@@ -24,7 +27,7 @@
   gem install visualruby
 
 
-## Install in Linux <img src = http://visualruby.net/img/linux_logo.jpg>
+## Install in Linux ![Linux](http://visualruby.net/img/linux_logo.jpg)
 
 
 1. [Install Ruby](https://www.ruby-lang.org/en/documentation/installation/) if it isn't on your computer.   Click link for specific instructions.

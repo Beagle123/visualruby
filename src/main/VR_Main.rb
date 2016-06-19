@@ -152,6 +152,7 @@ class VR_Main
     VR_Tools.replace_html_in_docs()
     if File.exists?("yard_hack/index.html.replace")
       FileUtils.copy("yard_hack/index.html.replace", "doc/index.html") 
+      FileUtils.copy("yard_hack/index.html.replace", "doc/frames.html") 
       FileUtils.copy("yard_hack/common.css", "doc/css/common.css")
     end
 #    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{fn}/doc/index.html")
