@@ -58,6 +58,7 @@ class VR_File_Tree < VR::FileTreeView
     VR_Tools.replace_html_in_docs()
     if File.exists?("yard_hack/index.html.replace")
       FileUtils.copy("yard_hack/index.html.replace", "#{fn}/doc/index.html") 
+      FileUtils.copy("yard_hack/index.html.replace", "#{fn}/doc/frames.html") 
       FileUtils.copy("yard_hack/common.css", "#{fn}/doc/css/common.css")
     end
     FileUtils.cd(old_dir)    

@@ -4,19 +4,19 @@
 # It will load a .glade
 # file into memory, enabling your ruby programs to have a GUI interface.
 #  
-# GladeGUI works by adding an instance variable, @builder to your class.  The @builder
+# GladeGUI works by adding an instance variable named "builder" to your class.  The "builder"
 # variable is an instance of {Gtk::Builder}[http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ABuilder]
 # It holds references to all your windows and widgets.
 #  
-# =Include the GladeGUI interface
+# = Include the GladeGUI interface
 #  
-# To use the GladeGUI interface, include this line after your 
-# “class” declaration:
-# @example
+# To use the GladeGUI interface, include this line in your code:
+# 
+# 
 #   class MyClass
 #     include GladeGUI
 #   end
-#  
+# 
 # GladeGUI will load a corresponding 
 # glade file for this class.  It knows which glade file to load by using a naming 
 # convention:
@@ -31,14 +31,14 @@
 # You should always name your class, script, and glade file
 # the same name (case sensitive).
 #  
-# ==@builder holds all your widgets
+# == <tt>builder</tt> variable holds all your widgets
 #  
 # So when you "load" your class's glade file where is it loaded?
 #  
-# GladeGUI adds an instance variable, @builder to your class.
+# GladeGUI adds an instance variable, builder to your class.
 # It loads all the windows and widgets from your glade file into @builder.
-# So, you use @builder to manipulate everything in you class's GUI.
-# @builder is set when you call the show_glade() method, as this code shows:
+# So, you use <tt>@builder</tt> to manipulate everything in you class's GUI.
+# <tt>@builder</tt> is set when you call the show_glade() method, as this code shows:
 #  
 #   class MyClass
 #    
@@ -56,20 +56,20 @@
 #  
 # After show_glade() is called, you can access any of your form's windows or widgets
 # using the @builder variable: 
-#  
+# ```ruby 
 #   @builder["window1"].title = "This is the title that appears at the top."
-#  
+# ``` 
 #  
 # Here's another example:  Suppose you have a glade form with a Gtk::Entry box on it named "email."
 # You could set the text that appears in the Gtk::Entry by setting the Gtk::Entry#text property:
-#  
+# ```ruby 
 #   @builder["email"].text = "harvey@harveyserver.com"
-#  
+# ```  
 # Now the email adddess is set with a new value:
 # 
 # http://visualruby.net/img/gladegui_simple.jpg
 #  
-# ==Auto fill your glade form
+# == Auto fill your glade form
 # You can streamline the process of setting-up your forms by
 # auto-filling the widgets from instance variables with the same name.
 #
