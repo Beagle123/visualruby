@@ -47,12 +47,11 @@ module VR
       @builder[:window1].destroy
     end
 
+    # Helper to VR::Alert so :answer can be passed by reference.
+    class DialogAnswer # :nodoc:
+      attr_accessor :answer
+    end
 
-  end
-
-  #so it can be passed by reference
-  class DialogAnswer # :nodoc:
-    attr_accessor :answer
   end
 
 end  
@@ -99,7 +98,7 @@ end
 # There are many examples in the "alert_box" example project. 
 
 def alert(message, options = {})
-  @answer = VR::DialogAnswer.new()
+  @answer = VR::Alert::DialogAnswer.new()
   VR::Alert.new(message, @answer, options).show_glade(options[:parent])
   return @answer.answer 
 end

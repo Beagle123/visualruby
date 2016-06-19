@@ -14,14 +14,14 @@ class SongListView < VR::ListView
   def initialize 
     @cols = {}
     @cols[:pix] = {:pix => Gdk::Pixbuf, :song => String } #two renderers in this column
-    @cols[:date] = VR::CalendarCol # DateTime
+    @cols[:date] = VR::Col::CalendarCol # DateTime
     @cols[:artist] = String
     @cols[:first_name] = String    
     @cols[:last_name] = String
-    @cols[:popular] = VR::ProgressCol
-    @cols[:buy] = VR::ComboCol
-    @cols[:quantity] = VR::SpinCol
-     @cols[:price] = VR::CurrencyCol
+    @cols[:popular] = VR::Col::ProgressCol
+    @cols[:buy] = VR::Col::ComboCol
+    @cols[:quantity] = VR::Col::SpinCol
+     @cols[:price] = VR::Col::CurrencyCol
     @cols[:check] = TrueClass
     super(@cols)
 
@@ -66,12 +66,12 @@ class SongListView < VR::ListView
       row[id(:last_name)] = data[i][1]
       row[id(:artist)] = row[id(:first_name)] + " " + row[id(:last_name)]
       row[id(:song)] = data[i][2]
-      row[id(:quantity)] = VR::SpinCol.new(0,0,100,1) # Gtk::Adjustment.new(0,0,100,1,0,0)  # 
-      row[id(:price)] = VR::CurrencyCol.new(2.99)
+      row[id(:quantity)] = VR::Col::SpinCol.new(0,0,100,1) # Gtk::Adjustment.new(0,0,100,1,0,0)  # 
+      row[id(:price)] = VR::Col::CurrencyCol.new(2.99)
       row[id(:popular)] = data[i][3]
-      row[id(:buy)] = VR::ComboCol.new("Buy", "Buy", "Rent", "Listen") # all rows use the same combobox
+      row[id(:buy)] = VR::Col::ComboCol.new("Buy", "Buy", "Rent", "Listen") # all rows use the same combobox
       row[id(:check)] = false
-      row[id(:date)] = VR::CalendarCol.new(data[i][4], :format => "%d %b %Y ", :hide_time=>true, :hide_date => false)
+      row[id(:date)] = VR::Col::CalendarCol.new(data[i][4], :format => "%d %b %Y ", :hide_time=>true, :hide_date => false)
     end
 
   end

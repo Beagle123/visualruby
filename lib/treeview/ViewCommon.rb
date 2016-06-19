@@ -111,16 +111,17 @@ module VR
 
   module ViewCommon
 
-attr_accessor :vr_renderer, :vr_column
+attr_accessor :vr_renderer
   
     def load_columns(cols) # :nodoc:
       @vr_renderer = {}
-      @vr_column = {}
+      @vr_cols = {}
       model_col = 0
       cols.each_pair do | sym, type|
-        col = VR::TreeViewColumn.new(self, model_col, sym, type)
+        col = VR::Col::TreeViewColumn.new(self, model_col, sym, type)
         model_col = model_col + (type.class == Hash ? type.size : 1)
         self.append_column(col)
+        @vr_cols[sym] = col
       end
       turn_on_comboboxes()
       @column_keys = flatten_hash(cols).keys
@@ -167,7 +168,7 @@ attr_accessor :vr_renderer, :vr_column
 #  Also, if the column VR::TreeViewColumn object doesn't support the property, it will try to
 #  set the property on the renderer instead.  In the above example, the col_attr() method tries to
 #  set teh "<b>background</b>" property of a VR:TreeViewColumn.  However, that object doesn't
-#  support the "background" property, but the renderer for the column, VR::CellRendererText does.
+#  support the "background" property, but the renderer for the column, VR::Col::Ren::CellRendererText does.
 #  So it sets the renderer's property instead.  So, in this example this line of code would do exactly the same
 #  thing:
 #  
@@ -185,12 +186,28 @@ attr_accessor :vr_renderer, :vr_column
           if column(c).respond_to?(key.to_s + "=")
             column(c).send(key.to_s + '=', val)
           elsif renderer(c).respond_to?(key.to_s + "=")  
-             renderer(c).send(key.to_s + '=', val) 
+            renderer(c).send(key.to_s + '=', val) 
           end 
         end
       end    
     end
 
+
+#    def col_attr(*args)
+#      cols = args.select { |arg| !arg.is_a? Hash }
+#      return unless hash = args.detect { |arg| arg.is_a? Hash }
+#      cols = @column_keys if cols.empty?
+#      cols.each do |c|
+#        hash.each_pair do | key, val |
+#          if column(c).respond_to?(key.to_s + "=")
+#            column(c).send(key.to_s + '=', val)
+#          elsif renderer(c).respond_to?(key.to_s + "=")  
+#             renderer(c).send(key.to_s + '=', val) 
+#          end 
+#        end
+#      end    
+#    end
+#
 
 #  Returns an array of rows that are selected in the VR::TreeView or VR::ListView.
 #  If nothing is selected, it returns an empty array.  If you've configured your
@@ -221,17 +238,20 @@ attr_accessor :vr_renderer, :vr_column
       # detect if comboboxes are present:
       found = false
       self.each_renderer do |r|
-        if r.is_a? VR::CellRendererCombo
+        if r.is_a? VR::Col::Ren::CellRendererCombo
           found = true
           break
         end
       end  
       return unless found
       self.signal_connect("cursor_changed") do |view|
-        next unless iter = view.selection.selected 
-        view.each_renderer do |r|
-          r.set_model( iter[r.model_col] ) if r.is_a? VR::CellRendererCombo
+        next unless iter = view.selection.selected
+        @vr_renderer.each do |sym, ren|
+          ren.set_model iter[id(sym)] if ren.is_a? VR::Col::Ren::CellRendererCombo
         end
+#        view.each_renderer do |r|
+#          r.set_model( iter[r.model_col] ) if r.is_a? VR::Col::Ren::CellRendererCombo
+#        end
       end    
     end
 
@@ -269,7 +289,7 @@ attr_accessor :vr_renderer, :vr_column
 
     def vr_row(iter)
       unless iter.respond_to?(:id)
-        iter.extend(VR::IterMethods)
+        iter.extend(IterMethods)
         iter.column_keys = @column_keys
       end
       return iter
@@ -294,7 +314,7 @@ attr_accessor :vr_renderer, :vr_column
 
   
     def column(id)
-      @vr_column[id] 
+      @vr_cols[id]
     end
     
     def each_renderer
@@ -314,22 +334,22 @@ attr_accessor :vr_renderer, :vr_column
 #The VR::ListView class will 
 #automatically assign renderers to each column based on its type:
 #
-#String, Fixnum, Integer, Float => VR::CellRendererText
-#TrueClass => VR::CellRendererToggle
-#GdkPixbuf => VR::CellRendererPixbuf
-#DateTime => VR::CellRendererDate
-#VR::CalendarCol, VR::TextCol => VR::CellRendererObject
-#VR::SpinCol => VR::CellRendererSpin
-#VR::ProgressCol => VR::CellRendererProgress
-#VR::ComboCol => VR::CellRendererCombo
+#String, Fixnum, Integer, Float => VR::Col::Ren::CellRendererText
+#TrueClass => VR::Col::Ren::CellRendererToggle
+#GdkPixbuf => VR::Col::Ren::CellRendererPixbuf
+#DateTime => VR::Col::Ren::CellRendererDate
+#VR::Col::CalendarCol, VR::Col::BlobCol => VR::Col::Ren::CellRendererObject
+#VR::Col::SpinCol => VR::Col::Ren::CellRendererSpin
+#VR::Col::ProgressCol => VR::Col::Ren::CellRendererProgress
+#VR::Col::ComboCol => VR::Col::Ren::CellRendererCombo
 #
 #The renderer() method will return one of these renderers:
 #
 # ren = @view.renderer(:ok)
-# puts ren.class.name  # VR::CellRendererToggle  (:ok column is a TrueClass)
-# puts @view.renderer(:name).class.name # =>  VR::CellRendererText
+# puts ren.class.name  # VR::Col::Ren::CellRendererToggle  (:ok column is a TrueClass)
+# puts @view.renderer(:name).class.name # =>  VR::Col::Ren::CellRendererText
 #
-#All the types of renderers are subclasses of Gtk renderers.  For example,  VR::CellRendererText
+#All the types of renderers are subclasses of Gtk renderers.  For example,  VR::Col::Ren::CellRendererText
 #is a subclass of Gtk::CellRendererText.  So, you can use these objects just as you would use a 
 #normal Gtk renderer:
 # 
@@ -353,7 +373,7 @@ attr_accessor :vr_renderer, :vr_column
 #  This method converts the column ID symbols from the VR::ListView#new constructor
 #  to Integers:
 #  
-#   @view = VR::ListView.new(:name => String, :date => VR::CalendarCol)
+#   @view = VR::ListView.new(:name => String, :date => VR::Col::CalendarCol)
 #   
 #   Later in code...
 #  

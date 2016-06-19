@@ -1,4 +1,4 @@
-module VR
+module VR::Col::Ren
 
 #
 #  This renderer has a slightly different validate_block than the others.  Its validate_block will be called with three
@@ -8,7 +8,7 @@ module VR
 #     (row[:name].length < 3)
 #   }
 #  
-#  Also, you can use the VR::CellRendererToggle#edited= method to allow editing.
+#  Also, you can use the VR::Col::Ren::CellRendererToggle#edited= method to allow editing.
 #
 
   class CellRendererToggle < Gtk::CellRendererToggle
@@ -29,7 +29,7 @@ module VR
         next unless iter = @view.model.get_iter(path)
         if @validate_block.call(@model_sym, @view.vr_row(iter), @view)
           iter[model_col] = !iter[model_col]
-           @edited_callback.call(@model_col, iter) if @edited_callback
+          @edited_callback.call(@model_col, iter) if @edited_callback
          end
       end
     end

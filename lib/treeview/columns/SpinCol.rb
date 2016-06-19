@@ -1,4 +1,4 @@
-module VR
+module VR::Col
 
   class SpinCol < Gtk::Adjustment
 

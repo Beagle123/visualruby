@@ -22,11 +22,11 @@ module VR
 # * DateTime - Displays in a default date format(editable), edits like a String
 # * TrueClass - Displays as a GtkCheckButton, click checkbox to edit
 # * GdkPixbuf - Just an Image, uneditable
-# * VR::CalendarCol - Displays in a default date format(editable), calendar window to edit.
-# * VR::SpinCol - Displays as a number with default number of digits, edits like a GtkSpinButton
-# * VR::ComboCol - Displays String, edits like a GtkComboBoxEntry
-# * VR::ProgressCol - Displays a GtkProgressBar, uneditable
-# * VR::TextCol - For long strings.  Displays first 20 characters in view, edits with simple text editor.
+# * VR::Col::CalendarCol - Displays in a default date format(editable), calendar window to edit.
+# * VR::Col::SpinCol - Displays as a number with default number of digits, edits like a GtkSpinButton
+# * VR::Col::ComboCol - Displays String, edits like a GtkComboBoxEntry
+# * VR::Col::ProgressCol - Displays a GtkProgressBar, uneditable
+# * VR::Col::BlobCol - For long strings.  Displays first 20 characters in view, edits with simple text editor.
 #
 # You can also add your own user-defined column types.  See: {Adding Your Own Objects to ListView}[link:/site/ListView%20Tutorial.html#objects].
 #

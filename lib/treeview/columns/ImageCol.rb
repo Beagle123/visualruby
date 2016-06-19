@@ -1,5 +1,5 @@
 
-module VR
+module VR::Col
 
   class ImageCol #< Gdk::Pixbuf
 

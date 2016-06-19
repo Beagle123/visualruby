@@ -1,22 +1,22 @@
 
-module VR
+module VR::Col
 
-#  The CalendarCol class is a simple calendar window where you can edit
-#  the date:
-#  
-#  http://visualruby.net/img/calendar.jpg
-#  
-#  This class is very useful when you want to display and edit dates
-#  in a VR::ListView.  You can define a column with the type VR::CalendarCol
-#  and the column will display as a date, and when the user clicks on the
-#  date, a calendar window will appear so he/she can edit it:
-#  
-#   @view = VR::ListView.new(:name => String, :birthday => VR::CalendarCol)
-#   row = @view.add_row
-#   row[:name] = "Eric"
-#   row[:birthday] = VR::CalendarCol.new(DateTime.new(1966, 7, 14))
-#  
-#  See the example project, "listview_objects" for more.
+# The CalendarCol class is a simple calendar window where you can edit
+# the date:
+#
+# http://visualruby.net/img/calendar.jpg
+#
+# This class is very useful when you want to display and edit dates
+# in a VR::ListView.  You can define a column with the type VR::Col::CalendarCol
+# and the column will display as a date, and when the user clicks on the
+# date, a calendar window will appear so he/she can edit it:
+#
+#  @view = VR::ListView.new(:name => String, :birthday => VR::Col::CalendarCol)
+#  row = @view.add_row
+#  row[:name] = "Eric"
+#  row[:birthday] = VR::Col::CalendarCol.new(DateTime.new(1966, 7, 14))
+#
+# See the example project, "listview_objects" for more.
 
   class CalendarCol 
 
@@ -49,22 +49,21 @@ module VR
       @builder["date"].hide if @hide_date
     end
 
-# displays time according to the @date_format instance variable.  If you want to
-# change the appearance of this object, assign a new vale to @date_format.
-  
+    # Output shown in ListView according to the @date_format instance variable.  If you want to
+    # change the appearance of this object, assign a new vale to @date_format. 
     def to_s
       @date.strftime(@format)
     end
 
-    def am__toggled(*args) # :nodoc:
+    def am__toggled(*args)
       @builder["pm"].active = !@builder["am"].active?
     end
 
-    def pm__toggled(*args) # :nodoc:
+    def pm__toggled(*args)
       @builder["am"].active = !@builder["pm"].active? 
     end
 
-    def buttonSave__clicked(*args) # :nodoc:
+    def buttonSave__clicked(*args) 
       get_glade_variables()
       m = @builder["am"].active? ? "AM" : "PM"
       t = DateTime.strptime("#{@hour.to_i.to_s} #{@minute.to_i.to_s} #{m}", "%I %M %p")
@@ -72,10 +71,7 @@ module VR
       @builder["window1"].destroy
     end
 
-    def buttonCancel__clicked(*args) # :nodoc:
-      @builder["window1"].destroy      
-    end
-
+    # Used for sorting in ListView
     def <=>(calendar)
       return @date <=> calendar.date
     end

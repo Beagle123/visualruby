@@ -1,6 +1,6 @@
 
   
-module VR 
+module VR::Col
 
 #  The Combo class is for use with VR::ListView and VR::TreeView.  It
 #  simply holds the values for a combobox to be displayed in the view.

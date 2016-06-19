@@ -1,18 +1,18 @@
 
-module VR
+module VR::Col
 
-#  The TextCol class is a simple text editor for editing strings of data:
+#  The BlobCol class is a simple text editor for editing strings of data:
 #  
 #  http://visualruby.net/img/textcol.jpg
 #  
 #  It is a very useful class when you want to display and edit long strings
 #  of data in a VR::ListView.  To create a coulmn of long strings in a VR::ListView,
-#  simply define the column type as VR::TextCol:
+#  simply define the column type as VR::Col::BlobCol:
 #  
-#   @view = VR::ListView.new(:name => String, :quote => VR::TextCol)
+#   @view = VR::ListView.new(:name => String, :quote => VR::Col::BlobCol)
 #   row = @view.add_row
 #   row[:name] = "Eric"
-#   row[:quote] = VR::TextCol.new("I have come to believe that the whole world is an enigma, a harmless enigma that is made terrible by our own mad attempt to interpret it as though it had an underlying truth.  - Umberto Eco) ")
+#   row[:quote] = VR::Col::BlobCol.new("I have come to believe that the whole world is an enigma, a harmless enigma that is made terrible by our own mad attempt to interpret it as though it had an underlying truth.  - Umberto Eco) ")
 #  
 #  The above listview will only display the first 20 characters of the quote, so
 #  it won't destroy the appearance of the listview.  When a user clicks on the
@@ -20,7 +20,7 @@ module VR
 #  
 #  See the example project, "listview_objects" for more.
 
-  class TextCol 
+  class BlobCol 
 
     include GladeGUI
 

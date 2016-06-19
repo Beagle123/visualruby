@@ -21,10 +21,11 @@ module VR
       @root = File.expand_path(root)
       @glob = glob
       @validate_block = validate_block
-      super(:file => {:pix => Gdk::Pixbuf, :file_name => String}, :empty => TrueClass, :path => String, :modified_date => VR::DateCol, :sort_on => String)
-      col_visible( :path => false, :modified_date => false, :sort_on => false, :empty => false)
+      super(:file => {:pix => Gdk::Pixbuf, :file_name => String}, :empty => TrueClass, 
+            :path => String, :sort_on => String)
+      col_visible( :path => false, :sort_on => false, :empty => false)
       self.headers_visible = false
-      @icons = File.directory?(icon_path) ? VR::IconHash.new(icon_path) : nil
+      @icons = File.directory?(icon_path) ? IconHash.new(icon_path) : nil
       parse_signals()  #fix this!  Subclasses may call twice!
       model.set_sort_column_id(id(:sort_on), :ascending )
       self.set_enable_search(false)
@@ -128,10 +129,26 @@ module VR
     def get_selected_path() 
       selection.selected ? selection.selected[id(:path)] : nil 
     end
+
+    class IconHash < Hash # :nodoc:
+    
+      def initialize(path)
+        Dir.glob(path + "/*.png").each do |f|
+          ext = File.basename(f, ".png")
+          self[ext] = Gdk::Pixbuf.new(f)
+        end
+      end
+    
+      def get_icon(file_name)
+        ext = File.extname(file_name).gsub(".", "")
+        self.has_key?(ext) ? self[ext] : self["unknown"] 
+      end
+    end
+
   
   end  
   
-  
+
   
 
 end

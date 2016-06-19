@@ -1,4 +1,4 @@
-module VR
+module VR::Col::Ren
 
 #  This class is a helper to VR::ListView and VR::TreeView.  When
 #  colums are created, this class is used as the renderer because

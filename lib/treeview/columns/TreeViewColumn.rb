@@ -1,4 +1,4 @@
-module VR 
+module VR::Col 
 
   class TreeViewColumn < Gtk::TreeViewColumn # :nodoc:
   
@@ -11,44 +11,40 @@ module VR
         cols.each_pair do |symb, type|
           r = nil
           a = [model_col, self, @view, symb]
-          if type == Gdk::Pixbuf
-            r = VR::CellRendererPixbuf.new(*a)
-#            ren = Gtk::CellRendererPixbuf.new #(*a)
+          if type == Gdk::Pixbuf # ok to use gtk
+            r = Gtk::CellRendererPixbuf.new #(*a)
             self.pack_start( r, false )
             self.add_attribute( r, :pixbuf,  model_col)
           elsif type == TrueClass
-            r = VR::CellRendererToggle.new(*a)
+            r = VR::Col::Ren::CellRendererToggle.new(*a)
+#            r = Gtk::CellRendererToggle.new()
             self.pack_start( r, false )
             self.add_attribute( r, :active,  model_col)
-          elsif type == VR::SpinCol #or type == Gtk::Adjustment 
-            r = VR::CellRendererSpin.new(*a)
+          elsif type == VR::Col::SpinCol #or type == Gtk::Adjustment 
+            r = VR::Col::Ren::CellRendererSpin.new(*a)
             self.pack_start( r, false )
             self.add_attribute( r, :adjustment,  model_col)
             self.set_cell_data_func(r) do |col, rend, model, iter|
               fmt = "%.#{rend.digits}f"
               rend.text = fmt % iter[rend.model_col].value.to_s     
             end  
-          elsif type == VR::ComboCol 
-            r = VR::CellRendererCombo.new(*a)
+          elsif type == VR::Col::ComboCol 
+            r = VR::Col::Ren::CellRendererCombo.new(*a)
             self.pack_start( r, false )
             self.set_cell_data_func(r) do |col, rend, model, iter|
               iter = model.get_iter(iter.path)
-#puts "VR::ComboCol Renderer: " + ren.class.name + " model_col: " + ren.model_col.to_s
-#puts "VR::ComboCol Iter: " + iter.class.name
-#puts "VR::ComboCol Model: " + model.class.name 
-#puts "VR::ComboCol Cell: " + iter[ren.model_col].class.name 
-#puts "VR::ComboCol iter[ren.model_col]: " + iter[ren.model_col].selected.to_s 
           #    display_val = iter[rend.model_col].selected.to_s 
               display_val = iter[@view.id(sym)].selected.to_s 
 #puts display_val
               rend.text = display_val #= iter[ren.model_col].selected.to_s
             end 
-          elsif type == VR::ProgressCol 
-            r = VR::CellRendererProgress.new(*a)
+          elsif type == VR::Col::ProgressCol 
+#            r = VR::Col::Ren::CellRendererProgress.new(*a)
+            r = Gtk::CellRendererProgress.new()
             self.pack_start( r, false )
             self.add_attribute( r, :value,  model_col)
           elsif type == DateTime 
-            r = VR::CellRendererDate.new(*a)
+            r = VR::Col::Ren::CellRendererDate.new(*a)
             self.pack_start( r, false )
             self.set_cell_data_func(r) do |col, ren, model, iter|
 #iter = model.get_iter(iter.path)
@@ -56,11 +52,11 @@ module VR
             ren.text = iter[ren.model_col].strftime(ren.date_format).to_s
             end
           elsif type == String or type == Float or type == Integer or type == Fixnum  
-            r = VR::CellRendererText.new(*a)
+            r = VR::Col::Ren::CellRendererText.new(*a)
             self.pack_start( r, false )
             self.add_attribute( r, :text,  model_col)
           else #user defined object
-            r = VR::CellRendererObject.new(*a)
+            r = VR::Col::Ren::CellRendererObject.new(*a)
             self.pack_start( r, false )
             self.set_cell_data_func(r) do |col, ren, model, iter|
               ren.render_object(iter)
@@ -68,7 +64,6 @@ module VR
           end
           model_col = model_col + 1
           view.vr_renderer[sym] = r
-          view.vr_column[sym] = self
         end
     end
   

@@ -16,7 +16,7 @@
 #  class MyClass
 #    include GladeGUI
 #    ...
-#  End
+#  end
 #  
 #  GladeGUI will load a corresponding 
 #  glade file for this class.  It knows which glade file to load by using a naming 
@@ -86,7 +86,7 @@
 #  set_glade_variables() method.)
 module GladeGUI
 
-  # @attribute A Builder object that holds references to everyhting from the galde form.
+  # @attribute A Builder object that holds references to everything from the galde form.
   attr_accessor :builder
 
 ##
@@ -397,6 +397,7 @@ end
     parse_signals()
     set_glade_all()
     @builder[:window1].show  #show_all can't hide widgets in before_show
+ #   @builder[:window1].add_events(Gdk::EventMask.new(:key_press))
     @top_level_window = Gtk.main_level == 0 ? true : false
     Gtk.main if @top_level_window or @builder[:window1].modal?  #need new Gtk.main for blocking!
   end
@@ -413,6 +414,12 @@ end
     @builder[:window1].destroy
   end
 
+  def window1__key_press_event(view, evt)
+    return unless evt.keyval == Gdk::Keyval::KEY_F8
+    oinspect
+  end
+
+
 #
 #  private def active_record_valid?(show_errors = true)
 #    get_glade_all
@@ -426,5 +433,12 @@ end
 
 
 end
-  
+
+
+# Waits for all penting events to finish before continuing.
+def clear_events()  
+  while (Gtk.events_pending?)
+    Gtk.main_iteration
+  end
+end
   

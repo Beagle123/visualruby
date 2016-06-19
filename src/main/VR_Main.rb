@@ -145,6 +145,18 @@ class VR_Main
     end
   end
 
+  def toolRDoc__clicked(*a)
+    @shell.buffer.text = $VR_ENV.rdoc_command_line + "\n"
+    clear_events 
+    @shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`
+    VR_Tools.replace_html_in_docs()
+    if File.exists?("yard_hack/index.html.replace")
+      FileUtils.copy("yard_hack/index.html.replace", "doc/index.html") 
+      FileUtils.copy("yard_hack/common.css", "doc/css/common.css")
+    end
+#    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{fn}/doc/index.html")
+  end
+
   def toolSave__clicked(*a)  # saves open tab 
     @tabs.docs[@tabs.page].try_to_save(false) # false = don't ask
 #    command = $VR_ENV.rdoc_command_line.split(" ")[0]
@@ -263,7 +275,7 @@ class VR_Main
   def buttonFind_clicked
     str = @builder["entryFind"].text
     str = str.length < 2 ? @tabs.docs[@tabs.page].selected_text() : str
-    return if str.length < 2
+    return if str.nil? or str.length < 2
     text = (@builder["radioOnDisk"].active?) ? @tabs.find_in_all(str) : @tabs.find_in_tabs(str)    
     @shell.hilight_links(text, false)
   end  
