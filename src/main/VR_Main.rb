@@ -51,7 +51,7 @@ class VR_Main
     @builder["scrolledRemoteGems"].add(@remote_gem_tree)
     @remote_gem_tree.show
 
-    @splash[:window1].destroy 
+    @splash.destroy 
     Gtk.main_quit
   
     unless project_valid?(@proj_path)
