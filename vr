@@ -19,7 +19,7 @@ def load_everything
   require_rel 'lib/'
   require_rel 'src/'
 
-  VR_Main.new(ARGV, @bldr).show_glade()
+  VR_Main.new(ARGV, @splash).show_glade()
 
 end
 
@@ -28,12 +28,17 @@ $root = File.dirname(__FILE__)
 @splash = Gtk::Window.new()
 @splash.decorated = false
 img = Gtk::Image.new(File.join($root, "img", "splash.png"))
+img.visible = true
 @splash.add(img)
 @splash.show_all
 @splash.position = :center_always
 
 
-GLib::Timeout.add(40) {     
+
+GLib::Timeout.add(40) {
+    while (Gtk.events_pending?)
+      Gtk.main_iteration
+    end     
     load_everything 
 }
 
