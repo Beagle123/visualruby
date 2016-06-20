@@ -1,7 +1,8 @@
+# @title Signals Tutorial
 
-=Signals Tutorial
+= Signals Tutorial
 
-==Visual Ruby handles signals Using a Naming Convention.
+== Visual Ruby handles signals Using a Naming Convention.
 
 Signals are events that occur when a user interacts with your program.
 For example, when a user clicks on a button, a "clicked" signal occurs.

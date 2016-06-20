@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = "visualruby" 
   s.licenses = ["MIT"]
-  s.version = "3.0.13"   
+  s.version = "3.0.15"   
   s.has_rdoc = false
   s.add_dependency('gtk3', '>= 3.0.0')
   s.add_dependency('gtksourceview3', '>= 3.0.0')

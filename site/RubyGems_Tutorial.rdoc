@@ -1,6 +1,6 @@
+# @title RubyGems Tutorial
 
-
-=Push/Yank RubyGems using Visualruby
+= Push/Yank RubyGems using Visualruby
 
 ==Its easy to create an publish gems by just right-clicking on files.
 

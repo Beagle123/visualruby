@@ -1,4 +1,6 @@
-=Child Windows
+# @title Child Window Tutorial 
+
+= Child Windows
 
 <b>There is an excellent example of using child window is VR's examples.
 Click on "Help", to install examples, and "Open Project" to see them.</b>

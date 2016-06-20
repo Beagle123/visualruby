@@ -49,7 +49,8 @@ class OpenProject
       return unless row = @ftv.selected_rows.first
       test_file = File.join(row[:path], VR_ENV::SETTINGS_FILE)
       if File.exists?(test_file) 
-         @parent.proj_path = row[:path]
+        VR_Tools.popen("vr #{row[:path]}")
+#         @parent.proj_path = row[:path]
         buttonCancel__clicked
       else
 #        alert("This is not a visualruby project.  It's a folder that holds visualruby projects.", :parent=>self, :width=>400)

@@ -155,14 +155,15 @@ class VR_Main
       FileUtils.copy("yard_hack/index.html.replace", "doc/frames.html") 
       FileUtils.copy("yard_hack/common.css", "doc/css/common.css")
     end
-#    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{fn}/doc/index.html")
+
+  end
+
+  def toolViewRDoc__clicked(*a)
+    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{Dir.pwd}/doc/index.html")    
   end
 
   def toolSave__clicked(*a)  # saves open tab 
     @tabs.docs[@tabs.page].try_to_save(false) # false = don't ask
-#    command = $VR_ENV.rdoc_command_line.split(" ")[0]
-#    file = @tabs.docs[@tabs.page].full_path_file
-#    run_command("#{command} #{file}")
   end  
 
   def menuNewWindow__activate(*a)

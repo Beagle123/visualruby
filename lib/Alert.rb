@@ -1,5 +1,6 @@
 
 module VR
+  # Class that the #alert method uses.
 
   # @see #alert
   class Alert  
@@ -8,6 +9,9 @@ module VR
 
     include GladeGUI
     
+    # Just passes on values from #alert method. 
+    # @see #alert      
+
     def initialize(message, answer, flags = {})
       @flags = flags
       @answer = answer
