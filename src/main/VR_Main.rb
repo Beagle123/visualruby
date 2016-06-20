@@ -146,6 +146,7 @@ class VR_Main
   end
 
   def toolRDoc__clicked(*a)
+    return unless @tabs.try_to_save_all(:ask => false)
     @shell.buffer.text = $VR_ENV.rdoc_command_line + "\n"
     clear_events 
     @shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`

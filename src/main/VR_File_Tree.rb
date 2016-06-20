@@ -53,7 +53,8 @@ class VR_File_Tree < VR::FileTreeView
     fn = get_selected_path() 
     old_dir = Dir.pwd
     FileUtils.cd(fn)
-    @main.shell.buffer.text = $VR_ENV.rdoc_command_line + fn + "\n" 
+    @main.shell.buffer.text = $VR_ENV.rdoc_command_line + fn + "\n"
+    clear_events 
     @main.shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`
     VR_Tools.replace_html_in_docs()
     if File.exists?("yard_hack/index.html.replace")
