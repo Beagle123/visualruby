@@ -3,7 +3,7 @@
 
 ## Running Visual Ruby
 
-Once you've installed visualruby, run it by typing the command:
+First {file:site/Download.md} visualruby. Once you've installed it, run it by typing the command:
 
 	vr
 

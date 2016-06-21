@@ -9,8 +9,7 @@ class VR_Tabs < Gtk::Notebook
     super()
     @docs = Array.new
     @main = main
-    @pix_close = Gdk::Pixbuf.new(File.dirname(__FILE__) + '/../../img/close.png')
-    @close_filename = File.dirname(__FILE__) + '/../../img/close.png'
+    @x_img = File.dirname(__FILE__) + '/../../img/close.png'
     self.scrollable = true #after super
     self.expand = true
   end
@@ -64,7 +63,7 @@ class VR_Tabs < Gtk::Notebook
     return if switch_to(full_path_file) 
     box = Gtk::EventBox.new
     tab = Gtk::Box.new(:horizontal)
-    img = Gtk::Image.new(:pixbuf => @pix_close)
+    img = Gtk::Image.new(:file => @x_img)
     box.add(img)
     title = Gtk::Label.new(File.basename(full_path_file))
     tab.pack_start(title, :expand=>true, :fill=>true, :padding=>2)
@@ -102,7 +101,7 @@ class VR_Tabs < Gtk::Notebook
   def destroy_tab(tab = self.page)
     self.page = self.page - 1 # stops some warnings
     VR_Tools.clear_events
-#    self.set_tab_label(get_nth_page(tab), nil)
+    self.set_tab_label(get_nth_page(tab), nil)
     self.remove_page(tab) 
     VR_Tools.clear_events  
     @docs.delete_at(tab)

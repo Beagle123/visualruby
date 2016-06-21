@@ -27,7 +27,7 @@ $root = File.dirname(__FILE__)
  
 @splash = Gtk::Window.new()
 @splash.decorated = false
-img = Gtk::Image.new(File.join($root, "img", "splash.png"))
+img = Gtk::Image.new(file: File.join($root, "img", "splash.png"))
 img.visible = true
 @splash.add(img)
 @splash.show_all

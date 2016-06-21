@@ -32,6 +32,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">New Project</property>
+                        <accelerator key="n" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                     </child>
                     <child>
@@ -91,6 +92,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Quit</property>
+                        <accelerator key="q" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                     </child>
                   </object>
@@ -163,6 +165,7 @@
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Visit visualruby.net for complete tutorials on using Visual Ruby</property>
                         <property name="label" translatable="yes">Online Tutorails</property>
+                        <accelerator key="F1" signal="activate"/>
                       </object>
                     </child>
                     <child>

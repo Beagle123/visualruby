@@ -10,8 +10,8 @@
 
 ## Install in Windows ![Windows](http://visualruby.net/img/windows_logo.jpg)  
 
-*Note* Windows requires a later version of Ruby after 2.0.0.  I know it works with 2.3.0+
-Users have reported problems with 2.0.0 that have been fixed in later versions of Ruby.
+<b>There are known problems with earlier versions of Ruby and Windows.  However, they've
+fixed the problem in Ruby version 2.3.0+</b>
 
 1. Install Ruby using [Ruby's one-click installer](http://rubyinstaller.org/downloads/) for windows.
 
