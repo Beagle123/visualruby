@@ -1,11 +1,5 @@
 module VR_Tools
 
-  def VR_Tools.clear_events
-    while (Gtk.events_pending?)
-      Gtk.main_iteration
-    end
-  end
-
   def VR_Tools.popen(cmd)
     begin
       IO.popen(cmd)
@@ -14,8 +8,6 @@ module VR_Tools
           "\n\nIn MS Windows you may need to add the 'start' command i.e. <b>'start glade'</b>")
     end
   end
-
-
 
   def VR_Tools.back_up()
     path = File.join(ENV["HOME"], "visualruby_backup", Dir.pwd.gsub(ENV["HOME"], ""))

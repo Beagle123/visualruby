@@ -130,7 +130,8 @@ class VR_File_Tree < VR::FileTreeView
     elsif File.directory?(file_name) and file_name != Dir.pwd #root!
       FileUtils.remove_dir(file_name, true)
     end
-    delete_selected()
+    @main.file_tree.refresh
+#    delete_selected()
   end
 
 

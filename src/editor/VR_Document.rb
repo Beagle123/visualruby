@@ -5,20 +5,23 @@ class VR_Document < GtkSource::View
   include VR_TextViewCommon
   
 
-  attr_accessor :full_path_file  
+  attr_accessor :full_path_file, :title  
 
   def initialize(full_path_file, title_label, main)
     @main = main
     super()
     @title = title_label #reference to label on tab
-    reload_from_disk(full_path_file) 
+    @full_path_file = full_path_file
+    reload_from_disk() 
     hilight_current_line = true
     show_right_margin = true
     right_margin_position = 80
     auto_indent = true
-#    lang = GtkSource::LanguageManager.new.get_language(get_language(full_path_file))  
-    lang = GtkSource::LanguageManager.new.guess_language(full_path_file) 
-    buffer.language = lang
+    if ["", ".gemspec"].include?(File.extname(full_path_file)) 
+      buffer.language = GtkSource::LanguageManager.new.get_language("ruby")
+    else  
+      buffer.language = GtkSource::LanguageManager.new.guess_language(full_path_file)
+    end
     buffer.highlight_syntax = true
     buffer.highlight_matching_brackets = false
     @hilight = buffer.create_tag("hilight", { "background" => "#FFF0A0" })
@@ -31,14 +34,6 @@ class VR_Document < GtkSource::View
     update_style()
   end
 
-#  def get_language(fn)
-#    case File.extname(full_path_file)
-#      when ".rb", "", ".gemspec" ; return "ruby"
-#      when ".erb", ".html" ; return "html"
-#      else ; return ""
-#    end
-#  end
-
   def update_style()
     override_font(Pango::FontDescription.new($VR_ENV_GLOBAL.font_name))
     tab_array = Pango::TabArray.new(1, true)
@@ -46,11 +41,9 @@ class VR_Document < GtkSource::View
     set_tabs(tab_array)
   end
 
-  def reload_from_disk(fn = @full_path_file)
-    @full_path_file = fn
-    @title.label = File.basename(@full_path_file) 
+  def reload_from_disk()
     buffer.text = File.open(@full_path_file, "r").read if File.file?(@full_path_file.to_s) #protect against nil to_s        
-     buffer.modified = false
+    buffer.modified = false
     @modified_time = mod_time()
   end
 
@@ -67,22 +60,6 @@ class VR_Document < GtkSource::View
     end 
     return false #abort!
   end
- 
-
-  def try_to_save(ask = true)
-    return false if not modified_time_matches()
-    return true if empty?
-    if (@title.label == "Untitled")
-      return save_changes? 
-    elsif (buffer.modified? and ask)  
-      return save_changes? 
-    elsif buffer.modified?
-      write_to_disk()
-      return true
-    else
-      return true
-    end    
-  end
 
   def write_to_disk(fn = @full_path_file)
     @full_path_file = fn
@@ -93,41 +70,9 @@ class VR_Document < GtkSource::View
     return true  
   end
 
-  def save_changes?
-    answer = alert "Save chages to:  <b> #{File.basename(@full_path_file)}</b> ?",
-              parent: @main, 
-              button_yes: "Save Changes", button_no: "Discard Changes",  
-              headline: "Save Changes?", button_cancel: "Cancel"
-    if answer == true # save
-      return @title.label == "Untitled" ? save_as() : write_to_disk()      
-    elsif answer == false # Discard Changes
-      reload_from_disk()
-      return true #continue without saving
-    end
-    return false #abort!  
-  end
 
 
 
-#todo update file tree, parent window?
-  def save_as()  # returns false or complete file name.
-    dialog = Gtk::FileChooserDialog.new(
-              title: "Save File As...",
-              parent: @main.builder[:window1],
-              action: :save,
-              buttons: [["_Cancel", :cancel], ["_Save", :accept]])
-
-     dialog.current_folder = File.dirname(@full_path_file)
-    dialog.current_name = VR_Document.get_class_title(buffer.text) 
-    resp = dialog.run 
-    dialog.hide
-    if resp == :accept
-      write_to_disk(dialog.filename)
-      @main.file_tree.refresh()
-      return true
-    end 
-    return false
-  end
 
  def jump_to_line(line_num, search_str = nil)
     while (Gtk.events_pending?)

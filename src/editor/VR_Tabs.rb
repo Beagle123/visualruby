@@ -14,6 +14,61 @@ class VR_Tabs < Gtk::Notebook
     self.expand = true
   end
 
+#todo update file tree, parent window?
+  def save_as()  # returns false or complete file name.
+    dialog = Gtk::FileChooserDialog.new(
+              title: "Save File As...",
+              parent: @main.builder[:window1],
+              action: :save,
+              buttons: [["_Cancel", :cancel], ["_Save", :accept]])
+    dialog.current_folder = File.dirname(@docs[page].full_path_file)
+    dialog.current_name = VR_Document.get_class_title(@docs[page].buffer.text) 
+    resp = dialog.run 
+    dialog.hide
+    if resp == :accept
+      @docs[page].write_to_disk(dialog.filename)
+      destroy_tab()
+      load_tab(dialog.filename)
+      @main.file_tree.refresh()
+      return true
+    end 
+    return false
+  end
+
+  def save_changes?
+    answer = alert "Save chages to:  <b> #{File.basename(@docs[page].full_path_file)}</b> ?",
+              parent: @main, 
+              button_yes: "Save Changes", button_no: "Discard Changes",  
+              headline: "Save Changes?", button_cancel: "Cancel"
+    if answer == true # save
+      if @docs[page].title.label == "Untitled"
+        return save_as() 
+      else
+        return @docs[page].write_to_disk()
+    end      
+    elsif answer == false # Discard Changes
+      @docs[page].reload_from_disk()
+      return true #continue without saving
+    end
+    return false #abort!  
+  end
+
+  def try_to_save(ask = true)
+    return false if not @docs[page].modified_time_matches()
+    return true if @docs[page].empty?
+    if (@docs[page].title.label == "Untitled")
+      return save_changes? 
+    elsif (@docs[page].buffer.modified? and ask)  
+      return save_changes? 
+    elsif @docs[page].buffer.modified?
+      @docs[page].write_to_disk()
+      return true
+    else
+      return true
+    end    
+  end
+
+
   def update_style_all()
     @docs.each { |doc| doc.update_style() }
   end
@@ -21,8 +76,9 @@ class VR_Tabs < Gtk::Notebook
   def try_to_save_all(flags)
     ask = flags[:ask]
     passed = true 
-    @docs.each do |doc|
-      unless doc.try_to_save(ask)
+    (0..n_pages-1).each do |i|
+      page = i
+      unless try_to_save(ask)
         passed = false
       end
     end  
@@ -59,8 +115,8 @@ class VR_Tabs < Gtk::Notebook
   end
 
   def load_tab(full_path_file = Dir.pwd + "/Untitled")
-    full_path_file = Dir.pwd + "/Untitled" if full_path_file == ""
     return if switch_to(full_path_file) 
+    return unless File.exist?(full_path_file) or full_path_file == Dir.pwd + "/Untitled"
     box = Gtk::EventBox.new
     tab = Gtk::Box.new(:horizontal)
     img = Gtk::Image.new(:file => @x_img)
@@ -87,7 +143,8 @@ class VR_Tabs < Gtk::Notebook
   #used when little 'x' image is clicked to close.
   def remove_id(object_id)
     i = @docs.index { |doc| doc.object_id == object_id }
-    if @docs[i].try_to_save(true)
+    page = i
+    if try_to_save(true)
       destroy_tab(i) 
     end
   end
@@ -100,12 +157,13 @@ class VR_Tabs < Gtk::Notebook
 # this spits out a bunch of warnings on remove_page
   def destroy_tab(tab = self.page)
     self.page = self.page - 1 # stops some warnings
-    VR_Tools.clear_events
+    clear_events
     self.set_tab_label(get_nth_page(tab), nil)
     self.remove_page(tab) 
-    VR_Tools.clear_events  
+    clear_events  
     @docs.delete_at(tab)
     load_tab() if @docs.empty?
+    clear_events
   end
 
   def get_open_fn()

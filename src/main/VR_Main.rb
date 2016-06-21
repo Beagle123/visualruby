@@ -134,7 +134,7 @@ class VR_Main
   end
 
   def menuSaveAs__activate(*a)
-    @tabs.docs[@tabs.page].save_as()
+    @tabs.save_as()
   end
 
   def toolRefresh__clicked(*a)
@@ -164,7 +164,7 @@ class VR_Main
   end
 
   def toolSave__clicked(*a)  # saves open tab 
-    @tabs.docs[@tabs.page].try_to_save(false) # false = don't ask
+    @tabs.try_to_save(false) # false = don't ask
   end  
 
   def menuNewWindow__activate(*a)

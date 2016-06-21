@@ -225,13 +225,16 @@ attr_accessor :vr_renderer
     end  
 
     def delete_selected()
-      refs = []
-      selection.each do  |mod, path, iter|
-        refs << Gtk::TreeRowReference.new(mod, path)
-      end
-      refs.each do |ref|
-        model.remove(model.get_iter(ref.path))
-      end   
+      return unless row = selected_rows.first
+      model.remove(row)
+      # this is the right way for multi delete:
+#      refs = []
+#      selection.each do  |mod, path, iter|
+#        refs << Gtk::TreeRowReference.new(mod, path)
+#      end
+#      refs.each do |ref|
+#        model.remove(model.get_iter(ref.path))
+#      end   
     end
   
     def turn_on_comboboxes() # :nodoc:
