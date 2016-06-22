@@ -28,7 +28,9 @@ class VR_Tabs < Gtk::Notebook
     if resp == :accept
       @docs[page].write_to_disk(dialog.filename)
       destroy_tab()
+      clear_events
       load_tab(dialog.filename)
+      clear_events
       @main.file_tree.refresh()
       return true
     end 
@@ -101,7 +103,7 @@ class VR_Tabs < Gtk::Notebook
 
 
   def switch_to(path)
-    i = @docs.index{ |d| d.full_path_file == path }
+    i = tab_number(path)
     return false if i.nil?  
     self.page = i if i != self.page
     return true
@@ -144,6 +146,7 @@ class VR_Tabs < Gtk::Notebook
   def remove_id(object_id)
     i = @docs.index { |doc| doc.object_id == object_id }
     page = i
+    clear_events
     if try_to_save(true)
       destroy_tab(i) 
     end
@@ -151,19 +154,23 @@ class VR_Tabs < Gtk::Notebook
   
   #if its there, destroys it
   def destroy_file_tab(file_name)
-    destroy_tab() if switch_to(file_name)
+    destroy_tab tab_number(file_name)
   end
 
-# this spits out a bunch of warnings on remove_page
+  def tab_number(file_name)
+    @docs.index{ |d| d.full_path_file == file_name}    
+  end
+
+# this spits out a bunch of warnings on remove_page.  Changing the page number
+# stops the warnings.
   def destroy_tab(tab = self.page)
+    return unless tab
     self.page = self.page - 1 # stops some warnings
     clear_events
-    self.set_tab_label(get_nth_page(tab), nil)
-    self.remove_page(tab) 
-    clear_events  
     @docs.delete_at(tab)
+#    self.set_tab_label(get_nth_page(tab), nil)   
+    self.remove_page(tab)  # causes warinings nothing I can do!
     load_tab() if @docs.empty?
-    clear_events
   end
 
   def get_open_fn()

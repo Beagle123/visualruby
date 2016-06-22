@@ -18,12 +18,19 @@ module VR::ViewCommon
   #  
     
       def [](col_id)
-        get_value(id(col_id))
+        if col_id.is_a? Fixnum
+          super
+        else
+          get_value(id(col_id))
+        end
       end
 
       def []=(col_id,val)
-        i = id(col_id)
-        set_value(i, val)
+        if col_id.is_a? Fixnum
+          super(col_id, val)
+        else
+          super(id(col_id), val)
+        end
       end
 
   #  The id() method translates visualruby's colum ID symbols into integers that

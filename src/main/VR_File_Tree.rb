@@ -124,13 +124,18 @@ class VR_File_Tree < VR::FileTreeView
     return unless evt.keyval == 65535 #delete
     return unless file_name = get_selected_path()
     return unless alert("Delete:   <b>" + File.basename(file_name) + "</b> ?" , :button_yes => "Delete", :button_no=>"Cancel", :parent=>self, :headline => "Delete FIle?")  
-    if File.file?(file_name)
+    if File.exist?(file_name)
       @main.tabs.destroy_file_tab(file_name)
-      File.delete(file_name)
+      #this is where the nasty error occurs.  If you save_as a file, then delete the old
+      # one, the following line crashes the prgogram.
+      @main.file_tree.model.clear
+      FileUtils.rm(file_name)
+
+      # File.delete(file_name)
     elsif File.directory?(file_name) and file_name != Dir.pwd #root!
       FileUtils.remove_dir(file_name, true)
     end
-    @main.file_tree.refresh
+    @main.file_tree.refresh()
 #    delete_selected()
   end
 

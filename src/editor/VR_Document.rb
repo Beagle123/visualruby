@@ -4,7 +4,6 @@ class VR_Document < GtkSource::View
   include GladeGUI
   include VR_TextViewCommon
   
-
   attr_accessor :full_path_file, :title  
 
   def initialize(full_path_file, title_label, main)

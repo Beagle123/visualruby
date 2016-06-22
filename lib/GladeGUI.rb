@@ -395,9 +395,8 @@ end
     parse_signals()
     set_glade_all()
     @builder[:window1].show  #show_all can't hide widgets in before_show
- #   @builder[:window1].add_events(Gdk::EventMask.new(:key_press))
     @top_level_window = Gtk.main_level == 0 ? true : false
-    Gtk.main if @top_level_window or @builder[:window1].modal?  #need new Gtk.main for blocking!
+    Gtk.main if @top_level_window or @builder[:window1].modal?  # need new Gtk.main for blocking!
   end
 
 # Called when window is destroyed when you execute: <tt>@builder[:window1].destroy</tt>

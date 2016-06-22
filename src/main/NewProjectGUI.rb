@@ -10,7 +10,7 @@ class NewProjectGUI
 
   def buttonCreate__clicked(*args)
     fn = @builder["entryFolderName"].text
-    fn = fn.gsub(/[^\w\.\/]/, '_')
+    fn = fn.gsub(/[^\w\.\/\-]/, '_')
     path = File.join($VR_ENV_GLOBAL.projects_home, fn)
     return if fn.length < 2 
     unless File.directory?(path)

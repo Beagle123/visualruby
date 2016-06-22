@@ -10,9 +10,9 @@ class OpenProject
 
   def before_show
     @ftv = ProjectTree.new()
+    @ftv.show
     @ftv.set_show_expanders(false)
     @builder["view"].add(@ftv)
-    @ftv.visible = true
   end
 
   def ftv__cursor_changed(*a)
@@ -49,11 +49,20 @@ class OpenProject
       return unless row = @ftv.selected_rows.first
       test_file = File.join(row[:path], VR_ENV::SETTINGS_FILE)
       if File.exists?(test_file) 
-#        VR_Tools.popen("vr #{row[:path]}")
         @parent.proj_path = row[:path]
         buttonCancel__clicked
       else
-#        alert("This is not a visualruby project.  It's a folder that holds visualruby projects.", :parent=>self, :width=>400)
+        @ftv.expand_or_collapse_folder()
+      end
+  end
+
+ def buttonNewWindow__clicked(*a)
+      return unless row = @ftv.selected_rows.first
+      test_file = File.join(row[:path], VR_ENV::SETTINGS_FILE)
+      if File.exists?(test_file) 
+        VR_Tools.popen("vr #{row[:path]}")
+        buttonCancel__clicked
+      else
         @ftv.expand_or_collapse_folder()
       end
   end
