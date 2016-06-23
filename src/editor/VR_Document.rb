@@ -16,7 +16,7 @@ class VR_Document < GtkSource::View
     show_right_margin = true
     right_margin_position = 80
     auto_indent = true
-    if ["", ".gemspec"].include?(File.extname(full_path_file)) 
+    if ["", ".gemspec", ".erb"].include?(File.extname(full_path_file)) 
       buffer.language = GtkSource::LanguageManager.new.get_language("ruby")
     else  
       buffer.language = GtkSource::LanguageManager.new.guess_language(full_path_file)

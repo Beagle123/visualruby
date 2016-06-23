@@ -302,8 +302,19 @@ end
       when Gtk::Calendar then control.select_month(val.month, val.year) ; control.select_day(val.day) ; control.mark_day(val.day)
       when Gtk::Adjustment then control.value = val.to_f
       when Gtk::ScrolledWindow, Gtk::Frame, Gtk::VBox, Gtk::HBox then control.add(val)
+      when Gtk::ComboBoxText then try_to_select_text_in_combobox(control, val.to_s)
     end      
   end
+
+  # only works on simple text comboboxes
+  def try_to_select_text_in_combobox(cb, text)
+      cb.active = 0
+      until cb.active == -1
+        break if cb.active_text == text
+        cb.active = cb.active + 1
+      end
+  end
+
 
 #
 # Populates your instance variables from the glade form.
@@ -342,6 +353,7 @@ end
         when Gtk::ProgressBar then obj.instance_variable_set(v, control.fraction)
         when Gtk::Calendar then obj.instance_variable_set(v, DateTime.new(*control.date))
         when Gtk::Adjustment then obj.instance_variable_set(v, control.value)
+        when Gtk::ComboBoxText then obj.instance_variable_set(v, control.active_text)
       end        
     end
   end
