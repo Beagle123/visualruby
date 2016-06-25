@@ -129,9 +129,9 @@ class VR_File_Tree < VR::FileTreeView
       #this is where the nasty error occurs.  If you save_as a file, then delete the old
       # one, the following line crashes the prgogram.
       @main.file_tree.model.clear
-      FileUtils.rm(file_name)
+      FileUtils.rm_rf(file_name)
 
-      # File.delete(file_name)
+#      File.delete(file_name)
     elsif File.directory?(file_name) and file_name != Dir.pwd #root!
       FileUtils.remove_dir(file_name, true)
     end

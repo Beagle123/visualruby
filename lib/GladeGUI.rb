@@ -163,7 +163,7 @@ end
       if @builder
         @builder.objects.each do |obj|
           next unless obj.respond_to?(:builder_name)
-          if obj.builder_name == glade_name or obj.builder_name =~ /^(?:#{class_name(self)}\.|)#{glade_name}\[\d+\]$/ #arrays
+          if obj.builder_name == glade_name or obj.builder_name =~ /^(?:#{class_name(self)}\.|)#{glade_name}\[[a-zA-Z\d_-]+\]$/ #arrays
             obj.signal_connect(signal_name) { |*args| method(meth.to_sym).call(*args) } 
           end
         end
@@ -240,45 +240,44 @@ end
     obj.attributes.each_pair { |key, val| fill_control(class_name(obj) + "." + key, val) }
   end
 
-  def set_glade_hash(hash)
-    return unless hash.is_a?(Hash)
-    hash.each { |key,val| fill_control( key.to_s, val.to_s) }
-  end
+#  def set_glade_hash(hash)
+#    return unless hash.is_a?(Hash)
+#    hash.each { |key,val| fill_control( key.to_s, val.to_s) }
+#  end
 
-#Populates the glade form from the instance variables of the class.
-#This works for Gtk:Button, Gtk::Entry, Gtk::Label and Gtk::Checkbutton.
-#So instead of having to assign each widget a value:
+# Populates the glade form from the instance variables of the class.
+# So instead of having to assign each widget a value:
 #
-#    @builder["DataObjectGUI.name"].text = @name
-#    @builder["DataObjectGUI.address"].text = @address
-#    @builder["DataObjectGUI.email"].text = @eamil
-#    @builder["DataObjectGUI.phone"].text = @phone
+#    @builder["name"].text = @name
+#    @builder["address"].text = @address
+#    @builder["email"].text = @eamil
+#    @builder["phone"].text = @phone
 #
-#you can write one line of code:
+# you can write one line of code:
 #
 #  set_glade_variables()
 #
-#The optional parameter is seldom used because you usually want the
-#glade form to populate from the calling class.  If you passed another object,
-#the form would populate from it.
+# The optional parameter is seldom used because you usually want the
+# glade form to populate from the calling class.  If you passed another object,
+# the form would populate from it.
 #
-#obj - type Object
+# obj - type Object
 #
-
-
-    
   def set_glade_variables(obj = self)
-#    set_glade_hash(obj) if obj.is_a?(Hash) 
     obj.instance_variables.each do |name|
       name = name.to_s #ruby 1.9 passes symbol!
       v = obj.instance_variable_get(name)
-      x = v.to_s
-      if v.class == Array 
-        (0..v.size-1).each do |i|
-          fill_control(class_name(obj) + "." + name.gsub("@", "") + "[" + i.to_s + "]", v[i] )
-        end  
+      name = name.gsub('@', '')
+      if v.is_a?(Array) 
+        v.each_index do |i|
+          fill_control("#{name}[#{i.to_s}]", v[i] )
+        end
+      elsif v.is_a?(Hash)
+        v.each_pair do |key, val|
+          fill_control("#{name}[#{key.to_s}]", val)
+        end        
       else
-        fill_control(class_name(obj) + "." + name.gsub("@", ""), v)
+        fill_control(name, v)
       end
     end
   end
@@ -286,13 +285,13 @@ end
 
   def fill_control(glade_name, val) 
     control = @builder[glade_name]
-    control_name = glade_name.split(".")[1]
-    control ||= @builder[control_name] if control_name
-    case control
+    return unless control
+    case control  # order matters-- subclasses
       when Gtk::Window then control.title = val
       when Gtk::CheckButton then control.active = val
       when Gtk::TextView then control.buffer.text = val.to_s
       when Gtk::Entry then control.text = val.to_s
+      when Gtk::ColorButton then control.color = Gdk::Color.parse(val.to_s)
       when Gtk::FontButton then control.font_name = val.to_s
       when Gtk::LinkButton then control.uri = control.label = val.to_s 
       when Gtk::Label, Gtk::Button then control.label = val.to_s
@@ -303,16 +302,28 @@ end
       when Gtk::Adjustment then control.value = val.to_f
       when Gtk::ScrolledWindow, Gtk::Frame, Gtk::VBox, Gtk::HBox then control.add(val)
       when Gtk::ComboBoxText then try_to_select_text_in_combobox(control, val.to_s)
+
     end      
   end
 
   # only works on simple text comboboxes
+#  def try_to_select_text_in_combobox(cb, text)
+#      cb.active = 0
+#      until cb.active == -1
+#        break if cb.active_text == text
+#        cb.active = cb.active + 1
+#      end
+#  end
+
   def try_to_select_text_in_combobox(cb, text)
-      cb.active = 0
-      until cb.active == -1
-        break if cb.active_text == text
-        cb.active = cb.active + 1
-      end
+    i = 0
+    cb.model.each do |model, path, iter|
+      if iter[0] == text
+        cb.active = i
+        return
+      end  
+      i = i + 1
+    end
   end
 
 

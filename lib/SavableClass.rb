@@ -7,7 +7,8 @@ module VR
     elsif flags[:class]
       me = flags[:class].new()
     end
-    me.instance_variable_set(:@vr_yaml_file, flags[:file_name])
+    file_name = File.expand_path(flags[:file_name])
+    me.instance_variable_set(:@vr_yaml_file, file_name)
     me.defaults() if me.respond_to?(:defaults)
     VR::save_yaml(me)
     return me
@@ -16,8 +17,10 @@ module VR
   # todo create folders if don't exist
   def self.save_yaml(obj, filename = nil)
     filename ||= obj.instance_variable_get(:@vr_yaml_file) 
-    data = YAML.dump(obj)
-    File.open(filename, "w") {|f| f.puts(data)}
+#    data = YAML.dump(obj)
+    dirname = File.dirname(filename)
+    FileUtils.mkdir_p(dirname) unless File.directory?(dirname)
+    File.open(filename, "w") {|f| f.puts(obj.to_yaml)}
   end
 
 end

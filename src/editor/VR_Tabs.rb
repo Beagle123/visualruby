@@ -75,8 +75,14 @@ class VR_Tabs < Gtk::Notebook
     @docs.each { |doc| doc.update_style() }
   end
 
+  # Tries to save and/or close all open documents
+  # @param [Hash] flags Optiions
+  # @option [Boolean] ask Whether or not to ask to save or save without asking.
+  # @option [Boolean] close Close tab when finished
+  # @option [String] folder operate only on folders matching this string.  Default = "/" 
   def try_to_save_all(flags)
     ask = flags[:ask]
+    folder ||= "/"
     passed = true 
     (0..n_pages-1).each do |i|
       page = i
