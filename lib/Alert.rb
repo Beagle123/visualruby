@@ -34,7 +34,7 @@ module VR
 
       @builder[:button_no].show if @flags[:button_no]
       @builder[:button_cancel].show if @flags[:button_cancel]
-      set_glade_hash(@flags)
+       set_glade_hash(@flags)
     end
 
     def button_yes__clicked(but)
@@ -102,9 +102,11 @@ end
 # There are many examples in the "alert_box" example project. 
 
 def alert(message, options = {})
-  @answer = VR::Alert::DialogAnswer.new()
-  VR::Alert.new(message, @answer, options).show_glade(options[:parent])
-  return @answer.answer 
+  @answer_from_user = VR::Alert::DialogAnswer.new()
+  VR::Alert.new(message, @answer_from_user, options).show_glade(options[:parent])
+  ans = @answer_from_user.answer
+  remove_instance_variable(:@answer_from_user)
+  return ans 
 end
 
 

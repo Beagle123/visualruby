@@ -17,7 +17,6 @@ module VR
   # todo create folders if don't exist
   def self.save_yaml(obj, filename = nil)
     filename ||= obj.instance_variable_get(:@vr_yaml_file) 
-#    data = YAML.dump(obj)
     dirname = File.dirname(filename)
     FileUtils.mkdir_p(dirname) unless File.directory?(dirname)
     File.open(filename, "w") {|f| f.puts(obj.to_yaml)}

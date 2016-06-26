@@ -1,7 +1,7 @@
 --- !ruby/object:MyYard
 project_root: "/home/eric/vrp/vr3"
 output_dir: doc
-theme: default
+theme: visualruby
 template: default
 files: lib/**/*.rb
 extra_files: site/*.*
@@ -10,11 +10,11 @@ include_public: true
 include_private: false
 include_protected: false
 no_private: true
-export_db: false
+export_db: true
 title: Visual Ruby
 vr_yaml_file: "/home/eric/vrp/vr3/my_yard.yaml"
+main: index.html
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: true
-main: index.html
 answer: !ruby/object:VR::Alert::DialogAnswer
   answer: true

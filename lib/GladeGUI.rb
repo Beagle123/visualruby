@@ -240,10 +240,12 @@ end
     obj.attributes.each_pair { |key, val| fill_control(class_name(obj) + "." + key, val) }
   end
 
-#  def set_glade_hash(hash)
-#    return unless hash.is_a?(Hash)
-#    hash.each { |key,val| fill_control( key.to_s, val.to_s) }
-#  end
+# Matches names in glade form to keys in a Hash.  
+# @param [Hash] hash The hash with keys that match the names in the glade form.
+  def set_glade_hash(hash)
+    return unless hash.is_a?(Hash)
+    hash.each { |key,val| fill_control( key.to_s, val.to_s) }
+  end
 
 # Populates the glade form from the instance variables of the class.
 # So instead of having to assign each widget a value:
@@ -286,7 +288,7 @@ end
   def fill_control(glade_name, val) 
     control = @builder[glade_name]
     return unless control
-    case control  # order matters-- subclasses
+    case control  # order matters-- subclasses?
       when Gtk::Window then control.title = val
       when Gtk::CheckButton then control.active = val
       when Gtk::TextView then control.buffer.text = val.to_s
@@ -302,18 +304,8 @@ end
       when Gtk::Adjustment then control.value = val.to_f
       when Gtk::ScrolledWindow, Gtk::Frame, Gtk::VBox, Gtk::HBox then control.add(val)
       when Gtk::ComboBoxText then try_to_select_text_in_combobox(control, val.to_s)
-
     end      
   end
-
-  # only works on simple text comboboxes
-#  def try_to_select_text_in_combobox(cb, text)
-#      cb.active = 0
-#      until cb.active == -1
-#        break if cb.active_text == text
-#        cb.active = cb.active + 1
-#      end
-#  end
 
   def try_to_select_text_in_combobox(cb, text)
     i = 0
@@ -349,26 +341,48 @@ end
 # @param [Object] obj Any object with instance variables with same names as in galde form.
 # @return none 
   def get_glade_variables(obj = self)
-    obj.instance_variables.each do |v|
-      v = v.to_s  #fix for ruby 1.9 giving symbols
-      control = @builder[class_name(obj) + v.gsub("@", ".")]
-      control ||= @builder[v.gsub("@", "")]
-      case control
-        when Gtk::CheckButton then obj.instance_variable_set(v, control.active?)
-        when Gtk::Entry then obj.instance_variable_set(v, control.text)
-        when Gtk::TextView then obj.instance_variable_set(v, control.buffer.text)
-        when Gtk::FontButton then obj.instance_variable_set(v, control.font_name) 
-        when Gtk::Label, Gtk::Button then obj.instance_variable_set(v, control.label)
-        when Gtk::SpinButton then obj.instance_variable_set(v, control.value)
-        when Gtk::Image then obj.instance_variable_set(v, control.file)
-        when Gtk::ProgressBar then obj.instance_variable_set(v, control.fraction)
-        when Gtk::Calendar then obj.instance_variable_set(v, DateTime.new(*control.date))
-        when Gtk::Adjustment then obj.instance_variable_set(v, control.value)
-        when Gtk::ComboBoxText then obj.instance_variable_set(v, control.active_text)
-      end        
+    obj.instance_variables.each do |var_name|
+      var = obj.instance_variable_get(var_name)
+      var_name = var_name.to_s.gsub("@", "")  #fix for ruby 1.9 giving symbols
+      if var.is_a? Hash
+        var.each_pair do |key, val|
+          if glade_value = get_control_value("#{var_name}[#{key.to_s}]")
+            var[key] = glade_value
+          end 
+        end
+        obj.instance_variable_set("@"+ var_name, var)
+      elsif var.is_a? Array
+        var.each_index do |i|
+          if glade_value = get_control_value("#{var_name}[#{i.to_s}]")
+            var[i] = glade_value
+          end
+        end
+        obj.instance_variable_set("@"+ var_name, var)
+      else
+        glade_value = get_control_value(var_name)
+        if glade_value
+          obj.instance_variable_set("@"+ var_name, glade_value)
+        end 
+      end
     end
   end
 
+  def get_control_value(glade_name)
+    return unless control = @builder[glade_name]
+    case control
+      when Gtk::CheckButton then control.active?
+      when Gtk::Entry then control.text
+      when Gtk::TextView then control.buffer.text
+      when Gtk::FontButton then control.font_name 
+      when Gtk::ColorButton then control.color.to_s[0..2] + control.color.to_s[5..6] + control.color.to_s[9..10] 
+      when Gtk::Label, Gtk::Button then control.label
+      when Gtk::SpinButton, Gtk::Adjustment then control.value
+      when Gtk::Image then control.file
+      when Gtk::ProgressBar then control.fraction
+      when Gtk::Calendar then DateTime.new(*control.date)
+      when Gtk::ComboBoxText then control.active_text
+    end  
+  end
 
   def get_glade_active_record(obj) 
     return if not defined? @attributes
@@ -437,6 +451,16 @@ end
   def window1__key_press_event(view, evt)
     return unless evt.keyval == Gdk::Keyval::KEY_F8
     oinspect
+  end
+
+  # retrieves the key inside a glade control name.  Useful when handling events where
+  # the control name is returned, and you need to match it to an actual hash.  
+  # @example
+  # glade_name[d1] => "d1"
+  # @param [String] glade_name name for the glade widget in the glade program.
+  # @returns [String] the key value.
+  def extract_key(widget)
+    widget.builder_name[/\[.+?\]/]
   end
 
 
