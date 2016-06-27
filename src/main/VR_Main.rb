@@ -317,4 +317,8 @@ class VR_Main
     @builder[:window1].destroy
   end
 
+  def tabs__switch_page(_self, x, page_num)
+    @builder[:labelStatus].label = "Project:  #{@proj_path}       File:  #{@tabs.docs[page_num].full_path_file}"
+  end
+
 end

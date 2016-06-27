@@ -7,7 +7,7 @@ class VR_Tabs < Gtk::Notebook
 
   def initialize(main)
     super()
-    @docs = Array.new
+    @docs = []
     @main = main
     @x_img = File.dirname(__FILE__) + '/../../img/close.png'
     self.scrollable = true #after super

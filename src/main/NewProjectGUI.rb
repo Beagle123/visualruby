@@ -5,7 +5,6 @@ class NewProjectGUI
 
   def initialize(parent)
     @parent = parent
-    @projects_home = $VR_ENV_GLOBAL.projects_home + "/"
   end
 
   def buttonCreate__clicked(*args)

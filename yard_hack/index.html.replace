@@ -13,10 +13,10 @@ window.onload = function() {
   var match = unescape(window.location.hash).match(/^#!(.+)/);
   var name = match ? match[1] : 'file.README.html';
   name = name.replace(/^(\w+):\/\//, '').replace(/^\/\//, '');
-  document.writeln('<frameset cols="20%,*,20%">' +
-    '<frame name="list" src="file_list.html" />' +
-    '<frame name="main" src="' + escape(name) + '" />' +
-    '<frame name="file" src="class_list.html" />' +
+  document.writeln('<frameset frameborder=0 cols="20%,*,20%">' +
+    '<frame name="list" frameborder=0 src="file_list.html" />' +
+    '<frame name="main" frameborder=0 src="' + escape(name) + '" />' +
+    '<frame name="file" frameborder=0 src="class_list.html" />' +
     '</frameset>');
 }
 </script>

@@ -84,7 +84,8 @@
 # set_glade_variables() method.)
 module GladeGUI
 
-  # @attribute A Builder object that holds references to everything from the galde form.
+# @!attribute [rw] builder
+#   @return [Gtk::Builder] The builder that holds references to everything in the glade form.
   attr_accessor :builder
 
 ##
@@ -404,8 +405,7 @@ end
     end
   end
 
-
-# Ignore, just helps figure out name of class including GladeGUI
+# @private
   def self.included(obj)
     temp = caller[0].split(":") #correct for windows  C:\Users\george etc.
     caller_path_to_class_file, = temp[0].size == 1 ? temp[0] + ":" + temp[1] : temp[0] 
@@ -456,9 +456,11 @@ end
   # retrieves the key inside a glade control name.  Useful when handling events where
   # the control name is returned, and you need to match it to an actual hash.  
   # @example
-  # glade_name[d1] => "d1"
-  # @param [String] glade_name name for the glade widget in the glade program.
-  # @returns [String] the key value.
+  #   # Widget in glade form has name of "button[5]"
+  #   var = @builder["button[5]"]
+  #   extract_key(var) => "5"
+  # @param [String] widget Name for the widget in the glade form.
+  # @return [String] the key value.
   def extract_key(widget)
     widget.builder_name[/\[.+?\]/]
   end
