@@ -318,7 +318,8 @@ class VR_Main
   end
 
   def tabs__switch_page(_self, x, page_num)
-    @builder[:labelStatus].label = "Project:  #{@proj_path}       File:  #{@tabs.docs[page_num].full_path_file}"
+    return unless tab = @tabs.docs[page_num] # needed. sometimes nil
+    @builder[:labelStatus].label = "Project:  #{@proj_path}       File:  #{tab.full_path_file}"
   end
 
 end

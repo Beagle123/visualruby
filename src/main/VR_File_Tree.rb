@@ -7,8 +7,7 @@ class VR_File_Tree < VR::FileTreeView
     super(Dir.pwd,icon_path)
     @main = main
     @api = RubygemsAPI.new
-    load_glade()
-#    set_show_expanders(false)
+    load_glade() # loads menus
   end
 
   def self__row_activated(*args)
@@ -123,13 +122,8 @@ class VR_File_Tree < VR::FileTreeView
   def self__key_press_event(view, evt)
     return unless evt.keyval == 65535 #delete
     return unless file_name = get_selected_path()
-    return unless alert("Delete:   <b>" + File.basename(file_name) + "</b> ?" , :button_yes => "Delete", :button_no=>"Cancel", :parent=>self, :headline => "Delete FIle?")  
-
-#    if File.directory?(file_name) and file_name != Dir.pwd #root!
-#      delete_me = @main.docs.select { |doc| file_name ~= doc.full_path_file }
-
-#      FileUtils.remove_dir(file_name, true)
-
+    return unless alert("Delete:   <b>" + File.basename(file_name) + "</b> ?" , 
+        :button_yes => "Delete", :button_no=>"Cancel", :parent=>self, :headline => "Delete File?")  
     if File.exist?(file_name) and file_name != Dir.pwd #root!
       delete_me =  @main.tabs.docs.select { |d| d.full_path_file.start_with?(file_name) }
       delete_me.each { |d| @main.tabs.destroy_file_tab(d.full_path_file) }
@@ -139,9 +133,6 @@ class VR_File_Tree < VR::FileTreeView
       # one, the following line crashes the prgogram.
 #      @main.file_tree.model.clear
       FileUtils.rm_rf(file_name)
-
-#      File.delete(file_name)
-#    delete_selected()
     end
 
   end
