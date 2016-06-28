@@ -309,8 +309,7 @@ class VR_Main
   # needed so tabs can be saved, called before destroy, must return false to close wndow.
   def window1__delete_event(*args)
     save_state
-    return true unless @tabs.try_to_save_all(:ask=>true)
-    return false #ok to close
+    return !@tabs.try_to_save_all(:ask=>true)
   end
 
   def menuQuit__activate(*a)   

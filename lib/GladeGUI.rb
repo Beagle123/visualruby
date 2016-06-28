@@ -1,5 +1,5 @@
 # =GladeGUI
-#
+#  
 # GladeGUI connects your class to a glade form. 
 # It will load a .glade
 # file into memory, enabling your ruby programs to have a GUI interface.
