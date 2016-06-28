@@ -17,7 +17,7 @@ class VR_Main
     menuInstallExamples__activate if not File.directory?(required_project)
 
     # load global settings (requires /home/visuaruby folder exists
-    $VR_ENV_GLOBAL = VR::load_yaml(:class => VR_ENV_GLOBAL, :file_name => VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
+    $VR_ENV_GLOBAL = VR::load_yaml(VR_ENV_GLOBAL, VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
 
     # try to open right project
     if not project_valid?(@proj_path) 
@@ -253,7 +253,7 @@ class VR_Main
   end
 
   def load_state
-    $VR_ENV = VR::load_yaml(:class => VR_ENV, :file_name => VR_ENV::SETTINGS_FILE)
+    $VR_ENV = VR::load_yaml(VR_ENV, VR_ENV::SETTINGS_FILE)
     @builder["window1"].resize($VR_ENV.width, $VR_ENV.height)
     @builder['panelMain'].set_position($VR_ENV.panel_pos)
     @builder["panelNotebook"].set_position($VR_ENV.notebook_panel_position)

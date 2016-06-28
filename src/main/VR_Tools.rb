@@ -45,7 +45,7 @@ module VR_Tools
 Gem::Specification.new do |s|
   s.name = "#{File.basename(Dir.pwd).downcase}"  # i.e. visualruby.  This name will show up in the gem list.
   s.version = "0.0.1"  # i.e. (major,non-backwards compatable).(backwards compatable).(bugfix)
-  s.add_dependency "visualruby", ">= 3.0.15"
+  s.add_dependency "visualruby", ">= 3.0.18"
   s.add_dependency "require_all", ">= 1.2.0"
   s.has_rdoc = false
   s.authors = ["Your Name"] 

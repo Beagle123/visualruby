@@ -1,58 +1,39 @@
 module VR
 
-  def self.load_yaml(flags)
+  # Loads or creates a yaml file with a given object type (class).
+  # If the file exists already, the object will be returned. If not,
+  # a new instance will be returned, and the file will instantly be saved.
+  # @param [Class] klass The class of the object to be loaded or created
+  # @param [String] file_name File name to save.  Should be named .yaml
+  # @param [Splat] args Optional arguments to pass to contructor of class.  Not used often.
+  # @return [Object] Object of type klass that was loaded or created.
+  def self.load_yaml(klass, file_name, *args)
     me = nil
-    if File.file?(flags[:file_name]) 
-      me = YAML.load(File.open(flags[:file_name]).read)
-    elsif flags[:class]
-      me = flags[:class].new()
+    if File.file?(file_name) 
+      me = YAML.load(File.open(file_name).read)
+    else 
+      me = klass.new(*args)
     end
-    file_name = File.expand_path(flags[:file_name])
+    file_name = File.expand_path(file_name)
     me.instance_variable_set(:@vr_yaml_file, file_name)
     me.defaults() if me.respond_to?(:defaults)
     VR::save_yaml(me)
     return me
   end
 
-  # todo create folders if don't exist
+  # Saves an object likely loaded with #load_yaml to disk.
+  # @param [Object] obj Object to save in yaml format
+  # @param [filename] file_name Optional file name to save yaml file to.  When omitted, 
+  #   it will save file to path where it was opened from.  Only supply this param if you want to
+  #   make another copy of the yaml file.
   def self.save_yaml(obj, filename = nil)
-    filename ||= obj.instance_variable_get(:@vr_yaml_file) 
-    dirname = File.dirname(filename)
-    FileUtils.mkdir_p(dirname) unless File.directory?(dirname)
+    filename ||= obj.instance_variable_get(:@vr_yaml_file)
+    dir = File.dirname(filename)
+    unless File.directory?(dir)
+      FileUtils.mkdir_p(dir) 
+    end
     File.open(filename, "w") {|f| f.puts(obj.to_yaml)}
   end
-
+  # Note: can't remove @builder or @top_level_window variables because needed to close window.
 end
-
-#
-#class VR::SavableClass
-#
-#  def initialize(filename = nil)
-#    @filename = filename 
-#    defaults    
-#  end
-#
-#  def self.load_yaml(filename)
-#    if File.file?(filename) 
-#       me = YAML.load(File.open(filename).read)
-#      me.filename = filename
-#      me.defaults()
-#      return me 
-#    else
-#     return nil
-#    end
-#  end
-#
-#  def save_yaml(new_filename = nil)
-#    @filename = new_filename if new_filename
-#    data = YAML.dump(self)
-#    File.open(@filename, "w") {|f| f.puts(data)}
-#  end
-#
-#
-#end
-
-
-
-
 

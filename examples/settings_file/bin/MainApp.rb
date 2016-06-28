@@ -5,7 +5,7 @@ class MainApp #(change name)
   
   # make $ENV global object available everywhere
   def before_show()
-    $ENV = VR::load_yaml(:class => SavableSettings, :file_name => "settings.yaml")
+    $ENV = VR::load_yaml(SavableSettings, "settings.yaml")
     @builder[:window1].resize $ENV.width, $ENV.height
     refresh()
   end  
