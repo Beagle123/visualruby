@@ -11,8 +11,7 @@
 # = Include the GladeGUI interface
 #  
 # To use the GladeGUI interface, include this line in your code:
-# 
-# 
+#
 #   class MyClass
 #     include GladeGUI
 #   end
@@ -56,15 +55,15 @@
 #  
 # After show_glade() is called, you can access any of your form's windows or widgets
 # using the @builder variable: 
-# ```ruby 
+# 
 #   @builder["window1"].title = "This is the title that appears at the top."
-# ``` 
+#  
 #  
 # Here's another example:  Suppose you have a glade form with a Gtk::Entry box on it named "email."
 # You could set the text that appears in the Gtk::Entry by setting the Gtk::Entry#text property:
-# ```ruby 
+#  
 #   @builder["email"].text = "harvey@harveyserver.com"
-# ```  
+#   
 # Now the email adddess is set with a new value:
 # 
 # http://visualruby.net/img/gladegui_simple.jpg
@@ -114,7 +113,8 @@ end
 
 
 ##
-# This will Load the glade form according to the naming convention: MyClass.rb => MyClass.glade.  
+# This will Load the glade form according to the naming convention: 
+#   MyClass.rb => MyClass.glade.  
 # It will create a Gtk::Builder object from your glade file.
 # The Gtk::Builder object is stored in the instance variable, @builder.
 # You can get a reference to any of the widgets on the glade form by
@@ -197,11 +197,9 @@ end
 #   set_glade_variables()
 #  
 #  So, to set all the values of a form, simply call the set_glade_all() method instead.
-
   def set_glade_all(obj = self) 
     set_glade_active_record(obj)
     set_glade_variables(obj)
-#    set_glade_hash(obj) if obj.is_a?(Hash) #only needed for Hash subclass. needed?
   end
 
 #  This method is the most useful method to retreive values from a glade form.  It will
@@ -212,7 +210,6 @@ end
 #   get_glade_variables()
 #  
 #  So, to retreive all the values of a form back into your ActiveRecord object and instance variables, simply call the set_glade_all() method instead.
-
   def get_glade_all(obj = self)
     get_glade_active_record(obj)
     get_glade_variables(obj)
@@ -285,7 +282,7 @@ end
     end
   end
   
-
+  # @private 
   def fill_control(glade_name, val) 
     control = @builder[glade_name]
     return unless control
@@ -368,6 +365,7 @@ end
     end
   end
 
+  # @private
   def get_control_value(glade_name)
     return unless control = @builder[glade_name]
     case control
@@ -405,7 +403,7 @@ end
     end
   end
 
-# @private
+  # @private
   def self.included(obj)
     temp = caller[0].split(":") #correct for windows  C:\Users\george etc.
     caller_path_to_class_file, = temp[0].size == 1 ? temp[0] + ":" + temp[1] : temp[0] 

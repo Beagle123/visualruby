@@ -23,16 +23,16 @@ module VR
 
   # Saves an object likely loaded with #load_yaml to disk.
   # @param [Object] obj Object to save in yaml format
-  # @param [filename] file_name Optional file name to save yaml file to.  When omitted, 
+  # @param [String] file_name Optional file name to save yaml file to.  When omitted, 
   #   it will save file to path where it was opened from.  Only supply this param if you want to
   #   make another copy of the yaml file.
-  def self.save_yaml(obj, filename = nil)
-    filename ||= obj.instance_variable_get(:@vr_yaml_file)
-    dir = File.dirname(filename)
+  def self.save_yaml(obj, file_name = nil)
+    file_name ||= obj.instance_variable_get(:@vr_yaml_file)
+    dir = File.dirname(file_name)
     unless File.directory?(dir)
       FileUtils.mkdir_p(dir) 
     end
-    File.open(filename, "w") {|f| f.puts(obj.to_yaml)}
+    File.open(file_name, "w") {|f| f.puts(obj.to_yaml)}
   end
   # Note: can't remove @builder or @top_level_window variables because needed to close window.
 end

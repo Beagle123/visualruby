@@ -1,4 +1,4 @@
-# @title Visual Ruby -- GUI Creator for Ruby!
+# @title Home
 # Create Great GUIs with Ruby!
 ## Visual Ruby makes writing GTK graphical user interfaces easy using the Glade Interface Designer.
 
