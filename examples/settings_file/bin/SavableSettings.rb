@@ -2,7 +2,7 @@
 class SavableSettings 
  
   include GladeGUI
-
+ 
   attr_accessor :height, :width, :title, :text
 
   def initialize()
