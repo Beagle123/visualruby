@@ -47,27 +47,24 @@ class VR_Tabs < Gtk::Notebook
         return save_as() 
       else
         return @docs[page].write_to_disk()
-    end      
+      end      
     elsif answer == false # Discard Changes
       @docs[page].reload_from_disk()
       return true #continue without saving
     end
     return false #abort!  
   end
-
+  
   def try_to_save(ask = true)
-    return false if not @docs[page].modified_time_matches()
+#    return false if not @docs[page].modified_time_matches()
     return true if @docs[page].empty?
-    if (@docs[page].title.label == "Untitled")
+    if (@docs[page].title.label == "Untitled") or (@docs[page].buffer.modified? and ask)  
       return save_changes? 
-    elsif (@docs[page].buffer.modified? and ask)  
-      return save_changes? 
-    elsif @docs[page].buffer.modified?
+    end
+    if @docs[page].buffer.modified?
       @docs[page].write_to_disk()
-      return true
-    else
-      return true
-    end    
+    end
+    return true   
   end
 
 
@@ -75,18 +72,21 @@ class VR_Tabs < Gtk::Notebook
     @docs.each { |doc| doc.update_style() }
   end
 
+  def modified_times_ok()
+    answers = @docs.each.collect { |doc| doc.modified_time_matches }
+    return !answers.include?(false)
+  end
+
   # Tries to save and/or close all open documents
   # @param [Hash] flags Optiions
   # @option [Boolean] ask Whether or not to ask to save or save without asking.
-  # @option [Boolean] close Close tab when finished
-  # @option [String] folder operate only on folders matching this string.  Default = "/" 
+  # @option [Boolean] close Close tab when finished 
   def try_to_save_all(flags)
-    ask = flags[:ask]
-    folder ||= "/"
+    return false unless modified_times_ok()  
     passed = true 
     (0..n_pages-1).each do |i|
-      page = i
-      unless try_to_save(ask)
+      self.page = i
+      unless try_to_save(flags[:ask])
         passed = false
       end
     end  
@@ -94,20 +94,7 @@ class VR_Tabs < Gtk::Notebook
     return passed  
   end
 
-##todo update file_tree!
-#  def try_to_save_all(ask = true)
-#    @docs.each do |doc|
-#      return false unless doc.try_to_save(ask)
-#    end
-#  end
-#
-##todo update file_tree!
-#  def try_to_close_all(ask = true)
-#    return false unless try_to_save_all(ask)
-#    (n_pages).times { destroy_tab() }
-#  end
-
-
+ 
   def switch_to(path)
     i = tab_number(path)
     return false if i.nil?  

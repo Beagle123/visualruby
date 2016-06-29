@@ -3,7 +3,7 @@ class VR_Document < GtkSource::View
   
   include GladeGUI
   include VR_TextViewCommon
-  
+    
   attr_accessor :full_path_file, :title  
 
   def initialize(full_path_file, title_label, main)
@@ -51,13 +51,14 @@ class VR_Document < GtkSource::View
     text = "The file: <b>#{@full_path_file}</b>\n has been modified since you loaded it:\n\nYou loaded: #{@modified_time}\nOn disk: #{mod_time().to_s}\n\nDo you wnat to keep this version?\n"  
     ans = alert(text, headline: "Warning!", width: 400, button_yes: "Keep Current Version", 
             button_no: "Reload Disk Version", button_cancel: "Cancel", parent: @main)
-    if ans == true # yes, keep current 
+    if ans == true # yes, keep current ok 
       write_to_disk()
       return true
-    elsif ans == false # Reload From Disk
+    elsif ans == false # Reload From Disk ok
       reload_from_disk()
+      return true
     end 
-    return false #abort!
+    return false # abort! No resolution.
   end
 
   def write_to_disk(fn = @full_path_file)
@@ -65,15 +66,10 @@ class VR_Document < GtkSource::View
     File.open(fn, "w")  { |f| f.puts(buffer.text) }
     buffer.modified = false
     @modified_time = mod_time()
-    @title.label = File.basename(fn)
-    return true  
+    @title.label = File.basename(fn) 
   end
 
-
-
-
-
- def jump_to_line(line_num, search_str = nil)
+  def jump_to_line(line_num, search_str = nil)
     while (Gtk.events_pending?)
       Gtk.main_iteration
     end

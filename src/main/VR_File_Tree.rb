@@ -9,7 +9,7 @@ class VR_File_Tree < VR::FileTreeView
     @api = RubygemsAPI.new
     load_glade() # loads menus
   end
-
+ 
   def self__row_activated(*args)
     return unless rows = selected_rows
     file_name = rows.first[:path]
