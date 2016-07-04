@@ -340,36 +340,35 @@ end
 # @return none 
   def get_glade_variables(obj = self)
     obj.instance_variables.each do |var_name|
+      next if var_name == :@builder or var_name == :@top_level_window
       var = obj.instance_variable_get(var_name)
       var_name = var_name.to_s.gsub("@", "")  #fix for ruby 1.9 giving symbols
       if var.is_a? Hash
         var.each_pair do |key, val|
-          if glade_value = get_control_value("#{var_name}[#{key.to_s}]")
+          if glade_value = get_control_value("#{var_name}[#{key.to_s}]", obj)
             var[key] = glade_value
           end 
         end
         obj.instance_variable_set("@"+ var_name, var)
       elsif var.is_a? Array
         var.each_index do |i|
-          if glade_value = get_control_value("#{var_name}[#{i.to_s}]")
+          if glade_value = get_control_value("#{var_name}[#{i.to_s}]", obj)
             var[i] = glade_value
           end
         end
         obj.instance_variable_set("@"+ var_name, var)
       else
-        glade_value = get_control_value(var_name)
-        if glade_value
-          obj.instance_variable_set("@"+ var_name, glade_value)
-        end 
+        glade_value = get_control_value(var_name, obj)
+        obj.instance_variable_set("@"+ var_name, glade_value) unless glade_value.nil?
       end
     end
   end
 
   # @private
-  def get_control_value(glade_name)
-    return unless control = @builder[glade_name]
+  def get_control_value(glade_name, obj = self)
+    return unless control = obj.builder[glade_name]
     case control
-      when Gtk::CheckButton then control.active?
+      when Gtk::CheckButton, Gtk::ToggleButton then control.active?
       when Gtk::Entry then control.text
       when Gtk::TextView then control.buffer.text
       when Gtk::FontButton then control.font_name 
@@ -416,11 +415,11 @@ end
 
 
 
-# The method you call to show the glade form.  
-# It loads the glade form, sets all the form's widgets to your instance variables,
-# connects all your methods to their signals, and starts Gtk.main loop if necessary.
-# @param [Object #builder] parent  Optional parent that this window will always be on top of.
-# @return nothing.
+  # The method you call to show the glade form.  
+  # It loads the glade form, sets all the form's widgets to your instance variables,
+  # connects all your methods to their signals, and starts Gtk.main loop if necessary.
+  # @param [Object #builder] parent  Optional parent that this window will always be on top of.
+  # @return nothing.
   def show_glade(parent = nil)
     load_glade()
     if parent then
