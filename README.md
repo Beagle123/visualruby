@@ -23,13 +23,13 @@ just one mouse-click.
 
 ## Write your code 
 
-http://visualruby.net/img/index_listview.jpg
+(http://visualruby.net/img/index_listview.jpg)
 
 ## Create your GUI with Glade
 
-http://visualruby.net/img/index_glade.jpg
+(http://visualruby.net/img/index_glade.jpg)
 
 ## Click the Run button
 
-http://visualruby.net/img/index_listviewdemo.jpg
+(http://visualruby.net/img/index_listviewdemo.jpg)
 
