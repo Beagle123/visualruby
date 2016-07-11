@@ -159,6 +159,15 @@ class VR_Main
 
   end
 
+  def toolMyYard__clicked(*a)
+    begin
+      require "my_yard"
+    rescue LoadError
+      alert "You must install the my_yard gem to generate documents.  \nEnter this command at the command prompt:\n\n<b>gem install my_yard</b>",
+        parent: self
+    end
+  end
+
   def toolViewRDoc__clicked(*a)
     VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{Dir.pwd}/doc/index.html")    
   end
