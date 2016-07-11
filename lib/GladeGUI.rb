@@ -1,5 +1,4 @@
-# =GladeGUI
-#  
+ 
 # GladeGUI connects your class to a glade form. 
 # It will load a .glade
 # file into memory, enabling your ruby programs to have a GUI interface.
@@ -8,7 +7,7 @@
 # variable is an instance of {Gtk::Builder}[http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ABuilder]
 # It holds references to all your windows and widgets.
 #  
-# = Include the GladeGUI interface
+# ==Include the GladeGUI interface
 #  
 # To use the GladeGUI interface, include this line in your code:
 #

@@ -9,10 +9,12 @@ exclude: ''
 include_public: true
 include_private: false
 include_protected: false
-no_private: false
-export_db: false
-title: Get outta my yard!
+include_private_tag: false
+title: Visual Ruby
 main: index.html
+export_db: false
+export_db_path: ".yardoc"
 vr_yaml_file: "/home/eric/vrp/vr3/my_yard.yaml"
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: true
+no_private: false
