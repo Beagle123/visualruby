@@ -1,6 +1,6 @@
 --- !ruby/object:SavableSettings
 height: 415
-width: 408
+width: 609
 title: Savable Settings Demo
 text: |-
   Try running this program multiple times.
@@ -10,6 +10,6 @@ text: |-
    If you want to reset the file to the defaults, just delete the settings.yamls file.
 
   You may need to click the 'Refresh' to see the settings.yaml file.
-vr_yaml_file: settings.yaml
+vr_yaml_file: "/home/eric/vrp/vr3/examples/settings_file/settings.yaml"
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

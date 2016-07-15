@@ -6,13 +6,11 @@ def load_everything
   require "yaml" #needed
   require "net/http" #needed
   require "net/https" #needed
-  require "find" #needed
   require "fileutils" #needed
   require "rubygems/installer"
   require "rubygems/uninstaller"
   require "rubygems/package"
   require "rubygems/specification"
-  require "date"
   
   require 'require_all'
 

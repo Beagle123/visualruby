@@ -68,35 +68,6 @@
                     <property name="height">1</property>
                   </packing>
                 </child>
-                <child>
-                  <object class="GtkEntry" id="rdoc_command_line">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">1</property>
-                    <property name="width">1</property>
-                    <property name="height">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="label2">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="hexpand">True</property>
-                    <property name="xalign">1</property>
-                    <property name="label" translatable="yes">RDoc Command Line:</property>
-                    <property name="justify">center</property>
-                    <property name="ellipsize">middle</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">1</property>
-                    <property name="width">1</property>
-                    <property name="height">1</property>
-                  </packing>
-                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -108,7 +79,8 @@
               <object class="GtkButtonBox" id="buttonbox1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="layout_style">spread</property>
+                <property name="spacing">10</property>
+                <property name="layout_style">end</property>
                 <child>
                   <object class="GtkButton" id="buttonCancel">
                     <property name="label" translatable="yes">Cancel</property>

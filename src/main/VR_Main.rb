@@ -13,7 +13,7 @@ class VR_Main
   def before_show
 
     # there must be a visualruby directory:
-    required_project = File.join(ENV["HOME"],"","visualruby", "examples","alert_box")
+    required_project = File.join(ENV["HOME"],"","visualruby", "examples", "alert_box")
     menuInstallExamples__activate if not File.directory?(required_project)
 
     # load global settings (requires /home/visuaruby folder exists
@@ -145,21 +145,22 @@ class VR_Main
     end
   end
 
-  def toolRDoc__clicked(*a)
-    return unless @tabs.try_to_save_all(:ask => false)
-    @shell.buffer.text = $VR_ENV.rdoc_command_line + "\n"
-    clear_events 
-    @shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`
-    VR_Tools.replace_html_in_docs()
-    if File.exists?("yard_hack/index.html.replace")
-      FileUtils.copy("yard_hack/index.html.replace", "doc/index.html") 
-      FileUtils.copy("yard_hack/index.html.replace", "doc/frames.html") 
-      FileUtils.copy("yard_hack/common.css", "doc/css/common.css")
-    end
-
-  end
+#  def toolRDoc__clicked(*a)
+#    return unless @tabs.try_to_save_all(:ask => false)
+#    @shell.buffer.text = $VR_ENV.rdoc_command_line + "\n"
+#    clear_events 
+#    @shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`
+#    VR_Tools.replace_html_in_docs()
+#    if File.exists?("yard_hack/index.html.replace")
+#      FileUtils.copy("yard_hack/index.html.replace", "doc/index.html") 
+#      FileUtils.copy("yard_hack/index.html.replace", "doc/frames.html") 
+#      FileUtils.copy("yard_hack/common.css", "doc/css/common.css")
+#    end
+#
+#  end
 
   def toolMyYard__clicked(*a)
+    return alert "Not available yet."
     begin
       require "my_yard"
     rescue LoadError
@@ -307,7 +308,7 @@ class VR_Main
   
   def menuInstallExamples__activate(*a)
     path = File.join(ENV["HOME"], "", "visualruby", "examples")
-    VR_Tools.copy_recursively(File.expand_path(File.join(File.dirname(__FILE__),"","..","..","examples")), path) 
+    VR.copy_recursively(File.expand_path(File.join(File.dirname(__FILE__),"","..","..","examples")), path) 
     alert("The example projects are installed in this folder:\n\n<b>#{path}</b>\n\n "+
       "Use your <b>/home/visualruby</b> folder for all your visualruby projects.", 
       :parent => self,  

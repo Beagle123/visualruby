@@ -1,0 +1,18 @@
+--- !ruby/object:VR_ENV
+vr_yaml_file: "/home/eric/vrp/vr3/examples/settings_file/.vr_settings.yaml"
+width: 800
+height: 600
+panel_pos: 360
+notebook_panel_position: 400
+run_command_line: ruby main.rb
+open_files:
+- "/home/eric/vrp/vr3/examples/settings_file/main.rb"
+- "/home/eric/vrp/vr3/examples/settings_file/bin/MainApp.rb"
+- "/home/eric/vrp/vr3/examples/settings_file/bin/SavableSettings.rb"
+open_folders:
+- "/home/eric/vrp/vr3/examples/settings_file"
+- "/home/eric/vrp/vr3/examples/settings_file/bin"
+- "/home/eric/vrp/vr3/examples/settings_file/bin/glade"
+current_file: "/home/eric/vrp/vr3/examples/settings_file/bin/SavableSettings.rb"
+current_line: 39
+rdoc_command_line: rdoc -x README

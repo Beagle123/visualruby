@@ -1,50 +1,14 @@
 --- !ruby/object:VR_ENV
-vr_yaml_file: ".vr_settings.yaml"
-width: 1139
-height: 691
-panel_pos: 276
+vr_yaml_file: "/home/eric/vrp/vr3/examples/active_record/.vr_settings.yaml"
+width: 800
+height: 600
+panel_pos: 360
 notebook_panel_position: 400
-run_command_line: ruby active_record.rb
+run_command_line: ruby main.rb
 open_files:
-- "/home/eric/vrp/vr3/examples/active_record/bin/Person.rb"
-- "/home/eric/vrp/vr3/examples/active_record/bin/ChoosePerson.rb"
-- "/home/eric/vrp/vr3/examples/active_record/active_record.rb"
+- "/home/eric/vrp/vr3/Untitled"
 open_folders:
 - "/home/eric/vrp/vr3/examples/active_record"
-- "/home/eric/vrp/vr3/examples/active_record/bin"
-- "/home/eric/vrp/vr3/examples/active_record/bin/glade"
-current_file: "/home/eric/vrp/vr3/examples/active_record/active_record.rb"
-current_line: 6
+current_file: "/home/eric/vrp/vr3/Untitled"
+current_line: 1
 rdoc_command_line: rdoc -x README
-builder: !ruby/object:Gtk::Builder {}
-filename: ".vr_settings.yaml"
-backup_path: "/home/eric"
-browser: firefox
-font_name: Monospace 10
-glade_path: glade-gtk2
-tab_spaces: 2
-glade_box: !ruby/object:VR::SimpleComboBoxEntry {}
-browser_box: !ruby/object:VR::SimpleComboBoxEntry {}
-buttonChooseFolder: "..."
-vbox1: !ruby/object:Gtk::VBox {}
-label7: 'Editor Font:'
-label3: 'Back-up Path:'
-window1: !ruby/object:Gtk::Window {}
-hbuttonbox1: !ruby/object:Gtk::HButtonBox {}
-buttonCancel: Cancel
-label8: 'RDoc Command Line: '
-table1: !ruby/object:Gtk::Table {}
-buttonTryBrowser: Try
-buttonSave: Save
-hboxBrowser: !ruby/object:Gtk::HBox {}
-hboxGlade: !ruby/object:Gtk::HBox {}
-label1: "<big><big><b>Visual Ruby Settings</b></big></big>"
-label2: 'Browser Command Line:'
-label4: 'Spaces for Each Tab in Editor:'
-label5: 'Glade Command Line:'
-label6: 'Command Line when "Run" is pressed:'
-hbox1: !ruby/object:Gtk::HBox {}
-hbox2: !ruby/object:Gtk::HBox {}
-hbox3: !ruby/object:Gtk::HBox {}
-hbox4: !ruby/object:Gtk::HBox {}
-buttonTryGlade: Try

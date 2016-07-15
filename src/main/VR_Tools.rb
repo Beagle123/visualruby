@@ -13,27 +13,12 @@ module VR_Tools
     path = File.join(ENV["HOME"], "visualruby_backup", Dir.pwd.gsub(ENV["HOME"], ""))
     t = Time.now
     out_dir = path + "/" + Dir.pwd.split("/").last + " Backup " + t.month().to_s + '-' + t.day().to_s + "-" + t.year().to_s + " at " + t.strftime('%I %M%p')  
-    copy_recursively(Dir.pwd, out_dir) 
+    VR.copy_recursively(Dir.pwd, out_dir) 
     alert "Files backed up to:  \n\n" + path 
   end
 
   def VR_Tools.copy_skeleton_project(path)
-      VR_Tools.copy_recursively(File.dirname(__FILE__) + "/../../skeleton/project", path)
-  end
-
-  def VR_Tools.copy_recursively(from, out_dir)
-    Find.find(from) do |path|
-      next if path == from
-      rel_path = path.gsub(from, "")
-      if File.directory?(path) 
-        FileUtils.makedirs(out_dir + rel_path)   
-      else
-        if not File.directory?(out_dir + File.dirname(rel_path))
-          FileUtils.makedirs(out_dir + File.dirname(rel_path))
-        end
-        FileUtils.copy(path, out_dir + rel_path)
-      end
-    end
+      VR.copy_recursively(File.dirname(__FILE__) + "/../../skeleton/project", path)
   end
  
   def self.create_gemspec()

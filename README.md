@@ -1,9 +1,9 @@
 # @title Home
 # Visual Ruby
-## Visual Ruby makes writing GTK graphical user interfaces easy using the Glade Interface Designer.
+## Create GUIs with Ruby.
 
 <p>
-  <iframe width="640" height="480" src="https://www.youtube.com/embed/CY-0OYkg7b8" frameborder="0" allowfullscreen></iframe>
+  <iframe width="420" height="315" src="https://www.youtube.com/embed/CY-0OYkg7b8" frameborder="0" allowfullscreen></iframe>
 </p>
 
 Visualruby was designed specifically for rubyists who want to add

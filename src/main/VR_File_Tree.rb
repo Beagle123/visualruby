@@ -35,36 +35,35 @@ class VR_File_Tree < VR::FileTreeView
 
   def popInstallGem_clicked()
     file_name = get_selected_path()
-#    begin
+    begin
       inst = Gem::Installer.new(file_name, :wrappers => true, :ignore_dependencies => true)
       inst.install().to_s
-      txt = "Installed Gem:  " + file_name
+      txt = "\nInstalled Gem:  " + file_name
       txt += "\nNo check was made for dependencies"
-#    rescue 
-#      command = "gem install #{file_name} --local 2>&1"
-#      txt = VR_Tools.sudo_command(command)
-#    end
+    rescue Exception => e
+      txt += "\n" + e.message
+    end
     @main.shell.buffer.text = txt
   end
 
-  def menuRDoc_clicked
-    return unless @main.tabs.try_to_save_all(:ask => false)
-    fn = get_selected_path() 
-    old_dir = Dir.pwd
-    FileUtils.cd(fn)
-    @main.shell.buffer.text = $VR_ENV.rdoc_command_line + fn + "\n"
-    clear_events 
-    @main.shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`
-    VR_Tools.replace_html_in_docs()
-    if File.exists?("yard_hack/index.html.replace")
-      FileUtils.copy("yard_hack/index.html.replace", "#{fn}/doc/index.html") 
-      FileUtils.copy("yard_hack/index.html.replace", "#{fn}/doc/frames.html") 
-      FileUtils.copy("yard_hack/common.css", "#{fn}/doc/css/common.css")
-    end
-    FileUtils.cd(old_dir)    
-    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{fn}/doc/index.html")
-    @main.file_tree.refresh()
-  end
+#  def menuRDoc_clicked
+#    return unless @main.tabs.try_to_save_all(:ask => false)
+#    fn = get_selected_path() 
+#    old_dir = Dir.pwd
+#    FileUtils.cd(fn)
+#    @main.shell.buffer.text = $VR_ENV.rdoc_command_line + fn + "\n"
+#    clear_events 
+#    @main.shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`
+#    VR_Tools.replace_html_in_docs()
+#    if File.exists?("yard_hack/index.html.replace")
+#      FileUtils.copy("yard_hack/index.html.replace", "#{fn}/doc/index.html") 
+#      FileUtils.copy("yard_hack/index.html.replace", "#{fn}/doc/frames.html") 
+#      FileUtils.copy("yard_hack/common.css", "#{fn}/doc/css/common.css")
+#    end
+#    FileUtils.cd(old_dir)    
+#    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{fn}/doc/index.html")
+#    @main.file_tree.refresh()
+#  end
 
   def popBuildGem_clicked
     file_name = get_selected_path()
@@ -92,7 +91,6 @@ class VR_File_Tree < VR::FileTreeView
     path = get_selected_path()
     source_code = File.open(path, "r").read
     class_name = VR_Document.get_class_title(source_code).gsub(".rb", "")
-#    glade_file = File.dirname(path) + "/glade/" + File.basename(path, ".rb") + ".glade"
     glade_file = File.dirname(path) + "/glade/" + class_name + ".glade" 
     if not File.file?(glade_file)
       path = File.dirname(glade_file)
@@ -114,8 +112,8 @@ class VR_File_Tree < VR::FileTreeView
         @builder['popGemspec'].popup(nil, nil, event.button, event.time)
     elsif File.extname(path) == ".gem"
         @builder['popGemFile'].popup(nil, nil, event.button, event.time)
-    elsif File.directory?(path)
-        @builder['popFolder'].popup(nil, nil, event.button, event.time)   
+#    elsif File.directory?(path)
+#        @builder['popFolder'].popup(nil, nil, event.button, event.time)   
     end
   end
 
