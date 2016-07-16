@@ -232,8 +232,8 @@ end
 #  
 # @param [ActiveRecord::Base] obj Any activerecod base object.
 # @return none 
-  def set_glade_active_record(obj = self) 
-    return if not defined? @attributes
+  def set_glade_active_record(obj = self)
+    return if not defined? obj.attributes
     obj.attributes.each_pair { |key, val| fill_control(class_name(obj) + "." + key, val) }
   end
 
@@ -284,6 +284,7 @@ end
   # @private 
   def fill_control(glade_name, val) 
     control = @builder[glade_name]
+    control ||= @builder[glade_name.split(".")[1].to_s] # strip class name if there
     return unless control
     case control  # order matters-- subclasses?
       when Gtk::Window then control.title = val
@@ -365,7 +366,8 @@ end
 
   # @private
   def get_control_value(glade_name, obj = self)
-    return unless control = obj.builder[glade_name]
+    control = @builder[glade_name]
+    return unless control ||= @builder[class_name(obj) + "." + glade_name]
     case control
       when Gtk::CheckButton, Gtk::ToggleButton then control.active?
       when Gtk::Entry then control.text
@@ -382,22 +384,24 @@ end
   end
 
   def get_glade_active_record(obj) 
-    return if not defined? @attributes
+    return if not defined? obj.attributes
     obj.attributes.each_pair do |key, val|
-      control = @builder[class_name(obj) + "." + key]
-      control ||= @builder[key]
-      case control
-        when Gtk::CheckButton then self.send("#{key}=", control.active?)
-        when Gtk::Entry then self.send("#{key}=", control.text)
-        when Gtk::TextView then self.send("#{key}=", control.buffer.text)
-        when Gtk::FontButton then self.send("#{key}=", control.font_name) 
-        when Gtk::Label, Gtk::Button then self.send("#{key}=", control.label)
-        when Gtk::SpinButton then self.send("#{key}=", control.value)
-        when Gtk::Image then self.send("#{key}=", control.file)
-        when Gtk::ProgressBar then self.send("#{key}=", control.fraction)
-        when Gtk::Calendar then self.send("#{key}=", DateTime.new(*control.date))
-        when Gtk::Adjustment then self.send("#{key}=", control.value)
-      end   
+      new_val = get_control_value(key, obj)
+#      obj.attributes[key] = new_val unless new_val.nil?
+      obj.send("#{key}=", new_val) unless new_val.nil?
+#      self.send("#{key}=", control.active?)
+#      case control
+#        when Gtk::CheckButton then self.send("#{key}=", control.active?)
+#        when Gtk::Entry then self.send("#{key}=", control.text)
+#        when Gtk::TextView then self.send("#{key}=", control.buffer.text)
+#        when Gtk::FontButton then self.send("#{key}=", control.font_name) 
+#        when Gtk::Label, Gtk::Button then self.send("#{key}=", control.label)
+#        when Gtk::SpinButton then self.send("#{key}=", control.value)
+#        when Gtk::Image then self.send("#{key}=", control.file)
+#        when Gtk::ProgressBar then self.send("#{key}=", control.fraction)
+#        when Gtk::Calendar then self.send("#{key}=", DateTime.new(*control.date))
+#        when Gtk::Adjustment then self.send("#{key}=", control.value)
+#      end   
     end
   end
 

@@ -26,10 +26,14 @@ module VR
       col_visible( :path => false, :sort_on => false, :empty => false)
       self.headers_visible = false
       @icons = File.directory?(icon_path) ? IconHash.new(icon_path) : nil
-      parse_signals()  #fix this!  Subclasses may call twice!
+#      parse_signals()  #fix this!  Subclasses may call twice!
       model.set_sort_column_id(id(:sort_on), :ascending )
       self.set_enable_search(false)
       refresh
+      self.signal_connect("row_expanded") { |view, iter, path| 
+        iter = model.get_iter(path) # bug fix
+        fill_folder(iter) if iter[id(:empty)]
+      } 
       self.visible = true # necessary!
     end  
 
@@ -54,15 +58,17 @@ module VR
       files = files.select &@validate_block if @validate_block
       files.each do |fn|
          add_file(fn, parent_iter)
-      end  
+      end
+      expand_row(parent_iter.path, false)  
     end
 
-    #Ignore this, it is called when a folder is clicked, and expands the folder.
-    def self__row_expanded(view, iter, path)
-      iter = model.get_iter(path)  #bug fix
-      fill_folder(iter) if iter[id(:empty)]
-      expand_row(iter.path, false)
-    end
+#   Phased out.  Don't want to use parse_signals() because user might call it twice causing two calls to method.
+#    #Ignore this, it is called when a folder is clicked, and expands the folder.
+#    def self__row_expanded(view, iter, path)
+#      iter = model.get_iter(path)  #bug fix
+#      fill_folder(iter) if iter[id(:empty)]
+#      expand_row(iter.path, false)
+#    end
 
     # Expands or collapses the currently selected row
     def expand_or_collapse_folder()
@@ -70,7 +76,7 @@ module VR
       if row_expanded?(row.path)
         collapse_row(row.path)
       else
-        self__row_expanded(self, row, row.path) 
+        expand_row(row.path, false)
       end
     end
 
@@ -88,7 +94,9 @@ module VR
     def open_folders(folder_paths)
       model.each do |model, path, iter| 
         if folder_paths.include?(iter[id(:path)])
-          self__row_expanded(self, iter, path)    
+          fill_folder(iter)
+#          expand_row(path, false)
+#          self__row_expanded(self, iter, path)    
         end
       end
     end  
@@ -151,13 +159,9 @@ module VR
         self.has_key?(ext) ? self[ext] : self["unknown"] 
       end
     end
-
-  
+ 
   end  
-  
-
-  
-
+ 
 end
 
 

@@ -8,6 +8,7 @@ class VR_File_Tree < VR::FileTreeView
     @main = main
     @api = RubygemsAPI.new
     load_glade() # loads menus
+    parse_signals()
   end
  
   def self__row_activated(*args)

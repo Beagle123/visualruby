@@ -2,7 +2,7 @@
 
 
 # ignore -- this is for development, same as require 'vrlib'
-require File.exists?("./../../vrlib/vrlib.rb") ?  "./../../vrlib/vrlib.rb" : "vrlib"
+require File.exists?("./../../lib/vrlib.rb") ?  "./../../lib/vrlib.rb" : "vrlib"
 
 # from require_all gem:
 require_rel 'bin/'
