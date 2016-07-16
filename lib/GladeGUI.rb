@@ -387,21 +387,7 @@ end
     return if not defined? obj.attributes
     obj.attributes.each_pair do |key, val|
       new_val = get_control_value(key, obj)
-#      obj.attributes[key] = new_val unless new_val.nil?
-      obj.send("#{key}=", new_val) unless new_val.nil?
-#      self.send("#{key}=", control.active?)
-#      case control
-#        when Gtk::CheckButton then self.send("#{key}=", control.active?)
-#        when Gtk::Entry then self.send("#{key}=", control.text)
-#        when Gtk::TextView then self.send("#{key}=", control.buffer.text)
-#        when Gtk::FontButton then self.send("#{key}=", control.font_name) 
-#        when Gtk::Label, Gtk::Button then self.send("#{key}=", control.label)
-#        when Gtk::SpinButton then self.send("#{key}=", control.value)
-#        when Gtk::Image then self.send("#{key}=", control.file)
-#        when Gtk::ProgressBar then self.send("#{key}=", control.fraction)
-#        when Gtk::Calendar then self.send("#{key}=", DateTime.new(*control.date))
-#        when Gtk::Adjustment then self.send("#{key}=", control.value)
-#      end   
+      obj.send("#{key}=", new_val) unless new_val.nil?  
     end
   end
 
@@ -464,19 +450,6 @@ end
   def extract_key(widget)
     widget.builder_name[/\[.+?\]/]
   end
-
-
-#
-#  private def active_record_valid?(show_errors = true)
-#    get_glade_all
-#    if not self.valid?
-#      alset(self.errors.full_messages.join("\n\n")) if show_errors
-#      self.reload
-#      return false
-#    end
-#    return true
-#  end
-
 
 end
 
