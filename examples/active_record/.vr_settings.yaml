@@ -1,7 +1,7 @@
 --- !ruby/object:VR_ENV
 vr_yaml_file: "/home/eric/vrp/vr3/examples/active_record/.vr_settings.yaml"
-width: 885
-height: 600
+width: 1197
+height: 641
 panel_pos: 360
 notebook_panel_position: 400
 run_command_line: ruby active_record.rb
@@ -13,7 +13,7 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/active_record/bin"
 - "/home/eric/vrp/vr3/examples/active_record/bin/glade"
 current_file: "/home/eric/vrp/vr3/examples/active_record/bin/Person.rb"
-current_line: 22
+current_line: 3
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

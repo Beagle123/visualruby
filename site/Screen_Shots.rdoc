@@ -1,6 +1,6 @@
 # @title Screen Shots
 
-= Visual Ruby is Cross Platform
+= Works Across Platforms
 
 
 

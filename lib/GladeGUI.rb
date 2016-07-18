@@ -82,54 +82,51 @@
 # set_glade_variables() method.)
 module GladeGUI
 
-# @!attribute [rw] builder
-#   @return [Gtk::Builder] The builder that holds references to everything in the glade form.
+  # @!attribute [rw] builder
+  #   @return [Gtk::Builder] The builder that holds references to everything in the glade form.
   attr_accessor :builder
 
-##
-#
-#  drag_to() will make it so you can drag-n-drop the source_widget onto the target widget.
-#  You may pass a reference to a widget object, or a String that gives the name of the
-#  widget on your glade form. So, it functions the same as this statement:
-#  
-#      widget_source.drag_to(widget_target)
-#  
-#  It also functions the same as this statement:
-#  
-#      @builder["widget_source"].drag_to(@builder["widget_target"])
-#  
-#  
-
-def set_drag_drop(hash)
-  hash.each do |key,val|
-    src = key.is_a?(Gtk::Widget) ? key : @builder[key]
-    target = @builder[val]
-    src.extend(VR::Draggable) unless src.is_a?(VR::Draggable)
-    src.add_target_widget(target)
+  ##
+  #
+  #  drag_to() will make it so you can drag-n-drop the source_widget onto the target widget.
+  #  You may pass a reference to a widget object, or a String that gives the name of the
+  #  widget on your glade form. So, it functions the same as this statement:
+  #  
+  #      widget_source.drag_to(widget_target)
+  #  
+  #  It also functions the same as this statement:
+  #  
+  #      @builder["widget_source"].drag_to(@builder["widget_target"]) 
+  def set_drag_drop(hash)
+    hash.each do |key,val|
+      src = key.is_a?(Gtk::Widget) ? key : @builder[key]
+      target = @builder[val]
+      src.extend(VR::Draggable) unless src.is_a?(VR::Draggable)
+      src.add_target_widget(target)
+    end
   end
-end
 
 
 
-##
-# This will Load the glade form according to the naming convention: 
-#   MyClass.rb => MyClass.glade.  
-# It will create a Gtk::Builder object from your glade file.
-# The Gtk::Builder object is stored in the instance variable, @builder.
-# You can get a reference to any of the widgets on the glade form by
-# using the @builder object:
-#
-# @example 
-#  widget = @builder["name"]
-#  
-# Normally, you should give your widgets names of instance variables: i.e. @email
-# so they can be autoloaded when the glade form is shown using the #show_glade method.  For example,
-# the value of the @email vaiable would be loaded into a Gtk:Entry named "email"
-# in your glade form.  It saves you from having to do this:
-#
-# @example
-#  @builder[:email].text = @email
-#   
+  ##
+  # This will Load the glade form according to the naming convention: 
+  #   MyClass.rb => MyClass.glade.  
+  # It will create a Gtk::Builder object from your glade file.
+  # The Gtk::Builder object is stored in the instance variable, @builder.
+  # You can get a reference to any of the widgets on the glade form by
+  # using the @builder object:
+  #
+  # @example 
+  #  widget = @builder["name"]
+  #  
+  # Normally, you should give your widgets names of instance variables: i.e. @email
+  # so they can be autoloaded when the glade form is shown using the #show_glade method.  For example,
+  # the value of the @email vaiable would be loaded into a Gtk:Entry named "email"
+  # in your glade form.  It saves you from having to do this:
+  #
+  # @example
+  #  @builder[:email].text = @email
+  #   
   def load_glade() 
     caller__FILE__ = my_class_file_path() 
     file_name = File.join(File.split(caller__FILE__)[0] , "glade", class_name(self) + ".glade")
@@ -214,28 +211,7 @@ end
     get_glade_variables(obj)
   end
 
-# Populates the glade form from the fields of an ActiveRecord object.
-# So instead of having to assign each widget a value:
-# @example 
-#  @builder["name"].text = @name
-#  @builder["address"].text = @address
-#  @builder["email"].text = @eamil
-#  @builder["phone"].text = @phone
-# 
-# You can write one line of code:
-# @example 
-#  set_glade_active_record()
-#  
-# The optional parameter is seldom used because you usually want the
-# glade form to populate from the calling class.  If you passed another object,
-# the form would populate from it.
-#  
-# @param [ActiveRecord::Base] obj Any activerecod base object.
-# @return none 
-  def set_glade_active_record(obj = self)
-    return if not defined? obj.attributes
-    obj.attributes.each_pair { |key, val| fill_control(class_name(obj) + "." + key, val) }
-  end
+
 
 # Matches names in glade form to keys in a Hash.  
 # @param [Hash] hash The hash with keys that match the names in the glade form.
@@ -373,7 +349,7 @@ end
       when Gtk::Entry then control.text
       when Gtk::TextView then control.buffer.text
       when Gtk::FontButton then control.font_name 
-      when Gtk::ColorButton then control.color.to_s[0..2] + control.color.to_s[5..6] + control.color.to_s[9..10] 
+      when Gtk::ColorButton then control.color.to_s[0..2] + control.color.to_s[5..6] + control.color.to_s[9..10]
       when Gtk::Label, Gtk::Button then control.label
       when Gtk::SpinButton, Gtk::Adjustment then control.value
       when Gtk::Image then control.file
@@ -383,13 +359,6 @@ end
     end  
   end
 
-  def get_glade_active_record(obj) 
-    return if not defined? obj.attributes
-    obj.attributes.each_pair do |key, val|
-      new_val = get_control_value(key, obj)
-      obj.send("#{key}=", new_val) unless new_val.nil?  
-    end
-  end
 
   # @private
   def self.included(obj)
@@ -451,6 +420,37 @@ end
     widget.builder_name[/\[.+?\]/]
   end
 
+  # Populates the glade form from the fields of an ActiveRecord object.
+  # So instead of having to assign each widget a value:
+  # @example 
+  #  @builder["name"].text = @name
+  #  @builder["address"].text = @address
+  #  @builder["email"].text = @eamil
+  #  @builder["phone"].text = @phone
+  # 
+  # You can write one line of code:
+  # @example 
+  #  set_glade_active_record()
+  #  
+  # The optional parameter is seldom used because you usually want the
+  # glade form to populate from the calling class.  If you passed another object,
+  # the form would populate from it.
+  #  
+  # @param [ActiveRecord::Base] obj Any activerecod base object.
+  # @return none 
+  def set_glade_active_record(obj = self)
+    return if not defined? obj.attributes
+    obj.attributes.each_pair { |key, val| fill_control(class_name(obj) + "." + key, val) }
+  end
+
+  def get_glade_active_record(obj) 
+    return if not defined? obj.attributes
+    obj.attributes.each_pair do |key, val|
+      new_val = get_control_value(key, obj)
+      obj.send("#{key}=", new_val) unless new_val.nil?  
+    end
+  end
+
 end
 
 
@@ -460,4 +460,7 @@ def clear_events()
     Gtk.main_iteration
   end
 end
-  
+ 
+
+
+ 

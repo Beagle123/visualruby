@@ -28,6 +28,7 @@ $root = File.dirname(__FILE__)
 img = Gtk::Image.new(file: File.join($root, "img", "splash.png"))
 img.visible = true
 @splash.add(img)
+@splash.position = :center_always
 @splash.show_all
 @splash.position = :center_always
 

@@ -32,7 +32,7 @@ module VR
     dir = File.dirname(file_name)
     unless File.directory?(dir)
       FileUtils.mkdir_p(dir) 
-    end
+    Classesend
     File.open(file_name, "w") {|f| f.puts(obj.to_yaml)}
   end
   # Note: can't remove @builder or @top_level_window variables because needed to close window.
