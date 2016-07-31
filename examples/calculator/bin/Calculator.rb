@@ -29,6 +29,7 @@ class Calculator
               [  4,  5,  6, "+" ] +
               [ 7,  8,  9, "-" ] +
               [ 0, ".","/","=" ]
+    @clear_display = false
   end  
 
 #  This method is called when any key is clicked.  It follows
@@ -46,18 +47,26 @@ class Calculator
   def button__clicked(button)
     case button.label
       when "C" then 
-        @builder["display"].text = ""
+        clear_display
       when "=" then
         begin # this doesn't catch all errors
            @builder["display"].text = eval(@builder["display"].text).to_s
         rescue
           @builder["display"].text = "error"
         end
+        @clear_display = true
+      when /[0-9]/ then
+        clear_display if @clear_display
+        @builder["display"].text = @builder["display"].text + button.label
       else 
         @builder["display"].text = @builder["display"].text + button.label
     end   
   end  
 
+  def clear_display
+    @builder["display"].text = ""
+    @clear_display = false
+  end
 
 
 end
