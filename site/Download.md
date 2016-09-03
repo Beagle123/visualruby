@@ -22,9 +22,9 @@ fixed the problem in Ruby version 2.3.0+</b>
   menu, and select "Uninstall" for any Ruby/Gnome entries.  Visualruby will
   automatically install the latest [GTK3 rubygem](http://rubygems.org/gems/gtk3).
 
-4. Install visaualruby by going to *Start > Command Prompt With Ruby* and entering the command:
+4. Install visaualruby by going to **Start > Command Prompt With Ruby** and entering the command:
 
-  gem install visualruby
+    gem install visualruby
 
 
 ## Install in Linux ![Linux](http://visualruby.net/img/linux_logo.jpg)
@@ -36,7 +36,7 @@ fixed the problem in Ruby version 2.3.0+</b>
 
 3. Install the visualruby gem:
 
-  gem install visualruby
+    gem install visualruby
 
 ## Install on a Mac  ![Mac](http://visualruby.net/img/mac_logo.jpg)    
 
@@ -52,14 +52,14 @@ fixed the problem in Ruby version 2.3.0+</b>
 
 4. Install the [Visual Ruby Gem](http://www.visualruby.net/):
 
-       gem install visualruby
+      gem install visualruby
 
 
 ## Running Visual Ruby
 
 After it installs, you can run visualruby by entering:
 
-  vr
+    vr
 
 
 ## Getting Help

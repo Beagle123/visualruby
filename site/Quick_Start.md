@@ -37,7 +37,7 @@ onlt take a short time.  There are many examples you can learn from:
 
 When installed, visualruby will create a folder:
 
-  /home/yourname/visualruby
+    /home/yourname/visualruby
 
 This is where you should keep all your visualruby projects.
 
@@ -49,12 +49,12 @@ when you click the *Open Project* button on the toolbar.
 Try right-clicking on a .rb file, and edit its glade file.  You'll see that the glade
 file's name maps the glade file name to the class of the calling file:
 
-  MyClass.rb => MyClass.glade
+    MyClass.rb => MyClass.glade
 
 
 ## Learn Gtk
 
-Visualruby is written entirely in Gtk, so every part of visualruby is a subclas of a Gtk object.
+Visualruby is written entirely in Gtk, so every part of visualruby is a subclass of a Gtk object.
 Therefore, you have the entire Gtk library of classes that can be used in visualruby.  Also,
 all the properties and methods of the Gtk parent classes can be used on the visualruby classes.
 

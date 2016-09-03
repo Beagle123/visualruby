@@ -11,7 +11,7 @@ module VR::Col
         cols.each_pair do |symb, type|
           r = nil
           a = [model_col, self, @view, symb]
-          if type == Gdk::Pixbuf # ok to use gtk
+          if type == GdkPixbuf::Pixbuf # ok to use gtk
             r = Gtk::CellRendererPixbuf.new #(*a)
             self.pack_start( r, false )
             self.add_attribute( r, :pixbuf,  model_col)

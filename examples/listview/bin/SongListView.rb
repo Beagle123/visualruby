@@ -8,12 +8,12 @@
 class SongListView < VR::ListView
 
 
-  AUDIO_ICON = Gdk::Pixbuf.new(File.dirname(__FILE__) + "/audio-x-generic.png")
+  AUDIO_ICON = Gdk::Pixbuf.new(:file => File.dirname(__FILE__) + "/audio-x-generic.png")
 
 
   def initialize 
     @cols = {}
-    @cols[:pix] = {:pix => Gdk::Pixbuf, :song => String } #two renderers in this column
+    @cols[:pix] = {:pix => GdkPixbuf::Pixbuf, :song => String } #two renderers in this column
     @cols[:date] = VR::Col::CalendarCol # DateTime
     @cols[:artist] = String
     @cols[:first_name] = String    

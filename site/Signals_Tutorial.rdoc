@@ -21,11 +21,12 @@ And that's it!
 
 When the user clicks the button, the program prints "Do Something"
 
-This assumes that you have a button in your glade form names "button1".  Then visualruby
+This assumes that you have a button in your glade form named **button1**.  Then visualruby
 attaches the button's "clicked" signal to this method.  The two underscores in the
 method's name indicate that this method will handle a signal using the maming convention *widget__signal*.
 
-There's no need to assign signal handlers in glade, or use Gtk's #signal_connect() method.
+There's no need to assign signal handlers in glade, or use Gtk's **#signal_connect** method because
+all the signal handling will be done automatically when you use this naming convention.
 
 Other examples of signal handlers are:
 
@@ -43,7 +44,7 @@ Other examples of signal handlers are:
 
 There are hundreds of events to use.  See Gtk's documentation for each widget to see what signals it uses.
 
-The **args* splat is the arguments passed by the signal.  They are different for each widget.  For example,
+The **args** splat is the arguments passed by the signal.  They are different for each widget.  For example,
 the Gtk::Button widget's clicked signal passes a single argument:  a reference to the button itself.
 
 ==Attach Signals to instance variables
@@ -115,21 +116,22 @@ parse_signals() to get the self__row_activated method to work.
 
 ==Attaching Signals to a method
 
-Once in a wile, you may need to set a signal to a method.  The method must return
+Once in a while, you may need to set a signal to a method.  The method must return
 an object that will respond_to?("signal_connect").  In other words,  When GladeGUI
 encounters a method name that has 2 underscores in it, its going to try to
-connect a signal to the object.  For example. if it sees the method "button1_clicked:"
+connect a signal to the object.  For example. if it sees the method "button1__clicked:"
 
- # method_name = "button1__clicked"
+```ruby
+     # method_name = "button1__clicked"
 
- obj_name = "button1"
- if defined(obj_name)
-   obj = eval(obj_name)
-   if obj.respond_to?(:signal_connect)
-     obj.signal_connect("clicked") { |*args| method(obj_name).call(*args)) } 
-   end
- end
-
+     obj_name = "button1"
+     if defined(obj_name)
+       obj = eval(obj_name)
+       if obj.respond_to?(:signal_connect)
+         obj.signal_connect("clicked") { |*args| method(obj_name).call(*args)) } 
+       end
+     end
+```
 
 So, first it tests to see if "button1" is defined.  Then it tests to see if "button1"
 has a "Signal_connect" method.  Then when it knows that "button1" can have a signal attached to
@@ -203,7 +205,7 @@ So our method name would be "selection__changed:" (2 underscores!)
 This program would output the current row everytime the user selected a new row.
 So, it would output "Hello World" and "Hello Mars" over and over again.
 
-===Two important methods for VR::ListView and VR::TreeView
+== Two important methods for VR::ListView and VR::TreeView
 
 When you subclass VR::ListView, there are two method names you should remember:
 
@@ -213,7 +215,7 @@ When you subclass VR::ListView, there are two method names you should remember:
 These names will always be the same, and they will be very useful because you often want
 to have your program respond to double-clicking a row or when the selection changes.
 
-==Signal Handler for Multiple Widgets 
+== Signal Handler for Multiple Widgets 
 
 The GladeGUI#load_glade method will automatically fill-in arrays of data into
 a glade form. See Calculator example project for more)  But when 

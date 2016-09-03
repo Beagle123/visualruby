@@ -1,10 +1,10 @@
 
 class GemTree < VR::ListView
 
-  RUBY_ICON = Gdk::Pixbuf.new(File.dirname(__FILE__) + '/../../img/rb.png')
+  RUBY_ICON = GdkPixbuf::Pixbuf.new(:file => File.dirname(__FILE__) + '/../../img/rb.png')
 
   def initialize()
-    hash = {:gems => {:pix => Gdk::Pixbuf, :gem => String}}
+    hash = {:gems => {:pix => GdkPixbuf::Pixbuf, :gem => String}}
     super(hash)
     self.headers_visible = false
     @api = RubygemsAPI.new

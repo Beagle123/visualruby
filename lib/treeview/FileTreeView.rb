@@ -21,7 +21,7 @@ module VR
       @root = File.expand_path(root)
       @glob = glob
       @validate_block = validate_block
-      super(:file => {:pix => Gdk::Pixbuf, :file_name => String}, :empty => TrueClass, 
+      super(:file => {:pix => GdkPixbuf::Pixbuf, :file_name => String}, :empty => TrueClass, 
             :path => String, :sort_on => String)
       col_visible( :path => false, :sort_on => false, :empty => false)
       self.headers_visible = false
@@ -150,7 +150,7 @@ module VR
       def initialize(path)
         Dir.glob(path + "/*.png").each do |f|
           ext = File.basename(f, ".png")
-          self[ext] = Gdk::Pixbuf.new(f)
+          self[ext] = GdkPixbuf::Pixbuf.new(:file => f)
         end
       end
     
