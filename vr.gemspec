@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name = "visualruby" 
   s.licenses = ["MIT"]
-  s.version = "3.0.23"   
+  s.version = "3.1.0"   
   s.has_rdoc = false
-  s.add_dependency('gtk3', '>= 3.0.0')
-  s.add_dependency('gtksourceview3', '>= 3.0.0')
+  s.add_dependency('gtk3', '= 3.1.0')
+  s.add_dependency('gtksourceview3', '= 3.1.0')
   s.add_dependency('require_all', '>= 1.2')
   s.authors = ["Eric Cunningham"]  
   s.email = "beagle4321_2000@yahoo.com" # optional 

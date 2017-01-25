@@ -39,13 +39,23 @@ module VR
       load_columns(cls)
     end
 
+#    def add_active_record_rows(ar) # :nodoc:
+#      ar.each do |obj|
+#        row = add_row()
+#        matches = obj.attributes.keys & @column_keys #intersection
+#        matches.each { |field| row[field] = obj.attributes[field] }   
+#      end
+#    end
+
     def add_active_record_rows(ar) # :nodoc:
+      fields = ar.column_names.map { |x| x.to_sym }
+      matches = fields & @column_keys #intersection
       ar.each do |obj|
         row = add_row()
-        matches = obj.attributes.keys & @column_keys #intersection
-        matches.each { |field| row[field] = obj.attributes[field] }   
+        matches.each { |f| row[f] = obj[f] unless obj[f].nil? }          
       end
     end
+
 
     def []( row )  # :nodoc:
       model.get_iter(Gtk::TreePath.new("#{row}"))
