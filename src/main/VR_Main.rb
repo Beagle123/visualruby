@@ -316,6 +316,10 @@ class VR_Main
       :width => 500)   
   end
 
+  def menuAbout__activate(*a)
+    alert("version " + VERSION, headline: "visualruby", parent: self) 
+  end
+
   # needed so tabs can be saved, called before destroy, must return false to close wndow.
   def window1__delete_event(*args)
     save_state
@@ -328,7 +332,7 @@ class VR_Main
 
   def tabs__switch_page(_self, x, page_num)
     return unless tab = @tabs.docs[page_num] # needed. sometimes nil
-    @builder[:labelStatus].label = "Project:  #{@proj_path}       File:  #{tab.full_path_file}"
+    @builder[:labelStatus].label = "Project:  #{@proj_path}    File:  #{tab.full_path_file}     visualruby v#{VERSION} "
     tab.modified_time_matches()
   end
 
