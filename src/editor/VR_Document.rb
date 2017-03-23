@@ -70,9 +70,10 @@ class VR_Document < GtkSource::View
   end
 
   def jump_to_line(line_num, search_str = nil)
-    while (Gtk.events_pending?)
-      Gtk.main_iteration
-    end
+    clear_events
+#    while (Gtk.events_pending?)
+#      Gtk.main_iteration
+#    end
     hilight_line(line_num)
     iter = buffer.get_iter_at(:line => line_num - 1)
     buffer.place_cursor(iter)    

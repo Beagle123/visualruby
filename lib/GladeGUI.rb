@@ -394,7 +394,7 @@ module GladeGUI
 # Called when window is destroyed when you execute: <tt>@builder[:window1].destroy</tt>
 # It manages the Gtk.main loop for all the windows.
   def window1__destroy(*args)
-    Gtk.main_quit if @top_level_window or @builder["window1"].modal?  
+    Gtk.main_quit if @top_level_window or @builder["window1"].modal? 
   end
 
 # Convenience method so you can just make a button named "buttonCancel" and it will work.  This

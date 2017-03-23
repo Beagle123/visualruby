@@ -11,13 +11,13 @@ class VR_Main
   end
 
   def before_show
-
     # there must be a visualruby directory:
     required_project = File.join(ENV["HOME"],"","visualruby", "examples", "alert_box")
     menuInstallExamples__activate if not File.directory?(required_project)
 
     # load global settings (requires /home/visuaruby folder exists
     $VR_ENV_GLOBAL = VR::load_yaml(VR_ENV_GLOBAL, VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
+
 
     # try to open right project
     if not project_valid?(@proj_path) 
@@ -71,7 +71,7 @@ class VR_Main
     return false if ENV["HOME"] == proj_path
     return false unless File.directory?(proj_path)
     return false unless File.file?(File.join(proj_path, VR_ENV::SETTINGS_FILE))
-     return true
+    return true
   end
 
 
@@ -81,12 +81,9 @@ class VR_Main
     @builder["labelStatus"].label = Dir.pwd
     @file_tree.root = @proj_path
     @file_tree.refresh()
-    @shell.buffer.text = ""
-    # if default project invalid, set default
-    unless project_valid?($VR_ENV_GLOBAL.default_project)  
-      $VR_ENV_GLOBAL.default_project = @proj_path
-      VR::save_yaml($VR_ENV_GLOBAL) 
-    end 
+    @shell.buffer.text = "" 
+    $VR_ENV_GLOBAL.default_project = @proj_path
+    VR::save_yaml($VR_ENV_GLOBAL)  
     load_state()
   end
 
@@ -96,7 +93,7 @@ class VR_Main
     old_path = @proj_path
     OpenProject.new(self).show_glade(self)
     if old_path != @proj_path
-       @tabs.try_to_save_all(:ask => false, :close => true)
+      @tabs.try_to_save_all(:ask => false, :close => true)
       load_project()
     end  
   end

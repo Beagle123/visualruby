@@ -47,24 +47,6 @@ class VR_File_Tree < VR::FileTreeView
     @main.shell.buffer.text = txt
   end
 
-#  def menuRDoc_clicked
-#    return unless @main.tabs.try_to_save_all(:ask => false)
-#    fn = get_selected_path() 
-#    old_dir = Dir.pwd
-#    FileUtils.cd(fn)
-#    @main.shell.buffer.text = $VR_ENV.rdoc_command_line + fn + "\n"
-#    clear_events 
-#    @main.shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`
-#    VR_Tools.replace_html_in_docs()
-#    if File.exists?("yard_hack/index.html.replace")
-#      FileUtils.copy("yard_hack/index.html.replace", "#{fn}/doc/index.html") 
-#      FileUtils.copy("yard_hack/index.html.replace", "#{fn}/doc/frames.html") 
-#      FileUtils.copy("yard_hack/common.css", "#{fn}/doc/css/common.css")
-#    end
-#    FileUtils.cd(old_dir)    
-#    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{fn}/doc/index.html")
-#    @main.file_tree.refresh()
-#  end
 
   def popBuildGem_clicked
     file_name = get_selected_path()

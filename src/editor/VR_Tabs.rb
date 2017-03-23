@@ -82,6 +82,7 @@ class VR_Tabs < Gtk::Notebook
   # @option [Boolean] ask Whether or not to ask to save or save without asking.
   # @option [Boolean] close Close tab when finished 
   def try_to_save_all(flags)
+    start_page = self.page
     return false unless modified_times_ok()  
     passed = true 
     (0..n_pages-1).each do |i|
@@ -89,8 +90,12 @@ class VR_Tabs < Gtk::Notebook
       unless try_to_save(flags[:ask])
         passed = false
       end
-    end  
-    (n_pages).times { destroy_tab() }  if flags[:close]
+    end
+    if flags[:close] 
+      (n_pages).times { destroy_tab() } 
+    else
+      self.page = start_page
+    end
     return passed  
   end
 
@@ -159,11 +164,20 @@ class VR_Tabs < Gtk::Notebook
   def destroy_tab(tab = self.page)
     return unless tab
     self.page = self.page - 1 # stops some warnings
+#    self.page = -1
+#alert "1"
+#alert "before"
+    self.get_nth_page(tab).destroy
     clear_events
+#alert "during"
+#    self.remove_page(tab)  # causes warinings nothing I can do!
+    clear_events
+#alert "after"
     @docs.delete_at(tab)
+
 #    self.set_tab_label(get_nth_page(tab), nil)   
-    self.remove_page(tab)  # causes warinings nothing I can do!
     load_tab() if @docs.empty?
+
   end
 
   def get_open_fn()
