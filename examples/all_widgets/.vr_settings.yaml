@@ -1,5 +1,5 @@
 --- !ruby/object:VR_ENV
-vr_yaml_file: ".vr_settings.yaml"
+vr_yaml_file: "/home/eric/vrp/vr3/examples/all_widgets/.vr_settings.yaml"
 width: 1125
 height: 688
 panel_pos: 327
@@ -11,6 +11,7 @@ open_files:
 open_folders:
 - "/home/eric/vrp/vr3/examples/all_widgets"
 - "/home/eric/vrp/vr3/examples/all_widgets/bin"
+- "/home/eric/vrp/vr3/examples/all_widgets/bin/glade"
 current_file: "/home/eric/vrp/vr3/examples/all_widgets/bin/AllWidgets.rb"
 current_line: 35
 rdoc_command_line: rdoc -x README

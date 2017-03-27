@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.version = VERSION   
   s.has_rdoc = false
   s.add_dependency('gtk3', '= 3.1.1')
+  s.add_dependency('cairo', '= 1.15.5')
   s.add_dependency('gtksourceview3', '= 3.1.1')
   s.add_dependency('require_all', '>= 1.2')
   s.authors = ["Eric Cunningham"]  
