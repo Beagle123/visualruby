@@ -9,7 +9,7 @@ class VR_TextShell < GtkSource::View
     @current_line = 0
     @lines = [] #needed
     self.editable = false
-    @blue = buffer.create_tag("blue", { "foreground" => "#0000A0", "underline" => Pango::UNDERLINE_SINGLE  })
+    @blue = buffer.create_tag("blue", { "foreground" => "#0000A0", "underline" => :single }) # Pango::UNDERLINE_SINGLE  })
     self.highlight_current_line = true
     @hilight = buffer.create_tag("hilight", { "background" => "#FFF0A0" } )
     signal_connect("button_release_event") { jump_to(line_at_cursor() - 1) }  #buffer's lines start at 1  

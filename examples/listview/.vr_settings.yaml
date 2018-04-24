@@ -1,5 +1,5 @@
 --- !ruby/object:VR_ENV
-vr_yaml_file: ".vr_settings.yaml"
+vr_yaml_file: "/home/eric/vrp/vr3/examples/listview/.vr_settings.yaml"
 width: 1251
 height: 691
 panel_pos: 322
@@ -8,9 +8,11 @@ run_command_line: ruby main.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/listview/bin/SongListViewGUI.rb"
 - "/home/eric/vrp/vr3/examples/listview/main.rb"
+- "/home/eric/vrp/vr3/examples/listview/bin/SongListView.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/listview"
-current_file: "/home/eric/vrp/vr3/examples/listview/main.rb"
-current_line: 4
+- "/home/eric/vrp/vr3/examples/listview/bin"
+current_file: "/home/eric/vrp/vr3/examples/listview/bin/SongListView.rb"
+current_line: 74
 rdoc_command_line: rdoc -x README
 filename: ".vr_settings.yaml"

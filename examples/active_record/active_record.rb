@@ -21,6 +21,10 @@ ActiveRecord::Base.establish_connection(
 :database => "db/development.sqlite3",
 )
 
+#Person.all.show
+
+VR::ListView.new(Person.all).show_glade
+
 ChoosePerson.new.show_glade()
 
 

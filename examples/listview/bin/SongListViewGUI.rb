@@ -8,6 +8,7 @@ class SongListViewGUI < SongListView
   end
 
   def self__row_activated(*args)
+    alert args[2].col_symbol 
     return unless rows = selected_rows
     row = rows[0]
     alert "You selected\n#{row[:song]}\nby  #{row[:artist]}"

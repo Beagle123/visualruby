@@ -8,7 +8,7 @@
 class SongListView < VR::ListView
 
 
-  AUDIO_ICON = Gdk::Pixbuf.new(:file => File.dirname(__FILE__) + "/audio-x-generic.png")
+  AUDIO_ICON = GdkPixbuf::Pixbuf.new(:file => File.dirname(__FILE__) + "/audio-x-generic.png")
 
 
   def initialize 

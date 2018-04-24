@@ -417,7 +417,7 @@ module GladeGUI
   # @param [String] widget Name for the widget in the glade form.
   # @return [String] the key value.
   def extract_key(widget)
-    widget.builder_name[/\[.+?\]/]
+    widget.builder_name.scan(/\[(.+?)\]/).flatten[0]
   end
 
   # Populates the glade form from the fields of an ActiveRecord object.

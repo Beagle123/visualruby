@@ -4,6 +4,12 @@ module VR
   class ListView < Gtk::TreeView
   
     include ViewCommon
+    include GladeGUI
+
+    def before_show
+      @builder[:scrolledwindow1].add self
+      self.visible = true
+    end
 
 # The new() constructor takes a Hash that defines the columns as its only argument.  The Hash defines
 # symbols as the keys to give an ID to each column.  The Hash also defines the type (class) of the column.
@@ -15,7 +21,7 @@ module VR
 # from ActiveRecordBase.  The common types that are included by default are:
 #
 # * String - Displays and edits as a String.
-# * Integer - Displays number, edits like a String.
+# * Integer - Displays numadd_activeber, edits like a String.
 # * FixNum - ditto
 # * Integer - ditto
 # * Float - ditto
@@ -33,27 +39,35 @@ module VR
 
     def initialize(cls)
       super()
-      hash = flatten_hash(cls)
+      if cls.respond_to?(:column_names)
+        hash = {}
+        cls.column_names.each { |key| hash[key.to_sym] = String }
+        cols = hash
+      else
+        hash = flatten_hash(cls)
+        cols = cls
+      end
       vals = hash.values
       self.model = Gtk::ListStore.new(*vals)
-      load_columns(cls)
+      load_columns(cols)
+      add_active_record_rows(cls) if cls.respond_to?(:column_names)    
     end
 
-#    def add_active_record_rows(ar) # :nodoc:
-#      ar.each do |obj|
-#        row = add_row()
-#        matches = obj.attributes.keys & @column_keys #intersection
-#        matches.each { |field| row[field] = obj.attributes[field] }   
-#      end
-#    end
 
     def add_active_record_rows(ar) # :nodoc:
       fields = ar.column_names.map { |x| x.to_sym }
       matches = fields & @column_keys #intersection
       ar.each do |obj|
         row = add_row()
-        matches.each { |f| row[f] = obj[f] unless obj[f].nil? }          
+        matches.each do |f|
+#          begin  
+            row[f] = obj[f] unless obj[f].nil?
+#          rescue
+#            row[f] = obj[f].to_s
+#          end
+        end          
       end
+      self.visible = true
     end
 
 

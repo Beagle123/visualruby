@@ -16,10 +16,15 @@ class VR_Document < GtkSource::View
     show_right_margin = true
     right_margin_position = 80
     auto_indent = true
-    if ["", ".gemspec", ".erb"].include?(File.extname(full_path_file)) 
+    if ["", ".gemspec"].include?(File.extname(full_path_file)) 
       buffer.language = GtkSource::LanguageManager.new.get_language("ruby")
-    else  
-      buffer.language = GtkSource::LanguageManager.new.guess_language(full_path_file)
+    elsif [".html", ".erb"].include?(File.extname(full_path_file))
+      buffer.language = GtkSource::LanguageManager.new.get_language("html")
+    elsif [".yaml", ".yml"].include?(File.extname(full_path_file))
+      buffer.language = GtkSource::LanguageManager.new.get_language("yaml")
+    else 
+      guess_lang = GtkSource::LanguageManager.new.guess_language(File.basename(full_path_file))
+      buffer.language = guess_lang
     end
     buffer.highlight_syntax = true
     buffer.highlight_matching_brackets = false
@@ -36,7 +41,7 @@ class VR_Document < GtkSource::View
   def update_style()
     override_font(Pango::FontDescription.new($VR_ENV_GLOBAL.font_name))
     tab_array = Pango::TabArray.new(1, true)
-    tab_array.set_tab(0, Pango::TAB_LEFT, $VR_ENV_GLOBAL.tab_spaces.to_i * 8)  
+    tab_array.set_tab(0, :left, $VR_ENV_GLOBAL.tab_spaces.to_i * 8)  
     set_tabs(tab_array)
   end
 

@@ -77,6 +77,18 @@ module VR::Col
       self.clickable = id(sym).to_b
     end
 
+    def sortable=(bool)
+      self.sort_column_id = bool ? @view.id(@view.vr_cols.key(self)) : -1
+    end
+
+    def id
+      @view.id(col_symbol)
+    end
+
+    def col_symbol
+      @view.vr_cols.key(self)
+    end
+
   end
 
 end

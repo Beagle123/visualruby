@@ -12,8 +12,8 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/active_record"
 - "/home/eric/vrp/vr3/examples/active_record/bin"
 - "/home/eric/vrp/vr3/examples/active_record/bin/glade"
-current_file: "/home/eric/vrp/vr3/examples/active_record/bin/Person.rb"
-current_line: 3
+current_file: "/home/eric/vrp/vr3/examples/active_record/active_record.rb"
+current_line: 34
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

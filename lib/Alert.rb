@@ -26,19 +26,31 @@ module VR
       @builder[:window1].resize(@flags[:width],100) if @flags[:width].to_i > 100
       @builder[:headline].show if @flags[:headline]
     
-      if text = @flags[:input_text]
+      if @flags[:input_text]
         @flags[:button_yes] ||= "Save"
         @flags[:button_no] ||= "Cancel"
-        @builder[:input_text].show 
+        @builder[:input_text].show
+      elsif choices = @flags[:choices]
+        @flags[:button_yes] ||= "Select"
+        @flags[:button_no] ||= "Cancel"
+        choices.each { |c| @builder[:choices_text].append_text(c) }
+        @choices_text = choices[0]
+        @builder[:choices_text].show 
       end 
 
       @builder[:button_no].show if @flags[:button_no]
       @builder[:button_cancel].show if @flags[:button_cancel]
-       set_glade_hash(@flags)
+      set_glade_hash(@flags)
     end
 
     def button_yes__clicked(but)
-      @answer.answer = @flags[:input_text] ? @builder[:input_text].text : true
+      if @flags[:input_text]
+        @answer.answer = @builder[:input_text].text 
+      elsif @flags[:choices]
+        @answer.answer = @builder[:choices_text].active_text
+      else
+        @answer.answer = true
+      end
       @builder[:window1].destroy
     end
 
