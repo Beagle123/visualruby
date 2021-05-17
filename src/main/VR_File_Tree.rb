@@ -35,14 +35,15 @@ class VR_File_Tree < VR::FileTreeView
   end
 
   def popInstallGem_clicked()
-    file_name = get_selected_path()
+    file_name = get_selected_path().to_s
     begin
-      inst = Gem::Installer.new(file_name, :wrappers => true, :ignore_dependencies => true)
-      inst.install().to_s
       txt = "\nInstalled Gem:  " + file_name
+      package = Gem::Package.new(file_name)
+      inst = Gem::Installer.new(package, wrappers: true, ignore_dependencies: true)
+      inst.install
       txt += "\nNo check was made for dependencies"
     rescue Exception => e
-      txt += "\n" + e.message
+      txt += "\n" + e.message.to_s
     end
     @main.shell.buffer.text = txt
   end
@@ -78,10 +79,11 @@ class VR_File_Tree < VR::FileTreeView
     if not File.file?(glade_file)
       path = File.dirname(glade_file)
       FileUtils.makedirs(path) if not File.directory?(path)
-      FileUtils.cp File.expand_path(File.dirname(__FILE__)+"/../../skeleton/document/New.glade"), glade_file
+      blank_glade = File.expand_path(File.dirname(__FILE__)+"/../../skeleton/document/New.glade") 
+      FileUtils.cp blank_glade, glade_file
       VR_Tools.popen("#{$VR_ENV_GLOBAL.glade_path} #{glade_file}")
-      sleep(2) #must do it this way because different thread
-      File.delete(glade_file)
+#       sleep(5) #must do it this way because different thread
+#       File.delete(glade_file)
     else
       VR_Tools.popen("#{$VR_ENV_GLOBAL.glade_path} #{glade_file}")
     end

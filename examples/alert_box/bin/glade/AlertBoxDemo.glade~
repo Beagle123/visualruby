@@ -96,7 +96,6 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="halign">start</property>
                 <property name="label" translatable="yes">&lt;big&gt;Yes/No Example&lt;/big&gt;
 Ask the user a yes/no question by changing the text on the buttons.</property>
                 <property name="use-markup">True</property>
@@ -110,7 +109,6 @@ Ask the user a yes/no question by changing the text on the buttons.</property>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="halign">start</property>
                 <property name="label" translatable="yes">&lt;big&gt; Simple Alert Box Example&lt;/big&gt;
 This just shows a message on the screen.  Its very useful for alerts and debugging.</property>
                 <property name="use-markup">True</property>
@@ -124,7 +122,6 @@ This just shows a message on the screen.  Its very useful for alerts and debuggi
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="halign">start</property>
                 <property name="label" translatable="yes">&lt;big&gt;Request Input Example&lt;/big&gt;
 This example shows how you can ask the user to enter text into a textbox.</property>
                 <property name="use-markup">True</property>
@@ -138,7 +135,6 @@ This example shows how you can ask the user to enter text into a textbox.</prope
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="halign">start</property>
                 <property name="label" translatable="yes">&lt;big&gt;Ask Any Question&lt;/big&gt;
 Change the text on the buttons to ask anything</property>
                 <property name="use-markup">True</property>

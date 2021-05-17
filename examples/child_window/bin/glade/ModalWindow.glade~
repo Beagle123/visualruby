@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkWindow" id="window1">
-    <property name="can-focus">False</property>
+    <property name="can_focus">False</property>
     <property name="title" translatable="yes">Modal Window</property>
     <property name="modal">True</property>
-    <property name="window-position">center</property>
+    <property name="window_position">center</property>
     <child>
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="margin-left">20</property>
-        <property name="margin-right">20</property>
-        <property name="margin-top">20</property>
-        <property name="margin-bottom">20</property>
+        <property name="can_focus">False</property>
+        <property name="margin_left">20</property>
+        <property name="margin_right">20</property>
+        <property name="margin_top">20</property>
+        <property name="margin_bottom">20</property>
         <property name="orientation">vertical</property>
         <property name="spacing">20</property>
         <child>
           <object class="GtkLabel" id="label1">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="label" translatable="yes">This modal window freezes the parent, and it's always on top.</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">This modal window freezes the parent, and is always on top.</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -32,15 +32,15 @@
         <child>
           <object class="GtkButtonBox" id="buttonbox1">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
-            <property name="layout-style">start</property>
+            <property name="layout_style">start</property>
             <child>
               <object class="GtkButton" id="buttonOk">
                 <property name="label" translatable="yes">Ok</property>
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>

@@ -1,6 +1,6 @@
 --- !ruby/object:VR_ENV
 vr_yaml_file: "/home/eric/vrp/vr3/examples/phantom/.vr_settings.yaml"
-width: 812
+width: 953
 height: 600
 panel_pos: 360
 notebook_panel_position: 400
@@ -13,5 +13,5 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/phantom/src"
 - "/home/eric/vrp/vr3/examples/phantom/src/glade"
 current_file: "/home/eric/vrp/vr3/examples/phantom/main.rb"
-current_line: 11
+current_line: 1
 rdoc_command_line: rdoc -x README

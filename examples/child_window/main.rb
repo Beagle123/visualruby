@@ -1,9 +1,5 @@
-#!/usr/bin/ruby
 
-#Updated for Gtk3!
-
-# ignore -- this is for development, same as require 'vrlib'
-require File.exists?("./../../lib/vrlib.rb") ?  "./../../lib/vrlib.rb" : "vrlib"
+require "vrlib"
 
 # from require_all gem:
 require_rel 'bin/'

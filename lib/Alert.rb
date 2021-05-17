@@ -7,6 +7,7 @@ module VR
 
     attr_accessor :answer    
 
+    
     include GladeGUI
     
     # Just passes on values from #alert method. 

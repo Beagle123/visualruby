@@ -51,7 +51,7 @@ module VR::Col
 #puts "DateTime:" + iter[ren.model_col].class.name + ":" + iter[ren.model_col].to_s
             ren.text = iter[ren.model_col].strftime(ren.date_format).to_s
             end
-          elsif type == String or type == Float or type == Integer or type == Fixnum  
+          elsif type == String or type == Float or type == Integer   
             r = VR::Col::Ren::CellRendererText.new(*a)
             self.pack_start( r, false )
             self.add_attribute( r, :text,  model_col)

@@ -1,7 +1,5 @@
-#!/usr/bin/ruby
 
-# ignore -- this is for development, same as require 'vrlib'
-require File.exists?("./../../lib/vrlib.rb") ?  "./../../lib/vrlib.rb" : "vrlib"
+require "vrlib"
 require 'find'
 
 

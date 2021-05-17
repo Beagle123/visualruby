@@ -35,7 +35,7 @@ class AllWidgets
     @builder["checkbutton1"].label = "I'm a Check Button" #this could be set in glade
   end
 
-  def initialize()  #window1__show(*args)
+  def initialize()  
     @window1 = "Showing All Widgets"
     @label1 = "I'm a Label"
     @checkbutton1 = true

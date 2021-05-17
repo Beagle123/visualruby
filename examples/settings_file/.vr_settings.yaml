@@ -13,6 +13,6 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/settings_file"
 - "/home/eric/vrp/vr3/examples/settings_file/bin"
 - "/home/eric/vrp/vr3/examples/settings_file/bin/glade"
-current_file: "/home/eric/vrp/vr3/examples/settings_file/bin/MainApp.rb"
-current_line: 26
+current_file: "/home/eric/vrp/vr3/examples/settings_file/bin/SavableSettings.rb"
+current_line: 39
 rdoc_command_line: rdoc -x README

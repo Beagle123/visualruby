@@ -92,28 +92,28 @@ class VR_Document < GtkSource::View
     apply_tag_to_line(line-1, @hilight, nil)
   end
 
-  def comment()
+
+  def insert_before_selected(text)
     return unless buffer.has_selection?
     s,e = get_selected_lines()
     (s..e).each do |i|
       iter, iter_end = get_line_iters(i)
-      iter_end.offset = iter.offset+1
-      chr = buffer.get_text(iter, iter_end, false)
-      buffer.insert(iter, "#")
+      buffer.insert(iter, text)
     end  
   end
 
-  def un_comment()
+  def delete_before_selected(text)
     return unless buffer.has_selection?
     s,e = get_selected_lines()
     (s..e).each do |i|
       iter, iter_end = get_line_iters(i)
       next if iter_end.offset <=  iter.offset + 1
-      iter_end.offset = iter.offset+1
+      iter_end.offset = iter.offset + text.size 
       chr = buffer.get_text(iter, iter_end, false)
-      buffer.delete(iter, iter_end) if chr == "#"        
+      buffer.delete(iter, iter_end) if chr == text   
     end  
   end
+
 
   def get_selected_lines()
     return unless buffer.has_selection?

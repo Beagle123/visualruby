@@ -1,16 +1,14 @@
 #!/usr/bin/ruby
 
-#Updated for Gtk3!
 
-# ignore -- this is for development, same as require 'vrlib'
-require File.exists?("./../../lib/vrlib.rb") ?  "./../../lib/vrlib.rb" : "vrlib"
+require "vrlib"
 
 # from require_all gem:
-require_rel 'bin/'
+require_rel 'bin'
 
 
-x = DataObjectGUI.new("Harvey Milktoast", "123 Main, Hemet, CA 90090",
+form = DataObjectGUI.new("Harvey Milktoast", "123 Main, Hemet, CA 90090",
      "harvey@harveyserver.com", "132-243-4323") 
-x.show_glade()
+form.show_glade()
 
 

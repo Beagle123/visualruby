@@ -11,8 +11,9 @@ open_files:
 open_folders:
 - "/home/eric/vrp/vr3/examples/calculator"
 - "/home/eric/vrp/vr3/examples/calculator/bin"
-current_file: "/home/eric/vrp/vr3/examples/calculator/bin/Calculator.rb"
-current_line: 65
+- "/home/eric/vrp/vr3/examples/calculator/bin/glade"
+current_file: "/home/eric/vrp/vr3/examples/calculator/main.rb"
+current_line: 2
 rdoc_command_line: rdoc -x README
 settings_file_version: 1
 filename: ".vr_settings.yaml"

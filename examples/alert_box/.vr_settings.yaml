@@ -1,6 +1,6 @@
 --- !ruby/object:VR_ENV
 vr_yaml_file: "/home/eric/vrp/vr3/examples/alert_box/.vr_settings.yaml"
-width: 800
+width: 910
 height: 600
 panel_pos: 360
 notebook_panel_position: 400
@@ -9,6 +9,8 @@ open_files:
 - "/home/eric/vrp/vr3/examples/alert_box/main.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/alert_box"
+- "/home/eric/vrp/vr3/examples/alert_box/bin"
+- "/home/eric/vrp/vr3/examples/alert_box/bin/glade"
 current_file: "/home/eric/vrp/vr3/examples/alert_box/main.rb"
-current_line: 8
+current_line: 6
 rdoc_command_line: rdoc -x README

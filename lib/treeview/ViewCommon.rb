@@ -334,7 +334,7 @@ attr_accessor :vr_renderer, :column_keys, :vr_cols
 #The VR::ListView class will 
 #automatically assign renderers to each column based on its type:
 #
-#String, Fixnum, Integer, Float => VR::Col::Ren::CellRendererText
+#String, Integer, Float => VR::Col::Ren::CellRendererText
 #TrueClass => VR::Col::Ren::CellRendererToggle
 #GdkPixbuf => VR::Col::Ren::CellRendererPixbuf
 #DateTime => VR::Col::Ren::CellRendererDate
@@ -386,7 +386,7 @@ attr_accessor :vr_renderer, :column_keys, :vr_cols
 #  using VR::ViewCommon#vr_row.
 
     def id(id)
-      return (id.is_a? Fixnum or id.is_a? Integer) ? id : @column_keys.index(id)
+      return (id.is_a? Integer) ? id : @column_keys.index(id)
     end  
 
   end

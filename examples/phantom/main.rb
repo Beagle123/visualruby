@@ -1,5 +1,3 @@
-#!/usr/bin/ruby
-
 require "vrlib"
 
 # from require_all gem:

@@ -13,7 +13,7 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/all_widgets/bin"
 - "/home/eric/vrp/vr3/examples/all_widgets/bin/glade"
 current_file: "/home/eric/vrp/vr3/examples/all_widgets/bin/AllWidgets.rb"
-current_line: 35
+current_line: 38
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 settings_file_version: 1

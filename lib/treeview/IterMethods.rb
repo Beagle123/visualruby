@@ -18,7 +18,7 @@ module VR::ViewCommon
   #  
     
       def [](col_id)
-        if col_id.is_a? Fixnum
+        if col_id.is_a? Integer
           super
         else
           get_value(id(col_id))
@@ -26,7 +26,7 @@ module VR::ViewCommon
       end
 
       def []=(col_id,val)
-        if col_id.is_a? Fixnum
+        if col_id.is_a? Integer
           super(col_id, val)
         else
           super(id(col_id), val)
@@ -42,7 +42,7 @@ module VR::ViewCommon
   #  Normally, its best to use VR's "rows" instead.  They will already use the column ID symbols.
   #  
       def id(col_id) # :nodoc:
-        return (col_id.is_a? Fixnum) ? col_id : @column_keys.index(col_id)
+        return (col_id.is_a? Integer) ? col_id : @column_keys.index(col_id)
       end
 
   #  This will load the values of any object into the iter.  It will look at all the

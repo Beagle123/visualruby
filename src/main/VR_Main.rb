@@ -210,27 +210,19 @@ class VR_Main
   end
 
   def toolIndent__clicked(*a)
-    press_key(65289) #tab
+    @tabs.docs[@tabs.page].insert_before_selected(" " * $VR_ENV_GLOBAL.tab_spaces.to_i )
   end
 
   def toolUnIndent__clicked(*a)
-    press_key(65056, :shift_mask) # shift+tab
+    @tabs.docs[@tabs.page].delete_before_selected(" " * $VR_ENV_GLOBAL.tab_spaces.to_i)
   end
-
-  def press_key(keyval, mask = nil)
-    evt = Gdk::EventKey.new(:key_press)
-    evt.state = mask if mask
-    evt.keyval = keyval
-    @tabs.docs[@tabs.page].signal_emit(:key_press_event,  evt) 
-  end
-
 
   def toolComment__clicked(*a)
-    @tabs.docs[@tabs.page].comment()
+    @tabs.docs[@tabs.page].insert_before_selected("# ")
   end
 
   def toolUnComment__clicked(*a)
-    @tabs.docs[@tabs.page].un_comment()
+    @tabs.docs[@tabs.page].delete_before_selected("# ")
   end
 
   def toolRun__clicked(*a)

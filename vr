@@ -13,9 +13,21 @@ def load_everything
   require "rubygems/specification"
   
   require 'require_all'
-
+ 
   require_rel 'lib/'
-  require_rel 'src/'
+  require_rel 'src/' 
+# require File.exists?("./../../lib/vrlib.rb") ?  "./../../lib/vrlib.rb" : "vrlib"
+  
+#  require_rel 'lib/GladeGUI.rb'
+
+
+
+    
+      h = VR::SavableHash.new({file: "hash.yaml", height: 33, width: 77})
+oinspect h
+      h.save
+
+
 
   VR_Main.new(ARGV, @splash).show_glade()
 
