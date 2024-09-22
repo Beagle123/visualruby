@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: ListView Tutorial
+  
+    &mdash; Visual Ruby
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "ListView_Tutorial";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="just_file_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+<!--       <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: ListView Tutorial</span>
+  
+</div>
+ 
+       <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div> 
+        <div class="clear"></div>
+      </div>
+
+      <iframe id="search_frame" src=""></iframe>
+-->
+      <div id="content"><div id='filecontents'>
+<h1 id="label-ListView+Tutorial">ListView Tutorial</h1>
+
+<p>VR::ListView offers you the abilitly to make complex listviews without
+having to struggle  with all the details of GtkTreeView. You can create a
+VR::TreeView or VR::ListView with only  a few lines of code and do almost
+anything with it.  You can present any type of data you like including
+DateTime, VR::CalendarCol, VR::SpinCol, VR::ProgressCol, VR::ComboCol, and
+GdkPixbuf.  You can even add your own user-defined objects, and edit them.
+You can create columns from <strong>instance variables, methods</strong> or
+<strong>any object</strong>.  <strong>Everything</strong> will be editable
+and sortable.</p>
+
+<h1 id="label-Simple+Example">Simple Example</h1>
+
+<p>In this example, we&#39;ll make a ListView that displays a list of folders.
+It&#39;s the same listview that visualruby uses when you click on the “Open
+Project” button.</p>
+
+<p>When its finished it will look like this:</p>
+
+<p><img src="http://visualruby.net/img/quick_open.jpg" /></p>
+
+<p>This listview has 3 columns of data in the model:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>Folder</span> <span class='const'>Icon</span>  <span class='lparen'>(</span><span class='const'>GdkPixbuf</span><span class='rparen'>)</span>
+<span class='const'>Folder</span> <span class='const'>Name</span>  <span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span>
+<span class='const'>Modified</span> <span class='const'>Date</span>  <span class='lparen'>(</span><span class='const'>DateTime</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>The first thing we need to do is give each model column an id so we can
+identify each column.  So our code should begin with:</p>
+
+<pre class="code ruby"><code class="ruby">cols = Hash.new
+cols[:project_folder] = { :pix =&gt; Gdk::Pixbuf, :file_name =&gt; String}
+cols[:modified] =&gt; DateTime
+@view = VR::ListView.new(hash)</code></pre>
+
+<p>This defines a hashtable for the columns in the listview where there are
+two visable columns, <strong>“Project Folder” and “Modified”.</strong>  The
+“Project Folder” column will have two columns of data grouped together
+inside of it:  a GdkPixbuf and a String.  The “Modified” column will just
+conatin one data column for the date.</p>
+
+<p>Every VR::ListView has an underlying data structure called a model.  The
+model holds a table of raw data whereas the “view” has different columns
+display purposes.  This constructor will create a data model from the
+<strong>cols</strong> hash with three columns in it:  :pix, :file_name, and
+:modified.  From now on, we will refer to each column using these symbols
+to  identify <strong>both</strong> the data columns in the
+<strong>model</strong> and the visual columns in the <strong>view</strong>.
+All the methods in VR::ListView will require these IDs.</p>
+
+<p>The symbol :project_folder is simply a name for the column header.  It will
+be used to create the string “Project Folder”, then it will be discarded. 
+You don&#39;t need to refer to it in the future.</p>
+
+<p>The listview shows the data on the screen using renderers.  These renderers
+take each individual cell of data and render it on the screen so you can
+see it.  There are many different ways to display data, so there are many
+different types of renderers.   The renderers are Gtk objects, and you can
+change how everything appears by setting their properties.  Consult the Gtk
+docs to learn all the different properties you can utilize.</p>
+
+<p>When a VR::ListView is contructed, a renderer is assigned for each column
+of data in the model based on the type (class) of the column. See
+VR::ListView#new for a list of the various types of data.  For example a
+column that holds DateTime objects would have a VR::CellRendererDate
+renderer. The renderer controld how the data is diplayed on the screen.</p>
+
+<p>At this point, our ListView is blank, it just has three columns defined in
+the model, and two colums in the view.  Now its time to add some data to
+the model. To add data, we use the VR::ListView#add_row method.  Now we
+create a method named refresh() to populate a VR::ListView:</p>
+
+<pre class="code ruby"><code class="ruby">def refresh()
+  @view.model.clear                  #search for settings file
+  Dir.glob(ENV[&quot;HOME&quot;] + &quot;/**/.vr_settings.yaml&quot;)).each do |fn| 
+    mod = File.stat(fn).mtime #modified time
+    row = @view.add_row
+    row[:pix] = PIX
+    row[:file_name] = File.dirname(fn)
+    row[:modified] = DateTime.parse(mod.to_s)
+  end		
+end</code></pre>
+
+<p>The VR::ListView#add_row method returns a modified GtkTreeIter object which
+will accept our ID symbols.</p>
+
+<p>Another way to do the same thing would be:</p>
+
+<pre class="code ruby"><code class="ruby">iter = @view.model.append
+iter[id(:pix)] = PIX
+etc.</code></pre>
+
+<p>Where the VR::ListView#id method provides the column number.</p>
+
+<h2 id="label-Subclassing+VR-3A-3AListView">Subclassing VR::ListView</h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>In the example, we created an instance variable, <strong>@view</strong> to
+hold our VR::ListView.  A much  cleaner approach is to subclass
+VR::ListView:</p>
+
+<pre class="code ruby"><code class="ruby">class ProjectChooserView &lt; VR::ListView
+
+  PIX = Gdk::Pixbuf.new(File.dirname(__FILE__) + &quot;/../../img/folder.png&quot;)
+
+  def initialize()
+    cols = Hash.new
+    cols[:project_folder] = { :pix =&gt; Gdk::Pixbuf, :file_name =&gt; String}
+    cols[:modified] =&gt; DateTime
+    super(cols) 
+  end
+
+  def refresh()
+
+    @view.model.clear                  #search for settings file
+
+    Dir.glob(ENV[&quot;HOME&quot;] + &quot;/**/.vr_settings.yaml&quot;)).each do |fn| 
+      mod = File.stat(fn).mtime #modified time
+      row = @view.add_row
+      row[:pix] = PIX
+      row[:file_name] = File.dirname(fn)
+      row[:modified] = DateTime.parse(mod.to_s)
+    end
+
+  end</code></pre>
+
+<p></p>
+
+<pre class="code ruby"><code class="ruby">end</code></pre>
+
+<p>Then make a subclass of it to handle the GUI components:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>ProjectChooserGUI</span> <span class='op'>&lt;</span> <span class='const'>ProjectChooserView</span>
+
+  <span class='id identifier rubyid_include'>include</span> <span class='const'>GladeGUI</span>
+   	
+  <span class='comment'>#note:  there is an empty scrolledwindow on our glade form that we fill:
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_before_show'>before_show</span><span class='lparen'>(</span><span class='rparen'>)</span>	
+    <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrolledwindowProjTree</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='ivar'>@builder</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_refresh'>refresh</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_self__row_activated'>self__row_activated</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='id identifier rubyid_selected_row'>selected_row</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_open_project'>open_project</span><span class='lparen'>(</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='symbol'>:file_name</span><span class='rbracket'>]</span> <span class='rparen'>)</span>  
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span></code></pre>
+
+<p>This technique keeps everything organized:</p>
+<ul><li>
+<p>ProjectChooserView encapsulates everything for the VR::ListView</p>
+</li><li>
+<p>ProjectChooserGUI encapsulates all GUI components</p>
+</li></ul>
+
+<p>And it looks like this:</p>
+
+<p><img src="http://visualruby.net/img/quick_open.jpg" /></p>
+
+<h2 id="label-Editing+Cells">Editing Cells</h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>All the column types are editable except GdkPixbuf and VR::ProgressCol. 
+You can set a column to be editable by setting its (Renderer)#editable
+property to true.  The editable  property set similarly to any other
+property:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_ren_editable'>ren_editable</span><span class='lparen'>(</span><span class='symbol'>:person</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span>  <span class='comment'># makes :person col editable
+</span><span class='id identifier rubyid_ren_attr'>ren_attr</span><span class='lparen'>(</span><span class='symbol'>:person</span><span class='comma'>,</span> <span class='symbol'>:age</span><span class='comma'>,</span> <span class='symbol'>:editable</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_ren_editable'>ren_editable</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>  <span class='comment'>#set all columns to be editable
+</span></code></pre>
+
+<p>Many of the renderers default to be editable.  How an object gets edited
+depends on the type of the object.  For example, clicking on a
+VR::CalenderCol object makes a little calender appear on the screen so you
+can select a date and time;  A DateTime object will use a  GtkEntry to edit
+the date string, and it will insist that you enter a valid date;
+VR::SpinCol will display as a GtkSpinButton and only allow you to enter
+valid numbers;  And a VR::TextCol will display a small text editor to allow
+you to enter long Strings.</p>
+
+<p>There&#39;s a great example of editing a listview in the example projects
+entitled “listview.”</p>
+
+<h2 id="label-Post-Editing+Callback">Post-Editing Callback</h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>There are times you will want to update the model after an edit, and you
+can do that (or anything else) in a post-edit callback.  You can set it on
+the VR::CellRenderer objects by using the VR::ListView#renderer method:</p>
+
+<pre class="code ruby"><code class="ruby">@view.renderer(:name).edit_callback = Proc.new { |model_sym, row, view | 
+  ...your code here
+  }</code></pre>
+
+<p>This block will be called after the cell has been edited.  You can use this
+callback to update any of the columns using the “row” parameter.  For
+example, if you had an object in a column, and you edited it, you could
+write code to update other columns using the newly edited object.</p>
+<ul><li>
+<p>model_sym–the column id symbol for the column (here, it would be :name)</p>
+</li><li>
+<p>row–a GtkTreeIter iter that will respond to symbols i.e.
+<code>row[:name]</code></p>
+</li><li>
+<p>view–the VR::ListView or VR::TreeView obect parent of the renderer</p>
+</li></ul>
+
+<p>If you want to know the current value of the cell, use
+<strong><code>row[model_sym]</strong></code></p>
+
+<h2 id="label-Validating+User+Input">Validating User Input</h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>You can validate that the user has edited a cell correctly by using various
+VR::CellRenderers&#39; validate_blocks.  These blocks will be called before
+the the data model is changed, and if the block evlauates as false, the
+edit will be rejected.  This is the format for the validate_blocks:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_renderer'>renderer</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_validate_block'>validate_block</span> <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_model_sym'>model_sym</span><span class='comma'>,</span> <span class='id identifier rubyid_row'>row</span><span class='comma'>,</span> <span class='id identifier rubyid_view'>view</span><span class='op'>|</span> 
+   <span class='id identifier rubyid_text'>text</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Chester</span><span class='tstring_end'>&quot;</span></span> 
+<span class='rbrace'>}</span>
+</code></pre>
+
+<p>This will ensure that only the name “Chester” can be entered into the name
+column.</p>
+
+<p>This example is for a VR::CellRendererText type column.  The first value
+passed to the block is always the value of the edited cell.  In this case
+its “text” which is a String.</p>
+<ul><li>
+<p>text–value of edited cell.  may be number for other types of renderers.</p>
+</li><li>
+<p>model_sym–the column ID symbol (i.e. :name)</p>
+</li><li>
+<p>row–a GtkTreeIter that has the ability to respond to column IDs</p>
+</li><li>
+<p>view–the VR::ListView or VR::TreeView parent of this renderer.</p>
+</li></ul>
+
+<h1 id="label-Objects+in+Columns">Objects in Columns</h1>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>With VR::ListView and VR::TreeView, you can create columns of any type,
+including classes you&#39;ve written yourself.  To create a VR::ListView of
+your own classes, simply pass their types to the constructor:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@view</span> <span class='op'>=</span> <span class='const'>VR</span><span class='op'>::</span><span class='const'>ListView</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:person</span> <span class='op'>=&gt;</span> <span class='const'>PersonClass</span><span class='comma'>,</span> <span class='symbol'>:employer</span> <span class='op'>=&gt;</span> <span class='const'>EmployerClass</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>This will create a VR::ListView with two columns.  The first column will
+hold instances of PersonClass, and the second will hold instances of
+EmployerClass. PersonClass and EmployerClass must be classes that
+you&#39;ve already written and have been “required” into your code.  These
+classes can be anything including subclasses of ActiveRecordBase.</p>
+
+<p>Once you&#39;ve constructed your VR::ListView, you can add records
+normally:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_add_row'>add_row</span>
+<span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='symbol'>:person</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>PersonClass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Henry</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>25</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='symbol'>:employer</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>EmployerClass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Google Inc.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+</code></pre>
+
+<p>Here we&#39;re constructing new instances of each class, but usually
+you&#39;ll be working with existing objects that you want to show in a
+listview.  Obviously, you must add objects of the proper type for each
+column.</p>
+
+<p>Now a record is added with the :person column in the model containing an
+instance of PersonClass etc. Now the VR::ListView is responsible for
+showing your user-defined class PersonClass on the screen???</p>
+
+<p>So what appears in the listview?</p>
+
+<p>The listview will execute the <strong>to_s</strong> method on the instace
+of PersonClass, and that will display in the listview.  Therefore, you
+should override the <strong>to_s</strong> method in all the classes you use
+in VR::ListView:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>PersonClass</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_age'>age</span><span class='rparen'>)</span>
+    <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
+    <span class='ivar'>@age</span> <span class='op'>=</span> <span class='id identifier rubyid_age'>age</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='ivar'>@age</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span>
+</code></pre>
+
+<p>Now the text “Henry (25)” will appear in the listview for our example
+record.</p>
+
+<h2 id="label-Editing+Objects+in+a+VR-3A-3AListView">Editing Objects in a VR::ListView</h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>There&#39;s really not much point to adding objects to a VR::ListView if
+you just plan to look at them. You could just use Strings instead.  The
+real advantage of adding objects to a listview is that you can click on
+them and interact with them.  This section focuses editing objects, but
+really, you&#39;re not limited to just editing them.  The object will be
+running completely independently, so you can do anytihng you desire in the
+object&#39;s code.</p>
+
+<p>The objects you add to a VR::ListView should be GUI objects that
+<strong>include</strong> the GladeGUI interface. (If you don&#39;t
+understand GladeGUI, see the basic tutorials)  Objects that use GladeGUI
+can be shown in their own window by calling their show() method.  So,
+really our PersonClass should look more like this:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>PersonClass</span>
+
+  <span class='comment'>#this makes the class visual:
+</span>  <span class='id identifier rubyid_include'>include</span> <span class='const'>GladeGUI</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_age'>age</span><span class='rparen'>)</span>
+    <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
+    <span class='ivar'>@age</span> <span class='op'>=</span> <span class='id identifier rubyid_age'>age</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'>#this is what&#39;s shown in the VR::TreeView
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='ivar'>@age</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> 
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span>
+</code></pre>
+
+<p>Now when you double-click on a person&#39;s cell, that object&#39;s show()
+method will execute showing the object on the screen.  It is likely that
+the PersonClass will show the person&#39;s name and age and allow you to
+edit each field.  If you edit the object, your changes will be 
+automatically reflected in the VR::ListView when you return.  Also, if the
+VR::ListView is sorted, it will resort with the new value.</p>
+
+<h2 id="label-Altering+Individual+Cells-27+Appearance">Altering Individual Cells&#39; Appearance</h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>You can change the appearance of an object in a listview by adding a method
+named, <strong>visual_attributes</strong> to it.  This is very useful, for
+example, if you have a listview of account balances, and you want to show
+the negative balances in red.  This can be accomplished easily by adding a
+method named <strong>visual_attributes</strong>.  Here is an example where
+everyone over 50 years old will be displayed in red:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>PersonClass</span>
+
+  <span class='id identifier rubyid_include'>include</span> <span class='const'>GladeGUI</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_age'>age</span><span class='rparen'>)</span>
+    <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
+    <span class='ivar'>@age</span> <span class='op'>=</span> <span class='id identifier rubyid_age'>age</span>
+  <span class='kw'>end</span> 
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='ivar'>@age</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> 
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_visual_attributes'>visual_attributes</span>
+    <span class='kw'>return</span> <span class='ivar'>@age</span> <span class='op'>&gt;</span> <span class='int'>50</span> <span class='op'>?</span> <span class='lbrace'>{</span><span class='symbol'>:background</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>red</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span> <span class='op'>:</span> <span class='lbrace'>{</span><span class='symbol'>:background</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>white</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span> 
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span>
+</code></pre>
+
+<p>Now, all PersonClass objects will display red backgrounds for people over
+50 when they appear in a VR::ListView.</p>
+
+<p>There&#39;s an example of this in the example project, “active_record2.”</p>
+
+<h1 id="label-Objects+as+Rows">Objects as Rows</h1>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>In the previous example, Ruby objects were added to a VR::ListView in a
+single column. The object itself occupied the data column in the model, and
+the object&#39;s <strong>to_s</strong> method rendered the string to
+display in the listview.</p>
+
+<p>You can also populate multiple columns of data from a single object using
+the load_object() method.  This method will search the names of the
+columns, and try to match to instance variables and methods of the object. 
+For example, if we used our <strong>PersonClass</strong> from the previous
+example, we could load the fields of the listview like this:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@view</span> <span class='op'>=</span> <span class='const'>VR</span><span class='op'>::</span><span class='const'>ListView</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='const'>String</span><span class='comma'>,</span> <span class='symbol'>:age</span> <span class='op'>=&gt;</span> <span class='const'>String</span><span class='comma'>,</span> <span class='symbol'>:to_s</span> <span class='op'>=&gt;</span> <span class='const'>String</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_person'>person</span> <span class='op'>=</span> <span class='const'>PersonClass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Henry</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>25</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_add_row'>add_row</span>
+<span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_load_object'>load_object</span><span class='lparen'>(</span><span class='id identifier rubyid_person'>person</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span>  <span class='comment'># &quot;Henry&quot;
+</span></code></pre>
+
+<p>This would populate the :name and :age columns because the load_object()
+method would look at the column ID symbol for each column, and compare it
+to the instance variables of the person object.  When it found a match
+(:name) it will fill-in the :name column with the value of the instance
+variable @name from the object.</p>
+
+<p>Notice also that there is a column in the listview named
+<strong>:to_s</strong>.  This column will be filled-in using the
+<strong>PersonClass#to_s</strong> method, as described in the next section.</p>
+
+<h2 id="label-Adding+Methods+to+a+ListView">Adding Methods to a ListView</h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>You&#39;re not limited to populating columns with simple types of data like
+:name and :age.  You can also populate a column of data using the output of
+a method. In the last example, one of the column ID symbols was
+<strong>:to_s</strong>.  This column will match to the PersonClass#to_s
+method, so when you look at the VR::ListView on the screen, each cell will
+will display the output of each object&#39;s to_s method.</p>
+
+<p>In this example, the to_s method will output a simple string to display on
+the screen, but you can make your object&#39;s method output any type of
+data for the listview. For example you could write a method called
+my_birthday():</p>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>PersonClass</span>
+
+  <span class='id identifier rubyid_include'>include</span> <span class='const'>GladeGUI</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_age'>age</span><span class='rparen'>)</span>
+    <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
+    <span class='ivar'>@age</span> <span class='op'>=</span> <span class='id identifier rubyid_age'>age</span>
+  <span class='kw'>end</span> 
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_my_birthday'>my_birthday</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_year'>year</span> <span class='op'>=</span> <span class='const'>DateTime</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_year'>year</span> <span class='op'>-</span> <span class='id identifier rubyid_age'>age</span>
+    <span class='kw'>return</span> <span class='const'>CalendarCol</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='int'>01</span><span class='comma'>,</span> <span class='int'>01</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span>
+</code></pre>
+
+<p>The my_birthday() method will return a VR::CalendarCol object, which is a
+great way to edit a birthday date.  The VR::ListView&#39;s constructor will
+need to reflect that there will be a column for the person&#39;s birthday:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@view</span> <span class='op'>=</span> <span class='const'>VR</span><span class='op'>::</span><span class='const'>ListView</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='const'>String</span><span class='comma'>,</span> <span class='symbol'>:age</span> <span class='op'>=&gt;</span> <span class='const'>Integer</span><span class='comma'>,</span> <span class='symbol'>:my_birthday</span> <span class='op'>=&gt;</span> <span class='const'>VR</span><span class='op'>::</span><span class='const'>CalenderCol</span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_add_row'>add_row</span>
+<span class='id identifier rubyid_person'>person</span> <span class='op'>=</span> <span class='const'>PersonClass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Henry</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>25</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_load_object'>load_object</span><span class='lparen'>(</span><span class='id identifier rubyid_person'>person</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='symbol'>:my_birthday</span><span class='rbracket'>]</span>  <span class='comment'># &quot;1987-01-01&quot;
+</span></code></pre>
+
+<p>This will display the person&#39;s name, age and birthday in three columns.</p>
+
+<p>When you click on a person&#39;s birthday a VR::CalendarCol object will
+appear so you can edit the birthday:</p>
+
+<p><img src="http://visualruby.net/img/calendar.jpg" /></p>
+
+<p>Notice that the column name, :my_birthday must match the method name,
+my_birthday()  for the load_object() method to work.</p>
+
+<h1 id="label-Altering+The+View-27s+Appearance">Altering The View&#39;s Appearance</h1>
+
+<p><a href="#top">Back to Top</a></p>
+
+<h2 id="label-Making+Columns+Invisible">Making Columns Invisible</h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>To make columns invisible, you set the GtkTreeViewColumn#visible property. 
+Set the visible propery in the same way you set any property in a
+VR::ListView:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_col_visble'>col_visble</span><span class='lparen'>(</span><span class='symbol'>:person</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rparen'>)</span>  <span class='comment'># person is now invisible
+</span><span class='id identifier rubyid_col_visible'>col_visible</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>  <span class='comment'># all cols visible
+</span></code></pre>
+
+<p>Note:  cell renderers also have a property named visible.  But it just
+makes the data invisible and leaves the header in place.  It really
+isn&#39;t very useful. Just remmeber to use the VR::ListView#col_visible
+method.</p>
+
+<h2 id="label-Setting+New+Titles">Setting New Titles</h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>VR::ListView and VR::TreeView will automatically make nice-looking titles
+based on the IDs of the columns.  But sometimes you may want to change the
+columns&#39; titles for the sake of appearance. You can change any
+column&#39;s title my setting the GtkTreeViewColumn#title property:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_col_title'>col_title</span><span class='lparen'>(</span><span class='symbol'>:person</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Name (age)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:employer</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Place of Work</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+</code></pre>
+
+<h2 id="label-Setting+the+Width+of+Columns">Setting the Width of Columns</h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>You can set any column to have a fixed width by setting the
+GtkTreeViewColumn#width property.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_col_width'>col_width</span><span class='lparen'>(</span><span class='symbol'>:person</span> <span class='op'>=&gt;</span> <span class='int'>200</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>This will also set the GtkTreeViewColumn#sizing property to
+Gtk::TreeViewColumn::FIXED.  Which makes the column a fixed width type
+instead of “auto.”</p>
+
+<p>You can also set make all the widths equal:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_col_width'>col_width</span><span class='lparen'>(</span><span class='int'>200</span><span class='rparen'>)</span>
+</code></pre>
+
+<h2 id="label-Setting+the+Alignment+of+Columns">Setting the Alignment of Columns</h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>If you want to right-justify, left-justify, or center-justify a column,</p>
+
+<p>you can set the alignment of columns using the GtkTreeViewColumn#xalign and
+GtkCellRendererText#xalign methods.  The column version will set the
+alignment of the text in the header, and the renderer version will align
+the text in the cells.  It can be set to any Float number ranging from 0 to
+1. 0.00 = left justify, 1.00 = right justify</p>
+
+<p>@view.ren_xalign(:modified =&gt; 0.5)  # center justify text in cells</p>
+
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_col_xalign'>col_xalign</span><span class='lparen'>(</span><span class='symbol'>:modified</span> <span class='op'>=&gt;</span> <span class='float'>0.5</span><span class='rparen'>)</span>  <span class='comment'># center justify text in header
+</span></code></pre>
+
+<p>This is one of the rare circumstances where the ren_&lt;property&gt; and
+col_&lt;propery&gt; methods differ because both the renderer and column
+have an identical property, <strong>xalign</strong>.</p>
+
+<h2 id="label-Sorting+Columns"><a id="sorting" href="#sorting">Sorting Columns</a></h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>Its easy to sort colums in a VR::ListView.  Visual ruby adds a “sortable”
+property to the columns that you can set like any other property:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_col_sortable'>col_sortable</span><span class='lparen'>(</span><span class='symbol'>:first_name</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='symbol'>:last_name</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>You can also make all the columns sortable by just passing one value:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_col_sortable'>col_sortable</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>If you&#39;d like to have one column sort based on another column&#39;s
+value, you can set the “sort_column_id” property.  This could be useful,
+for example, if you wanted a column with peoples&#39; full names to sort
+based on a last_name column:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_col_sort_column_id'>col_sort_column_id</span><span class='lparen'>(</span><span class='symbol'>:full_name</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_id'>id</span><span class='lparen'>(</span><span class='symbol'>:last_name</span><span class='rparen'>)</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>Now when you click on the full_name column, the names will sort in
+last_name order.</p>
+
+<p>The “sort_column_id” method requires that you pass an Integer to identify
+the column number.  You must pass the number of the column to this method,
+so you can use the VR::ListView#id method to convert the id symbol into the
+column number. The code looks like this:</p>
+
+<p>@view.set_sort_column_id(:modified =&gt; id(:modified), :file_name =&gt;
+id(:modified))</p>
+
+<p>or equivalently:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_column'>column</span><span class='lparen'>(</span><span class='symbol'>:modified</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sort_column_id'>sort_column_id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='lparen'>(</span><span class='symbol'>:modified</span><span class='rparen'>)</span>
+<span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_column'>column</span><span class='lparen'>(</span><span class='symbol'>:file_name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sort_column_id'>sort_column_id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span><span class='lparen'>(</span><span class='symbol'>:modified</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>This code will make the column headers clickable.  When a user clicks on
+the header of a column it will sort on the column number provided.  So,
+when the user clicks on  the “Modified” header, the VR::ListView will sort
+in order of the :modified column. Also, notice that if the user clicks on
+the “File Name” header, it will sort according to the
+<strong>:modified</strong> column.  You can make headers sort on any column
+you like. This is a very useful feature because you may want to define an
+extra column in your model just for sorting purposes.</p>
+
+<p>You can see this sorting in action, by clicking on the “Open Project”
+button in visualruby. Try clicking on the headers.</p>
+
+<h3 id="label-Important+note+about+sorting-3A++">Important note about sorting:  </h3>
+
+<p>Sometimes you get errors when you try to add records to a listview when
+there is an active sort_column_id.   I know errors occur when you try to
+add records when the the listview is sorted  on a DateTime column.   You
+should re-set the active sort_column_id to a “safe” column type before
+adding records.  Simply, use this type of code:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_set_sort_column_id'>set_sort_column_id</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>This assumes that the first column in your model is a String or Fixnum (not
+a DateTime or UserDefinedClass!)</p>
+
+<h2 id="label-Adding+ActiveRecord+Objects">Adding ActiveRecord Objects</h2>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>Under construction.</p>
+
+<h1 id="label-Working+with+Gtk">Working with Gtk</h1>
+
+<p><a href="#top">Back to Top</a></p>
+
+<p>There may be times where you want to do something very customized to your
+VR::ListView, and you may need to use Gtk to do it.</p>
+
+<p>VR::ListView (and VR::TreeView) are subclasses of Gtk::TreeView, so you can
+always program them exactly like a GtkTreeView.   In fact, all the classes
+used by VR::ListView and VR::TreeView are directly subclassed from Gtk:</p>
+
+<p>VR::TreeView &lt; GtkTreeView</p>
+
+<p>VR::ListView &lt; GtkTreeView</p>
+
+<p>VR::TreeViewColumn &lt; GtkTreeViewColumn</p>
+
+<p>VR::CellRendererText &lt; GtkCellRendererText</p>
+
+<p>VR::CellRendererCombo &lt; GtkCellRendererCombo</p>
+
+<p>VR::CellRendererToggle &lt; GtkCellRendererToggle</p>
+
+<p>VR::CellRendererSpin &lt; GtkCellRendererSpin</p>
+
+<p>VR::CellRendererProgress &lt; GtkCellRendererProgress</p>
+
+<p>VR::CellRendererPixbuf &lt; GtkCellRendererPixbuf</p>
+
+<p>If you read the documentation for all the superclasses you&#39;ll find that
+you can do almost anything using Gtk&#39;s methods (but its A LOT of work!)
+That&#39;s why visualruby was created.</p>
+
+<p>Often, these methods use GtkTreeIters to refer to rows of data in the
+model.  In order to use these their iters, you need to know the column
+number in the model, as in this example:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_iter'>iter</span> <span class='op'>=</span> <span class='id identifier rubyid_selection'>selection</span><span class='period'>.</span><span class='id identifier rubyid_seleted'>seleted</span>
+<span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Chester</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<p>To get the column number “3”, you&#39;ll need to convert the symbol for the
+column to an integer using the VR::ListView#id method:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_iter'>iter</span> <span class='op'>=</span> <span class='id identifier rubyid_selection'>selection</span><span class='period'>.</span><span class='id identifier rubyid_seleted'>seleted</span>
+<span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='id identifier rubyid_id'>id</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Chester</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<p>or you can convert the iter to accept column IDs using the
+VR::ListView#vr_row method:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='id identifier rubyid_vr_row'>vr_row</span><span class='lparen'>(</span><span class='id identifier rubyid_selection'>selection</span><span class='period'>.</span><span class='id identifier rubyid_seleted'>seleted</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Chester</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<h3 id="label-Referencing+Renderers+and+Columns">Referencing Renderers and Columns</h3>
+
+<p>Many of Gtk&#39;s methods use their cell renderers and GtkTreeViewColumns. 
+VR makes it easy to get a reference to any renderer or column using the
+VR::ListView#renderer and VR::ListView#column methods:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_renderer'>renderer</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span>
+<span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_column'>column</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>Both of these methods will work on all VR::TreeView and VR::ListView
+objects.</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Wed Feb 15 16:32:36 2017 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.0 (ruby-2.3.0).
+</div>
+
+    </div>
+    <div id="resizer"></div>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_and_method_list.html" ></iframe>
+    </div>
+  </body>
+</html>
