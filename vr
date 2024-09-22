@@ -1,3 +1,5 @@
+#!/ruby
+
 require "gtk3"
 
 def load_everything
@@ -13,24 +15,27 @@ def load_everything
   require "rubygems/specification"
   
   require 'require_all'
- 
+
+
+  require_relative 'lib/GladeGUI'
+  require_relative 'lib/treeview/ViewCommon'
+  require_relative 'lib/treeview/ListView'
+  require_relative 'lib/treeview/TreeView'
+  require_relative 'src/editor/VR_TextViewCommon' 
+
+
   require_rel 'lib/'
   require_rel 'src/' 
 # require File.exists?("./../../lib/vrlib.rb") ?  "./../../lib/vrlib.rb" : "vrlib"
   
 #  require_rel 'lib/GladeGUI.rb'
 
+# @splash = nil
 
-
-    
-      h = VR::SavableHash.new({file: "hash.yaml", height: 33, width: 77})
-oinspect h
-      h.save
-
-
-
+#   VR_Main.new(ARGV, @splash).show_glade()
   VR_Main.new(ARGV, @splash).show_glade()
-
+# 
+#   Gtk.main
 end
 
 $root = File.dirname(__FILE__)

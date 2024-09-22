@@ -12,7 +12,7 @@
 #  For example, 'rb.png' will display next to files with a '.rb' extension.
 
 
-class ProjectTree < VR::FileTreeView  #(change name)
+class ProjectTree < VR::FileTreeView 
  
   attr_accessor :ftv
 

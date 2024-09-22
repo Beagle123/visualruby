@@ -48,7 +48,9 @@ class OpenProject
   def buttonOpen__clicked(*a)
       return unless row = @ftv.selected_rows.first
       test_file = File.join(row[:path], VR_ENV::SETTINGS_FILE)
+    puts "Looking for .vr_settings in: " + test_file
       if File.exists?(test_file) 
+            puts "Opening: " + row[:path]
         @parent.proj_path = row[:path]
         buttonCancel__clicked
       else

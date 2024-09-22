@@ -51,8 +51,11 @@ class VR_Main
     @builder["scrolledRemoteGems"].add(@remote_gem_tree)
     @remote_gem_tree.show
 
-    @splash.destroy 
-    Gtk.main_quit
+    if not @splash.nil? 
+      @splash.destroy
+    end
+ 
+    Gtk.main_quit #for splash
   
     unless project_valid?(@proj_path)
       toolOpenFolder__clicked # should never gets here.

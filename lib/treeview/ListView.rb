@@ -3,8 +3,9 @@ module VR
 
   class ListView < Gtk::TreeView
   
-    include ViewCommon
+
     include GladeGUI
+    include ViewCommon
 
     def before_show
       @builder[:scrolledwindow1].add self

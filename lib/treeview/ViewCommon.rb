@@ -111,7 +111,7 @@ module VR
 
   module ViewCommon
 
-attr_accessor :vr_renderer, :column_keys, :vr_cols
+    attr_accessor :vr_renderer, :column_keys, :vr_cols
   
     def load_columns(cols) # :nodoc:
       @vr_renderer = {}

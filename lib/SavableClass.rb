@@ -10,7 +10,7 @@ module VR
   def self.load_yaml(klass, file_name, *args)
     me = nil
     if File.file?(file_name) 
-      me = YAML.load(File.open(file_name).read)
+      me = YAML.unsafe_load(File.open(file_name).read)
     else 
       me = klass.new(*args)
     end

@@ -1,7 +1,7 @@
 --- !ruby/object:SavableSettings
 height: 414
-width: 350
-title: Savable Settings Demo
+width: 533
+title: Savable Settings Demo x
 text: |-
   Try running this program multiple times.
 
@@ -11,3 +11,5 @@ text: |-
 
   You may need to click the 'Refresh' to see the settings.yaml file.
 vr_yaml_file: "/home/eric/vrp/vr3/examples/settings_file/settings.yaml"
+builder: !ruby/object:Gtk::Builder {}
+top_level_window: false

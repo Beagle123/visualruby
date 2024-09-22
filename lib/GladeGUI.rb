@@ -129,6 +129,7 @@ module GladeGUI
   #   
   def load_glade() 
     caller__FILE__ = my_class_file_path() 
+puts "PATH PROBLEM:  " + caller__FILE__    
     file_name = File.join(File.split(caller__FILE__)[0] , "glade", class_name(self) + ".glade")
     @builder = Gtk::Builder.new
     @builder << file_name
@@ -362,8 +363,12 @@ module GladeGUI
 
   # @private
   def self.included(obj)
-    temp = caller[0].split(":") #correct for windows  C:\Users\george etc.
-    caller_path_to_class_file, = temp[0].size == 1 ? temp[0] + ":" + temp[1] : temp[0] 
+    lines = caller.select {|line| line.to_s.include? "`<class:" }
+puts "lines[0]:" + lines[0] + "<end>"
+#    caller.each {|a| puts a}
+    temp = lines[0].split(":") #correct for windows  C:\Users\george etc.
+    caller_path_to_class_file = temp[0].size == 1 ? temp[0] + ":" + temp[1] : temp[0] 
+puts "Path_to_class_file: " + caller_path_to_class_file   
     obj.class_eval do
       define_method :my_class_file_path do
         return caller_path_to_class_file
