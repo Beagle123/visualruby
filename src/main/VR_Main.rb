@@ -1,3 +1,5 @@
+
+
 class VR_Main 
 
   include GladeGUI
@@ -17,7 +19,10 @@ class VR_Main
 
     # load global settings (requires /home/visuaruby folder exists
     $VR_ENV_GLOBAL = VR::load_yaml(VR_ENV_GLOBAL, VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
-
+    if !File.exists?($VR_ENV_GLOBAL.default_project) or !File.exists?($VR_ENV_GLOBAL.projects_home) #start over
+      File.delete(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
+      $VR_ENV_GLOBAL = VR::load_yaml(VR_ENV_GLOBAL, VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
+    end    
 
     # try to open right project
     if not project_valid?(@proj_path) 
@@ -55,7 +60,7 @@ class VR_Main
       @splash.destroy
     end
  
-    Gtk.main_quit #for splash
+#    Gtk.main_quit #for splash
   
     unless project_valid?(@proj_path)
       toolOpenFolder__clicked # should never gets here.
@@ -152,15 +157,16 @@ class VR_Main
 #    @shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`
 #    VR_Tools.replace_html_in_docs()
 #    if File.exists?("yard_hack/index.html.replace")
-#      FileUtils.copy("yard_hack/index.html.replace", "doc/index.html") 
-#      FileUtils.copy("yard_hack/index.html.replace", "doc/frames.html") 
-#      FileUtils.copy("yard_hack/common.css", "doc/css/common.css")
+#      FileUtils.copy("yard_hack/index.html.replace", "docs/index.html") 
+#      FileUtils.copy("yard_hack/index.html.replace", "docs/frames.html") 
+#      FileUtils.copy("yard_hack/common.css", "docs/css/common.css")
 #    end
 #
 #  end
 
   def toolMyYard__clicked(*a)
-    return alert "Not available yet."
+    TestWindow.new.show_glade
+    return # alert "Not available yet."
     begin
       require "my_yard"
     rescue LoadError
@@ -170,7 +176,7 @@ class VR_Main
   end
 
   def toolViewRDoc__clicked(*a)
-    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{Dir.pwd}/doc/index.html")    
+    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{Dir.pwd}/docs/index.html")    
   end
 
   def toolSave__clicked(*a)  # saves open tab 
@@ -192,19 +198,6 @@ class VR_Main
        @tabs.try_to_save_all(:ask=>false, :close=>true)
       load_project
     end  
-  end
-
-  def toolHome__clicked(*a)
-    default_project = $VR_ENV_GLOBAL.default_project
-    return if default_project == @proj_path  
-    if not project_valid?(default_project)
-      alert("Your default home project is invalid:\n\n<b>#{default_project}</b>.\n\nGo to: Tools > Global Settings to set it.", 
-           parent: self, headline: "Invalid Home Project")
-      return
-    end 
-    return unless @tabs.try_to_save_all( ask: true, close: true)
-    @proj_path = default_project
-    load_project
   end
 
   def toolBackUp__clicked(*a)
@@ -295,7 +288,7 @@ class VR_Main
   end
 
   def menuTutorials__activate(*a)
-    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} http://www.visualruby.net")
+    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} https://beagle123.github.io/visualruby")
   end
   
   def menuInstallExamples__activate(*a)

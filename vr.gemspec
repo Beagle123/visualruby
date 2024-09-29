@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.name = "visualruby" 
   s.licenses = ["MIT"]
   s.version = VERSION   
-  s.add_dependency('gtk3', '= 4.2.3')
-  s.add_dependency('gtksourceview3', '= 4.2.3')
+  s.add_dependency('gtk3') # , ' 4.2.3')
+  s.add_dependency('gtksourceview3') #, '= 4.2.3')
 #   s.add_dependency('require_all', '= 1.4')
   s.add_dependency('require_all', '= 1.4')
   s.authors = ["Eric Cunningham"]  

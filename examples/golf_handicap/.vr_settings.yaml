@@ -4,19 +4,18 @@ width: 1086
 height: 600
 panel_pos: 360
 notebook_panel_position: 400
-run_command_line: ruby golf_handicap eric
+run_command_line: ruby golf_handicap.rb
 open_files:
-- "/home/eric/vrp/vr3/examples/golf_handicap/golf_handicap"
 - "/home/eric/vrp/vr3/examples/golf_handicap/src/Handicap.rb"
-- "/home/eric/vrp/vr3/examples/golf_handicap/src/Score.rb"
-- "/home/eric/vrp/vr3/examples/golf_handicap/golf_handicap.gemspec"
 - "/home/eric/vrp/vr3/examples/golf_handicap/src/LoadGolfer.rb"
+- "/home/eric/vrp/vr3/examples/golf_handicap/src/Score.rb"
+- "/home/eric/vrp/vr3/examples/golf_handicap/golf_handicap.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/golf_handicap"
 - "/home/eric/vrp/vr3/examples/golf_handicap/src"
 - "/home/eric/vrp/vr3/examples/golf_handicap/src/glade"
-current_file: "/home/eric/vrp/vr3/examples/golf_handicap/golf_handicap"
-current_line: 20
+current_file: "/home/eric/vrp/vr3/examples/golf_handicap/src/LoadGolfer.rb"
+current_line: 9
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

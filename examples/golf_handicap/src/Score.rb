@@ -1,28 +1,29 @@
 
 class Score
 
-  attr_accessor :date, :score, :course_name, :course_rating, :course_slope, :used, :handicap 
+  attr_accessor :ui_date_calendar, :ui_score_ent, :ui_course_name_ent
+  attr_accessor :ui_course_rating_ent, :ui_course_slope_ent, :used, :handicap 
 
   include GladeGUI
 
   def initialize(course, rating, slope)
-    @course_name = course
-    @course_rating = rating
-    @course_slope = slope
-    @date = DateTime.now
-    @score = "0"
+    @ui_course_name_ent = course
+    @ui_course_rating_ent = rating
+    @ui_course_slope_ent = slope
+    @ui_date_calendar = DateTime.now
+    @ui_score_ent = "90"
     @used = nil
-    @handicap = "0"
+    @handicap = 0
   end
 
-  def buttonSave__clicked(*a)
+  def ui_save_but__clicked(*a)
     get_glade_variables
     @used = "n" # signals save occured
     @builder[:window1].destroy
   end  
 
   def diff()
-    (@score.to_f - @course_rating.to_f) * 113 / @course_slope.to_f
+    ((@ui_score_ent.to_f - @ui_course_rating_ent.to_f) * 113 / @ui_course_slope_ent.to_f).round(1)
   end
 
   def to_s

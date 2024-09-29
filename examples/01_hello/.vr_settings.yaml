@@ -1,0 +1,25 @@
+--- !ruby/object:VR_ENV
+vr_yaml_file: "/home/eric/vrp/vr3/examples/01_hello/.vr_settings.yaml"
+width: 1366
+height: 706
+panel_pos: 360
+notebook_panel_position: 400
+run_command_line: ruby main.rb
+open_files:
+- "/home/eric/vrp/vr3/examples/01_hello/main.rb"
+- "/home/eric/vrp/vr3/examples/01_hello/README.txt"
+- "/home/eric/vrp/vr3/examples/01_hello/src/MyClass.rb"
+open_folders:
+- "/home/eric/vrp/vr3/examples/01_hello"
+- "/home/eric/vrp/vr3/examples/01_hello/src"
+- "/home/eric/vrp/vr3/examples/01_hello/src/glade"
+current_file: "/home/eric/vrp/vr3/examples/01_hello/README.txt"
+current_line: 84
+rdoc_command_line: rdoc -x README
+builder: !ruby/object:Gtk::Builder {}
+top_level_window: false
+browser: firefox
+backup_path: "/home/eric"
+tab_spaces: 2
+glade_path: glade-3
+font_name: Monospace 10

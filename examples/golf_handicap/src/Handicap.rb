@@ -7,51 +7,53 @@ class Handicap
   end
 
   def before_show()
-    @view = VR::ListView.new(rnd: String, date: VR::Col::CalendarCol, 
+    @ui_rounds_listview = VR::ListView.new(rnd: String, date: VR::Col::CalendarCol, 
       course: String, rating_slope: String, score: String, diff: Score,
       hcp: String)
-    @view.col_xalign(diff: 1, hcp: 1, score: 1)
-    @view.col_sortable(date: true, course: true)
-    @view.show
+    @ui_rounds_listview.col_xalign(diff: 1, hcp: 1, score: 1)
+    @ui_rounds_listview.col_sortable(date: true, course: true)
+    @ui_rounds_listview.show
     golfer_file = File.basename(@vr_yaml_file, ".*")
     golfer = golfer_file.split("_").map(&:capitalize).join(' ')
-    @builder[:name].label = "<big><big><big><big><big>#{golfer}</big></big></big></big></big>"
+    @builder[:ui_name_lbl].label = "<big><big><big><big><big>#{golfer}</big></big></big></big></big>"
     if File.exists?(golfer_file + ".jpg")
-      @builder[:image].file = golfer_file + ".jpg"  
-      @builder[:image].visible = true
+      @builder[:ui_image].file = golfer_file + ".jpg"  
+      @builder[:ui_image].visible = true
     end
     refresh()
   end
 
   def refresh()
     update_handicaps
-    @view.model.clear
+    @ui_rounds_listview.model.clear
     i = 1
     @scores.each do |s|
-      row = @view.add_row()
+      row = @ui_rounds_listview.add_row()
       row[:rnd] = "#{i}."
       i += 1
-      row[:date] = VR::Col::CalendarCol.new(s.date, :format => "%d %b %Y ", :hide_time=>true, :hide_date => false)
-      row[:course] = s.course_name
-      row[:score] = s.score
-      row[:rating_slope] = "#{s.course_rating.to_s}/#{s.course_slope.to_s}"
-      row[:diff] = s
+      row[:date] = VR::Col::CalendarCol.new(s.ui_date_calendar, :format => "%d %b %Y ", :hide_time=>true, :hide_date => false)
+      row[:course] = s.ui_course_name_ent
+      row[:score] = s.ui_score_ent
+      row[:rating_slope] = "#{s.ui_course_rating_ent.to_s}/#{s.ui_course_slope_ent.to_s}"
+      row[:diff] = s  # store whole object
       row[:hcp] = s.handicap 
     end
   end
 
-  def buttonAdd__clicked(*a)
-    if row = @view.selected_rows.first
+  def ui_add_but__clicked(*a)
+    if row = @ui_rounds_listview.selected_rows.first
       course = row[:course]
       rating, slope = row[:rating_slope].split("/")
     else
-      course = rating = slope = ""
+      course = "Agusta National"
+      rating = "70"
+      slope = "134"
     end 
     score = Score.new(course, rating, slope)
-    score.show_glade
-    if !score.used.nil? and score.score.to_i > 50
+    score.show_glade(self)
+    if !score.used.nil? and score.ui_score_ent.to_i > 50  #score.used = "n" when save butoon pressed
       @scores << score
-      @scores.sort! { |x,y| y.date <=> x.date }
+      @scores.sort! { |x,y| y.ui_date_calendar <=> x.ui_date_calendar }
       refresh()
     end
   end
@@ -62,7 +64,7 @@ class Handicap
     end
     @scores.each {|s| s.used = ""}
     fill_handicap(@scores)
-    @builder[:handicap].label = "<big><big><big><big><big><big><big><big>#{@scores[0].handicap}</big></big></big></big></big></big></big></big>" if @scores[0]
+    @builder[:ui_handicap_lbl].label = "<big><big><big><big><big><big><big><big>#{@scores[0].handicap}</big></big></big></big></big></big></big></big>" if @scores[0]
   end
 
   def fill_handicap(score_array)
@@ -76,8 +78,8 @@ class Handicap
     score_array[0].handicap = count > 0 ? x[0..x.index(".")+1] : "n/a"  if score_array[0]
   end
 
-  def buttonChangeGolfer__clicked(*a)
-    @view = nil  # so it doesn't save contents
+  def ui_change_but__clicked(*a)
+    @ui_rounds_listview = nil  # so it doesn't save contents
     VR::save_yaml(self)
     @builder[:window1].destroy
     load_new_golfer
@@ -85,7 +87,7 @@ class Handicap
 
 
   def window1__delete_event(*)
-    @view = nil
+    @ui_rounds_listview = nil
     VR::save_yaml(self)
     return false #ok to close
   end
@@ -98,18 +100,18 @@ class Handicap
     end
   end  
 
-  def buttonDelete__clicked(*a)
-    return unless row = @view.selected_rows.first
+  def ui_delete_but__clicked(*a)
+    return unless row = @ui_rounds_listview.selected_rows.first
     if alert("Are you sure you want to delete this score?", button_yes: "Delete", button_no: "Cancel")
       @scores.delete(row[:diff])
       refresh
     end   
   end
 
-  def buttonEditScore__clicked(*a)
-    return unless row = @view.selected_rows.first
+  def ui_edit_but__clicked(*a)
+    return unless row = @ui_rounds_listview.selected_rows.first
     row[:diff].show_glade 
-    @scores.sort! { |x,y| y.date <=> x.date }
+    @scores.sort! { |x,y| y.ui_date_calendar <=> x.ui_date_calendar }
     refresh     
   end
 end

@@ -4,16 +4,17 @@ width: 1125
 height: 688
 panel_pos: 327
 notebook_panel_position: 400
-run_command_line: ruby main.rb
+run_command_line: ruby all_widgets.rb
 open_files:
-- "/home/eric/vrp/vr3/examples/all_widgets/bin/AllWidgets.rb"
-- "/home/eric/vrp/vr3/examples/all_widgets/main.rb"
+- "/home/eric/vrp/vr3/examples/all_widgets/all_widgets.rb"
+- "/home/eric/vrp/vr3/examples/all_widgets/src/AllWidgets.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/all_widgets"
-- "/home/eric/vrp/vr3/examples/all_widgets/bin"
-- "/home/eric/vrp/vr3/examples/all_widgets/bin/glade"
-current_file: "/home/eric/vrp/vr3/examples/all_widgets/bin/AllWidgets.rb"
-current_line: 38
+- "/home/eric/vrp/vr3/examples/all_widgets/src"
+- "/home/eric/vrp/vr3/examples/all_widgets/src/glade"
+current_file: "/home/eric/vrp/vr3/examples/all_widgets/src/AllWidgets.rb"
+current_line: 32
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 settings_file_version: 1
+top_level_window: false

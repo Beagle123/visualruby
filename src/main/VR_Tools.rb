@@ -2,7 +2,9 @@ module VR_Tools
 
   def VR_Tools.popen(cmd)
     begin
-      IO.popen(cmd)
+      lines = IO.popen(cmd).readlines
+      lines ||= [""]
+      return lines.join()    
     rescue
       alert("The following command couldn't run:\n\n<b>#{cmd}</b>\n\nCheck the path in Tools > Settings." + 
           "\n\nIn MS Windows you may need to add the 'start' command i.e. <b>'start glade'</b>")
@@ -62,14 +64,14 @@ END
   def VR_Tools.replace_html_in_docs()
     return if not File.file? "yard_hack/rdoc_replace.yaml"
     ar = YAML.load_file "yard_hack/rdoc_replace.yaml"  
-    Dir.glob("#{Dir.pwd}/doc/**/*.html") do |f|
+    Dir.glob("#{Dir.pwd}/docs/**/*.html") do |f|
       str = File.open(f).read
       ar.each do |pair|
         str.gsub!(pair[0], pair[1])
       end
       File.open(f, "w") { |file| file.puts(str) }
     end
-#    FileUtils.cp "#{Dir.pwd}/rdoc.css", "#{Dir.pwd}/doc/rdoc.css" if File.file?("#{Dir.pwd}/rdoc.css") and File.directory?("#{Dir.pwd}/doc")
+#    FileUtils.cp "#{Dir.pwd}/rdoc.css", "#{Dir.pwd}/docs/rdoc.css" if File.file?("#{Dir.pwd}/rdoc.css") and File.directory?("#{Dir.pwd}/doc")
     end
 
 end

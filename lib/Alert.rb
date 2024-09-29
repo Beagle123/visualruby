@@ -3,12 +3,12 @@ module VR
 
   # Class that the #alert method uses.  This class is note useful by itself.  See #alert method instead.
   # @see #alert
-  class Alert  
+  class Alert   
 
     attr_accessor :answer    
 
     
-    include GladeGUI
+     include GladeGUI
     
     # Just passes on values from #alert method. 
     # @see #alert      

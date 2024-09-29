@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkWindow" id="window1">
-    <property name="width_request">670</property>
-    <property name="height_request">660</property>
-    <property name="can_focus">False</property>
+    <property name="width-request">650</property>
+    <property name="height-request">500</property>
+    <property name="visible">True</property>
+    <property name="can-focus">True</property>
+    <property name="is-focus">True</property>
+    <property name="receives-default">True</property>
     <property name="title" translatable="yes">USGA Handicap Index Calculator</property>
     <property name="modal">True</property>
-    <property name="type_hint">utility</property>
+    <property name="window-position">center</property>
+    <property name="has-resize-grip">True</property>
     <child>
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_left">10</property>
-        <property name="margin_right">10</property>
-        <property name="margin_top">10</property>
-        <property name="margin_bottom">10</property>
+        <property name="can-focus">False</property>
+        <property name="margin-left">10</property>
+        <property name="margin-right">10</property>
+        <property name="margin-top">10</property>
+        <property name="margin-bottom">10</property>
         <property name="orientation">vertical</property>
         <property name="spacing">10</property>
         <child>
           <object class="GtkBox" id="box2">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="spacing">20</property>
             <child>
-              <object class="GtkImage" id="image">
-                <property name="can_focus">False</property>
+              <object class="GtkImage" id="ui_image">
+                <property name="can-focus">False</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -35,11 +39,11 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="name">
+              <object class="GtkLabel" id="ui_name_lbl">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="label" translatable="yes">&lt;big&gt;&lt;big&gt;&lt;big&gt;&lt;big&gt;Eric Cunningham&lt;/big&gt;&lt;/big&gt;&lt;/big&gt;&lt;/big&gt;</property>
-                <property name="use_markup">True</property>
+                <property name="use-markup">True</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -50,20 +54,20 @@
             <child>
               <object class="GtkFrame" id="frame1">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
+                <property name="can-focus">False</property>
+                <property name="label-xalign">0</property>
+                <property name="shadow-type">in</property>
                 <child>
                   <object class="GtkAlignment" id="alignment1">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="left_padding">12</property>
+                    <property name="can-focus">False</property>
+                    <property name="left-padding">12</property>
                     <child>
-                      <object class="GtkLabel" id="handicap">
+                      <object class="GtkLabel" id="ui_handicap_lbl">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">&lt;big&gt;&lt;big&gt;&lt;big&gt;&lt;big&gt;&lt;big&gt;&lt;big&gt;&lt;big&gt;&lt;big&gt;n/a&lt;/big&gt;&lt;/big&gt;&lt;/big&gt;&lt;/big&gt;&lt;/big&gt;&lt;/big&gt;&lt;/big&gt;&lt;/big&gt;</property>
-                        <property name="use_markup">True</property>
+                        <property name="use-markup">True</property>
                       </object>
                     </child>
                   </object>
@@ -71,7 +75,7 @@
                 <child type="label">
                   <object class="GtkLabel" id="label2">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Handicap</property>
                     <property name="justify">center</property>
                   </object>
@@ -91,12 +95,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkScrolledWindow" id="view">
+          <object class="GtkScrolledWindow" id="ui_rounds_listview">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can-focus">True</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
-            <property name="shadow_type">in</property>
+            <property name="shadow-type">in</property>
             <child>
               <placeholder/>
             </child>
@@ -110,15 +114,15 @@
         <child>
           <object class="GtkButtonBox" id="buttonbox1">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="spacing">5</property>
-            <property name="layout_style">end</property>
+            <property name="layout-style">end</property>
             <child>
-              <object class="GtkButton" id="buttonChangeGolfer">
+              <object class="GtkButton" id="ui_change_but">
                 <property name="label" translatable="yes">Change Golfer</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -127,11 +131,11 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="buttonAdd">
+              <object class="GtkButton" id="ui_add_but">
                 <property name="label" translatable="yes">Add Score</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -140,11 +144,11 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="buttonEditScore">
+              <object class="GtkButton" id="ui_edit_but">
                 <property name="label" translatable="yes">Edit Score</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -153,11 +157,11 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="buttonDelete">
+              <object class="GtkButton" id="ui_delete_but">
                 <property name="label" translatable="yes">Delete Score</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>

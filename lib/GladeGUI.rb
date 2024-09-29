@@ -116,8 +116,10 @@ module GladeGUI
   # You can get a reference to any of the widgets on the glade form by
   # using the @builder object:
   #
-  # @example 
-  #  widget = @builder["name"]
+  # @example: 
+  #   name_entry_box = @builder["ui_name_ent"]
+  #     or
+  #   @builder["ui_name_ent"].text = "This will show in the window!"
   #  
   # Normally, you should give your widgets names of instance variables: i.e. @email
   # so they can be autoloaded when the glade form is shown using the #show_glade method.  For example,
@@ -125,14 +127,12 @@ module GladeGUI
   # in your glade form.  It saves you from having to do this:
   #
   # @example
-  #  @builder[:email].text = @email
+  # @builder[:email].text = @email
   #   
   def load_glade() 
-    caller__FILE__ = my_class_file_path() 
-puts "PATH PROBLEM:  " + caller__FILE__    
+    caller__FILE__ = my_class_file_path()    
     file_name = File.join(File.split(caller__FILE__)[0] , "glade", class_name(self) + ".glade")
-    @builder = Gtk::Builder.new
-    @builder << file_name
+    @builder = Gtk::Builder.new(file: file_name)
     @builder.connect_signals{ |handle| method(handle) }
   end
 
@@ -347,8 +347,8 @@ puts "PATH PROBLEM:  " + caller__FILE__
     return unless control ||= @builder[class_name(obj) + "." + glade_name]
     case control
       when Gtk::CheckButton, Gtk::ToggleButton then control.active?
-      when Gtk::Entry then control.text
-      when Gtk::TextView then control.buffer.text
+      when Gtk::Entry then control.text.to_s
+      when Gtk::TextView then control.buffer.text.to_s
       when Gtk::FontButton then control.font_name 
       when Gtk::ColorButton then control.color.to_s[0..2] + control.color.to_s[5..6] + control.color.to_s[9..10]
       when Gtk::Label, Gtk::Button then control.label
@@ -364,11 +364,9 @@ puts "PATH PROBLEM:  " + caller__FILE__
   # @private
   def self.included(obj)
     lines = caller.select {|line| line.to_s.include? "`<class:" }
-puts "lines[0]:" + lines[0] + "<end>"
 #    caller.each {|a| puts a}
     temp = lines[0].split(":") #correct for windows  C:\Users\george etc.
-    caller_path_to_class_file = temp[0].size == 1 ? temp[0] + ":" + temp[1] : temp[0] 
-puts "Path_to_class_file: " + caller_path_to_class_file   
+    caller_path_to_class_file = temp[0].size == 1 ? temp[0] + ":" + temp[1] : temp[0]   
     obj.class_eval do
       define_method :my_class_file_path do
         return caller_path_to_class_file

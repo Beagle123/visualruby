@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = "golf_handicap"  # i.e. visualruby.  This name will show up in the gem list.
-  s.version = "0.0.10"  # i.e. (major,non-backwards compatable).(backwards compatable).(bugfix)
-  s.add_dependency "visualruby", ">= 3.2.0"
+  s.version = "0.0.11"  # i.e. (major,non-backwards compatable).(backwards compatable).(bugfix)
+  s.add_dependency "visualruby"
   s.has_rdoc = false
   s.authors = ["Eric Cunningham"] 
   s.email = "you@yoursite.com" # optional

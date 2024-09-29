@@ -1,8 +1,6 @@
 require "vrlib"
 
-# from require_all gem:
-require_rel 'src/'
-
+require_relative "src/MyClass.rb"
 
 MyClass.new.show_glade()
 

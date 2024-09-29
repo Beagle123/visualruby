@@ -1,79 +1,49 @@
 #!/ruby
 
 require "gtk3"
+require "gtksourceview3"
 
-def load_everything
-  require "rubygems"
-  require "gtksourceview3"
-  require "yaml" #needed
-  require "net/http" #needed
-  require "net/https" #needed
-  require "fileutils" #needed
-  require "rubygems/installer"
-  require "rubygems/uninstaller"
-  require "rubygems/package"
-  require "rubygems/specification"
-  
-  require_relative 'lib/vrlib'
-  
-  require_relative "src/version"
-
-  require_relative 'src/editor/VR_TextViewCommon'
-  require_relative "src/editor/VR_TextShell"
-  require_relative "src/editor/VR_TabSearch"
-  require_relative "src/editor/VR_Tabs" 
-  require_relative "src/editor/VR_Document"
-
-
-  require_relative "src/main/GemTree"
-  require_relative "src/main/NewProjectGUI"
-  require_relative "src/main/OpenProject"
-  require_relative "src/main/ProjectTree"
-  require_relative "src/main/RubygemsAPI"
-  require_relative "src/main/VR_ENV_GLOBAL"
-  require_relative "src/main/VR_ENV"
-  require_relative "src/main/VR_File_Tree"
-  require_relative "src/main/VR_Local_Gem_Tree"
-  require_relative "src/main/VR_Main"
-  require_relative "src/main/VR_Remote_Gem_Tree"
-  require_relative "src/main/VR_Tools"
-
-
-#require_rel 'src/main'
-
- 
-# require File.exists?("./../../lib/vrlib.rb") ?  "./../../lib/vrlib.rb" : "vrlib"
-  
-#  require_rel 'lib/GladeGUI.rb'
-
-# @splash = nil
-
-#   VR_Main.new(ARGV, @splash).show_glade()
-  VR_Main.new(ARGV, @splash).show_glade()
-# 
-#   Gtk.main
-end
+require_relative "src/main/SplashWindow"
 
 $root = File.dirname(__FILE__)
- 
-@splash = Gtk::Window.new()
-@splash.decorated = false
-img = Gtk::Image.new(file: File.join($root, "img", "splash.png"))
-img.visible = true
-@splash.add(img)
-@splash.position = :center_always
-@splash.show_all
-@splash.position = :center_always
+
+main = Gtk::Application.new()
+  main.signal_connect "activate" do |app|
+    splash = SplashWindow.new()
+# #     splash.show_all
+# #     splash.set_keep_above(true)
+#     splash.show_all
+#     splash.hide
+#     splash.visible = true
+#     splash.show_all
+#     while (Gtk.events_pending?)
+#       Gtk.main_iteration
+#     end
+    require_relative "all_requires"
+    VR_Main.new(ARGV,splash).show_glade()
+  end
+main.run 
 
 
 
-GLib::Timeout.add(40) {
-    while (Gtk.events_pending?)
-      Gtk.main_iteration
-    end     
-    load_everything 
-}
+# @splash = Gtk::Window.new()
+# @splash.decorated = false
+# img = Gtk::Image.new(file: File.join($root, "img", "splash.png"))
+# img.visible = true
+# @splash.set_child(img)
+# #@splash.set_position(:center)
+# #@splash.show_all
+# #@splash.position = :center_always
+# @splash.show()
 
-Gtk.main
+
+# GLib::Timeout.add(40) {
+#     while (Gtk.events_pending?)
+#       Gtk.main_iteration
+#     end     
+#     load_everything 
+# }
+# 
+# Gtk.main
 
 
