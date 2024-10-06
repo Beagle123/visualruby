@@ -1,13 +1,11 @@
 class VR_Remote_Gem_Tree < GemTree
 
-  include GladeGUI
-
   def initialize(main)
     super()
     @main = main
     @gems = Hash.new
-    load_glade()  #for pop-up menu
-    parse_signals()
+    @builder = Gtk::Builder.new(file: File.join(File.dirname(__FILE__), "glade", "VR_Remote_Gem_Tree.glade"))
+    @builder.connect_signals{ |handle| method(handle) }
   end
 
   def refresh(force = true)

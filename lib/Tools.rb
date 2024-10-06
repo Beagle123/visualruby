@@ -16,3 +16,8 @@ module VR
   end
 
 end
+
+
+def vr_project?(path)
+  File.exist?( File.join(path.to_s, VR_ENV::SETTINGS_FILE))
+end

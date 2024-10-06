@@ -1,0 +1,21 @@
+--- !ruby/object:VR_ENV
+vr_yaml_file: "/home/eric/vrp/vr3/examples/treeview/.vr_settings.yaml"
+width: 1858
+height: 1003
+panel_pos: 491
+notebook_panel_position: 687
+run_command_line: ruby familytree.rb
+open_files:
+- "/home/eric/vrp/vr3/examples/treeview/familytree.rb"
+- "/home/eric/vrp/vr3/examples/treeview/src/FamilyTree.rb"
+- "/home/eric/vrp/vr3/examples/treeview/README.txt"
+open_folders:
+- "/home/eric/vrp/vr3/examples/treeview"
+- "/home/eric/vrp/vr3/examples/treeview/src"
+- "/home/eric/vrp/vr3/examples/treeview/src/glade"
+current_file: "/home/eric/vrp/vr3/examples/treeview/README.txt"
+current_line: 1
+rdoc_command_line: rdoc -x README
+settings_file_version: 1
+builder: !ruby/object:Gtk::Builder {}
+top_level_window: false

@@ -6,35 +6,32 @@ class VR_Main
 
   attr_accessor :proj_path, :tabs, :shell, :builder, :file_tree  
   
-  def initialize(argv, splash)
-    @splash = splash
-    @proj_path = argv[0] ? argv[0] : Dir.pwd
-    @proj_path = @proj_path.chomp("/")
-  end
+  def initialize(argv)
+    # can pass project on command line
+    @proj_path = vr_project?(argv[0]) ? argv[0] : nil
+  end 
+
 
   def before_show
+
     # there must be a visualruby directory:
     required_project = File.join(ENV["HOME"],"","visualruby", "examples", "alert_box")
-    menuInstallExamples__activate if not File.directory?(required_project)
+    menuInstallExamples__activate if not vr_project?(required_project)
 
     # load global settings (requires /home/visuaruby folder exists
     $VR_ENV_GLOBAL = VR::load_yaml(VR_ENV_GLOBAL, VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
-    if !File.exists?($VR_ENV_GLOBAL.default_project) or !File.exists?($VR_ENV_GLOBAL.projects_home) #start over
+    if !File.exist?($VR_ENV_GLOBAL.default_project) or !File.directory?($VR_ENV_GLOBAL.projects_home) #start over
       File.delete(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
       $VR_ENV_GLOBAL = VR::load_yaml(VR_ENV_GLOBAL, VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
     end    
 
-    # try to open right project
-    if not project_valid?(@proj_path) 
-      if not project_valid?($VR_ENV_GLOBAL.default_project)
-        $VR_ENV_GLOBAL.default_project = required_project
-        VR::save_yaml($VR_ENV_GLOBAL) 
-      end
-      @proj_path = $VR_ENV_GLOBAL.default_project       
-    end
+
+
+    @proj_path ||= $VR_ENV_GLOBAL.default_project
+
 
     @file_tree = VR_File_Tree.new(self, File.expand_path(File.dirname(__FILE__) + "/../../img"))
-    @builder["scrolledwindowFileTree"].add(@file_tree) 
+    @builder["scrolledwindowFileTree"].add_child(@file_tree) 
 
     #add document notebook    
     @tabs = VR_Tabs.new(self) 
@@ -43,45 +40,22 @@ class VR_Main
 
     #add shell textview
     @shell = VR_TextShell.new(@tabs)
-    @builder["scrollShell"].add(@shell)
+    @builder["scrollShell"].add_child(@shell)
     @shell.show
 
     #add local gem tab
     @gem_tree = VR_Local_Gem_Tree.new(self)
-    @builder['scrolledLocalGems'].add(@gem_tree)
+    @builder['scrolledLocalGems'].add_child(@gem_tree)
     @gem_tree.show
  
     #add remote gem tab
     @remote_gem_tree = VR_Remote_Gem_Tree.new(self)
-    @builder["scrolledRemoteGems"].add(@remote_gem_tree)
+    @builder["scrolledRemoteGems"].add_child(@remote_gem_tree)
     @remote_gem_tree.show
 
-    if not @splash.nil? 
-      @splash.destroy
-    end
- 
-#    Gtk.main_quit #for splash
-  
-    unless project_valid?(@proj_path)
-      toolOpenFolder__clicked # should never gets here.
-    end
-
-    if project_valid?(@proj_path)
-      load_project
-    else
-      exit
-    end
+    load_project
 
   end
-
-  def project_valid?(proj_path)
-    return false if proj_path.nil? or proj_path == ""
-    return false if ENV["HOME"] == proj_path
-    return false unless File.directory?(proj_path)
-    return false unless File.file?(File.join(proj_path, VR_ENV::SETTINGS_FILE))
-    return true
-  end
-
 
   def load_project() # assumes valid_project? is true
     FileUtils.cd(@proj_path)
@@ -106,8 +80,8 @@ class VR_Main
     end  
   end
 
-  def notebookTree_changed #file, gem notebook
-    case @builder['notebookTree'].page
+  def notebookTree__switch_page(notebook, scroll, new_page, *args) # notebook.page = page leaving
+    case new_page 
       when 1 then @gem_tree.refresh() 
       when 2 then @remote_gem_tree.refresh(false) #false = don't force refresh
     end
@@ -156,7 +130,7 @@ class VR_Main
 #    clear_events 
 #    @shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`
 #    VR_Tools.replace_html_in_docs()
-#    if File.exists?("yard_hack/index.html.replace")
+#    if File.exist?("yard_hack/index.html.replace")
 #      FileUtils.copy("yard_hack/index.html.replace", "docs/index.html") 
 #      FileUtils.copy("yard_hack/index.html.replace", "docs/frames.html") 
 #      FileUtils.copy("yard_hack/common.css", "docs/css/common.css")
@@ -165,7 +139,7 @@ class VR_Main
 #  end
 
   def toolMyYard__clicked(*a)
-    TestWindow.new.show_glade
+    go
     return # alert "Not available yet."
     begin
       require "my_yard"
@@ -224,6 +198,15 @@ class VR_Main
   def toolRun__clicked(*a)
      run_command($VR_ENV.run_command_line)
   end     
+
+  def toolHome__clicked(*a) 
+    return unless vr_project?($VR_ENV_GLOBAL.home_project)
+    return if $VR_ENV_GLOBAL.home_project == @proj_path
+    return unless @tabs.try_to_save_all(:ask=>true)
+    @tabs.try_to_save_all(:ask => false, :close => true)
+    @proj_path = $VR_ENV_GLOBAL.home_project
+    load_project()
+  end
 
   def run_command(cmd)
     save_state()
@@ -292,13 +275,15 @@ class VR_Main
   end
   
   def menuInstallExamples__activate(*a)
-    path = File.join(ENV["HOME"], "", "visualruby", "examples")
-    VR.copy_recursively(File.expand_path(File.join(File.dirname(__FILE__),"","..","..","examples")), path) 
-    alert("The example projects are installed in this folder:\n\n<b>#{path}</b>\n\n "+
-      "Use your <b>/home/visualruby</b> folder for all your visualruby projects.", 
+    path = File.join(ENV["HOME"], "visualruby", "examples")
+    VR.copy_recursively(File.expand_path(File.join(File.dirname(__FILE__),"..","..","examples")), path) 
+    alert("Installing example projects in:\n\n<b>#{path}</b>\n\n " +
+          "The best way to learn about visualruby is to follow the examples.  Click on the <b>README.txt</b> to get started. \n" +
+          "Use your <b>/home/visualruby</b> folder for all your visualruby projects.",  
       :parent => self,  
       :headline => "Installing Example Projects...",
-      :width => 500)   
+      :width => 500) 
+    @proj_path = File.join(ENV["HOME"], "visualruby", "examples", "01_phantom") 
   end
 
   def menuAbout__activate(*a)
@@ -307,8 +292,9 @@ class VR_Main
 
   # needed so tabs can be saved, called before destroy, must return false to close wndow.
   def window1__delete_event(*args)
+    ret = !@tabs.try_to_save_all(:ask=>true)
     save_state
-    return !@tabs.try_to_save_all(:ask=>true)
+    return ret
   end
 
   def menuQuit__activate(*a)   

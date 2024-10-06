@@ -1,0 +1,23 @@
+--- !ruby/object:VR_ENV
+vr_yaml_file: "/home/eric/vrp/vr3/examples/35_child_window/.vr_settings.yaml"
+width: 1393
+height: 743
+panel_pos: 437
+notebook_panel_position: 527
+run_command_line: ruby child_window.rb
+open_files:
+- "/home/eric/vrp/vr3/examples/35_child_window/child_window.rb"
+- "/home/eric/vrp/vr3/examples/35_child_window/src/MyChildClass.rb"
+- "/home/eric/vrp/vr3/examples/35_child_window/src/ModelessWindow.rb"
+- "/home/eric/vrp/vr3/examples/35_child_window/src/ModalWindow.rb"
+- "/home/eric/vrp/vr3/examples/35_child_window/src/ChildWindowDemo.rb"
+open_folders:
+- "/home/eric/vrp/vr3/examples/35_child_window"
+- "/home/eric/vrp/vr3/examples/35_child_window/src"
+- "/home/eric/vrp/vr3/examples/35_child_window/src/glade"
+current_file: "/home/eric/vrp/vr3/examples/35_child_window/src/ChildWindowDemo.rb"
+current_line: 5
+rdoc_command_line: rdoc -x README
+builder: !ruby/object:Gtk::Builder {}
+top_level_window: false
+settings_file_version: 1

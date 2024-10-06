@@ -12,7 +12,7 @@ class OpenProject
     @ftv = ProjectTree.new()
     @ftv.show
     @ftv.set_show_expanders(false)
-    @builder["view"].add(@ftv)
+    @builder["view"].add_child(@ftv)
   end
 
   def ftv__cursor_changed(*a)
@@ -20,8 +20,8 @@ class OpenProject
   end
 
   def ftv__row_activated(_self, path, col)
-    return unless row = @ftv.selected_rows.first
-    if @parent.project_valid?(row[:path])
+    return unless row = @ftv.selected_rows.first 
+    if vr_project?(row[:path])
       buttonOpen__clicked
     else
       @ftv.expand_or_collapse_folder()
@@ -47,10 +47,7 @@ class OpenProject
 
   def buttonOpen__clicked(*a)
       return unless row = @ftv.selected_rows.first
-      test_file = File.join(row[:path], VR_ENV::SETTINGS_FILE)
-    puts "Looking for .vr_settings in: " + test_file
-      if File.exists?(test_file) 
-            puts "Opening: " + row[:path]
+      if vr_project?( row[:path] ) 
         @parent.proj_path = row[:path]
         buttonCancel__clicked
       else
@@ -58,15 +55,14 @@ class OpenProject
       end
   end
 
- def buttonNewWindow__clicked(*a)
-      return unless row = @ftv.selected_rows.first
-      test_file = File.join(row[:path], VR_ENV::SETTINGS_FILE)
-      if File.exists?(test_file) 
-        VR_Tools.popen("vr #{row[:path]}")
-        buttonCancel__clicked
-      else
-        @ftv.expand_or_collapse_folder()
-      end
+  def buttonNewWindow__clicked(*a)
+    return unless row = @ftv.selected_rows.first
+    if vr_project?(row[:path]) 
+      Open3.popen3("vr #{row[:path]}")
+      buttonCancel__clicked
+    else
+      @ftv.expand_or_collapse_folder()
+    end
   end
 
   def buttonNew__clicked(*a)

@@ -153,18 +153,18 @@ module GladeGUI
 #
 # Remember that it will enforce the naming convention:  name__signal (two underscores). 
   def parse_signals()
-    meths = self.class.instance_methods()
+    meths = self.class.instance_methods().select { |m| m.name.include?("__") } 
     meths.each do |meth|
       meth = meth.to_s #bug fix ruby 1.9 gives stmbol
       glade_name, signal_name = *(meth.split("__"))
       next if (signal_name.to_s == "" or glade_name.to_s == "") #covers nil
-      if @builder
+#      if @builder
         @builder.objects.each do |obj|
           next unless obj.respond_to?(:builder_name)
           if obj.builder_name == glade_name or obj.builder_name =~ /^(?:#{class_name(self)}\.|)#{glade_name}\[[a-zA-Z\d_-]+\]$/ #arrays
             obj.signal_connect(signal_name) { |*args| method(meth.to_sym).call(*args) } 
           end
-        end
+#        end
       end
       obj = glade_name == "self" ? self : self.instance_variable_get("@" + glade_name)
       obj ||= eval(glade_name) if respond_to?(glade_name) and method(glade_name.to_sym).arity == 0 # no arguments!
@@ -172,19 +172,20 @@ module GladeGUI
         obj.signal_connect(signal_name) { |*args| method(meth.to_sym).call(*args) }
       end
     end
+    # now parse instance variables looking for "self__"
+    instance_variables.each do |var|
+      obj = self.instance_variable_get(var)
+      meths = obj.class.instance_methods().select { |m| m.name.include?("self__") } 
+      meths.each do |meth|
+        meth = meth.to_s
+        signal_name = meth.split("__")[1]
+        if obj.respond_to?("signal_connect")
+          obj.signal_connect(signal_name) { |*args| obj.method(meth.to_sym).call(*args) }
+        end  
+      end
+    end  
   end
-
-# parses instance variables added in before_show
-#  def parse_instance_signals(dig = true)
-#    instance_variables.each do |var|
-#      obj = instance_variable_get(var)
-#      if obj.respond_to?(:load_glade)
-#        obj.load_glade
-#        obj.parse_signals                         # dig one level
-#        obj.parse_instance_signals(false) if dig  # never ending loop if instance vaiables are in 2 objects
-#      end
-#    end
-#  end    
+   
 
 #  This method is the most useful method to populate a glade form.  It will
 #  populate from active_record fields and instance variables.  It will simply 
@@ -383,6 +384,10 @@ module GladeGUI
   # @return nothing.
   def show_glade(parent = nil)
     load_glade()
+    if @builder[:window1].nil? 
+      alert "Error:  You need to name your window, 'window1' in glade.  Edit glade file."
+      return
+    end
     if parent then
         @builder[:window1].transient_for = parent.builder[:window1]
     end

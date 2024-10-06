@@ -13,7 +13,7 @@ class VR_ENV
     @width ||= 800
     @height ||= 600
     @panel_pos ||= 360
-    @notebook_panel_position ||= 400
+    @notebook_panel_position ||= 300
     @run_command_line ||= "ruby main.rb"
     @open_files ||= []
     @open_folders ||= []

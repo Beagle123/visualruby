@@ -6,8 +6,9 @@ class VR_ENV_GLOBAL
   include GladeGUI
   
   attr_accessor :browser, :tab_spaces, :glade_path, :default_project, :projects_home_open_folders
-  attr_accessor :font_name, :settings_file_version, :projects_home
- 
+  attr_accessor :font_name, :settings_file_version, :projects_home, :home_project
+
+  #runs automatically in VR::load_yaml.  Either loads current values or sets defaults 
   def defaults()
     @browser ||= "firefox"
     @tab_spaces ||= 2
@@ -16,6 +17,7 @@ class VR_ENV_GLOBAL
     @projects_home ||= File.join(ENV["HOME"], "visualruby")
     @projects_home_open_folders ||= [@projects_home]
     @default_project ||= File.join(ENV["HOME"], "visualruby", "examples", "alert_box")
+    @home_project ||= @default_project
   end
 
   def before_show
@@ -39,8 +41,8 @@ class VR_ENV_GLOBAL
     elsif not File.directory?(@builder[:projects_home].text)
       alert("Projects home folder is not valid.", :parent=>self)
       return false      
-    elsif not File.exists?(File.join(@builder[:default_project].text,VR_ENV::SETTINGS_FILE))
-      alert("Default project is not valid.", :parent=>self)
+    elsif not vr_project?(@builder[:home_project].text)
+      alert("Home button project is not valid.", :parent=>self)
       return false      
     end
     return true
@@ -59,7 +61,7 @@ class VR_ENV_GLOBAL
   end
 
   def buttonCurrent__clicked(*argv)
-    @builder["default_project"].text = Dir.pwd
+    @builder["home_project"].text = Dir.pwd
   end
 
 end

@@ -1,7 +1,9 @@
 module VR_Tools
 
+  # this freezes screen while command executes, returns output.
+  # use Open3.popen3() to run in different process.
   def VR_Tools.popen(cmd)
-    begin
+     begin
       lines = IO.popen(cmd).readlines
       lines ||= [""]
       return lines.join()    

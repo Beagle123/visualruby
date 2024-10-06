@@ -1,4 +1,8 @@
 
+
+
+
+
 module VR
 
   # Class that the #alert method uses.  This class is note useful by itself.  See #alert method instead.
@@ -26,18 +30,49 @@ module VR
       @builder[:window1].title = @flags[:title] if @flags[:title]
       @builder[:window1].resize(@flags[:width],100) if @flags[:width].to_i > 100
       @builder[:headline].show if @flags[:headline]
-    
-      if @flags[:input_text]
+
+      if @flags[:data].is_a? Hash
+        row = 0
+        @my_hash = @flags[:data]
+        @flags[:data].each_pair do |key,val|
+          label = Gtk::Label.new(key.to_s + ": ")
+          label.halign = :end                                 # use to_s for symbol keys
+          @builder["ui_grid"].attach(label, 0, row, 1, 1)
+          entry = Gtk::Entry.new(Gtk::EntryBuffer.new(val.to_s))
+          entry.hexpand = true
+          @builder["ui_grid"].attach(entry, 1, row, 1, 1)
+          @my_hash[key] = entry
+          row = row + 1
+        end
         @flags[:button_yes] ||= "Save"
-        @flags[:button_no] ||= "Cancel"
-        @builder[:input_text].show
-      elsif choices = @flags[:choices]
+        @flags[:button_cancel] ||= "Cancel"
+        @builder["ui_grid"].show_all
+      elsif @flags[:data].is_a? Array
         @flags[:button_yes] ||= "Select"
-        @flags[:button_no] ||= "Cancel"
-        choices.each { |c| @builder[:choices_text].append_text(c) }
-        @choices_text = choices[0]
+        @flags[:button_cancel] ||= "Cancel"
+        @flags[:data].each { |c| @builder[:choices_text].append_text(c) }
+        @choices_text = @flags[:data][0]
         @builder[:choices_text].show 
-      end 
+      elsif @flags[:data].is_a? String
+        @flags[:button_yes] ||= "Save"
+        @flags[:button_cancel] ||= "Cancel"
+        @builder[:input_text].buffer.text = @flags[:data]
+        @builder[:input_text].show 
+      end
+
+
+    
+#       if @flags[:input_text]
+#         @flags[:button_yes] ||= "Save"
+#         @flags[:button_no] ||= "Cancel"
+#         @builder[:input_text].show
+#       elsif choices = @flags[:choices]
+#         @flags[:button_yes] ||= "Select"
+#         @flags[:button_no] ||= "Cancel"
+#         choices.each { |c| @builder[:choices_text].append_text(c) }
+#         @choices_text = choices[0]
+#         @builder[:choices_text].show 
+#       end 
 
       @builder[:button_no].show if @flags[:button_no]
       @builder[:button_cancel].show if @flags[:button_cancel]
@@ -45,10 +80,15 @@ module VR
     end
 
     def button_yes__clicked(but)
-      if @flags[:input_text]
-        @answer.answer = @builder[:input_text].text 
-      elsif @flags[:choices]
+      if @flags[:data].is_a? String
+        @answer.answer = @builder[:input_text].buffer.text 
+      elsif @flags[:data].is_a? Array
         @answer.answer = @builder[:choices_text].active_text
+      elsif @flags[:data].is_a? Hash
+        @answer.answer = @my_hash
+        @my_hash.each_pair do |key, val| 
+          @answer.answer[key] = @my_hash[key].buffer.text 
+        end  
       else
         @answer.answer = true
       end
@@ -60,7 +100,8 @@ module VR
       @builder[:window1].destroy
     end
 
-    def button_cancel__clicked(but) #answer stays nil  
+    def button_cancel__clicked(but) 
+      @answer.answer = nil 
       @builder[:window1].destroy
     end
 
@@ -121,5 +162,11 @@ def alert(message, options = {})
   return ans.answer 
 end
 
+def go
+i =  alert("Testing", headline: "Im Testing You", title: "Just Testing", button_yes: "Gotcha", button_no: "Piss off", button_cancel: "exit", data: {name: "Eric", password: "", phone: "", email: "", street: "", house: ""} ) 
 
+# i =  alert("Testing", title: "Who?", data: ["Fred", "Barney", "Wilma" ]) 
+#   alert("Testing", title: "Who?", data: "Fred" ) 
+alert i.to_s
+end
 

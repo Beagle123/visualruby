@@ -24,7 +24,6 @@ def set_up_key()
     @username = ""
     @password = ""
     key = nil
-    set_glade_all()
     response_id = @builder["dialog1"].run  
     @builder["dialog1"].hide
     return unless response_id == 1    
@@ -34,16 +33,18 @@ def set_up_key()
         req = Net::HTTP::Get.new("/api/v1/api_key.yaml")
         req.basic_auth @username, @password
         response = h.request(req)
-        obj = YAML.load(response.body)
+        obj = YAML.unsafe_load(response.body)
         key = obj[:rubygems_api_key]
         if key
+          path = File.dirname(CREDENTIALS_FILE)
+          Dir.mkdir(path) unless File.directory?(path)
           File.open(CREDENTIALS_FILE,"w",0600) { |f| f.write(YAML.dump(obj)) } 
         else
           alert "Rubygems response:  \n" + obj.to_s
         end
       end
     rescue
-      alert "Problem connecting to rubygems.org"
+    alert "Problem connecting to rubygems.org"
     end 
     return key
   end
@@ -55,7 +56,7 @@ def set_up_key()
     @http.start() {|h|
       req = Net::HTTP::Get.new(path)
       response = h.request_get(path, 'Authorization' => key)
-      return obj = YAML.load(response.body)  
+      return obj = YAML.unsafe_load(response.body)  
     }
   end
 

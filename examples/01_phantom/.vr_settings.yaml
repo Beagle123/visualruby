@@ -1,0 +1,20 @@
+--- !ruby/object:VR_ENV
+vr_yaml_file: "/home/eric/vrp/vr3/examples/01_phantom/.vr_settings.yaml"
+width: 1858
+height: 1003
+panel_pos: 360
+notebook_panel_position: 742
+run_command_line: ruby phantom.rb
+open_files:
+- "/home/eric/vrp/vr3/examples/01_phantom/README.txt"
+- "/home/eric/vrp/vr3/examples/01_phantom/phantom.rb"
+- "/home/eric/vrp/vr3/examples/01_phantom/src/Phantom.rb"
+open_folders:
+- "/home/eric/vrp/vr3/examples/01_phantom"
+- "/home/eric/vrp/vr3/examples/01_phantom/src"
+- "/home/eric/vrp/vr3/examples/01_phantom/src/glade"
+current_file: "/home/eric/vrp/vr3/examples/01_phantom/phantom.rb"
+current_line: 7
+rdoc_command_line: rdoc -x README
+builder: !ruby/object:Gtk::Builder {}
+top_level_window: false

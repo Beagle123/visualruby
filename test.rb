@@ -1,7 +1,6 @@
 
+require_relative "examples/07_event_handlers/MyClass"
 
-require "gtk3"
-puts "Done gtk4"
-require "gtksourceview3"
-require_relative "all_requires.rb"
-puts "Done all"
+require_relative "examples/07_event_handlers/MyTextView"
+
+MyClass.new.show_glade

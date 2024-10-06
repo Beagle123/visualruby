@@ -16,6 +16,7 @@ module VR
 
     def initialize(cols)
       super()
+      args = *flatten_hash(cols).values
       self.model = Gtk::TreeStore.new(*flatten_hash(cols).values)
       load_columns(cols)
     end
@@ -29,8 +30,6 @@ module VR
 #  @view.add_row(iter, :name => "Chester", :email => "chester@chesterizer.com")
 #
 #  
-
-
 
      def add_row(parent, hash = {})
       row = vr_row(model.append(parent))

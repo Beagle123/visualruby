@@ -97,7 +97,7 @@ module VR
 # @view.add_row(:name => "Chester", :email => "chester@chester.com")
 #
 #
-#- hash: A ruby Hash object with pairs of column ISs (symbols) and values.
+#- hash: A ruby Hash object with pairs of column IDs (symbols) and values.
 
     def add_row(hash = {})
       row = vr_row(model.append)

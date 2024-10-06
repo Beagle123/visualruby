@@ -4,8 +4,11 @@
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkWindow" id="window1">
     <property name="can-focus">False</property>
-    <property name="modal">True</property>
     <property name="window-position">center</property>
+    <property name="default-width">900</property>
+    <property name="default-height">600</property>
+    <property name="icon-name">accessories-text-editor</property>
+    <property name="has-resize-grip">True</property>
     <child>
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>
@@ -224,6 +227,20 @@
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkToolButton" id="toolHome">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="tooltip-text" translatable="yes">Load Home Project</property>
+                    <property name="label" translatable="yes">Home</property>
+                    <property name="use-underline">True</property>
+                    <property name="stock-id">gtk-home</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="homogeneous">True</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkToolButton" id="toolOpenFolder">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -375,7 +392,6 @@
                       <object class="GtkNotebook" id="notebookTree">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
-                        <signal name="switch-page" handler="notebookTree_changed" after="yes" swapped="no"/>
                         <child>
                           <object class="GtkScrolledWindow" id="scrolledwindowFileTree">
                             <property name="visible">True</property>

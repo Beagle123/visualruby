@@ -1,23 +1,21 @@
 
 class VR_File_Tree < VR::FileTreeView 
 
-  include GladeGUI
-  
   def initialize(main, icon_path)
     super(Dir.pwd,icon_path)
     @main = main
     @api = RubygemsAPI.new
-    load_glade() # loads menus
-    parse_signals()
+    @builder = Gtk::Builder.new(file: File.join(File.dirname(__FILE__), "glade", "VR_File_Tree.glade"))
+    @builder.connect_signals{ |handle| method(handle) }
   end
- 
-  def self__row_activated(*args)
+
+  def self__row_activated(*args)  
     return unless rows = selected_rows
     file_name = rows.first[:path]
     basename = File.basename(file_name)
     ext = File.extname(file_name)
-    if ext == ".glade" 
-      VR_Tools.popen("#{$VR_ENV_GLOBAL.glade_path} #{file_name} ")
+    if ext == ".glade"
+      Open3.popen3("#{$VR_ENV_GLOBAL.glade_path} #{file_name} ")
     elsif ext == ".gem"
       if alert("Do you want to install <b>#{basename}</b>?", parent: @main, button_cancel: "Cancel")
         popInstallGem_clicked    
@@ -29,7 +27,8 @@ class VR_File_Tree < VR::FileTreeView
     end
   end
 
-  def menuPushGem_clicked
+
+  def popPushGem_clicked
     file_name = get_selected_path() 
     @main.shell.buffer.text = @api.push_gem(file_name)  
   end
@@ -64,7 +63,7 @@ class VR_File_Tree < VR::FileTreeView
       gem_file_name = Gem::Package.build(spec)
       gem_builder = gem_builder + "Built Gem:  " + gem_file_name + "\n"
       gem_path = File.join(root, gem_file_name)
-      add_file(gem_path) if File.exists?(gem_path)
+      add_file(gem_path) if File.exist?(gem_path)
     rescue
       gem_builder = gem_builder + "Error: " + gem_file_name.to_s
     end
@@ -81,11 +80,9 @@ class VR_File_Tree < VR::FileTreeView
       FileUtils.makedirs(path) if not File.directory?(path)
       blank_glade = File.expand_path(File.dirname(__FILE__)+"/../../skeleton/document/New.glade") 
       FileUtils.cp blank_glade, glade_file
-      VR_Tools.popen("#{$VR_ENV_GLOBAL.glade_path} #{glade_file}")
-#       sleep(5) #must do it this way because different thread
-#       File.delete(glade_file)
+      Open3.popen3("#{$VR_ENV_GLOBAL.glade_path} #{glade_file}")
     else
-      VR_Tools.popen("#{$VR_ENV_GLOBAL.glade_path} #{glade_file}")
+      Open3.popen3("#{$VR_ENV_GLOBAL.glade_path} #{glade_file}")
     end
   end
 
@@ -98,7 +95,11 @@ class VR_File_Tree < VR::FileTreeView
     elsif File.extname(path) == ".gem"
         @builder['popGemFile'].popup(nil, nil, event.button, event.time)
 #    elsif File.directory?(path)
-#        @builder['popFolder'].popup(nil, nil, event.button, event.time)   
+#        @builder['popFolder'].popup(nil, nil, event.button, event.time) 
+#    elsif File.directory?(path)
+#        @builder
+
+# 'popGladeFile'].popup(nil, nil, event.button, event.time)  
     end
   end
 

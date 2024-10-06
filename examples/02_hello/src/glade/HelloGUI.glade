@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.40.0 -->
+<interface>
+  <requires lib="gtk+" version="3.0"/>
+  <object class="GtkWindow" id="window1">
+    <property name="can-focus">False</property>
+    <property name="window-position">center</property>
+    <property name="gravity">center</property>
+    <child>
+      <object class="GtkButtonBox" id="buttonbox1">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <property name="margin-left">50</property>
+        <property name="margin-right">50</property>
+        <property name="margin-top">50</property>
+        <property name="margin-bottom">50</property>
+        <property name="orientation">vertical</property>
+        <property name="layout-style">start</property>
+        <child>
+          <object class="GtkButton" id="ui_hello_btn">
+            <property name="label" translatable="yes">Hello World</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

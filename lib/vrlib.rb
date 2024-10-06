@@ -6,12 +6,13 @@ require "fileutils"
 
 
 #tools go first
+require_relative "Tools"
 require_relative "GladeGUI"
 require_relative "VR_GtkWindow"
 require_relative "Alert"
 require_relative "DragDrop"
 require_relative "SavableClass"
-require_relative "Tools"
+
 
 require_relative "treeview/columns/BlobCol"
 require_relative "treeview/columns/CalendarCol"

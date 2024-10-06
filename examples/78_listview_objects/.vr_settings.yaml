@@ -1,0 +1,21 @@
+--- !ruby/object:VR_ENV
+vr_yaml_file: "/home/eric/vrp/vr3/examples/78_listview_objects/.vr_settings.yaml"
+width: 1858
+height: 1003
+panel_pos: 360
+notebook_panel_position: 659
+run_command_line: ruby listviewobjects.rb
+open_files:
+- "/home/eric/vrp/vr3/examples/78_listview_objects/listviewobjects.rb"
+- "/home/eric/vrp/vr3/examples/78_listview_objects/src/ListViewObjectsGUI.rb"
+- "/home/eric/vrp/vr3/examples/78_listview_objects/src/DataObject.rb"
+- "/home/eric/vrp/vr3/examples/78_listview_objects/src/ListViewObjects.rb"
+open_folders:
+- "/home/eric/vrp/vr3/examples/78_listview_objects"
+- "/home/eric/vrp/vr3/examples/78_listview_objects/src"
+- "/home/eric/vrp/vr3/examples/78_listview_objects/src/glade"
+current_file: "/home/eric/vrp/vr3/examples/78_listview_objects/src/ListViewObjects.rb"
+current_line: 37
+rdoc_command_line: rdoc -x README
+builder: !ruby/object:Gtk::Builder {}
+top_level_window: false

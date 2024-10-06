@@ -3,6 +3,7 @@
   require "net/http" #needed
   require "net/https" #needed
   require "fileutils" #needed
+  require "open3" # needed to run glade in own process
   require "rubygems/installer"
   require "rubygems/uninstaller"
   require "rubygems/package"
@@ -18,7 +19,7 @@
   require_relative "src/editor/VR_Tabs" 
   require_relative "src/editor/VR_Document"
 
-
+  require_relative "src/main/VR_Tools"
   require_relative "src/main/GemTree"
   require_relative "src/main/NewProjectGUI"
   require_relative "src/main/OpenProject"
@@ -30,6 +31,6 @@
   require_relative "src/main/VR_Local_Gem_Tree"
   require_relative "src/main/VR_Main"
   require_relative "src/main/VR_Remote_Gem_Tree"
-  require_relative "src/main/VR_Tools"
+
 
   require_relative "lib/TestWindow"
