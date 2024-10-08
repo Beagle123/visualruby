@@ -3,8 +3,6 @@ module VR::Col
 
 #  The BlobCol class is a simple text editor for editing strings of data:
 #  
-#  http://visualruby.net/img/textcol.jpg
-#  
 #  It is a very useful class when you want to display and edit long strings
 #  of data in a VR::ListView.  To create a coulmn of long strings in a VR::ListView,
 #  simply define the column type as VR::Col::BlobCol:
@@ -24,7 +22,7 @@ module VR::Col
 
     include GladeGUI
 
-    attr_accessor :text, :length_to_display
+    attr_accessor :text, :length_to_display, :edited_callback
 #  
 #  - text - String value of the field
 #  - length_to_display - Integer number of characters to display in the listview. Default: 20

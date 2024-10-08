@@ -14,12 +14,12 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/76_color_cells"
 - "/home/eric/vrp/vr3/examples/76_color_cells/src"
 - "/home/eric/vrp/vr3/examples/76_color_cells/src/glade"
-current_file: "/home/eric/vrp/vr3/examples/76_color_cells/src/CurrencyObject.rb"
+current_file: "/home/eric/vrp/vr3/examples/76_color_cells/color_cells.rb"
 glade_path: glade-3
 font_name: Monospace 10
 rdoc_command_line: rdoc -x README
 vr_yaml_file: "/home/eric/vrp/vr3/examples/76_color_cells/.vr_settings.yaml"
 notebook_panel_position: 718
-current_line: 1
+current_line: 9
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

@@ -8,12 +8,13 @@ run_command_line: ruby listview.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/70_listview/src/SongListView.rb"
 - "/home/eric/vrp/vr3/examples/70_listview/src/SongListViewGUI.rb"
+- "/home/eric/vrp/vr3/examples/70_listview/listview.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/70_listview"
 - "/home/eric/vrp/vr3/examples/70_listview/src"
 - "/home/eric/vrp/vr3/examples/70_listview/src/glade"
 current_file: "/home/eric/vrp/vr3/examples/70_listview/src/SongListViewGUI.rb"
-current_line: 37
+current_line: 50
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

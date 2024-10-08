@@ -277,12 +277,14 @@ class VR_Main
   def menuInstallExamples__activate(*a)
     path = File.join(ENV["HOME"], "visualruby", "examples")
     VR.copy_recursively(File.expand_path(File.join(File.dirname(__FILE__),"..","..","examples")), path) 
-    alert("Installing example projects in:\n\n<b>#{path}</b>\n\n " +
-          "The best way to learn about visualruby is to follow the examples.  Click on the <b>README.txt</b> to get started. \n" +
-          "Use your <b>/home/visualruby</b> folder for all your visualruby projects.",  
+    alert("Installing example projects in:\n\n<b>#{path}</b>\n\n" +
+          "The best way to learn about visualruby is to follow the examples. " +
+          "Each one is a lesson on how to use visualruby.\n\n" +  
+          "Click on the <b>Open Project</b> button, and open the first project.  " +
+          "Then read the <b>README</b> file. ",
       :parent => self,  
       :headline => "Installing Example Projects...",
-      :width => 500) 
+      :width => 620) 
     @proj_path = File.join(ENV["HOME"], "visualruby", "examples", "01_phantom") 
   end
 

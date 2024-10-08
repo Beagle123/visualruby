@@ -1,4 +1,4 @@
-#  This is a listview that contains objects!  THe columns contain a date object, a user defined, and
+#  This is a listview that contains objects!  The columns contain a date object, a user defined, and
 #  a long (blob) text string.  The columns are named :join, :name, and :quote.
 
 class ListViewObjects < VR::ListView

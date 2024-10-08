@@ -7,8 +7,7 @@ class SongListViewGUI < SongListView
     @builder["scrolledwindow1"].add_child(self)
   end
 
-  def self__row_activated(*args)
-    alert args[2].col_symbol 
+  def self__row_activated(*args) 
     return unless row = selected_rows.first
     alert "You selected\n#{row[:song]}\nby  #{row[:artist]}"
   end
@@ -28,7 +27,7 @@ class SongListViewGUI < SongListView
   def background__toggled(*args)
     val = @builder["background"].active? ? "yellow" : "white"
     renderer(:pix).background = val
-    ren_attr(:song, :background => val) # same as set_background( :song => val)
+#     ren_attr(:song, :background => val) # same as set_background( :song => val)
     repaint
   end
 
@@ -40,10 +39,9 @@ class SongListViewGUI < SongListView
 
   def bold__toggled(*args)
 #     val = @builder["bold"].active? ? Pango::WEIGHT_BOLD : Pango::WEIGHT_NORMAL
-    val = @builder["bold"].active? ? :bold : :normal
-    val = @builder["bold"].active? ? 600 : 200
-    ren_weight(:song => val) #number from 100 to 900, BOLD = 700
-    ren_attr(:song, weight: val)
+    val = @builder["bold"].active? ? 600 : 400
+    ren_weight(:pix => val) #number from 100 to 900, BOLD = 700
+#     ren_attr(:song, weight: val)
     repaint  
   end
 

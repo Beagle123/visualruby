@@ -5,9 +5,7 @@ module VR::Col::Ren
 #  it adds functionality to the Gtk Renderer.
 #  
 #  When you call ListView#render(model_col) an instance of this class
-#  will be returned.  It is a subclass of
-#  
-#  {Gtk::CellRendererText}[http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ACellRendererText]
+#  will be returned.  It is a subclass of Gtk::CellRendererText
 #  
 #  So it has all the functionality of its parent, plus the methods listed here.
 

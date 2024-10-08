@@ -33,6 +33,8 @@ class SongListView < VR::ListView
     col_sort_column_id(:quantity => id(:quantity))
     col_title(:first_name => "First", :last_name => "Last", :check => "Ok", :quantity => "Qty")
     ren_width(:popular => 80, :check=> 20, :buy => 80, :quantity=>90)
+
+
 #    ren_attr(:price, :edit_inline => true)
     ren_editable(true)
   
@@ -52,9 +54,17 @@ class SongListView < VR::ListView
         false
       end 
     } 
+
+    each_cell_data_func(:check, method(:make_checked_gray))
+
     refresh()
     self.visible = true
   end    
+
+  def make_checked_gray(col, rend, model, iter) 
+      rend.cell_background = iter[id(rend.model_sym)] ? "lightgray" : "yellow"
+  end
+
 
   # this just loads the data into the model
   def refresh()

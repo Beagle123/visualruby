@@ -1,14 +1,37 @@
 
-class BetterView < VR::ListView 
+class PrettyView < VR::ListView 
  
   include GladeGUI
 
 
   def initialize()
+    @window1 = "Customer Balances" 
     super({ name: String, balance: Float })
+    col_width(name: 160, balance: 120)
+    ren_attr(:balance, xalign: 1)
+    col_alignment(:balance => 1)  # align header to right 
     refresh()
     self.visible = true
+    each_cell_data_func(:balance, method(:make_negatives_red))
   end    
+
+  def make_negatives_red(col, rend, model, iter)
+
+      col_id = id(rend.model_sym)
+      balance = iter[col_id]
+
+      if balance < 0
+          rend.text = "(%.2f)" % balance.abs
+          rend.foreground = "darkred" 
+          rend.weight = 700
+      else
+          rend.text = "%.2f" % balance 
+          rend.foreground = "black"
+          rend.weight = 400 
+      end
+
+  end
+
 
   def before_show
     @builder["scrolledwindow1"].add_child(self)

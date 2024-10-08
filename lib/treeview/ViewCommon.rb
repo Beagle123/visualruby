@@ -126,8 +126,15 @@ module VR
       turn_on_comboboxes()
       @column_keys = flatten_hash(cols).keys
     end
+
+    #shortcut to set_cell_data_func!
+    def each_cell_data_func(col_symbol, block)
+      @vr_cols[col_symbol].set_cell_data_func(@vr_renderer[col_symbol]) do |col, rend, model, iter|
+        block.call(col, rend, model, iter)
+      end
+    end
   
-     def method_missing(meth, *args) # :nodoc:
+    def method_missing(meth, *args) # :nodoc:
       unless m = /^(ren_|col_)(.+)$/.match(meth.to_s)
         super
         return
@@ -160,14 +167,14 @@ module VR
 #  Also, if you don't specify any columns, it will set the properties on all of them.  There are
 #  many ways to call this method, here are a few:
 #  
-#   @view.col_attr(:name, :date, :background => "yellow", foreground => "black")
+#   @view.col_attr(:name, :date, background: "yellow", foreground: "black")
 #   @view.col_attr(:background => "yellow", foreground => "black") #sets all columns
 #   @view.col_attr(:name, :date, :editable => true) # both editable now
 #   @view.col_attr(:editable => false) # turns off editing to all columns
 #  
 #  Also, if the column VR::TreeViewColumn object doesn't support the property, it will try to
 #  set the property on the renderer instead.  In the above example, the col_attr() method tries to
-#  set teh "<b>background</b>" property of a VR:TreeViewColumn.  However, that object doesn't
+#  set the "<b>background</b>" property of a VR:TreeViewColumn.  However, that object doesn't
 #  support the "background" property, but the renderer for the column, VR::Col::Ren::CellRendererText does.
 #  So it sets the renderer's property instead.  So, in this example this line of code would do exactly the same
 #  thing:
@@ -175,7 +182,17 @@ module VR
 #   @view.ren_attr(:name, :date, :background => "yellow", foreground => "black")
 #  
 #  In the vast majority of cases, VR::ViewCommon#col_attr and VR::ViewCommon#ren_attr are interchangable.
+
   
+#
+#   From     gtk3/tree-view-column.rb
+#     alias_method :add_attribute_raw, :add_attribute
+#     def add_attribute(renderer, key, value)
+#       key = key.to_s if key.is_a?(Symbol)
+#       add_attribute_raw(renderer, key, value)
+#     end
+# 
+
 
     def col_attr(*args)
       cols = args.select { |arg| !arg.is_a? Hash }

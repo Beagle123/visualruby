@@ -14,7 +14,7 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/02_hello/src"
 - "/home/eric/vrp/vr3/examples/02_hello/src/glade"
 current_file: "/home/eric/vrp/vr3/examples/02_hello/hello.rb"
-current_line: 8
+current_line: 5
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

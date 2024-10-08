@@ -24,13 +24,13 @@ class VR_ENV
 
 
   #todo validate
-  def buttonSave_clicked
+  def buttonSave__clicked(*a)
     get_glade_variables
     VR::save_yaml(self)
     @builder["window1"].destroy
   end
 
-  def buttonCancel__clicked(*args)
+  def buttonCancel__clicked(*a)
     @builder["window1"].destroy
   end    
 

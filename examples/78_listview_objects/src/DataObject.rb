@@ -38,10 +38,12 @@ class DataObject
 #Here the invalid emails will be shown with a yellow background.  Try entering an invalid
 #email, and you'll see it will turn yellow.
 
+
   def visual_attributes()
     background_color = email_valid? ? "white" : "pink"
-    { background: background_color }
+    { background: background_color, text: "Hello" }
   end
+
 
   def email_valid?
       @email =~ /\A[\w\._%-]+@[\w\.-]+\.[a-zA-Z]{2,4}\z/  

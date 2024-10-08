@@ -11,7 +11,10 @@ class ListViewObjectsGUI < ListViewObjects
     # edited_callback is a method that is called after a cell has been edited.  It is
     # used to do housekeeping after the value of the cell has changed. 
     # this callback updates the quote at the bottom of the screen.
-    renderer(:quote).edited_callback = method(:self__cursor_changed) 
+    renderer(:quote).edited_callback = Proc.new { |model_sym, row, view |
+      @builder["labelQuote"].label = row[:quote].text
+    }
+#     renderer(:quote).edited_callback = method(:self__cursor_changed) 
   end
 
 #  When the selection changes, the quote at the bottom of the page needs to be updated.

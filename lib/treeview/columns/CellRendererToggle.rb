@@ -32,8 +32,8 @@ module VR::Col::Ren
           @edited_callback.call(@model_col, iter) if @edited_callback
          end
       end
-    end
-  
+    end  
+
     def editable=(is_editable)
       self.sensitive = is_editable
     end

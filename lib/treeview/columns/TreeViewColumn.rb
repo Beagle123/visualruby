@@ -39,7 +39,6 @@ module VR::Col
               rend.text = display_val #= iter[ren.model_col].selected.to_s
             end 
           elsif type == VR::Col::ProgressCol 
-#            r = VR::Col::Ren::CellRendererProgress.new(*a)
             r = Gtk::CellRendererProgress.new()
             self.pack_start( r, false )
             self.add_attribute( r, :value,  model_col)
@@ -62,11 +61,16 @@ module VR::Col
               ren.render_object(iter)
             end
           end
+#           if type.method_defined?(:each_cell_data_func)
+#             self.set_cell_data_func(r) do |col, ren, model, iter|
+#               ren.each_cell_data_func(col, ren, model, iter)
+#             end
+#           end
           model_col = model_col + 1
           view.vr_renderer[sym] = r
         end
     end
-  
+
     def width=(w) #pixels
       self.sizing = :fixed
       self.fixed_width = w
