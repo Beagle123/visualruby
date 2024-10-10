@@ -408,7 +408,7 @@ module GladeGUI
 # Convenience method so you can just make a button named "buttonCancel" and it will work.  This
 # method isn't called in code, its triggered by a user clicking a button named "buttonCancel".
   def buttonCancel__clicked(*a)
-    @builder[:window1].destroy
+    @builder[:window1].close
   end
 
   def window1__key_press_event(view, evt)

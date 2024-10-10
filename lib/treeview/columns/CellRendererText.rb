@@ -12,7 +12,7 @@ module VR::Col::Ren
   class CellRendererText < Gtk::CellRendererText
   
     attr_accessor :validate_block, :edited_callback
-    attr_reader :model_col, :column, :model_sym
+    attr_reader :model_col, :column, :model_sym, :view
 
     def initialize(model_col, column, view, model_sym) # :nodoc:
       super()

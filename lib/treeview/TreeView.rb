@@ -12,14 +12,33 @@ module VR
   
     include ViewCommon
 
+#     def initialize(cols)
+#       super()
+#       @vr_column = {}
+#       @vr_renderer = {}
+#       @vr_id = {}
+#       @current_model_col = 0
+#       args = *flatten_hash(cols).values
+#       alert args.to_s
+# #       model = Gtk::TreeStore.new(*args)
+# alert self.model.class.name
+#       self.model = nil 
+#       self.model = model
+#       cols.each_pair do |sym, type|
+#         add_column(sym, type)
+#       end
+#       @column_keys = flatten_hash(cols).keys  # this is shakey
+#     end
+
 #  See VR::ListView constructor. (exactly the same)
 
-    def initialize(cols)
-      super()
-      args = *flatten_hash(cols).values
-      self.model = Gtk::TreeStore.new(*flatten_hash(cols).values)
-      load_columns(cols)
-    end
+#     def initialize(cols)
+#       super()
+#       args = *flatten_hash(cols).values
+# alert args.to_s
+#       self.model = Gtk::TreeStore.new(*args)  # *flatten_hash(cols).values)
+#       load_columns(cols)
+#     end
 #
 #  Adds row to the model.  This will return a "row" type iter that responds
 #  to column IDs (symbols).  You need to provide a parent row (iter).

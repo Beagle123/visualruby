@@ -2,11 +2,12 @@
 class VR_File_Tree < VR::FileTreeView 
 
   def initialize(main, icon_path)
-    super(Dir.pwd,icon_path)
+    super(Dir.pwd, icon_path)
     @main = main
     @api = RubygemsAPI.new
     @builder = Gtk::Builder.new(file: File.join(File.dirname(__FILE__), "glade", "VR_File_Tree.glade"))
     @builder.connect_signals{ |handle| method(handle) }
+    self.visible = true
   end
 
   def self__row_activated(*args)  
@@ -94,12 +95,6 @@ class VR_File_Tree < VR::FileTreeView
         @builder['popGemspec'].popup(nil, nil, event.button, event.time)
     elsif File.extname(path) == ".gem"
         @builder['popGemFile'].popup(nil, nil, event.button, event.time)
-#    elsif File.directory?(path)
-#        @builder['popFolder'].popup(nil, nil, event.button, event.time) 
-#    elsif File.directory?(path)
-#        @builder
-
-# 'popGladeFile'].popup(nil, nil, event.button, event.time)  
     end
   end
 
@@ -107,7 +102,7 @@ class VR_File_Tree < VR::FileTreeView
     return unless evt.keyval == 65535 #delete
     return unless file_name = get_selected_path()
     return unless alert("Delete:   <b>" + File.basename(file_name) + "</b> ?" , 
-        :button_yes => "Delete", :button_no=>"Cancel", :parent=>self, :headline => "Delete File?")  
+        :button_yes => "Delete", :button_no=>"Cancel",  :headline => "Delete File?")  
     if File.exist?(file_name) and file_name != Dir.pwd #root!
       delete_me =  @main.tabs.docs.select { |d| d.full_path_file.start_with?(file_name) }
       delete_me.each { |d| @main.tabs.destroy_file_tab(d.full_path_file) }

@@ -42,9 +42,6 @@ class ChildWindowDemo
     ModalWindow.new.show_glade(self)  # self = parent, so always on top of parent
   end
 
-  def buttonCancel__clicked(*argv)
-    @builder["window1"].destroy
-  end
 
 end
 

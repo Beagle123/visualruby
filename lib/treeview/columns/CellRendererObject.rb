@@ -11,7 +11,7 @@ module VR::Col::Ren
 
   class CellRendererObject < Gtk::CellRendererText
   
-    attr_accessor :model_col, :column, :edited_callback, :visual_attributes_method, :model_sym
+    attr_accessor :model_col, :column, :edited_callback, :model_sym, :view
 
     def initialize(model_col, column, view, model_sym) # :nodoc:
       super()
@@ -21,7 +21,6 @@ module VR::Col::Ren
       @column = column
       @edit = true
       @edited_callback = nil
-      @visual_attributes_method = "visual_attributes"
       @view.model.set_sort_func(@model_col) { |m,x,y| x[@model_col] <=> y[@model_col] } 
       @show_block = Proc.new { |obj| obj.show_glade() if obj.respond_to? "show_glade" }
       @view.signal_connect("row_activated") do | view, path, col |
@@ -38,18 +37,7 @@ module VR::Col::Ren
     def editable=(e)
       @edit = e
     end
-  
-    def render_object(iter)
-      obj = iter[@view.id(@model_col)]
-      self.text = obj.respond_to?(:to_s) ?  obj.to_s : "Define to_s!"
-      if obj.respond_to? @visual_attributes_method
-        return unless attrib = obj.send(@visual_attributes_method)
-        attrib.each_pair do | key, val |
-          self.send( key.to_s + "=", val)
-        end
-      end
-    end
- 
+
   end
 
 end

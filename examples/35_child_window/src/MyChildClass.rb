@@ -12,10 +12,7 @@ class MyChildClass
       @window1 = title
   end
   
-  # When cancel clicked in MyChildClass.glade
-  def buttonCancel__clicked(*args)  
-    @builder["window1"].destroy 
-  end
+
 
 end
 

@@ -47,10 +47,7 @@ class VR_ENV_GLOBAL
     end
     return true
   end
-
-  def buttonCancel__clicked(*args)
-    @builder["window1"].destroy
-  end    
+  
 
   def buttonTryGlade__clicked(*argv)
     VR_Tools.popen(@builder[:glade_path].text)

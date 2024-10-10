@@ -4,13 +4,13 @@ module VR
   class ListView < Gtk::TreeView
   
 
-    include GladeGUI
+#     include GladeGUI
     include ViewCommon
 
-    def before_show
-      @builder[:scrolledwindow1].add self
-      self.visible = true
-    end
+#     def before_show
+#       @builder[:scrolledwindow1].add self
+#       self.visible = true
+#     end
 
 # The new() constructor takes a Hash that defines the columns as its only argument.  The Hash defines
 # symbols as the keys to give an ID to each column.  The Hash also defines the type (class) of the column.
@@ -38,21 +38,21 @@ module VR
 # You can also add your own user-defined column types.  See: {Adding Your Own Objects to ListView}[link:/site/ListView%20Tutorial.html#objects].
 #
 
-    def initialize(cls)
-      super()
-      if cls.respond_to?(:column_names)
-        hash = {}
-        cls.column_names.each { |key| hash[key.to_sym] = String }
-        cols = hash
-      else
-        hash = flatten_hash(cls)
-        cols = cls
-      end
-      vals = hash.values
-      self.model = Gtk::ListStore.new(*vals)
-      load_columns(cols)
-      add_active_record_rows(cls) if cls.respond_to?(:column_names)    
-    end
+#     def initialize(cls)
+#       super()
+#       if cls.respond_to?(:column_names)
+#         hash = {}
+#         cls.column_names.each { |key| hash[key.to_sym] = String }
+#         cols = hash
+#       else
+#         hash = flatten_hash(cls)
+#         cols = cls
+#       end
+#       vals = hash.values
+#       self.model = Gtk::ListStore.new(*vals)
+#       load_columns(cols)
+#       add_active_record_rows(cls) if cls.respond_to?(:column_names)    
+#     end
 
 
     def add_active_record_rows(ar) # :nodoc:

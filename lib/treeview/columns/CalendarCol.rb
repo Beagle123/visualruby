@@ -51,8 +51,12 @@ module VR::Col
 
     # Output shown in ListView according to the @date_format instance variable.  If you want to
     # change the appearance of this object, assign a new vale to @date_format. 
-    def to_s
-      @date.strftime(@format)
+#     def to_s
+#       @date.strftime(@format)
+#     end
+    
+    def each_cell(col, ren, model, iter)
+      ren.text = @date.strftime(@format)
     end
 
     def am__toggled(*args)

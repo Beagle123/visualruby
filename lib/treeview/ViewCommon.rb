@@ -111,25 +111,66 @@ module VR
 
   module ViewCommon
 
-    attr_accessor :vr_renderer, :column_keys, :vr_cols
-  
-    def load_columns(cols) # :nodoc:
+    attr_accessor :vr_renderer, :column_keys, :vr_cols, :vr_id, :vr_column, :vr_renderer
+
+
+    def initialize(cols)
+      args = flatten_hash(cols).values
+      super()
+      @vr_column = {}
       @vr_renderer = {}
-      @vr_cols = {}
-      model_col = 0
-      cols.each_pair do | sym, type|
-        col = VR::Col::TreeViewColumn.new(self, model_col, sym, type)
-        model_col = model_col + (type.class == Hash ? type.size : 1)
-        self.append_column(col)
-        @vr_cols[sym] = col
+      @vr_id = {}
+      @current_model_col = 0
+      if self.is_a? VR::TreeView
+        self.model = Gtk::TreeStore.new(*args)
+      else
+        self.model = Gtk::ListStore.new(*args)
+      end
+      cols.each_pair do |sym, type|
+        add_column(sym, type)
       end
       turn_on_comboboxes()
-      @column_keys = flatten_hash(cols).keys
+      @column_keys = flatten_hash(cols).keys  # this is shakey
     end
 
+
+    def add_column(sym, type)
+      @vr_column[sym] = col = VR::TreeViewColumn.new(self, sym)
+      self.append_column(col)
+      if type.is_a? Hash
+        type.each_pair do |s,t|
+          add_renderer_to_col(col, s, t)
+        end
+      else
+        add_renderer_to_col(col, sym, type)
+      end
+    end
+
+    def add_renderer_to_col(col, sym, type)
+      @vr_renderer[sym] = col.add_renderer(@current_model_col, sym, type)
+      @vr_id[sym] = @current_model_col
+      @current_model_col += 1
+    end
+
+
+  
+#     def load_columns(cols) # :nodoc:
+#       @vr_renderer = {}
+#       @vr_cols = {}
+#       model_col = 0
+#       cols.each_pair do | sym, type|
+#         col = VR::Col::TreeViewColumn.new(self, model_col, sym, type)
+#         model_col = model_col + (type.class == Hash ? type.size : 1)
+#         self.append_column(col)
+#         @vr_cols[sym] = col
+#       end
+#       turn_on_comboboxes()
+#       @column_keys = flatten_hash(cols).keys
+#     end
+
     #shortcut to set_cell_data_func!
-    def each_cell_data_func(col_symbol, block)
-      @vr_cols[col_symbol].set_cell_data_func(@vr_renderer[col_symbol]) do |col, rend, model, iter|
+    def each_cell_method(col_symbol, block)
+      @vr_column[col_symbol].set_cell_data_func(@vr_renderer[col_symbol]) do |col, rend, model, iter|
         block.call(col, rend, model, iter)
       end
     end
@@ -209,22 +250,6 @@ module VR
       end    
     end
 
-
-#    def col_attr(*args)
-#      cols = args.select { |arg| !arg.is_a? Hash }
-#      return unless hash = args.detect { |arg| arg.is_a? Hash }
-#      cols = @column_keys if cols.empty?
-#      cols.each do |c|
-#        hash.each_pair do | key, val |
-#          if column(c).respond_to?(key.to_s + "=")
-#            column(c).send(key.to_s + '=', val)
-#          elsif renderer(c).respond_to?(key.to_s + "=")  
-#             renderer(c).send(key.to_s + '=', val) 
-#          end 
-#        end
-#      end    
-#    end
-#
 
 #  Returns an array of rows that are selected in the VR::TreeView or VR::ListView.
 #  If nothing is selected, it returns an empty array.  If you've configured your
@@ -331,7 +356,7 @@ module VR
 
   
     def column(id)
-      @vr_cols[id]
+      @vr_id[id]
     end
     
     def each_renderer
@@ -403,6 +428,9 @@ module VR
 #  using VR::ViewCommon#vr_row.
 
     def id(id)
+#       if id.is_a Integer
+#       elsif id is_a? Symbol
+#       elsif
       return (id.is_a? Integer) ? id : @column_keys.index(id)
     end  
 

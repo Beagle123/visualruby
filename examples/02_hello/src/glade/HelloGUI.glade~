@@ -7,20 +7,23 @@
     <property name="window-position">center</property>
     <property name="gravity">center</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkButtonBox" id="buttonbox1">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="margin-left">100</property>
-        <property name="margin-right">100</property>
-        <property name="margin-top">100</property>
-        <property name="margin-bottom">100</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <property name="margin-left">50</property>
+        <property name="margin-right">50</property>
+        <property name="margin-top">50</property>
+        <property name="margin-bottom">50</property>
         <property name="orientation">vertical</property>
+        <property name="layout-style">start</property>
         <child>
           <object class="GtkButton" id="ui_hello_btn">
             <property name="label" translatable="yes">Hello World</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
-            <property name="receives-default">False</property>
+            <property name="receives-default">True</property>
           </object>
           <packing>
             <property name="expand">True</property>

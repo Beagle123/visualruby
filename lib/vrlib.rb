@@ -1,4 +1,6 @@
-require "gtk3"
+require_relative "../src/version"
+
+require GTK_VERSION
 require "date"
 require "yaml"
 require "find"

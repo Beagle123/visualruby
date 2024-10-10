@@ -18,10 +18,6 @@ module VR::Col
       "<Img>"
     end
 
-#    def visual_attributes
-#      { :pixbuf => self }
-#    end
-
   end
 
 end

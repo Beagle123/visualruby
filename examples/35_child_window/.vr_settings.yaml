@@ -1,7 +1,7 @@
 --- !ruby/object:VR_ENV
 vr_yaml_file: "/home/eric/vrp/vr3/examples/35_child_window/.vr_settings.yaml"
-width: 1393
-height: 743
+width: 1858
+height: 1003
 panel_pos: 437
 notebook_panel_position: 527
 run_command_line: ruby child_window.rb

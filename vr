@@ -1,8 +1,9 @@
 #!/ruby
 
-require "gtk3"
-require "gtksourceview3"
+require_relative "src/version"
 
+require GTK_VERSION
+require GTK_SOURCEVIEW_VERSION
 
 $root = File.dirname(__FILE__)
 

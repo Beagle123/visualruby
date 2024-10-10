@@ -2,9 +2,7 @@
 module VR
 
   class FileTreeView < VR::TreeView
-  
-    include GladeGUI
-  
+    
     attr_accessor :root, :glob
 
     # A Code block that further excludes files and folders included in the tree. If this block returns false 
@@ -21,20 +19,18 @@ module VR
       @root = File.expand_path(root)
       @glob = glob
       @validate_block = validate_block
-      super(:file => {:pix => GdkPixbuf::Pixbuf, :file_name => String}, :empty => TrueClass, 
-            :path => String, :sort_on => String)
-      col_visible( :path => false, :sort_on => false, :empty => false)
+      super(file: { pix: GdkPixbuf::Pixbuf, file_name: String}, empty: TrueClass, path: String, sort_on: String)
+      col_visible( path: false, sort_on: false, empty: false, file: false)
       self.headers_visible = false
       @icons = File.directory?(icon_path) ? IconHash.new(icon_path) : nil
 #      parse_signals()  #fix this!  Subclasses may call twice!
-      model.set_sort_column_id(id(:sort_on), :ascending )
+      self.model.set_sort_column_id(id(:sort_on), :ascending )
       self.set_enable_search(false)
       refresh
       self.signal_connect("row_expanded") { |view, iter, path| 
         iter = model.get_iter(path) # bug fix
         fill_folder(iter) if iter[id(:empty)]
       } 
-      self.visible = true # necessary!
     end  
 
     # Refresh the file tree, optionally with a new root folder, and optionally opening an array of folders.
@@ -115,6 +111,7 @@ module VR
       child[:pix] = @icons.get_icon(File.directory?(fn) ? "x.folder" : fn)   if @icons
       child[:file_name] = File.basename(fn)
       child[:path] = fn
+# puts child[:file_name].to_s
       if File.directory?(fn)
         child[:sort_on] = "0" + child[:file_name]
         child[:empty] = true

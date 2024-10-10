@@ -29,10 +29,7 @@ class VR_ENV
     VR::save_yaml(self)
     @builder["window1"].destroy
   end
-
-  def buttonCancel__clicked(*a)
-    @builder["window1"].destroy
-  end    
+  
 
 end
 

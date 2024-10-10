@@ -1,0 +1,18 @@
+--- !ruby/object:VR_ENV
+vr_yaml_file: "/home/eric/vrp/vr3/examples/78_listview/.vr_settings.yaml"
+width: 1858
+height: 1003
+panel_pos: 322
+notebook_panel_position: 566
+run_command_line: ruby listview.rb
+open_files:
+- "/home/eric/vrp/vr3/examples/78_listview/src/SongListView.rb"
+- "/home/eric/vrp/vr3/examples/78_listview/listview.rb"
+open_folders:
+- "/home/eric/vrp/vr3/examples/78_listview"
+current_file: "/home/eric/vrp/vr3/examples/78_listview/src/SongListView.rb"
+current_line: 58
+rdoc_command_line: rdoc -x README
+builder: !ruby/object:Gtk::Builder {}
+top_level_window: false
+filename: ".vr_settings.yaml"

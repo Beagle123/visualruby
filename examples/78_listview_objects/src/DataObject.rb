@@ -19,29 +19,14 @@ class DataObject
     @builder["window1"].destroy
   end
 
+# The each_cell method defines the appearance of the object in the
+# ListView.  You can change the background to red for example to flag the object.
+# Here the invalid emails will be shown with a yellow background.  Try entering an invalid
+# email, and you'll see it will turn yellow.
 
-  def buttonCancel__clicked(*args)
-    @builder["window1"].destroy
-  end
-
-
-#The to_s method defines how this object appears in the ListView.
-#Think of it like an icon.  It should be a short representation
-#of the object.  Then when the user clicks on it, they get the full object
-
-  def to_s
-    "#{@name}  (#{@email})"
-  end
-
-#The visual_attributes method defines the appearance of the object in the
-#ListView.  You can change the background to red for example to flag the object.
-#Here the invalid emails will be shown with a yellow background.  Try entering an invalid
-#email, and you'll see it will turn yellow.
-
-
-  def visual_attributes()
-    background_color = email_valid? ? "white" : "pink"
-    { background: background_color, text: "Hello" }
+  def each_cell(col, ren, model, iter)
+    ren.text = "#{@name}  (#{@email})" 
+    ren.background = email_valid? ? "white" : "pink"
   end
 
 
