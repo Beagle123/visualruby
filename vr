@@ -1,5 +1,6 @@
 #!/ruby
 
+#testing
 require_relative "src/version"
 
 require GTK_VERSION
