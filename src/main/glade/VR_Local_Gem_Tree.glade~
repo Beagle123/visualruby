@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.40.0 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkMenu" id="popGem">
     <property name="visible">True</property>
-    <property name="can-focus">False</property>
+    <property name="can_focus">False</property>
     <child>
       <object class="GtkMenuItem" id="popOpenRubygemsPage">
-        <property name="use-action-appearance">False</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="tooltip-text" translatable="yes">Open gem's project page on rubygems.org using your web browser.</property>
+        <property name="can_focus">False</property>
+        <property name="tooltip_text" translatable="yes">Open gem's project page on rubygems.org using your web browser.</property>
         <property name="label" translatable="yes">Open rubygems.org Page</property>
-        <property name="use-underline">True</property>
+        <property name="use_underline">True</property>
         <signal name="activate" handler="popOpenRubygemsPage_clicked" swapped="no"/>
       </object>
     </child>
     <child>
       <object class="GtkMenuItem" id="popUninstall">
-        <property name="use-action-appearance">False</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="tooltip-text" translatable="yes">Uninstall this gem from your local machine.
+        <property name="can_focus">False</property>
+        <property name="tooltip_text" translatable="yes">Uninstall this gem from your local machine.
 </property>
         <property name="label" translatable="yes">Uninstall Gem</property>
-        <property name="use-underline">True</property>
+        <property name="use_underline">True</property>
         <signal name="activate" handler="popUninstall_clicked" swapped="no"/>
       </object>
     </child>
     <child>
       <object class="GtkMenuItem" id="popOpenHomepage">
-        <property name="use-action-appearance">False</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="tooltip-text" translatable="yes">Open this gem's homepage in your web browser.</property>
+        <property name="can_focus">False</property>
+        <property name="tooltip_text" translatable="yes">Open this gem's homepage in your web browser.</property>
         <property name="label" translatable="yes">Open Homepage</property>
-        <property name="use-underline">True</property>
+        <property name="use_underline">True</property>
         <signal name="activate" handler="popOpenHomepage_clicked" swapped="no"/>
       </object>
     </child>
     <child>
       <object class="GtkMenuItem" id="popViewSpec">
-        <property name="use-action-appearance">False</property>
+        <property name="use_action_appearance">False</property>
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
+        <property name="can_focus">False</property>
         <property name="label" translatable="yes">View Specification </property>
-        <property name="use-underline">True</property>
+        <property name="use_underline">True</property>
         <signal name="activate" handler="popViewSpec_clicked" swapped="no"/>
       </object>
     </child>

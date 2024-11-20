@@ -2,7 +2,7 @@
 vr_yaml_file: "/home/eric/vrp/vr3/.vr_settings.yaml"
 width: 1854
 height: 1003
-panel_pos: 357
+panel_pos: 388
 notebook_panel_position: 709
 run_command_line: ruby vr
 open_files:
@@ -17,15 +17,18 @@ open_files:
 - "/home/eric/vrp/vr3/lib/treeview/TreeView.rb"
 - "/home/eric/vrp/vr3/lib/treeview/ViewCommon.rb"
 - "/home/eric/vrp/vr3/lib/Alert.rb"
+- "/home/eric/vrp/vr3/README.md"
+- "/home/eric/vrp/vr3/src/editor/VR_Tabs.rb"
+- "/home/eric/vrp/vr3/src/main/VR_Main.rb"
+- "/home/eric/vrp/vr3/src/editor/VR_TextShell.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
-- "/home/eric/vrp/vr3/lib"
-- "/home/eric/vrp/vr3/lib/glade"
+- "/home/eric/vrp/vr3/skeleton"
 - "/home/eric/vrp/vr3/src"
-- "/home/eric/vrp/vr3/src/glade"
 - "/home/eric/vrp/vr3/src/main"
-current_file: "/home/eric/vrp/vr3/vr"
-current_line: 19
+- "/home/eric/vrp/vr3/src/main/glade"
+current_file: "/home/eric/vrp/vr3/src/editor/VR_TextShell.rb"
+current_line: 2
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
