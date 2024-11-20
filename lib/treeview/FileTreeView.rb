@@ -20,7 +20,7 @@ module VR
       @glob = glob
       @validate_block = validate_block
       super(file: { pix: GdkPixbuf::Pixbuf, file_name: String}, empty: TrueClass, path: String, sort_on: String)
-      col_visible( path: false, sort_on: false, empty: false, file: false)
+      self.col_visible(path: false, sort_on: false, empty: false, file: false)
       self.headers_visible = false
       @icons = File.directory?(icon_path) ? IconHash.new(icon_path) : nil
 #      parse_signals()  #fix this!  Subclasses may call twice!

@@ -7,6 +7,7 @@ class VR_File_Tree < VR::FileTreeView
     @api = RubygemsAPI.new
     @builder = Gtk::Builder.new(file: File.join(File.dirname(__FILE__), "glade", "VR_File_Tree.glade"))
     @builder.connect_signals{ |handle| method(handle) }
+    col_visible(path: false, sort_on: false, empty: false, file: false)
     self.visible = true
   end
 

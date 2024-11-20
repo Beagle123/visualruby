@@ -1,20 +1,18 @@
 --- !ruby/object:VR_ENV
-vr_yaml_file: "/home/eric/vrp/vr3/examples/03_get_glade_variables/.vr_settings.yaml"
-width: 1858
+vr_yaml_file: "/home/eric/vrp/vr3/examples/09_get_glade_variables/.vr_settings.yaml"
+width: 1854
 height: 1003
-panel_pos: 490
+panel_pos: 368
 notebook_panel_position: 708
 run_command_line: ruby get_glade_variables.rb
 open_files:
-- "/home/eric/vrp/vr3/examples/03_get_glade_variables/Untitled"
+- "/home/eric/vrp/vr3/examples/09_get_glade_variables/README.txt"
 open_folders:
-- "/home/eric/vrp/vr3/examples/03_get_glade_variables"
-- "/home/eric/vrp/vr3/examples/03_get_glade_variables/src"
-- "/home/eric/vrp/vr3/examples/03_get_glade_variables/src/glade"
-current_file: "/home/eric/vrp/vr3/examples/03_get_glade_variables/Untitled"
-current_line: 1
+- "/home/eric/vrp/vr3/examples/09_get_glade_variables"
+current_file: "/home/eric/vrp/vr3/examples/09_get_glade_variables/README.txt"
+current_line: 73
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
+top_level_window: false
 settings_file_version: 1
 filename: ".vr_settings.yaml"
-top_level_window: false

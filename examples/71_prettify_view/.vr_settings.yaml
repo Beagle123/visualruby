@@ -1,21 +1,23 @@
 --- !ruby/object:VR_ENV
-browser: firefox
-width: 1858
+vr_yaml_file: "/home/eric/vrp/vr3/examples/71_prettify_view/.vr_settings.yaml"
+width: 1854
 height: 1003
 panel_pos: 360
-backup_path: "/home/eric"
-tab_spaces: 2
+notebook_panel_position: 553
 run_command_line: ruby prettify_view.rb
 open_files:
-- "/home/eric/vrp/vr3/examples/71_prettify_view/Untitled"
+- "/home/eric/vrp/vr3/examples/71_prettify_view/README.txt"
+- "/home/eric/vrp/vr3/examples/71_prettify_view/src/PrettyView.rb"
+- "/home/eric/vrp/vr3/examples/71_prettify_view/prettify_view.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/71_prettify_view"
-current_file: "/home/eric/vrp/vr3/examples/71_prettify_view/Untitled"
-glade_path: glade-3
-font_name: Monospace 10
+current_file: "/home/eric/vrp/vr3/examples/71_prettify_view/src/PrettyView.rb"
+current_line: 13
 rdoc_command_line: rdoc -x README
-vr_yaml_file: "/home/eric/vrp/vr3/examples/71_prettify_view/.vr_settings.yaml"
-notebook_panel_position: 553
-current_line: 1
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
+browser: firefox
+backup_path: "/home/eric"
+tab_spaces: 2
+glade_path: glade-3
+font_name: Monospace 10

@@ -1,8 +1,8 @@
 --- !ruby/object:VR_ENV
 vr_yaml_file: "/home/eric/vrp/vr3/examples/50_alert_box/.vr_settings.yaml"
-width: 1858
+width: 1854
 height: 1003
-panel_pos: 360
+panel_pos: 362
 notebook_panel_position: 501
 run_command_line: ruby alertdemo.rb
 open_files:
@@ -11,8 +11,9 @@ open_files:
 open_folders:
 - "/home/eric/vrp/vr3/examples/50_alert_box"
 - "/home/eric/vrp/vr3/examples/50_alert_box/src"
-current_file: "/home/eric/vrp/vr3/examples/50_alert_box/src/AlertBoxDemo.rb"
-current_line: 77
+- "/home/eric/vrp/vr3/examples/50_alert_box/src/glade"
+current_file: "/home/eric/vrp/vr3/examples/50_alert_box/alertdemo.rb"
+current_line: 12
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
