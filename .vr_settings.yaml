@@ -24,15 +24,19 @@ open_files:
 - "/home/eric/vrp/vr3/src/main/GemTree.rb"
 - "/home/eric/vrp/vr3/src/main/RubygemsAPI.rb"
 - "/home/eric/vrp/vr3/src/main/VR_Remote_Gem_Tree.rb"
+- "/home/eric/vrp/vr3/lib/oinspect/MethodsListView.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/lib"
 - "/home/eric/vrp/vr3/lib/oinspect"
+- "/home/eric/vrp/vr3/lib/oinspect/glade"
+- "/home/eric/vrp/vr3/lib/treeview"
+- "/home/eric/vrp/vr3/lib/treeview/columns"
+- "/home/eric/vrp/vr3/lib/treeview/columns/glade"
 - "/home/eric/vrp/vr3/src"
 - "/home/eric/vrp/vr3/src/main"
-- "/home/eric/vrp/vr3/src/main/glade"
-current_file: "/home/eric/vrp/vr3/src/main/VR_Remote_Gem_Tree.rb"
-current_line: 27
+current_file: "/home/eric/vrp/vr3/lib/oinspect/MethodsListView.rb"
+current_line: 18
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
