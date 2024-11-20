@@ -1,7 +1,7 @@
 
 While Gtk offers a Gtk::TreeView and Gtk::ListView class, they are
-very difficult to use.  Visualruby has built-on to the Gtk classes by creating, VR::TreeView
-and VR::ListView that are subclasses.  The TreeView and ListView classes are
+very difficult to use.  Visualruby has created subclasses of Gtk::TreeView
+and Gtk::ListView that are much easier to use.  The TreeView and ListView classes are
 almost the same class so all the methods and properties here can be applied to
 both ListViews and TreeViews.  This example is for a VR::ListView, but everything applies to 
 VR::TreeView too.
@@ -31,9 +31,12 @@ In this example, it calls the Gtk::ListView's #append method to add rows:
   row[id(:name)] = "Helen"  # same as row[0] = "Helen"
   etc.
 
+Again, the id() method is converting the column symbol, ":name" to the correct integer
+for the column, so you can identify columns by their symbol.
+
 Summary:
 1) using VR::ListView and VR::Treeveiw allows naming of columns
-2) You can still use Gtk::Listview's methods and properties because its the superclass
+2) You can still use Gtk::Listview's methods and properties because it's their superclass
 
 This example creates the most basic VR::ListView, but it can do a lot more including
 changing columns' and cells' appearance, changing the header, sorting etc.

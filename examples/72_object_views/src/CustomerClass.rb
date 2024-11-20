@@ -11,7 +11,7 @@ class CustomerClass
   end
 
   def each_cell(col, ren, model, iter)
-    ren.text = @name # necessary, appears on screen
+    ren.text = @name # necessary, this appears in the table
     ren.background = @state != "CA" ? "papayawhip" : "white"
   end
 

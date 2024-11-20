@@ -60,7 +60,7 @@ module VR
             obj.each_cell(col, ren, model, iter)
           end
         end
-      return 
+      return r
     end
 
     def width=(w) #pixels

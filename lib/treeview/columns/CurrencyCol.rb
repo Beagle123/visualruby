@@ -13,7 +13,11 @@ module VR::Col
       @value = value
       @format = format
     end
-  
+    
+    def each_cell(col, ren, model, iter)
+      ren.text = to_s()
+    end  
+
     def to_s
       format % @value.to_f
     end

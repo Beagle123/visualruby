@@ -3,7 +3,6 @@ class BalanceListView < VR::ListView
  
   include GladeGUI
 
-
   def initialize 
     cols = { name: CustomerClass, balance: BalanceClass }
     super(cols)
@@ -21,14 +20,13 @@ class BalanceListView < VR::ListView
   # this just loads the data into the model
   def refresh()
     data = get_data() # returns array of songs
-    (0..6).each do |i|
+    (0..10).each do |i|
       row = model.append # add_row()
       row[id(:name)] = CustomerClass.new(data[i][0], data[i][1], data[i][2])   
       row[id(:balance)] = BalanceClass.new(data[i][3])
     end
 
   end
-
 
   def get_data
     rows = []
@@ -39,8 +37,11 @@ class BalanceListView < VR::ListView
     rows << ["Dorothy", "3749 23rd Ave", "CA", -129.01]
     rows << ["Rod", "487 Bushwood", "FL", 55.87]
     rows << ["Lionel", "1116 Haley Ct" , "CA" , 29.23] 
+    rows << ["Richard", "2245 13th Ave", "LA", 82.35]
+    rows << ["Helen", "1223 Maple St", "CA", -29.31]
+    rows << ["Alex", "33 Bushwood", "CA", 5.37]
+    rows << ["Tom", "8 Marshall St", "NY", 329.27] 
   end
-
 
 end
 

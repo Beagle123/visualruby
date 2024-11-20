@@ -2,41 +2,27 @@
 vr_yaml_file: "/home/eric/vrp/vr3/.vr_settings.yaml"
 width: 1854
 height: 1003
-panel_pos: 388
+panel_pos: 347
 notebook_panel_position: 553
 run_command_line: ruby vr
 open_files:
-- "/home/eric/vrp/vr3/vr"
-- "/home/eric/vrp/vr3/all_requires.rb"
-- "/home/eric/vrp/vr3/src/version.rb"
 - "/home/eric/vrp/vr3/vr.gemspec"
-- "/home/eric/vrp/vr3/lib/vrlib.rb"
-- "/home/eric/vrp/vr3/lib/GladeGUI.rb"
-- "/home/eric/vrp/vr3/src/main/VR_File_Tree.rb"
-- "/home/eric/vrp/vr3/lib/treeview/FileTreeView.rb"
 - "/home/eric/vrp/vr3/lib/treeview/TreeView.rb"
 - "/home/eric/vrp/vr3/lib/treeview/ViewCommon.rb"
-- "/home/eric/vrp/vr3/lib/Alert.rb"
-- "/home/eric/vrp/vr3/README.md"
-- "/home/eric/vrp/vr3/src/editor/VR_Tabs.rb"
-- "/home/eric/vrp/vr3/src/main/VR_Main.rb"
-- "/home/eric/vrp/vr3/src/editor/VR_TextShell.rb"
-- "/home/eric/vrp/vr3/src/main/GemTree.rb"
-- "/home/eric/vrp/vr3/src/main/RubygemsAPI.rb"
-- "/home/eric/vrp/vr3/src/main/VR_Remote_Gem_Tree.rb"
-- "/home/eric/vrp/vr3/lib/oinspect/MethodsListView.rb"
+- "/home/eric/vrp/vr3/lib/treeview/columns/TreeViewColumn.rb"
+- "/home/eric/vrp/vr3/lib/treeview/FileTreeView.rb"
+- "/home/eric/vrp/vr3/examples/78_listview/src/SongListView.rb"
+- "/home/eric/vrp/vr3/examples/71_prettify_view/src/PrettyView.rb"
+- "/home/eric/vrp/vr3/lib/GladeGUI.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/lib"
-- "/home/eric/vrp/vr3/lib/oinspect"
-- "/home/eric/vrp/vr3/lib/oinspect/glade"
 - "/home/eric/vrp/vr3/lib/treeview"
 - "/home/eric/vrp/vr3/lib/treeview/columns"
-- "/home/eric/vrp/vr3/lib/treeview/columns/glade"
 - "/home/eric/vrp/vr3/src"
 - "/home/eric/vrp/vr3/src/main"
-current_file: "/home/eric/vrp/vr3/lib/oinspect/MethodsListView.rb"
-current_line: 18
+current_file: "/home/eric/vrp/vr3/lib/GladeGUI.rb"
+current_line: 140
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

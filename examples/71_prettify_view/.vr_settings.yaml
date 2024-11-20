@@ -2,17 +2,18 @@
 vr_yaml_file: "/home/eric/vrp/vr3/examples/71_prettify_view/.vr_settings.yaml"
 width: 1854
 height: 1003
-panel_pos: 360
+panel_pos: 354
 notebook_panel_position: 553
 run_command_line: ruby prettify_view.rb
 open_files:
-- "/home/eric/vrp/vr3/examples/71_prettify_view/README.txt"
-- "/home/eric/vrp/vr3/examples/71_prettify_view/src/PrettyView.rb"
 - "/home/eric/vrp/vr3/examples/71_prettify_view/prettify_view.rb"
+- "/home/eric/vrp/vr3/examples/71_prettify_view/src/PrettyView.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/71_prettify_view"
+- "/home/eric/vrp/vr3/examples/71_prettify_view/src"
+- "/home/eric/vrp/vr3/examples/71_prettify_view/src/glade"
 current_file: "/home/eric/vrp/vr3/examples/71_prettify_view/src/PrettyView.rb"
-current_line: 13
+current_line: 46
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

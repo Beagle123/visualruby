@@ -35,6 +35,7 @@
           <object class="GtkScrolledWindow" id="scrolledwindow1">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="window-placement-set">False</property>
             <property name="shadow-type">in</property>
             <child>
               <placeholder/>

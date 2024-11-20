@@ -33,4 +33,4 @@
   require_relative "src/main/VR_Remote_Gem_Tree"
 
 
-  require_relative "lib/TestWindow"
+

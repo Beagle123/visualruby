@@ -1,6 +1,6 @@
 
-#require "vrlib"
-require_relative  "../../lib/vrlib"
+require "vrlib"
+#require_relative  "../../lib/vrlib"
 
 
 require_relative "src/PrettyView"
