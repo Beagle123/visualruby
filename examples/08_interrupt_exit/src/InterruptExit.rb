@@ -3,7 +3,11 @@ class InterruptExit
  
   include GladeGUI
 
-  def ui_exit_btn__clicked(*a)
+  def ui_destroy_btn__clicked(*a)
+    @builder["window1"].destroy
+  end 
+
+  def ui_ask_btn__clicked(*a)
     @builder["window1"].close
   end 
 

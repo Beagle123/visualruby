@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.40.0 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkAdjustment" id="hour">
     <property name="lower">1</property>
     <property name="upper">12</property>
-    <property name="step-increment">1</property>
+    <property name="step_increment">1</property>
   </object>
   <object class="GtkAdjustment" id="minute">
     <property name="upper">59</property>
-    <property name="step-increment">1</property>
+    <property name="step_increment">1</property>
   </object>
   <object class="GtkWindow" id="window1">
-    <property name="can-focus">False</property>
+    <property name="can_focus">False</property>
     <property name="title" translatable="yes">Calendar</property>
-    <property name="window-position">center</property>
+    <property name="window_position">center</property>
     <child>
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="margin-left">10</property>
-        <property name="margin-right">10</property>
-        <property name="margin-top">10</property>
-        <property name="margin-bottom">10</property>
+        <property name="can_focus">False</property>
+        <property name="margin_left">10</property>
+        <property name="margin_right">10</property>
+        <property name="margin_top">10</property>
+        <property name="margin_bottom">10</property>
         <property name="orientation">vertical</property>
         <property name="spacing">8</property>
         <child>
           <object class="GtkCalendar" id="date">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
+            <property name="can_focus">True</property>
             <property name="year">2016</property>
             <property name="month">4</property>
             <property name="day">5</property>
@@ -42,11 +42,11 @@
         <child>
           <object class="GtkBox" id="hboxTime">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="can_focus">False</property>
             <child>
               <object class="GtkSpinButton" id="spinbutton1">
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
+                <property name="can_focus">True</property>
                 <property name="adjustment">hour</property>
               </object>
               <packing>
@@ -58,7 +58,7 @@
             <child>
               <object class="GtkSpinButton" id="spinbutton2">
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
+                <property name="can_focus">True</property>
                 <property name="adjustment">minute</property>
               </object>
               <packing>
@@ -71,10 +71,10 @@
               <object class="GtkCheckButton" id="am">
                 <property name="label" translatable="yes">am</property>
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">False</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
                 <property name="xalign">0</property>
-                <property name="draw-indicator">True</property>
+                <property name="draw_indicator">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -86,10 +86,10 @@
               <object class="GtkCheckButton" id="pm">
                 <property name="label" translatable="yes">pm</property>
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">False</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
                 <property name="xalign">0</property>
-                <property name="draw-indicator">True</property>
+                <property name="draw_indicator">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -107,14 +107,14 @@
         <child>
           <object class="GtkButtonBox" id="buttonbox1">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="layout-style">spread</property>
+            <property name="can_focus">False</property>
+            <property name="layout_style">spread</property>
             <child>
               <object class="GtkButton" id="buttonCancel">
                 <property name="label" translatable="yes">Cancel</property>
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -126,8 +126,8 @@
               <object class="GtkButton" id="buttonSave">
                 <property name="label" translatable="yes">Save</property>
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>

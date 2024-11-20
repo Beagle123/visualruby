@@ -3,7 +3,7 @@ vr_yaml_file: "/home/eric/vrp/vr3/.vr_settings.yaml"
 width: 1854
 height: 1003
 panel_pos: 388
-notebook_panel_position: 709
+notebook_panel_position: 553
 run_command_line: ruby vr
 open_files:
 - "/home/eric/vrp/vr3/vr"
@@ -21,14 +21,18 @@ open_files:
 - "/home/eric/vrp/vr3/src/editor/VR_Tabs.rb"
 - "/home/eric/vrp/vr3/src/main/VR_Main.rb"
 - "/home/eric/vrp/vr3/src/editor/VR_TextShell.rb"
+- "/home/eric/vrp/vr3/src/main/GemTree.rb"
+- "/home/eric/vrp/vr3/src/main/RubygemsAPI.rb"
+- "/home/eric/vrp/vr3/src/main/VR_Remote_Gem_Tree.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
-- "/home/eric/vrp/vr3/skeleton"
+- "/home/eric/vrp/vr3/lib"
+- "/home/eric/vrp/vr3/lib/oinspect"
 - "/home/eric/vrp/vr3/src"
 - "/home/eric/vrp/vr3/src/main"
 - "/home/eric/vrp/vr3/src/main/glade"
-current_file: "/home/eric/vrp/vr3/src/editor/VR_TextShell.rb"
-current_line: 2
+current_file: "/home/eric/vrp/vr3/src/main/VR_Remote_Gem_Tree.rb"
+current_line: 27
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

@@ -1,7 +1,7 @@
 
 class RubygemsAPI 
 
-  include GladeGUI
+#   include GladeGUI
 
   CREDENTIALS_FILE = File.join(ENV['HOME'], ".gem", "credentials")
 
@@ -10,7 +10,7 @@ class RubygemsAPI
     @http = Net::HTTP.new(uri.host, uri.port)
     @http.use_ssl = true
     @http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    load_glade()
+#     load_glade()
   end
   
   def get_key()
@@ -20,18 +20,16 @@ class RubygemsAPI
     return set_up_key()
   end
 
-def set_up_key()
-    @username = ""
-    @password = ""
+
+
+  def set_up_key()
+    credentials = alert("Enter RubyGems UserName and Password:", data: {username: "", password: ""}, width: 400)
     key = nil
-    response_id = @builder["dialog1"].run  
-    @builder["dialog1"].hide
-    return unless response_id == 1    
-    get_glade_all() #gets @username, @password
+    return unless credentials.is_a?(Hash)   
     begin
       @http.start() do |h|
         req = Net::HTTP::Get.new("/api/v1/api_key.yaml")
-        req.basic_auth @username, @password
+        req.basic_auth(credentials[:username], credentials[:password])
         response = h.request(req)
         obj = YAML.unsafe_load(response.body)
         key = obj[:rubygems_api_key]
@@ -44,12 +42,10 @@ def set_up_key()
         end
       end
     rescue
-    alert "Problem connecting to rubygems.org"
+      alert "Problem connecting to rubygems.org"
     end 
     return key
   end
-
-
 
   def get_obj_url(path)
     return nil unless key = get_key()
@@ -106,3 +102,35 @@ def set_up_key()
   end
   
 end
+
+
+
+# 
+#   def set_up_key()
+#     @username = ""
+#     @password = ""
+#     key = nil
+#     response_id = @builder["dialog1"].run  
+#     @builder["dialog1"].hide
+#     return unless response_id == 1    
+#     get_glade_all() #gets @username, @password
+#     begin
+#       @http.start() do |h|
+#         req = Net::HTTP::Get.new("/api/v1/api_key.yaml")
+#         req.basic_auth @username, @password
+#         response = h.request(req)
+#         obj = YAML.unsafe_load(response.body)
+#         key = obj[:rubygems_api_key]
+#         if key
+#           path = File.dirname(CREDENTIALS_FILE)
+#           Dir.mkdir(path) unless File.directory?(path)
+#           File.open(CREDENTIALS_FILE,"w",0600) { |f| f.write(YAML.dump(obj)) } 
+#         else
+#           alert "Rubygems response:  \n" + obj.to_s
+#         end
+#       end
+#     rescue
+#     alert "Problem connecting to rubygems.org"
+#     end 
+#     return key
+#   end
