@@ -1,10 +1,4 @@
-# @title Home
-# Visual Ruby
-## Create GUIs with Ruby.
-
-<p>
-  <iframe width="420" height="315" src="https://www.youtube.com/embed/CY-0OYkg7b8" frameborder="0" allowfullscreen></iframe>
-</p>
+# Visual Ruby GUI Builder
 
 Visualruby was designed specifically for rubyists who want to add
 a GUI to their ruby scripts.  It enormously simplifies the process
@@ -12,24 +6,51 @@ of adding GTK+ windows to your applications.  Visualruby is completely
 integrated with the glade interface designer, so you only need to
 click on a ruby file to edit its widgets using glade.
 
-The editor has a "Run" button to execute your script, and if an error
-occurs, the editor will automatically jump to the spot in your code
-that caused the error.  Also, you can create a .gemspec file, compile your
+You can create a .gemspec file, compile your
 gem, install your gem, or push, yank or uninstall your gem with
 just one mouse-click.
 
+## Install Instructions
 
-# GUIs Are Easy As 1,2,3...
+#Linux, Ubuntu
 
-## Write your code 
+Install a ruby version manager like rbenv or RVM. This is necessary because
+they will install ruby under your $HOME directory where you have permissions
+to install it.  
 
-![](http://visualruby.net/img/index_listview.jpg)
+to test your install of ruby, run this at the prompt:
 
-## Create your GUI with Glade
+'''
+which ruby
+'''
 
-![](http://visualruby.net/img/index_glade.jpg)
+This should show that your version is under your home directory.  Then Run:
 
-## Click the Run button
+'''
+gem install visualruby
+'''
+Then run visualruby:
 
-![](http://visualruby.net/img/index_listviewdemo.jpg)
+'''
+vr
+'''
+
+
+## Windows
+
+First, download the "Windows Ruby Installer" and run it.  Make sure you install
+the additional software so Gtk+ can be installed in that environment.
+
+Then open the "Ruby Command Prompt" and run:
+
+'''
+gem install visualruby
+'''
+ Then run the command to start visualruby:
+
+'''
+vr
+'''
+
+
 

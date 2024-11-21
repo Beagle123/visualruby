@@ -14,6 +14,7 @@ open_files:
 - "/home/eric/vrp/vr3/examples/78_listview/src/SongListView.rb"
 - "/home/eric/vrp/vr3/examples/71_prettify_view/src/PrettyView.rb"
 - "/home/eric/vrp/vr3/lib/GladeGUI.rb"
+- "/home/eric/vrp/vr3/README.md"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/lib"
@@ -21,8 +22,8 @@ open_folders:
 - "/home/eric/vrp/vr3/lib/treeview/columns"
 - "/home/eric/vrp/vr3/src"
 - "/home/eric/vrp/vr3/src/main"
-current_file: "/home/eric/vrp/vr3/lib/GladeGUI.rb"
-current_line: 140
+current_file: "/home/eric/vrp/vr3/README.md"
+current_line: 36
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
