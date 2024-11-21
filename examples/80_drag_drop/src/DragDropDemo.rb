@@ -10,6 +10,7 @@ class DragDropDemo
     @view.refresh()
     @view.expand_row(@view.model.iter_first.path, false)
     @builder["scrolledwindow1"].add(@view)
+    @view.visible = true
     set_drag_drop("button1" => "textview1", @view => "textview1", "textview1" => "button1")
   end  
 

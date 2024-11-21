@@ -153,20 +153,6 @@ module VR
     end
 
 
-  
-#     def load_columns(cols) # :nodoc:
-#       @vr_renderer = {}
-#       @vr_cols = {}
-#       model_col = 0
-#       cols.each_pair do | sym, type|
-#         col = VR::Col::TreeViewColumn.new(self, model_col, sym, type)
-#         model_col = model_col + (type.class == Hash ? type.size : 1)
-#         self.append_column(col)
-#         @vr_cols[sym] = col
-#       end
-#       turn_on_comboboxes()
-#       @column_keys = flatten_hash(cols).keys
-#     end
 
     #shortcut to set_cell_data_func!
     def each_cell_method(col_symbol, block)

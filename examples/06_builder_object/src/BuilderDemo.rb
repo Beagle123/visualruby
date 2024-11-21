@@ -18,6 +18,7 @@ class BuilderDemo
     @animal_lbl = @builder["ui_animal_lbl"] 
   end  
 
+  # You can retreive the @builder objects, or use the variables:
   def ui_change_but__clicked(*args)  #use @builder directly
     if @builder["ui_animal_lbl"].label == "Dog"
       @builder["ui_animal_lbl"].label = "Cat"

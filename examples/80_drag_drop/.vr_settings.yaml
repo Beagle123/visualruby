@@ -1,19 +1,19 @@
 --- !ruby/object:VR_ENV
 vr_yaml_file: "/home/eric/vrp/vr3/examples/80_drag_drop/.vr_settings.yaml"
-width: 1858
+width: 1854
 height: 1003
 panel_pos: 423
 notebook_panel_position: 400
 run_command_line: ruby drag_drop.rb
 open_files:
-- "/home/eric/vrp/vr3/examples/95_active_record/Untitled"
+- "/home/eric/vrp/vr3/examples/80_drag_drop/src/DragDropDemo.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/80_drag_drop"
 - "/home/eric/vrp/vr3/examples/80_drag_drop/src"
 - "/home/eric/vrp/vr3/examples/80_drag_drop/src/glade"
-current_file: "/home/eric/vrp/vr3/examples/95_active_record/Untitled"
-current_line: 1
+current_file: "/home/eric/vrp/vr3/examples/80_drag_drop/src/DragDropDemo.rb"
+current_line: 13
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
-settings_file_version: 1
 top_level_window: false
+settings_file_version: 1
