@@ -3,7 +3,7 @@ vr_yaml_file: "/home/eric/vrp/vr3/.vr_settings.yaml"
 width: 1854
 height: 1003
 panel_pos: 351
-notebook_panel_position: 735
+notebook_panel_position: 568
 run_command_line: ruby vr
 open_files:
 - "/home/eric/vrp/vr3/vr.gemspec"
@@ -17,9 +17,9 @@ open_files:
 - "/home/eric/vrp/vr3/README.md"
 open_folders:
 - "/home/eric/vrp/vr3"
-- "/home/eric/vrp/vr3/examples"
+- "/home/eric/vrp/vr3/lib"
 current_file: "/home/eric/vrp/vr3/README.md"
-current_line: 9
+current_line: 43
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

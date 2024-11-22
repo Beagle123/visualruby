@@ -1,9 +1,9 @@
 --- !ruby/object:VR_ENV
 vr_yaml_file: "/home/eric/vrp/vr3/examples/02_hello/.vr_settings.yaml"
-width: 1132
-height: 638
+width: 1854
+height: 1003
 panel_pos: 360
-notebook_panel_position: 457
+notebook_panel_position: 724
 run_command_line: ruby hello.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/02_hello/README.txt"
@@ -13,8 +13,8 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/02_hello"
 - "/home/eric/vrp/vr3/examples/02_hello/src"
 - "/home/eric/vrp/vr3/examples/02_hello/src/glade"
-current_file: "/home/eric/vrp/vr3/examples/02_hello/src/HelloGUI.rb"
-current_line: 12
+current_file: "/home/eric/vrp/vr3/examples/02_hello/README.txt"
+current_line: 24
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

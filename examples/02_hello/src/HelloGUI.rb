@@ -1,10 +1,10 @@
 
-class HelloGUI #(change name)
+class HelloGUI 
  
   include GladeGUI 
 
   def ui_hello_btn__clicked(*args)
-    @builder["ui_hello_btn"].label = "Goodbye World" 
+    alert("Hello World")
   end
 
 end

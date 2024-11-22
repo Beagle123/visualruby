@@ -16,7 +16,7 @@ class Menus
   end
 
   def ui_about_menu__activate(*args)
-    alert("Version 16.7.31", headline: "Stupid Menu Program")
+    alert("Version 16.7.31", headline: "Menu Program")
   end
 
   def ui_zoom_tool__clicked(*args)

@@ -25,8 +25,8 @@ files, and write your code:
 
 Obviously, this is a trivial example, but there are about 20 example
 programs that illustrate many of the things you can do.  The best way
-to learn it, is to follow these example programs. (in ~/visualruby/examples).
-They are "bite size" programs that show one idea at a time.
+to learn visualruby, is to follow these example programs. (in ~/visualruby/examples).
+They are "bite-size" programs that show one idea at a time.
 
 To proceed, follow the install instructions, and run the first examples. 
 
@@ -54,6 +54,15 @@ Then run visualruby:
 ```
 vr
 ```
+
+Next, install the Glade interface designer.  Ubuntu users can find it in the software center
+or all Linux users can install it with their package manager:
+
+```
+sudo apt install glade
+```
+
+
 
 
 ## Windows

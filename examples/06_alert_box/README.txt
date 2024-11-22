@@ -52,7 +52,7 @@ the option to add a :no_button to do any other task:
 
 Now there is a third button to do something else if they forgot their password.
 
-Here are all the optional options:
+Here are all the options:
 
  :buton_yes = label for button that returns true (default: "Ok", "Save" when input_text is set))
  :button_no = label for button that returns false (default "Cancel" when input text is set)

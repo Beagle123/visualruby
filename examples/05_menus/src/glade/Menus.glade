@@ -114,7 +114,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkToolbar" id="ui_tool">
+          <object class="GtkToolbar">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>

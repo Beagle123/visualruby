@@ -5,7 +5,8 @@ class Event_Handlers
 
   def before_show()
     @my_var = @builder["ui_use_variable_but"]
-
+    
+    # This is how you add your own widget to a scrolledwindow:
     @txt = MyTextView.new()
     @txt.visible = true
 

@@ -9,7 +9,7 @@ buttion, the "clicked" event occurs, calling a method to take some action.
 The code would look like this if you did everything without the benefit of
 visualruby or glade:
 
-  @button = Gtk::Button.new(:label => "Say hello")
+  @button = Gtk::Button.new(label: "Say hello")
   @button.signal_connect "clicked" do |_widget|
     puts "Hello World!!"
   end
@@ -79,7 +79,3 @@ If you just insert it into a form, there will be no reference to it.
 
 Using this method, you can write your own custom subclass of Gtk::TextView
 and use it whereever you want.
-
-
-
-
