@@ -1,9 +1,9 @@
 --- !ruby/object:VR_ENV
 vr_yaml_file: "/home/eric/vrp/vr3/examples/02_hello/.vr_settings.yaml"
-width: 1854
-height: 1003
+width: 1132
+height: 638
 panel_pos: 360
-notebook_panel_position: 547
+notebook_panel_position: 457
 run_command_line: ruby hello.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/02_hello/README.txt"
