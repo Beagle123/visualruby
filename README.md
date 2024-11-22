@@ -30,9 +30,9 @@ They are "bite size" programs that show one idea at a time.
 
 To proceed, follow the install instructions, and run the first examples. 
 
-## Install Instructions
+# Install Instructions
 
-# Linux, Ubuntu
+## Linux, Ubuntu
 
 Install a ruby version manager like rbenv or RVM. This is necessary because
 they will install ruby under your $HOME directory where you have permissions
