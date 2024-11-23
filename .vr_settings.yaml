@@ -17,9 +17,11 @@ open_files:
 - "/home/eric/vrp/vr3/README.md"
 open_folders:
 - "/home/eric/vrp/vr3"
+- "/home/eric/vrp/vr3/docs"
+- "/home/eric/vrp/vr3/docs/img"
 - "/home/eric/vrp/vr3/lib"
 current_file: "/home/eric/vrp/vr3/README.md"
-current_line: 43
+current_line: 68
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
