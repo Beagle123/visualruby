@@ -6,7 +6,7 @@
 <title>
   File: Active Record Tutorial
   
-    &mdash; Visual Ruby
+    &mdash; Visual Ruby GUI Creator
   
 </title>
 
@@ -62,39 +62,26 @@
       <div id="content"><div id='filecontents'>
 <h1 id="label-ActiveRecord+Tutorial">ActiveRecord Tutorial</h1>
 
-<p>Note: Visualruby has been updated since these videos were made, so the
-syntax is slightly different. For example, there is no need to write your
-own <strong>show()</strong> method. See the example projects in the
-<strong>/examples</strong> folder for updated examples. The text below is
-updated, the videos are not.</p>
+<p>Note: Visualruby has been updated since these videos were made, so the syntax is slightly different. For example, there is no need to write your own <strong>show()</strong> method. See the example projects in the <strong>/examples</strong> folder for updated examples. The text below is updated, the videos are not.</p>
 <p>
   <iframe width="480" height="360" src="https://www.youtube.com/embed/uySVKltD7fk" frameborder="0" allowfullscreen>
   </iframe>
 </p>
-<p>Any ActiveRecord object can have a GUI interface added to it easily using
-visualruby. Using Ruby and ActiveRecord you can easily add, delete, and
-save records to a database. However, its considerably more difficult to
-edit records because there is no way to display the records on the screen.
-Visualruby solves that problem.</p>
+<p>Any ActiveRecord object can have a GUI interface added to it easily using visualruby. Using Ruby and ActiveRecord you can easily add, delete, and save records to a database. However, its considerably more difficult to edit records because there is no way to display the records on the screen. Visualruby solves that problem.</p>
 
-<p>ActiveRecord objects can use the GladeGUI interface to add a GUI, just like
-any other class. You simply add this line to your class:</p>
+<p>ActiveRecord objects can use the GladeGUI interface to add a GUI, just like any other class. You simply add this line to your class:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_include'>include</span> <span class='const'>GladeGUI</span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="GladeGUI.html" title="GladeGUI (module)">GladeGUI</a></span></span>
 </code></pre>
 
-<p>To illustrate adding a GUI, I&#39;ll present a simple example of an
-existing ActiveRecord class named “Person:”</p>
+<p>To illustrate adding a GUI, I’ll present a simple example of an existing ActiveRecord class named “Person:”</p>
 
 <pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>Person</span> <span class='op'>&lt;</span> <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span>
 
   <span class='kw'>end</span>
 </code></pre>
 
-<p>This class will automatically access a table named <strong>people</strong>
-in the database. Also, ActiveRecord will scan the table to learn the names
-of the fields in the <strong>people</strong> table. So, there are several
-fields in this table even though they&#39;re not listed in the class.</p>
+<p>This class will automatically access a table named <strong>people</strong> in the database. Also, ActiveRecord will scan the table to learn the names of the fields in the <strong>people</strong> table. So, there are several fields in this table even though they’re not listed in the class.</p>
 
 <p>The <strong>people</strong> table consists of these fields:</p>
 
@@ -104,48 +91,30 @@ fields in this table even though they&#39;re not listed in the class.</p>
     <span class='id identifier rubyid_email'>email</span>
 </code></pre>
 
-<p>To add a GUI to the <strong>Person</strong> class, you need to add these
-lines of code:</p>
+<p>To add a GUI to the <strong>Person</strong> class, you need to add these lines of code:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>Person</span> <span class='op'>&lt;</span> <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span>
 
-   <span class='id identifier rubyid_include'>include</span> <span class='const'>GladeGUI</span>
+   <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="GladeGUI.html" title="GladeGUI (module)">GladeGUI</a></span></span>
 
  <span class='kw'>end</span>
 </code></pre>
 
-<p>Now the Person class is ready to be shown on the screen as a GUI. However,
-we still need to create a glade form to show the fields. In the visualruby
-IDE, you need to right-click on the <strong>Person.rb</strong> file to
-create a form using glade. You can see this done in the above video. When
-you create a glade form form for the <strong>Person</strong> class, it will
-automatically create a file named <strong>Person.glade</strong> in the
-“glade” directory, so when you run the <strong>show_glade()</strong> method
-it will find the glade form that corresponds to the <strong>Person</strong>
-class and show it on the screen.</p>
+<p>Now the Person class is ready to be shown on the screen as a GUI. However, we still need to create a glade form to show the fields. In the visualruby IDE, you need to right-click on the <strong>Person.rb</strong> file to create a form using glade. You can see this done in the above video. When you create a glade form form for the <strong>Person</strong> class, it will automatically create a file named <strong>Person.glade</strong> in the “glade” directory, so when you run the <strong>show_glade()</strong> method it will find the glade form that corresponds to the <strong>Person</strong> class and show it on the screen.</p>
 
-<p>Then you need to add 4 entry boxes with the names, <strong>name, address,
-phone, email</strong> to correspond to the names of the fields in the
-table. See the examples to see how this is done.</p>
+<p>Then you need to add 4 entry boxes with the names, <strong>name, address, phone, email</strong> to correspond to the names of the fields in the table. See the examples to see how this is done.</p>
 
-<p>When the glade file is finished, the <strong>show_glade()</strong> method
-will load the glade form into memory, and automatically fill all the
-form&#39;s fields with their corresponding values (i.e. the entry box named
-<strong>address</strong> will be filled with the <strong>address</strong>
-field etc.) And the <strong>show_glade()</strong> method will simply show
-the window on the screen:</p>
+<p>When the glade file is finished, the <strong>show_glade()</strong> method will load the glade form into memory, and automatically fill all the form’s fields with their corresponding values (i.e. the entry box named <strong>address</strong> will be filled with the <strong>address</strong> field etc.) And the <strong>show_glade()</strong> method will simply show the window on the screen:</p>
 
 <p><img src="http://visualruby.net/img/person.jpg"></p>
 
 <h1 id="label-Editing+Records">Editing Records</h1>
 
-<p>The above glade form only shows the fields from the <strong>People</strong>
-table on the screen. If you want to edit the records you simply need to add
-a “Save” button to the form and attach code to it:</p>
+<p>The above glade form only shows the fields from the <strong>People</strong> table on the screen. If you want to edit the records you simply need to add a “Save” button to the form and attach code to it:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>Person</span> <span class='op'>&lt;</span> <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span>
 
-   <span class='id identifier rubyid_include'>include</span> <span class='const'>GladeGUI</span>
+   <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="GladeGUI.html" title="GladeGUI (module)">GladeGUI</a></span></span>
 
    <span class='kw'>def</span> <span class='id identifier rubyid_buttonSave__clicked'>buttonSave__clicked</span>
      <span class='id identifier rubyid_get_glade_all'>get_glade_all</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -155,23 +124,9 @@ a “Save” button to the form and attach code to it:</p>
  <span class='kw'>end</span>
 </code></pre>
 
-<p>The above example assumes that you&#39;ve added a button named “buttonSave”
-to your glade form. You don&#39;t need to use the
-GLibInstantiatable#signal_connect method to connect a signal to the button.
-You only need to name the method according to visual ruby&#39;s naming
-convention:<br> (method name = <strong>buttonSave__clicked</strong>. See
-Signals tutorial for more).</p>
+<p>The above example assumes that you’ve added a button named “buttonSave” to your glade form. You don’t need to use the GLibInstantiatable#signal_connect method to connect a signal to the button. You only need to name the method according to visual ruby’s naming convention:<br> (method name = <strong>buttonSave__clicked</strong>. See Signals tutorial for more).</p>
 
-<p>The <strong>get_glade_all()</strong> method will update the values for the
-ActiveRecord fields from the glade form. For example, if you edited the
-person&#39;s email address on the screen, the get_glade_all() method would
-update the value of the <strong>Person.email</strong> in ActiveRecord to
-the same value as the screen shows. The <strong>get_glade_all()</strong>
-method is simply the opposite of the <strong>set_glade_all()</strong>
-method. So the <strong>get_glade_all()</strong> method updates the instance
-of <strong>Person</strong>, but not the physical database on the server.
-The save() method is from the superclass, ActiveRecord::Base, and it simply
-commits the cahnges to the actual database server.</p>
+<p>The <strong>get_glade_all()</strong> method will update the values for the ActiveRecord fields from the glade form. For example, if you edited the person’s email address on the screen, the get_glade_all() method would update the value of the <strong>Person.email</strong> in ActiveRecord to the same value as the screen shows. The <strong>get_glade_all()</strong> method is simply the opposite of the <strong>set_glade_all()</strong> method. So the <strong>get_glade_all()</strong> method updates the instance of <strong>Person</strong>, but not the physical database on the server. The save() method is from the superclass, ActiveRecord::Base, and it simply commits the cahnges to the actual database server.</p>
 
 <p>You can also easily add a delete button that calls ActiveRecordBase#delete.</p>
 <p>
@@ -180,9 +135,9 @@ commits the cahnges to the actual database server.</p>
 </p></div></div>
 
       <div id="footer">
-  Generated on Wed Feb 15 16:32:35 2017 by
+  Generated on Sat Nov 23 22:46:08 2024 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.3.0).
+  0.9.37 (ruby-3.1.6).
 </div>
 
     </div>

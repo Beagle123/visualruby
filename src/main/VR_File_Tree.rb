@@ -72,7 +72,7 @@ class VR_File_Tree < VR::FileTreeView
     @main.shell.buffer.text = gem_builder          
   end
 
-  def popGlade_clicked
+  def popGlade_activate
     path = get_selected_path()
     source_code = File.open(path, "r").read
     class_name = VR_Document.get_class_title(source_code).gsub(".rb", "")
@@ -86,6 +86,16 @@ class VR_File_Tree < VR::FileTreeView
     else
       Open3.popen3("#{$VR_ENV_GLOBAL.glade_path} #{glade_file}")
     end
+  end
+
+  def popRun_activate
+    script = File.basename(get_selected_path())
+    FileUtils.cd(File.dirname(get_selected_path()))
+    @main.run_command("ruby #{script}")
+    FileUtils.cd(@main.proj_path)
+  end
+
+  def popSetMain_activate
   end
 
   def self__button_release_event(w, event)          # right click

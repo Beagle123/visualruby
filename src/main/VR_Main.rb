@@ -8,7 +8,7 @@ class VR_Main
   
   def initialize(argv)
     # can pass project on command line
-    @proj_path = vr_project?(argv[0]) ? argv[0] : nil
+    @proj_path = VR_Tools.vr_project?(argv[0]) ? argv[0] : nil
   end 
 
 
@@ -16,7 +16,7 @@ class VR_Main
 
     # there must be a visualruby directory:
     required_project = File.join(ENV["HOME"],"","visualruby", "examples", "alert_box")
-    menuInstallExamples__activate if not vr_project?(required_project)
+    menuInstallExamples__activate if not VR_Tools.vr_project?(required_project)
 
     # load global settings (requires /home/visuaruby folder exists
     $VR_ENV_GLOBAL = VR::load_yaml(VR_ENV_GLOBAL, VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
@@ -124,33 +124,20 @@ class VR_Main
     end
   end
 
-#  def toolRDoc__clicked(*a)
-#    return unless @tabs.try_to_save_all(:ask => false)
-#    @shell.buffer.text = $VR_ENV.rdoc_command_line + "\n"
-#    clear_events 
-#    @shell.buffer.text += `#{$VR_ENV.rdoc_command_line} 2>&1`
-#    VR_Tools.replace_html_in_docs()
-#    if File.exist?("yard_hack/index.html.replace")
-#      FileUtils.copy("yard_hack/index.html.replace", "docs/index.html") 
-#      FileUtils.copy("yard_hack/index.html.replace", "docs/frames.html") 
-#      FileUtils.copy("yard_hack/common.css", "docs/css/common.css")
-#    end
-#
-#  end
-
   def toolMyYard__clicked(*a)
-    go
-    return # alert "Not available yet."
     begin
       require "my_yard"
     rescue LoadError
       alert "You must install the my_yard gem to generate documents.  \nEnter this command at the command prompt:\n\n<b>gem install my_yard</b>",
         parent: self
+      return
     end
+    proj = VR::load_yaml(MyYard, File.join(Dir.pwd, ".yardoc", "my_yard.yaml"))
+    proj.show_glade()
   end
 
   def toolViewRDoc__clicked(*a)
-    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} #{Dir.pwd}/docs/index.html")    
+    Open3.popen3("#{$VR_ENV_GLOBAL.browser} #{Dir.pwd}/docs/index.html")   
   end
 
   def toolSave__clicked(*a)  # saves open tab 
@@ -169,7 +156,7 @@ class VR_Main
     old_path = @proj_path
     NewProjectGUI.new(self).show_glade(self)
     if old_path != @proj_path
-       @tabs.try_to_save_all(:ask=>false, :close=>true)
+      @tabs.try_to_save_all(:ask=>false, :close=>true)
       load_project
     end  
   end
@@ -200,7 +187,7 @@ class VR_Main
   end     
 
   def toolHome__clicked(*a) 
-    return unless vr_project?($VR_ENV_GLOBAL.home_project)
+    return unless VR_Tools.vr_project?($VR_ENV_GLOBAL.home_project)
     return if $VR_ENV_GLOBAL.home_project == @proj_path
     return unless @tabs.try_to_save_all(:ask=>true)
     @tabs.try_to_save_all(:ask => false, :close => true)

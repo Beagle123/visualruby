@@ -6,7 +6,7 @@
 <title>
   Module: VR
   
-    &mdash; Visual Ruby
+    &mdash; Visual Ruby GUI Creator
   
 </title>
 
@@ -81,7 +81,7 @@
   <dl>
     <dt>Defined in:</dt>
     <dd>lib/DragDrop.rb<span class="defines">,<br />
-  lib/Alert.rb,<br /> lib/Tools.rb,<br /> lib/SavableClass.rb,<br /> lib/treeview/TreeView.rb,<br /> lib/treeview/ListView.rb,<br /> lib/treeview/ViewCommon.rb,<br /> lib/treeview/FileTreeView.rb</span>
+  lib/Alert.rb,<br /> lib/Tools.rb,<br /> lib/SavableClass.rb,<br /> lib/treeview/ListView.rb,<br /> lib/treeview/TreeView.rb,<br /> lib/treeview/ViewCommon.rb,<br /> lib/treeview/FileTreeView.rb,<br /> lib/treeview/columns/TreeViewColumn.rb</span>
 </dd>
   </dl>
   
@@ -106,7 +106,7 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="VR/Alert.html" title="VR::Alert (class)">Alert</a></span>, <span class='object_link'><a href="VR/FileTreeView.html" title="VR::FileTreeView (class)">FileTreeView</a></span>, <span class='object_link'><a href="VR/ListView.html" title="VR::ListView (class)">ListView</a></span>, <span class='object_link'><a href="VR/TreeView.html" title="VR::TreeView (class)">TreeView</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="VR/FileTreeView.html" title="VR::FileTreeView (class)">FileTreeView</a></span>, <span class='object_link'><a href="VR/ListView.html" title="VR::ListView (class)">ListView</a></span>, <span class='object_link'><a href="VR/TreeView.html" title="VR::TreeView (class)">TreeView</a></span>, <span class='object_link'><a href="VR/TreeViewColumn.html" title="VR::TreeViewColumn (class)">TreeViewColumn</a></span>
     
   
 </p>
@@ -142,7 +142,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Copies a directory recursively.</p>
+</div></span>
   
 </li>
 
@@ -213,14 +215,23 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Copies a directory recursively</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-3
-4
 5
 6
 7
@@ -232,12 +243,14 @@
 13
 14
 15
-16</pre>
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/Tools.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/Tools.rb', line 5</span>
 
-<span class='kw'>def</span> <span class='const'>VR</span><span class='period'>.</span><span class='id identifier rubyid_copy_recursively'>copy_recursively</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_out_dir'>out_dir</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="VR (module)">VR</a></span></span><span class='period'>.</span><span class='id identifier rubyid_copy_recursively'>copy_recursively</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_out_dir'>out_dir</span><span class='rparen'>)</span>
   <span class='const'>Find</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_path'>path</span><span class='op'>|</span>
     <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_path'>path</span> <span class='op'>==</span> <span class='id identifier rubyid_from'>from</span>
     <span class='id identifier rubyid_rel_path'>rel_path</span> <span class='op'>=</span> <span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -268,9 +281,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Loads or creates a yaml file with a given object type (class). If the file
-exists already, the object will be returned. If not, a new instance will be
-returned, and the file will instantly be saved.</p>
+<p>Loads or creates a yaml file with a given object type (class). If the file exists already, the object will be returned. If not, a new instance will be returned, and the file will instantly be saved.</p>
 
 
   </div>
@@ -374,14 +385,14 @@ returned, and the file will instantly be saved.</p>
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_load_yaml'>load_yaml</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='comma'>,</span> <span class='id identifier rubyid_file_name'>file_name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_me'>me</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_file?'>file?</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span> 
-    <span class='id identifier rubyid_me'>me</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_me'>me</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_unsafe_load'>unsafe_load</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span>
   <span class='kw'>else</span> 
     <span class='id identifier rubyid_me'>me</span> <span class='op'>=</span> <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_file_name'>file_name</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_me'>me</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_set'>instance_variable_set</span><span class='lparen'>(</span><span class='symbol'>:@vr_yaml_file</span><span class='comma'>,</span> <span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_me'>me</span><span class='period'>.</span><span class='id identifier rubyid_defaults'>defaults</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_me'>me</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:defaults</span><span class='rparen'>)</span>
-  <span class='const'>VR</span><span class='op'>::</span><span class='id identifier rubyid_save_yaml'>save_yaml</span><span class='lparen'>(</span><span class='id identifier rubyid_me'>me</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='id identifier rubyid_save_yaml'><span class='object_link'><a href="#save_yaml-class_method" title="VR.save_yaml (method)">save_yaml</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_me'>me</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_me'>me</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -439,9 +450,7 @@ returned, and the file will instantly be saved.</p>
       
         &mdash;
         <div class='inline'>
-<p>Optional file name to save yaml file to.  When omitted,  it will save file
-to path where it was opened from.  Only supply this param if you want to
-make another copy of the yaml file.</p>
+<p>Optional file name to save yaml file to.  When omitted,  it will save file to path where it was opened from.  Only supply this param if you want to make another copy of the yaml file.</p>
 </div>
       
     </li>
@@ -487,9 +496,9 @@ make another copy of the yaml file.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Feb 15 16:32:37 2017 by
+  Generated on Sat Nov 23 22:46:08 2024 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.3.0).
+  0.9.37 (ruby-3.1.6).
 </div>
 
     </div>

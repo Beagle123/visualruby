@@ -8,7 +8,6 @@ require "fileutils"
 
 
 #tools go first
-require_relative "Tools"
 require_relative "GladeGUI"
 require_relative "Alert"
 require_relative "DragDrop"

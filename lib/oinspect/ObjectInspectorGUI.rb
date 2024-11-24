@@ -33,10 +33,9 @@ end
 
 # Displays object on screen and halts the program.  Anywhere in your code you can halt 
 # the execution, and display an object in a window like this:
-#   alert anyobject
+#   oinspect anyobject
 #
 # Also, at any window, if you press the F8 key, the object inspector will run.  Try it.
-# http://visualruby.net/img/object_inspector.jpg
 #
 # @param [Object] obj Any object that you want to display.
 # @return none.

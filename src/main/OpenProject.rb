@@ -21,7 +21,7 @@ class OpenProject
 
   def ftv__row_activated(_self, path, col)
     return unless row = @ftv.selected_rows.first 
-    if vr_project?(row[:path])
+    if VR_Tools.vr_project?(row[:path])
       buttonOpen__clicked
     else
       @ftv.expand_or_collapse_folder()
@@ -47,7 +47,7 @@ class OpenProject
 
   def buttonOpen__clicked(*a)
       return unless row = @ftv.selected_rows.first
-      if vr_project?( row[:path] ) 
+      if VR_Tools.vr_project?( row[:path] ) 
         @parent.proj_path = row[:path]
         buttonCancel__clicked
       else
@@ -57,7 +57,7 @@ class OpenProject
 
   def buttonNewWindow__clicked(*a)
     return unless row = @ftv.selected_rows.first
-    if vr_project?(row[:path]) 
+    if VR_Tools.vr_project?(row[:path]) 
       Open3.popen3("vr #{row[:path]}")
       buttonCancel__clicked
     else

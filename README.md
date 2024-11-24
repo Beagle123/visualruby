@@ -19,7 +19,7 @@ files, and write your code:
 
 ![Main Screen](https://beagle123.github.io/visualruby/img/main.png)
 
-### Then just click the "Run" button:
+Then just click the "Run" button:
 
 ![Hello](https://beagle123.github.io/visualruby/img/hello.png)
 
@@ -67,7 +67,7 @@ sudo apt install glade
 
 ## Windows Install
 
-### Install Ruby
+## Install Ruby
 
 First, download the [Windows Ruby Installer](https://rubyinstaller.org).   Choose
 a download that includes the DevKit.  Visualruby, Glade and Gtk+ need that DevKit.
@@ -80,7 +80,7 @@ Just install with all defaults that includes MSYS2 which is also necessary.
 After, all this completes, you will find a "Command Prompt with Ruby" option
 added to the windows menu.  Select it, and open the prompt.
 
-### Install Glade
+## Install Glade
 
 Now you will need to install the [Glade Interface Designer](https://packages.msys2.org/packages/mingw-w64-x86_64-glade)
 This is a MSYS2 package that you can install at the Ruby command prompt:
@@ -123,7 +123,7 @@ Success!  Now, at the prompt, you can run:
 glade
 ```
 
-### Install VisualRuby Gem
+## Install VisualRuby Gem
 
 At the "Ruby Command Prompt", run:
 

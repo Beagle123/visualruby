@@ -6,7 +6,7 @@
 <title>
   Top Level Namespace
   
-    &mdash; Visual Ruby
+    &mdash; Visual Ruby GUI Creator
   
 </title>
 
@@ -132,30 +132,6 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="top-level-namespace.html#clear_events-instance_method" title="#clear_events (instance method)">#<strong>clear_events</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Waits for all penting events to finish before continuing.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="top-level-namespace.html#oinspect-instance_method" title="#oinspect (instance method)">#<strong>oinspect</strong>(obj = self)  &#x21d2; Object </a>
     
 
@@ -198,23 +174,11 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The alert method creates a pop-up alert in your program.  It creates a
-modal window that halts execution of your code until the user closes it. 
-Its great for displaying messages and debugging.  It also has the option of
-displaying a text entry box for getting text input from the user.  This
-small tool can save hundreds of lines of code in your programs.  It can be
-used extesnively to display all types of messages and request all types of
-user input.</p>
+<p>The alert method creates a pop-up alert in your program.  It creates a modal window that halts execution of your code until the user closes it.  Its great for displaying messages and debugging.  It also has the option of allowing the user input in the form of a String or a selection from a Hash or Array.  This small tool can save hundreds of lines of code in your programs.  It can be used extesnively to display all types of messages and request all types of user input.</p>
 
-<p><img src="http://visualruby.net/img/alert_overwrite.jpg" /></p>
+<p>The alert box can disply 1, 2 or 3 buttons.  The first button is denoted using the symbol: :button_yes button and is always displayed.  You can add :button_no and :button_cancel.   </p>
 
-<p>The alert box can disply 1, 2 or 3 buttons.  The first button is denoted
-using the symbol: :button_yes button and is always displayed.  You can add
-:button_no and :button_cancel.</p>
-
-<p>If you want to add these buttons, just set their values to whatever text
-you want them to display and they will appear.  Likewise, if you add the
-option, :input_text, a text entry box will appear.</p>
+<p>If you want to add these buttons, just set their values to whatever text you want them to display and they will appear.  Likewise, if you pass a :data parameter with a String, Hash or Array, it will ask for user input.</p>
 
 <p>There are many examples in the “alert_box” example project.</p>
 
@@ -269,7 +233,7 @@ option, :input_text, a text entry box will appear.</p>
       
         &mdash;
         <div class='inline'>
-<p>– Hash of options:  :button_yes =&gt; text on the button that returns true.</p>
+<p>Hash of options:  :button_yes =&gt; text on the button that returns true.</p>
 </div>
       
     </li>
@@ -324,14 +288,14 @@ option, :input_text, a text entry box will appear.</p>
         </li>
       
         <li>
-          <span class="name">:input_text</span>
-          <span class="type">(<tt>String</tt>)</span>
+          <span class="name">:data</span>
+          <span class="type">(<tt>Variable</tt>)</span>
           <span class="default">
             
           </span>
           
             &mdash; <div class='inline'>
-<p>Text that appears in entry box. (set to make entry box appear)</p>
+<p>Either String, Array, or Hash.  This will determine type of user input.</p>
 </div>
           
         </li>
@@ -403,7 +367,35 @@ option, :input_text, a text entry box will appear.</p>
       
         &mdash;
         <div class='inline'>
-<p>text in the text entry field when the :button_yes button is pressed</p>
+<p>text in the text entry field when the :button_yes button is pressed. (:data passed a String)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>selected text from dropdown when the :button_yes button is pressed. (:data passed an Array)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>When :data is passed as Hash, this is updated Hash from user input.</p>
 </div>
       
     </li>
@@ -417,7 +409,7 @@ option, :input_text, a text entry box will appear.</p>
       
         &mdash;
         <div class='inline'>
-<p>When the :button_yes button is selected and there&#39;s no text entry box.</p>
+<p>When the :button_yes button is selected and there’s no text entry box.</p>
 </div>
       
     </li>
@@ -458,64 +450,19 @@ option, :input_text, a text entry box will appear.</p>
       <pre class="lines">
 
 
-105
-106
-107
-108
-109</pre>
+141
+142
+143
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/Alert.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'lib/Alert.rb', line 141</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_alert'>alert</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='const'>VR</span><span class='op'>::</span><span class='const'>Alert</span><span class='op'>::</span><span class='const'>DialogAnswer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  <span class='const'>VR</span><span class='op'>::</span><span class='const'>Alert</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='id identifier rubyid_ans'>ans</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_show_glade'>show_glade</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:parent</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'>Alert</span><span class='op'>::</span><span class='const'>DialogAnswer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'>Alert</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='id identifier rubyid_ans'>ans</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_show_glade'><span class='object_link'><a href="GladeGUI.html#show_glade-instance_method" title="GladeGUI#show_glade (method)">show_glade</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:parent</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_ans'>ans</span><span class='period'>.</span><span class='id identifier rubyid_answer'>answer</span> 
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="clear_events-instance_method">
-  
-    #<strong>clear_events</strong>  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Waits for all penting events to finish before continuing.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-458
-459
-460
-461
-462</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 458</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_clear_events'>clear_events</span><span class='lparen'>(</span><span class='rparen'>)</span>  
-  <span class='kw'>while</span> <span class='lparen'>(</span><span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_events_pending?'>events_pending?</span><span class='rparen'>)</span>
-    <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_main_iteration'>main_iteration</span>
-  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -534,14 +481,12 @@ option, :input_text, a text entry box will appear.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Displays object on screen and halts the program.  Anywhere in your code you
-can halt  the execution, and display an object in a window like this:</p>
+<p>Displays object on screen and halts the program.  Anywhere in your code you can halt  the execution, and display an object in a window like this:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_alert'>alert</span> <span class='id identifier rubyid_anyobject'>anyobject</span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_oinspect'>oinspect</span> <span class='id identifier rubyid_anyobject'>anyobject</span>
 </code></pre>
 
-<p>Also, at any window, if you press the F8 key, the object inspector will
-run.  Try it. <img src="http://visualruby.net/img/object_inspector.jpg" /></p>
+<p>Also, at any window, if you press the F8 key, the object inspector will run.  Try it.</p>
 
 
   </div>
@@ -595,15 +540,15 @@ run.  Try it. <img src="http://visualruby.net/img/object_inspector.jpg" /></p>
       <pre class="lines">
 
 
+42
 43
-44
-45</pre>
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oinspect/ObjectInspectorGUI.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/oinspect/ObjectInspectorGUI.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_oinspect'>oinspect</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='op'>=</span><span class='kw'>self</span><span class='rparen'>)</span>
-  <span class='const'>VR</span><span class='op'>::</span><span class='const'>ObjectInspector</span><span class='op'>::</span><span class='const'>ObjectInspectorGUI</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_show_glade'>show_glade</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="VR/ObjectInspector.html" title="VR::ObjectInspector (module)">ObjectInspector</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="VR/ObjectInspector/ObjectInspectorGUI.html" title="VR::ObjectInspector::ObjectInspectorGUI (class)">ObjectInspectorGUI</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="VR/ObjectInspector/ObjectInspectorGUI.html#initialize-instance_method" title="VR::ObjectInspector::ObjectInspectorGUI#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_show_glade'><span class='object_link'><a href="GladeGUI.html#show_glade-instance_method" title="GladeGUI#show_glade (method)">show_glade</a></span></span><span class='lparen'>(</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -615,9 +560,9 @@ run.  Try it. <img src="http://visualruby.net/img/object_inspector.jpg" /></p>
 </div>
 
       <div id="footer">
-  Generated on Wed Feb 15 16:32:37 2017 by
+  Generated on Sat Nov 23 22:46:08 2024 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.3.0).
+  0.9.37 (ruby-3.1.6).
 </div>
 
     </div>

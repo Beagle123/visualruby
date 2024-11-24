@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  File: Home
+  File: README
   
-    &mdash; Visual Ruby
+    &mdash; Visual Ruby GUI Creator
   
 </title>
 
@@ -37,7 +37,7 @@
         <div id="menu">
   
     <a href="_index.html">Index</a> &raquo; 
-    <span class="title">File: Home</span>
+    <span class="title">File: README</span>
   
 </div>
  
@@ -60,43 +60,115 @@
       <iframe id="search_frame" src=""></iframe>
 -->
       <div id="content"><div id='filecontents'>
-<h1 id="label-Visual+Ruby">Visual Ruby</h1>
+<h1 id="label-Visual+Ruby+GUI+Builder">Visual Ruby GUI Builder</h1>
 
-<h2 id="label-Create+GUIs+with+Ruby.">Create GUIs with Ruby.</h2>
-<p>
-  <iframe width="420" height="315" src="https://www.youtube.com/embed/CY-0OYkg7b8" frameborder="0" allowfullscreen></iframe>
-</p>
-<p>Visualruby was designed specifically for rubyists who want to add a GUI to
-their ruby scripts. It enormously simplifies the process of adding GTK+
-windows to your applications. Visualruby is completely integrated with the
-glade interface designer, so you only need to click on a ruby file to edit
-its widgets using glade.</p>
+<p>Visualruby was designed specifically for rubyists who want to add a GUI to their ruby scripts. It enormously simplifies the process of adding GTK+ windows to your applications. Visualruby is completely integrated with the glade interface designer, so you only need to click on a ruby file to edit its widgets using glade.</p>
 
-<p>The editor has a “Run” button to execute your script, and if an error
-occurs, the editor will automatically jump to the spot in your code that
-caused the error. Also, you can create a .gemspec file, compile your gem,
-install your gem, or push, yank or uninstall your gem with just one
-mouse-click.</p>
+<p>You can create a .gemspec file, compile your gem, install your gem, or push, yank or uninstall your gem with just one mouse-click.</p>
 
-<h1 id="label-GUIs+Are+Easy+As+1-2C2-2C3...">GUIs Are Easy As 1,2,3…</h1>
+<h2 id="label-Welcome+to+Easy+GUIs">Welcome to Easy GUIs</h2>
 
-<h2 id="label-Write+your+code">Write your code</h2>
+<p>This is the main screen of Visualruby. It is also and example of what you can do with visualruby because it was written in Visualruby. To create a graphical program, you simply create a project directory for your files, and write your code:</p>
 
-<p><img src="http://visualruby.net/img/index_listview.jpg"></p>
+<p><img src="https://beagle123.github.io/visualruby/img/main.png"></p>
 
-<h2 id="label-Create+your+GUI+with+Glade">Create your GUI with Glade</h2>
+<p>Then just click the “Run” button:</p>
 
-<p><img src="http://visualruby.net/img/index_glade.jpg"></p>
+<p><img src="https://beagle123.github.io/visualruby/img/hello.png"></p>
 
-<h2 id="label-Click+the+Run+button">Click the Run button</h2>
+<p>Obviously, this is a trivial example, but there are about 20 example programs that illustrate many of the things you can do. The best way to learn visualruby, is to follow these example programs. (in ~/visualruby/examples). They are “bite-size” programs that show one idea at a time.</p>
 
-<p><img src="http://visualruby.net/img/index_listviewdemo.jpg"></p>
+<p>To proceed, follow the install instructions, and run the first examples.</p>
+
+<h1 id="label-Install+Instructions">Install Instructions</h1>
+
+<h2 id="label-Linux-2C+Ubuntu">Linux, Ubuntu</h2>
+
+<p>Install a ruby version manager like rbenv or RVM. This is necessary because they will install ruby under your $HOME directory where you have permissions to install it.</p>
+
+<p>to test your install of ruby, run this at the prompt:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_which'>which</span> <span class='id identifier rubyid_ruby'>ruby</span>
+</code></pre>
+
+<p>This should show that your version is under your home directory. Then Run:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_visualruby'>visualruby</span>
+</code></pre>
+
+<p>Then run visualruby:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_vr'>vr</span>
+</code></pre>
+
+<p>Next, install the Glade interface designer. Ubuntu users can find it in the software center or all Linux users can install it with their package manager:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_sudo'>sudo</span> <span class='id identifier rubyid_apt'>apt</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_glade'>glade</span>
+</code></pre>
+
+<h2 id="label-Windows+Install">Windows Install</h2>
+
+<h2 id="label-Install+Ruby">Install Ruby</h2>
+
+<p>First, download the <a href="https://rubyinstaller.org">Windows Ruby Installer</a>. Choose a download that includes the DevKit. Visualruby, Glade and Gtk+ need that DevKit.</p>
+
+<p>The windows system will try to fight you downloading anything that they don’t profit from so you need to select “keep” file. And run it anyway. When you click on it, you may need to select “Show More” then select “keep” before it will let you execute it.</p>
+
+<p>Just install with all defaults that includes MSYS2 which is also necessary. After, all this completes, you will find a “Command Prompt with Ruby” option added to the windows menu. Select it, and open the prompt.</p>
+
+<h2 id="label-Install+Glade">Install Glade</h2>
+
+<p>Now you will need to install the <a href="https://packages.msys2.org/packages/mingw-w64-x86_64-glade">Glade Interface Designer</a> This is a MSYS2 package that you can install at the Ruby command prompt:</p>
+
+<pre class="code ruby"><code class="ruby">pacman -S mingw-w64-x86_64-glade
+</code></pre>
+
+<p>When this completes, glade will be installed, but it may not work because the windows %PATH% variable needs to be updated to include the path to the glade.exe file. To get glade to run, you will need to add its path in windows settings. In windows go to:</p>
+
+<pre class="code ruby"><code class="ruby">Settings &gt; System &gt; About &gt; Advanced System Settings &gt; Environment Variables &gt; Path &gt; Edit
+</code></pre>
+
+<p><img src="https://beagle123.github.io/visualruby/img/edit_env_var.png"></p>
+
+<p>Here you can add the path to glade.exe, so the command prompt can find it.</p>
+
+<p><img src="https://beagle123.github.io/visualruby/img/env_glade.png"></p>
+
+<p>Add this path:</p>
+
+<pre class="code ruby"><code class="ruby">C:\Ruby33-x64\msys64\mingw64\bin
+</code></pre>
+
+<p>If for some reason, this doesn’t match your path, just find the path to glade.exe using windows commander, and enter the correct path. But this path should be right.</p>
+
+<p>Once, you’ve changed the path, you need to save/close everything to have the changes take effect. So click “ok/save” for all settings, and restart the Ruby command prompt. When you’ve sucessfully added the path, it will show on the Ruby command prompt:</p>
+
+<p><img src="https://beagle123.github.io/visualruby/img/ruby_prompt.png"></p>
+
+<p>Success! Now, at the prompt, you can run:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_glade'>glade</span>
+</code></pre>
+
+<h2 id="label-Install+VisualRuby+Gem">Install VisualRuby Gem</h2>
+
+<p>At the “Ruby Command Prompt”, run:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_visualruby'>visualruby</span>
+</code></pre>
+
+<p>Then run the command to start visualruby:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_vr'>vr</span>
+</code></pre>
+
+<p>Visualruby will open, and you can double-click on the glade files to use the Glade Designer.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Feb 15 16:32:34 2017 by
+  Generated on Sat Nov 23 22:46:08 2024 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.3.0).
+  0.9.37 (ruby-3.1.6).
 </div>
 
     </div>

@@ -3,8 +3,8 @@
 # It will load a .glade
 # file into memory, enabling your ruby programs to have a GUI interface.
 #  
-# GladeGUI works by adding an instance variable named "builder" to your class.  The "builder"
-# variable is an instance of {Gtk::Builder}[http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ABuilder]
+# GladeGUI works by adding an instance variable named "@builder" to your class.  The "@builder"
+# variable is an instance of Gtk::Builder.
 # It holds references to all your windows and widgets.
 #  
 # ==Include the GladeGUI interface
@@ -29,11 +29,11 @@
 # You should always name your class, script, and glade file
 # the same name (case sensitive).
 #  
-# == <tt>builder</tt> variable holds all your widgets
+# == <tt>@builder</tt> variable holds all your widgets
 #  
 # So when you "load" your class's glade file where is it loaded?
 #  
-# GladeGUI adds an instance variable, builder to your class.
+# GladeGUI adds an instance variable, @builder to your class.
 # It loads all the windows and widgets from your glade file into @builder.
 # So, you use <tt>@builder</tt> to manipulate everything in you class's GUI.
 # <tt>@builder</tt> is set when you call the show_glade() method, as this code shows:
@@ -80,6 +80,8 @@
 # the “email” widget in glade using the @email variable. so 
 # you don’t need to include the above line of code. (see 
 # set_glade_variables() method.)
+
+
 module GladeGUI
 
   # @!attribute [rw] builder
@@ -126,17 +128,17 @@ module GladeGUI
   # the value of the @email vaiable would be loaded into a Gtk:Entry named "email"
   # in your glade form.  It saves you from having to do this:
   #
-  # @example
+  # @example:
   # @builder[:email].text = @email
   #   
   def load_glade() 
     caller__FILE__ = my_class_file_path()    
-    file_name = File.join(File.split(caller__FILE__)[0] , "glade", class_name(self) + ".glade")
+    file_name = File.join(File.split(caller__FILE__)[0] , "glade", my_class_name(self) + ".glade")
     @builder = Gtk::Builder.new(file: file_name)
     @builder.connect_signals{ |handle| method(handle) }
   end
 
-  private def class_name(obj) 
+  private def my_class_name(obj) 
     /.*\b(\w+)$/.match(obj.class.name)[1]
   end    
 
@@ -161,7 +163,7 @@ module GladeGUI
 #      if @builder
         @builder.objects.each do |obj|
           next unless obj.respond_to?(:builder_name)
-          if obj.builder_name == glade_name or obj.builder_name =~ /^(?:#{class_name(self)}\.|)#{glade_name}\[[a-zA-Z\d_-]+\]$/ #arrays
+          if obj.builder_name == glade_name or obj.builder_name =~ /^(?:#{my_class_name(self)}\.|)#{glade_name}\[[a-zA-Z\d_-]+\]$/ #arrays
             obj.signal_connect(signal_name) { |*args| method(meth.to_sym).call(*args) } 
           end
 #        end
@@ -345,7 +347,7 @@ module GladeGUI
   # @private
   def get_control_value(glade_name, obj = self)
     control = @builder[glade_name]
-    return unless control ||= @builder[class_name(obj) + "." + glade_name]
+    return unless control ||= @builder[my_class_name(obj) + "." + glade_name]
     case control
       when Gtk::CheckButton, Gtk::ToggleButton then control.active?
       when Gtk::Entry then control.text.to_s
@@ -448,7 +450,7 @@ module GladeGUI
   # @return none 
   def set_glade_active_record(obj = self)
     return if not defined? obj.attributes
-    obj.attributes.each_pair { |key, val| fill_control(class_name(obj) + "." + key, val) }
+    obj.attributes.each_pair { |key, val| fill_control(my_class_name(obj) + "." + key, val) }
   end
 
   def get_glade_active_record(obj) 
@@ -463,6 +465,7 @@ end
 
 
 # Waits for all penting events to finish before continuing.
+# @private
 def clear_events()  
   while (Gtk.events_pending?)
     Gtk.main_iteration

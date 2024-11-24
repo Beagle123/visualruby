@@ -1,17 +1,18 @@
 --- !ruby/object:VR_ENV
-vr_yaml_file: "/home/eric/vrp/vr3/examples/filetreeview/.vr_settings.yaml"
-width: 1858
+vr_yaml_file: "/home/eric/vrp/vr3/examples/77_filetreeview/.vr_settings.yaml"
+width: 1854
 height: 1003
 panel_pos: 490
 notebook_panel_position: 400
 run_command_line: ruby filetreeview.rb
 open_files:
-- "/home/eric/vrp/vr3/examples/filetreeview/src/ProjectTreeGUI.rb"
-- "/home/eric/vrp/vr3/examples/filetreeview/filetreeview.rb"
-- "/home/eric/vrp/vr3/examples/filetreeview/src/ProjectTree.rb"
-open_folders: []
-current_file: "/home/eric/vrp/vr3/examples/filetreeview/src/ProjectTree.rb"
-current_line: 39
+- "/home/eric/vrp/vr3/examples/77_filetreeview/src/ProjectTree.rb"
+open_folders:
+- "/home/eric/vrp/vr3/examples/77_filetreeview"
+- "/home/eric/vrp/vr3/examples/77_filetreeview/img"
+- "/home/eric/vrp/vr3/examples/77_filetreeview/src"
+current_file: "/home/eric/vrp/vr3/examples/77_filetreeview/src/ProjectTree.rb"
+current_line: 25
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

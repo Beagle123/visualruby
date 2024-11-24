@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Assistant:200');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300');
+@import url('https://fonts.googleapis.com/css?family=Rubik+One:300');
+body {color: #000000;}
+body {background-color: #ffffff;}
+body {font-size: 15px;}
+#main a, #main a:visited {color: #662211;}
+li.odd {background: #eeeeee;}
+li.even {background: #dddddd;}
+.item:hover {background: #d7d5c1;}
+li.clicked > .item {background: #000000;}
+li.clicked > .item {color: #d3d7cf;}
+#main a:hover {background: #f6f5cb;}
+h1 {font-family: 'Assistant';}
+h2 {font-family: 'Raleway';}
+h3 {font-family: 'Rubik One';}
+h1 {font-weight: 200;}
+h2 {font-weight: 300;}
+h3 {font-weight: 300;}
+h1 {font-size: 3em;}
+h2 {font-size: 1.4em;}
+h3 {font-size: 1.4em;}
+h1 {color: #662211;}
+h2 {color: #000000;}
+h3 {color: #000000;}
+h1 {background: #ffffff;}
+h2 {background: #ffffff;}
+h3 {background: #ebeade;}
+#toc {background-color: #f3f3eb;}
+#main p {width: 65%;}
+#main p {font-family: 'Raleway';}
+#main p {font-weight: 300;}
+.object_link a, #full_list_nav a, #full_list_nav a:hover {color: #662211;}
+.object_link {font-family: 'Raleway';}
+.object_link {font-weight: 300;}
+.object_link {font-size: 1em;}
+#toc {font-size: 1em;}
+#toc {font-family: 'Raleway';}
+#toc {font-weight: 300;}
+#content .summary .summary_signature:hover a {color: #000000;}
+.summary_signature:hover {border-color: #000000;}
+.summary .summary_signature {background: #ebeade;}
+p.signature, h3.signature {background: #ebeade;}
+li.clicked > .item a, li.clicked > .item a:visited {color: #d3d7cf;}
+#search { position: static; } .fixed_header { position: static; height: auto;} #full_list {margin-top: 0px;}

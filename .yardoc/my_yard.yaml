@@ -1,0 +1,21 @@
+--- !ruby/object:MyYard
+project_root: "/home/eric/vrp/vr3"
+output_dir: docs
+theme: visualruby
+template: visualruby
+files: lib/**/*.rb
+extra_files: "*/**/*.md"
+exclude: README.md
+include_public: true
+include_private: false
+include_protected: false
+include_private_tag: false
+title: Visual Ruby GUI Creator
+main: README.md
+export_db: true
+export_db_path: ".yardoc"
+vr_yaml_file: "/home/eric/vrp/vr3/.yardoc/my_yard.yaml"
+builder: !ruby/object:Gtk::Builder {}
+top_level_window: false
+theme_root: "/home/eric/my_yard/themes"
+template_root: "/home/eric/my_yard/templates"

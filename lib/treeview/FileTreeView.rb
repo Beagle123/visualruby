@@ -111,7 +111,6 @@ module VR
       child[:pix] = @icons.get_icon(File.directory?(fn) ? "x.folder" : fn)   if @icons
       child[:file_name] = File.basename(fn)
       child[:path] = fn
-# puts child[:file_name].to_s
       if File.directory?(fn)
         child[:sort_on] = "0" + child[:file_name]
         child[:empty] = true

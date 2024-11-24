@@ -7,7 +7,7 @@ module VR
         self.title = sym.to_s.gsub("_", " ").split(' ').map {|w| w.capitalize }.join(' ') # My Title
         @view = view
         self.resizable = true
-        self.visible = true
+ #       self.visible = true
     end
  
     def add_renderer(model_col, sym, type)

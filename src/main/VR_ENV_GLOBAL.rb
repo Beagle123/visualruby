@@ -41,7 +41,7 @@ class VR_ENV_GLOBAL
     elsif not File.directory?(@builder[:projects_home].text)
       alert("Projects home folder is not valid.", :parent=>self)
       return false      
-    elsif not vr_project?(@builder[:home_project].text)
+    elsif not VR_Tools.vr_project?(@builder[:home_project].text)
       alert("Home button project is not valid.", :parent=>self)
       return false      
     end

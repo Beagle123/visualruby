@@ -6,7 +6,7 @@
 <title>
   Module: GladeGUI
   
-    &mdash; Visual Ruby
+    &mdash; Visual Ruby GUI Creator
   
 </title>
 
@@ -78,7 +78,7 @@
   
   <dl>
     <dt>Included in:</dt>
-    <dd><span class='object_link'><a href="VR/Alert.html" title="VR::Alert (class)">VR::Alert</a></span>, <span class='object_link'><a href="VR/Col/BlobCol.html" title="VR::Col::BlobCol (class)">VR::Col::BlobCol</a></span>, <span class='object_link'><a href="VR/Col/CalendarCol.html" title="VR::Col::CalendarCol (class)">VR::Col::CalendarCol</a></span>, <span class='object_link'><a href="VR/Col/ImageCol.html" title="VR::Col::ImageCol (class)">VR::Col::ImageCol</a></span>, <span class='object_link'><a href="VR/FileTreeView.html" title="VR::FileTreeView (class)">VR::FileTreeView</a></span>, <span class='object_link'><a href="VR/ObjectInspector/ObjectInspectorGUI.html" title="VR::ObjectInspector::ObjectInspectorGUI (class)">VR::ObjectInspector::ObjectInspectorGUI</a></span></dd>
+    <dd><span class='object_link'><a href="VR/Col/BlobCol.html" title="VR::Col::BlobCol (class)">VR::Col::BlobCol</a></span>, <span class='object_link'><a href="VR/Col/CalendarCol.html" title="VR::Col::CalendarCol (class)">VR::Col::CalendarCol</a></span>, <span class='object_link'><a href="VR/Col/ImageCol.html" title="VR::Col::ImageCol (class)">VR::Col::ImageCol</a></span>, <span class='object_link'><a href="VR/ObjectInspector/ObjectInspectorGUI.html" title="VR::ObjectInspector::ObjectInspectorGUI (class)">VR::ObjectInspector::ObjectInspectorGUI</a></span></dd>
   </dl>
   
 
@@ -90,102 +90,7 @@
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>GladeGUI connects your class to a glade form.  It will load a .glade file
-into memory, enabling your ruby programs to have a GUI interface.</p>
 
-<p>GladeGUI works by adding an instance variable named “builder” to your
-class.  The “builder” variable is an instance of <a
-href="http://ruby-gnome2.sourceforge.jp/hiki.cgi?Gtk%3A%3ABuilder">Gtk::Builder</a>
-It holds references to all your windows and widgets.</p>
-
-<h2 id="label-Include+the+GladeGUI+interface">Include the GladeGUI interface</h2>
-
-<p>To use the GladeGUI interface, include this line in your code:</p>
-
-<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>MyClass</span>
-  <span class='id identifier rubyid_include'>include</span> <span class='const'>GladeGUI</span>
-<span class='kw'>end</span>
-</code></pre>
-
-<p>GladeGUI will load a corresponding  glade file for this class.  It knows
-which glade file to load by using a naming  convention:</p>
-
-<pre class="code ruby"><code class="ruby"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>folder</span><span class='regexp_end'>/MyClass</span></span><span class='period'>.</span><span class='id identifier rubyid_rb'>rb</span></code></pre>
-
-<p>Will load this glade file:</p>
-
-<pre class="code ruby"><code class="ruby"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>folder</span><span class='regexp_end'>/glade</span></span><span class='op'>/</span><span class='const'>MyClass</span><span class='period'>.</span><span class='id identifier rubyid_glade'>glade</span></code></pre>
-
-<p>The class, the class file name and the glade file name must match. You
-should always name your class, script, and glade file the same name (case
-sensitive).</p>
-
-<h2 id="label-builder+variable+holds+all+your+widgets"><code>builder</code> variable holds all your widgets</h2>
-
-<p>So when you “load” your class&#39;s glade file where is it loaded?</p>
-
-<p>GladeGUI adds an instance variable, builder to your class. It loads all the
-windows and widgets from your glade file into @builder. So, you use
-<code>@builder</code> to manipulate everything in you class&#39;s GUI.
-<code>@builder</code> is set when you call the show_glade() method, as this
-code shows:</p>
-
-<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>MyClass</span>
-
-  <span class='id identifier rubyid_include'>include</span> <span class='const'>GladeGUI</span>
-
-  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='ivar'>@builder</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>  <span class='comment'>#  =&gt; nil
-</span>  <span class='kw'>end</span>
-
-  <span class='kw'>def</span> <span class='id identifier rubyid_before_show'>before_show</span><span class='lparen'>(</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='ivar'>@builder</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>   <span class='comment'>#  =&gt; Gtk::Builder
-</span>  <span class='kw'>end</span>  
-
-<span class='kw'>end</span>
-</code></pre>
-
-<p>After show_glade() is called, you can access any of your form&#39;s windows
-or widgets using the @builder variable:</p>
-
-<pre class="code ruby"><code class="ruby"><span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>window1</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>This is the title that appears at the top.</span><span class='tstring_end'>&quot;</span></span>
-</code></pre>
-
-<p>Here&#39;s another example:  Suppose you have a glade form with a
-Gtk::Entry box on it named “email.” You could set the text that appears in
-the Gtk::Entry by setting the Gtk::Entry#text property:</p>
-
-<pre class="code ruby"><code class="ruby"><span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>email</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>harvey@harveyserver.com</span><span class='tstring_end'>&quot;</span></span>
-</code></pre>
-
-<p>Now the email adddess is set with a new value:</p>
-
-<p><img src="http://visualruby.net/img/gladegui_simple.jpg" /></p>
-
-<h2 id="label-Auto+fill+your+glade+form">Auto fill your glade form</h2>
-
-<p>You can streamline the process of setting-up your forms by auto-filling the
-widgets from instance variables with the same name.</p>
-
-<p>When assigning names to widgets in glade, give them names that  correspond
-to your instance variables. For example, if you want  to edit an email
-address on the glade form, create an instance  variable named @email in
-your class. Then, in glade, you  add a Gtk::Entry widget to your form and
-set its name to  “email”. The advantage of this is that GladeGUI will
-populate  the “email” widget in glade using the @email variable. so  you
-don’t need to include the above line of code. (see  set_glade_variables()
-method.)</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
 
 
 
@@ -250,8 +155,7 @@ method.)</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Convenience method so you can just make a button named “buttonCancel” and
-it will work.</p>
+<p>Convenience method so you can just make a button named “buttonCancel” and it will work.</p>
 </div></span>
   
 </li>
@@ -369,8 +273,7 @@ it will work.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>This will Load the glade form according to the naming convention:   
-MyClass.rb =&gt; MyClass.glade.</p>
+<p>This will Load the glade form according to the naming convention:    MyClass.rb =&gt; MyClass.glade.</p>
 </div></span>
   
 </li>
@@ -394,8 +297,7 @@ MyClass.rb =&gt; MyClass.glade.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Connects gtk&#39;s signals to your methods according to the naming
-convention widget__signal.</p>
+<p>Connects gtk’s signals to your methods according to the naming convention widget__signal.</p>
 </div></span>
   
 </li>
@@ -419,8 +321,7 @@ convention widget__signal.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>drag_to() will make it so you can drag-n-drop the source_widget onto the
-target widget.</p>
+<p>drag_to() will make it so you can drag-n-drop the source_widget onto the target widget.</p>
 </div></span>
   
 </li>
@@ -586,9 +487,7 @@ target widget.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Called when window is destroyed when you execute: @<a
-href=":window1">builder</a>.destroy It manages the Gtk.main loop for all
-the windows.</p>
+<p>Called when window is destroyed when you execute: <code>@builder[:window1].destroy</code> It manages the Gtk.main loop for all the windows.</p>
 </div></span>
   
 </li>
@@ -669,12 +568,12 @@ the windows.</p>
       <pre class="lines">
 
 
-87
-88
-89</pre>
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_builder'>builder</span>
   <span class='ivar'>@builder</span>
@@ -703,9 +602,7 @@ the windows.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Convenience method so you can just make a button named “buttonCancel” and
-it will work.  This method isn&#39;t called in code, its triggered by a
-user clicking a button named “buttonCancel”.</p>
+<p>Convenience method so you can just make a button named “buttonCancel” and it will work.  This method isn’t called in code, its triggered by a user clicking a button named “buttonCancel”.</p>
 
 
   </div>
@@ -719,15 +616,15 @@ user clicking a button named “buttonCancel”.</p>
       <pre class="lines">
 
 
-402
-403
-404</pre>
+412
+413
+414</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 402</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 412</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_buttonCancel__clicked'>buttonCancel__clicked</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span>
-  <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='symbol'>:window1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+  <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='symbol'>:window1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -746,9 +643,7 @@ user clicking a button named “buttonCancel”.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>retrieves the key inside a glade control name.  Useful when handling events
-where the control name is returned, and you need to match it to an actual
-hash.</p>
+<p>retrieves the key inside a glade control name.  Useful when handling events where the control name is returned, and you need to match it to an actual hash.</p>
 
 
   </div>
@@ -759,9 +654,9 @@ hash.</p>
     <p class="tag_title">Examples:</p>
     
       
-      <pre class="example code"><code># Widget in glade form has name of &quot;button[5]&quot;
-var = @builder[&quot;button[5]&quot;]
-extract_key(var) =&gt; &quot;5&quot;</code></pre>
+      <pre class="example code"><code><span class='comment'># Widget in glade form has name of &quot;button[5]&quot;
+</span><span class='id identifier rubyid_var'>var</span> <span class='op'>=</span> <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>button[5]</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+<span class='id identifier rubyid_extract_key'>extract_key</span><span class='lparen'>(</span><span class='id identifier rubyid_var'>var</span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>5</span><span class='tstring_end'>&quot;</span></span></code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -810,15 +705,15 @@ extract_key(var) =&gt; &quot;5&quot;</code></pre>
       <pre class="lines">
 
 
-419
-420
-421</pre>
+429
+430
+431</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 419</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 429</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extract_key'>extract_key</span><span class='lparen'>(</span><span class='id identifier rubyid_widget'>widget</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_widget'>widget</span><span class='period'>.</span><span class='id identifier rubyid_builder_name'>builder_name</span><span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\[.+?\]</span><span class='regexp_end'>/</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_widget'>widget</span><span class='period'>.</span><span class='id identifier rubyid_builder_name'>builder_name</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\[(.+?)\]</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -840,16 +735,16 @@ extract_key(var) =&gt; &quot;5&quot;</code></pre>
       <pre class="lines">
 
 
-446
-447
-448
-449
-450
-451
-452</pre>
+456
+457
+458
+459
+460
+461
+462</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 446</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 456</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_glade_active_record'>get_glade_active_record</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span> 
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>defined?</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span>
@@ -875,8 +770,7 @@ extract_key(var) =&gt; &quot;5&quot;</code></pre>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>This method is the most useful method to retreive values from a glade form.
-It will</p>
+<p>This method is the most useful method to retreive values from a glade form.  It will</p>
 
 <pre class="code ruby"><code class="ruby">populate from active_record fields and instance variables.  It will simply 
 call both of these methods:
@@ -884,7 +778,8 @@ call both of these methods:
  get_glade_active_record()
  get_glade_variables()
 
-So, to retreive all the values of a form back into your ActiveRecord object and instance variables, simply call the set_glade_all() method instead.</code></pre>
+So, to retreive all the values of a form back into your ActiveRecord object and instance variables, simply call the set_glade_all() method instead.
+</code></pre>
 
 
   </div>
@@ -898,13 +793,13 @@ So, to retreive all the values of a form back into your ActiveRecord object and 
       <pre class="lines">
 
 
-209
-210
-211
-212</pre>
+213
+214
+215
+216</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 209</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 213</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_glade_all'>get_glade_all</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='kw'>self</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_get_glade_active_record'>get_glade_active_record</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
@@ -927,15 +822,11 @@ So, to retreive all the values of a form back into your ActiveRecord object and 
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Populates your instance variables from the glade form. This works for
-Gtk:Button, Gtk::Entry, Gtk::Label and Gtk::Checkbutton. So instead of
-having to assign instance variable:</p>
+<p>Populates your instance variables from the glade form. This works for Gtk:Button, Gtk::Entry, Gtk::Label and Gtk::Checkbutton. So instead of having to assign instance variable:</p>
 
 <p>You can write one line of code:</p>
 
-<p>The optional parameter is seldom used because you usually want the glade
-form to populate from the calling class.  If you passed another object, the
-form would populate from it.</p>
+<p>The optional parameter is seldom used because you usually want the glade form to populate from the calling class.  If you passed another object, the form would populate from it.</p>
 
 
   </div>
@@ -1003,10 +894,6 @@ form would populate from it.</p>
       <pre class="lines">
 
 
-317
-318
-319
-320
 321
 322
 323
@@ -1027,10 +914,14 @@ form would populate from it.</p>
 338
 339
 340
-341</pre>
+341
+342
+343
+344
+345</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 317</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 321</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_glade_variables'>get_glade_variables</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='kw'>self</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_instance_variables'>instance_variables</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_var_name'>var_name</span><span class='op'>|</span>
@@ -1074,37 +965,29 @@ form would populate from it.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>This will Load the glade form according to the naming convention:</p>
+<p>This will Load the glade form according to the naming convention: </p>
 
-<pre class="code ruby"><code class="ruby">MyClass.rb =&gt; MyClass.glade.</code></pre>
+<pre class="code ruby"><code class="ruby">MyClass.rb =&gt; MyClass.glade.
+</code></pre>
 
-<p>It will create a Gtk::Builder object from your glade file. The Gtk::Builder
-object is stored in the instance variable, @builder. You can get a
-reference to any of the widgets on the glade form by using the @builder
-object:</p>
+<p>It will create a Gtk::Builder object from your glade file. The Gtk::Builder object is stored in the instance variable, @builder. You can get a reference to any of the widgets on the glade form by using the @builder object:</p>
 
-<p>Normally, you should give your widgets names of instance variables: i.e.
-@email so they can be autoloaded when the glade form is shown using the
-#show_glade method.  For example, the value of the @email vaiable would be
-loaded into a Gtk:Entry named “email” in your glade form.  It saves you
-from having to do this:</p>
+<p>@example: </p>
+
+<pre class="code ruby"><code class="ruby">name_entry_box = @builder[&quot;ui_name_ent&quot;]
+  or
+@builder[&quot;ui_name_ent&quot;].text = &quot;This will show in the window!&quot;
+</code></pre>
+
+<p>Normally, you should give your widgets names of instance variables: i.e. @email so they can be autoloaded when the glade form is shown using the #show_glade method.  For example, the value of the @email vaiable would be loaded into a Gtk:Entry named “email” in your glade form.  It saves you from having to do this:</p>
+
+<p>@example: @<a href=":email">builder</a>.text = @email</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_widget'>widget</span> <span class='op'>=</span> <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>name</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span></code></pre>
-    
-      
-      <pre class="example code"><code><span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='symbol'>:email</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='ivar'>@email</span></code></pre>
-    
-  </div>
-
 
 </div><table class="source_code">
   <tr>
@@ -1112,22 +995,20 @@ from having to do this:</p>
       <pre class="lines">
 
 
-130
-131
-132
-133
 134
 135
-136</pre>
+136
+137
+138
+139</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 130</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load_glade'>load_glade</span><span class='lparen'>(</span><span class='rparen'>)</span> 
-  <span class='id identifier rubyid_caller__FILE__'>caller__FILE__</span> <span class='op'>=</span> <span class='id identifier rubyid_my_class_file_path'>my_class_file_path</span><span class='lparen'>(</span><span class='rparen'>)</span> 
-  <span class='id identifier rubyid_file_name'>file_name</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='id identifier rubyid_caller__FILE__'>caller__FILE__</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>glade</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_class_name'>class_name</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.glade</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-  <span class='ivar'>@builder</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Builder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-  <span class='ivar'>@builder</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_file_name'>file_name</span>
+  <span class='id identifier rubyid_caller__FILE__'>caller__FILE__</span> <span class='op'>=</span> <span class='id identifier rubyid_my_class_file_path'>my_class_file_path</span><span class='lparen'>(</span><span class='rparen'>)</span>    
+  <span class='id identifier rubyid_file_name'>file_name</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='id identifier rubyid_caller__FILE__'>caller__FILE__</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>glade</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_my_class_name'>my_class_name</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.glade</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@builder</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Builder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>file:</span> <span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
   <span class='ivar'>@builder</span><span class='period'>.</span><span class='id identifier rubyid_connect_signals'>connect_signals</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_handle'>handle</span><span class='op'>|</span> <span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='id identifier rubyid_handle'>handle</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1147,16 +1028,15 @@ from having to do this:</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Connects gtk&#39;s signals to your methods according to the naming
-convention widget__signal.  For example,</p>
+<p>Connects gtk’s signals to your methods according to the naming convention widget__signal.  For example,</p>
 
 <pre class="code ruby"><code class="ruby">when you place a button called &quot;button1&quot; in your glade form, and declare a method called 
 &quot;button1__clicked&quot;, they aren&#39;t connected to each other.  Clicking on the button does nothing
 and the method never gets called.  After running parse_signals(), the &quot;clicked&quot; signal is
-connected to the method named &quot;button1__clicked&quot; so when the user clicks the button, the method is called.</code></pre>
+connected to the method named &quot;button1__clicked&quot; so when the user clicks the button, the method is called.
+</code></pre>
 
-<p>Remember that it will enforce the naming convention:  name__signal (two
-underscores).</p>
+<p>Remember that it will enforce the naming convention:  name__signal (two underscores).</p>
 
 
   </div>
@@ -1184,9 +1064,6 @@ underscores).</p>
       <pre class="lines">
 
 
-154
-155
-156
 157
 158
 159
@@ -1204,31 +1081,58 @@ underscores).</p>
 171
 172
 173
-174</pre>
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_signals'>parse_signals</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_meths'>meths</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_instance_methods'>instance_methods</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_meths'>meths</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_instance_methods'>instance_methods</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_m'>m</span><span class='op'>|</span> <span class='id identifier rubyid_m'>m</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>__</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span> 
   <span class='id identifier rubyid_meths'>meths</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_meth'>meth</span><span class='op'>|</span>
     <span class='id identifier rubyid_meth'>meth</span> <span class='op'>=</span> <span class='id identifier rubyid_meth'>meth</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='comment'>#bug fix ruby 1.9 gives stmbol
 </span>    <span class='id identifier rubyid_glade_name'>glade_name</span><span class='comma'>,</span> <span class='id identifier rubyid_signal_name'>signal_name</span> <span class='op'>=</span> <span class='op'>*</span><span class='lparen'>(</span><span class='id identifier rubyid_meth'>meth</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>__</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='kw'>next</span> <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_signal_name'>signal_name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>or</span> <span class='id identifier rubyid_glade_name'>glade_name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'>#covers nil
-</span>    <span class='kw'>if</span> <span class='ivar'>@builder</span>
-      <span class='ivar'>@builder</span><span class='period'>.</span><span class='id identifier rubyid_objects'>objects</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_obj'>obj</span><span class='op'>|</span>
+</span><span class='comment'>#      if @builder
+</span>      <span class='ivar'>@builder</span><span class='period'>.</span><span class='id identifier rubyid_objects'>objects</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_obj'>obj</span><span class='op'>|</span>
         <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:builder_name</span><span class='rparen'>)</span>
-        <span class='kw'>if</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_builder_name'>builder_name</span> <span class='op'>==</span> <span class='id identifier rubyid_glade_name'>glade_name</span> <span class='kw'>or</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_builder_name'>builder_name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_class_name'>class_name</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\.|)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_glade_name'>glade_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>\[[a-zA-Z\d_-]+\]$</span><span class='regexp_end'>/</span></span> <span class='comment'>#arrays
+        <span class='kw'>if</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_builder_name'>builder_name</span> <span class='op'>==</span> <span class='id identifier rubyid_glade_name'>glade_name</span> <span class='kw'>or</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_builder_name'>builder_name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(?:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_my_class_name'>my_class_name</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\.|)</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_glade_name'>glade_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>\[[a-zA-Z\d_-]+\]$</span><span class='regexp_end'>/</span></span> <span class='comment'>#arrays
 </span>          <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='id identifier rubyid_signal_name'>signal_name</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span> <span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='id identifier rubyid_meth'>meth</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span> 
         <span class='kw'>end</span>
-      <span class='kw'>end</span>
-    <span class='kw'>end</span>
+<span class='comment'>#        end
+</span>    <span class='kw'>end</span>
     <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='id identifier rubyid_glade_name'>glade_name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>self</span><span class='tstring_end'>&quot;</span></span> <span class='op'>?</span> <span class='kw'>self</span> <span class='op'>:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_glade_name'>glade_name</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_obj'>obj</span> <span class='op'>||=</span> <span class='id identifier rubyid_eval'>eval</span><span class='lparen'>(</span><span class='id identifier rubyid_glade_name'>glade_name</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_glade_name'>glade_name</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='id identifier rubyid_glade_name'>glade_name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>==</span> <span class='int'>0</span> <span class='comment'># no arguments!
 </span>    <span class='kw'>if</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>signal_connect</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='id identifier rubyid_signal_name'>signal_name</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span> <span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='id identifier rubyid_meth'>meth</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
+  <span class='comment'># now parse instance variables looking for &quot;self__&quot;
+</span>  <span class='id identifier rubyid_instance_variables'>instance_variables</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_var'>var</span><span class='op'>|</span>
+    <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='id identifier rubyid_var'>var</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_meths'>meths</span> <span class='op'>=</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_instance_methods'>instance_methods</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_m'>m</span><span class='op'>|</span> <span class='id identifier rubyid_m'>m</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>self__</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span> 
+    <span class='id identifier rubyid_meths'>meths</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_meth'>meth</span><span class='op'>|</span>
+      <span class='id identifier rubyid_meth'>meth</span> <span class='op'>=</span> <span class='id identifier rubyid_meth'>meth</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+      <span class='id identifier rubyid_signal_name'>signal_name</span> <span class='op'>=</span> <span class='id identifier rubyid_meth'>meth</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>__</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>signal_connect</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='id identifier rubyid_signal_name'>signal_name</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='id identifier rubyid_meth'>meth</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+      <span class='kw'>end</span>  
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>  
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1247,8 +1151,7 @@ underscores).</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>drag_to() will make it so you can drag-n-drop the source_widget onto the
-target widget.</p>
+<p>drag_to() will make it so you can drag-n-drop the source_widget onto the target widget.</p>
 
 <pre class="code ruby"><code class="ruby">You may pass a reference to a widget object, or a String that gives the name of the
 widget on your glade form. So, it functions the same as this statement:
@@ -1257,7 +1160,8 @@ widget on your glade form. So, it functions the same as this statement:
 
 It also functions the same as this statement:
 
-    @builder[&quot;widget_source&quot;].drag_to(@builder[&quot;widget_target&quot;])</code></pre>
+    @builder[&quot;widget_source&quot;].drag_to(@builder[&quot;widget_target&quot;])
+</code></pre>
 
 
   </div>
@@ -1271,23 +1175,23 @@ It also functions the same as this statement:
       <pre class="lines">
 
 
-100
-101
 102
 103
 104
 105
 106
-107</pre>
+107
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_drag_drop'>set_drag_drop</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span><span class='id identifier rubyid_val'>val</span><span class='op'>|</span>
     <span class='id identifier rubyid_src'>src</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Gtk</span><span class='op'>::</span><span class='const'>Widget</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>:</span> <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='id identifier rubyid_val'>val</span><span class='rbracket'>]</span>
-    <span class='id identifier rubyid_src'>src</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span><span class='lparen'>(</span><span class='const'>VR</span><span class='op'>::</span><span class='const'>Draggable</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_src'>src</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>VR</span><span class='op'>::</span><span class='const'>Draggable</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_src'>src</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="VR/Draggable.html" title="VR::Draggable (module)">Draggable</a></span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_src'>src</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="VR/Draggable.html" title="VR::Draggable (module)">Draggable</a></span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_src'>src</span><span class='period'>.</span><span class='id identifier rubyid_add_target_widget'>add_target_widget</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1308,11 +1212,7 @@ It also functions the same as this statement:
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Populates the glade form from the fields of an ActiveRecord object. So
-instead of having to assign each widget a value: You can write one line of
-code: The optional parameter is seldom used because you usually want the
-glade form to populate from the calling class.  If you passed another
-object, the form would populate from it.</p>
+<p>Populates the glade form from the fields of an ActiveRecord object. So instead of having to assign each widget a value: You can write one line of code: The optional parameter is seldom used because you usually want the glade form to populate from the calling class.  If you passed another object, the form would populate from it.</p>
 
 
   </div>
@@ -1380,17 +1280,17 @@ object, the form would populate from it.</p>
       <pre class="lines">
 
 
-441
-442
-443
-444</pre>
+451
+452
+453
+454</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 441</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 451</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_glade_active_record'>set_glade_active_record</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='kw'>self</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>defined?</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span>
-  <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='op'>|</span> <span class='id identifier rubyid_fill_control'>fill_control</span><span class='lparen'>(</span><span class='id identifier rubyid_class_name'>class_name</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='op'>|</span> <span class='id identifier rubyid_fill_control'>fill_control</span><span class='lparen'>(</span><span class='id identifier rubyid_my_class_name'>my_class_name</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1417,7 +1317,8 @@ call both of these methods:
  set_glade_active_record()
  set_glade_variables()
 
-So, to set all the values of a form, simply call the set_glade_all() method instead.</code></pre>
+So, to set all the values of a form, simply call the set_glade_all() method instead.
+</code></pre>
 
 
   </div>
@@ -1431,13 +1332,13 @@ So, to set all the values of a form, simply call the set_glade_all() method inst
       <pre class="lines">
 
 
-196
-197
-198
-199</pre>
+200
+201
+202
+203</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 196</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 200</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_glade_all'>set_glade_all</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='kw'>self</span><span class='rparen'>)</span> 
   <span class='id identifier rubyid_set_glade_active_record'>set_glade_active_record</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
@@ -1494,13 +1395,13 @@ So, to set all the values of a form, simply call the set_glade_all() method inst
       <pre class="lines">
 
 
-218
-219
-220
-221</pre>
+222
+223
+224
+225</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 218</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 222</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_glade_hash'>set_glade_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
@@ -1523,8 +1424,7 @@ So, to set all the values of a form, simply call the set_glade_all() method inst
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Populates the glade form from the instance variables of the class. So
-instead of having to assign each widget a value:</p>
+<p>Populates the glade form from the instance variables of the class. So instead of having to assign each widget a value:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>name</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='ivar'>@name</span>
 <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>address</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='ivar'>@address</span>
@@ -1537,9 +1437,7 @@ instead of having to assign each widget a value:</p>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_set_glade_variables'>set_glade_variables</span><span class='lparen'>(</span><span class='rparen'>)</span>
 </code></pre>
 
-<p>The optional parameter is seldom used because you usually want the glade
-form to populate from the calling class.  If you passed another object, the
-form would populate from it.</p>
+<p>The optional parameter is seldom used because you usually want the glade form to populate from the calling class.  If you passed another object, the form would populate from it.</p>
 
 <p>obj - type Object</p>
 
@@ -1555,10 +1453,6 @@ form would populate from it.</p>
       <pre class="lines">
 
 
-241
-242
-243
-244
 245
 246
 247
@@ -1572,10 +1466,14 @@ form would populate from it.</p>
 255
 256
 257
-258</pre>
+258
+259
+260
+261
+262</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 241</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 245</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_glade_variables'>set_glade_variables</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='kw'>self</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_instance_variables'>instance_variables</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span>
@@ -1614,9 +1512,7 @@ form would populate from it.</p>
     
 <p>The method you call to show the glade form.</p>
 
-<p>It loads the glade form, sets all the form&#39;s widgets to your instance
-variables, connects all your methods to their signals, and starts Gtk.main
-loop if necessary.</p>
+<p>It loads the glade form, sets all the form’s widgets to your instance variables, connects all your methods to their signals, and starts Gtk.main loop if necessary.</p>
 
 
   </div>
@@ -1630,7 +1526,7 @@ loop if necessary.</p>
         <span class='name'>parent</span>
       
       
-        <span class='type'>(<tt>Object #builder</tt>)</span>
+        <span class='type'>(<tt>Object #<span class='object_link'><a href="#builder-instance_method" title="GladeGUI#builder (method)">builder</a></span></tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
@@ -1670,24 +1566,32 @@ loop if necessary.</p>
       <pre class="lines">
 
 
-381
-382
-383
-384
-385
-386
 387
 388
 389
 390
 391
-392</pre>
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 381</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 387</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show_glade'>show_glade</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_load_glade'>load_glade</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='symbol'>:window1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> 
+    <span class='id identifier rubyid_alert'><span class='object_link'><a href="top-level-namespace.html#alert-instance_method" title="#alert (method)">alert</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error:  You need to name your window, &#39;window1&#39; in glade.  Edit glade file.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span>
+  <span class='kw'>end</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_parent'>parent</span> <span class='kw'>then</span>
       <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='symbol'>:window1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_transient_for'>transient_for</span> <span class='op'>=</span> <span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_builder'>builder</span><span class='lbracket'>[</span><span class='symbol'>:window1</span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
@@ -1718,19 +1622,19 @@ loop if necessary.</p>
       <pre class="lines">
 
 
-284
-285
-286
-287
 288
 289
 290
 291
 292
-293</pre>
+293
+294
+295
+296
+297</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 284</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 288</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_try_to_select_text_in_combobox'>try_to_select_text_in_combobox</span><span class='lparen'>(</span><span class='id identifier rubyid_cb'>cb</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_i'>i</span> <span class='op'>=</span> <span class='int'>0</span>
@@ -1759,9 +1663,7 @@ loop if necessary.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Called when window is destroyed when you execute:
-<code>@builder[:window1].destroy</code> It manages the Gtk.main loop for
-all the windows.</p>
+<p>Called when window is destroyed when you execute: <code>@builder[:window1].destroy</code> It manages the Gtk.main loop for all the windows.</p>
 
 
   </div>
@@ -1775,15 +1677,15 @@ all the windows.</p>
       <pre class="lines">
 
 
-396
-397
-398</pre>
+406
+407
+408</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 396</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 406</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_window1__destroy'>window1__destroy</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
-  <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_main_quit'>main_quit</span> <span class='kw'>if</span> <span class='ivar'>@top_level_window</span> <span class='kw'>or</span> <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>window1</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_modal?'>modal?</span>  
+  <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_main_quit'>main_quit</span> <span class='kw'>if</span> <span class='ivar'>@top_level_window</span> <span class='kw'>or</span> <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>window1</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_modal?'>modal?</span> 
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1805,17 +1707,17 @@ all the windows.</p>
       <pre class="lines">
 
 
-406
-407
-408
-409</pre>
+416
+417
+418
+419</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 406</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 416</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_window1__key_press_event'>window1__key_press_event</span><span class='lparen'>(</span><span class='id identifier rubyid_view'>view</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_evt'>evt</span><span class='period'>.</span><span class='id identifier rubyid_keyval'>keyval</span> <span class='op'>==</span> <span class='const'>Gdk</span><span class='op'>::</span><span class='const'>Keyval</span><span class='op'>::</span><span class='const'>KEY_F8</span>
-  <span class='id identifier rubyid_oinspect'>oinspect</span>
+  <span class='id identifier rubyid_oinspect'><span class='object_link'><a href="top-level-namespace.html#oinspect-instance_method" title="#oinspect (method)">oinspect</a></span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1827,9 +1729,9 @@ all the windows.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Feb 15 16:32:37 2017 by
+  Generated on Sat Nov 23 22:46:09 2024 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.3.0).
+  0.9.37 (ruby-3.1.6).
 </div>
 
     </div>

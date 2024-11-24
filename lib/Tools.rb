@@ -1,5 +1,7 @@
+
 module VR
 
+  # Copies a directory recursively
   def VR.copy_recursively(from, out_dir)
     Find.find(from) do |path|
       next if path == from
@@ -15,9 +17,4 @@ module VR
     end
   end
 
-end
-
-
-def vr_project?(path)
-  File.exist?( File.join(path.to_s, VR_ENV::SETTINGS_FILE))
 end

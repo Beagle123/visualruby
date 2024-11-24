@@ -1,16 +1,12 @@
 
-
-
-
-
 module VR
 
   # Class that the #alert method uses.  This class is note useful by itself.  See #alert method instead.
   # @see #alert
-  class Alert   
+  # @private
+  class Alert  
 
     attr_accessor :answer    
-
     
      include GladeGUI
     
@@ -60,20 +56,6 @@ module VR
         @builder[:input_text].show 
       end
 
-
-    
-#       if @flags[:input_text]
-#         @flags[:button_yes] ||= "Save"
-#         @flags[:button_no] ||= "Cancel"
-#         @builder[:input_text].show
-#       elsif choices = @flags[:choices]
-#         @flags[:button_yes] ||= "Select"
-#         @flags[:button_no] ||= "Cancel"
-#         choices.each { |c| @builder[:choices_text].append_text(c) }
-#         @choices_text = choices[0]
-#         @builder[:choices_text].show 
-#       end 
-
       @builder[:button_no].show if @flags[:button_no]
       @builder[:button_cancel].show if @flags[:button_cancel]
       set_glade_hash(@flags)
@@ -116,23 +98,25 @@ module VR
 end  
 
 # @param [String] message text message to display in alert box. Uses markup.
-# @param [Hash] options -- Hash of options:  :button_yes => text on the button that returns true.
+# @param [Hash] options Hash of options:  :button_yes => text on the button that returns true.
 # @option options [String] :button_yes Text that appears on the "yes" button.
 # @option options [String] :button_no Text that appears on "no" button. (set to make no button appear)
 # @option options [String] :button_cancel Text that appears on "cancel" button. (set to make cancel button appear)
-# @option options [String] :input_text Text that appears in entry box. (set to make entry box appear)
+# @option options [Variable] :data Either String, Array, or Hash.  This will determine type of user input.
 # @option options [String] :headline Larger headline over text message.
 # @option options [String] :title Title of the alert box window.  Defaults to :headline.
 # @option options [Integer] :width The width in pixels of the window. Used for wrapping text. 
 # @option options [Object #builder] :parent The window that the alert box is always on top of.
-# @return [String] text in the text entry field when the :button_yes button is pressed
+# @return [String] text in the text entry field when the :button_yes button is pressed. (:data passed a String)
+# @return [String] selected text from dropdown when the :button_yes button is pressed. (:data passed an Array)
+# @return [Hash] When :data is passed as Hash, this is updated Hash from user input.
 # @return [true] When the :button_yes button is selected and there's no text entry box.
 # @return [false] When :button_no is pressed
 # @return [nil] When :button_cancel or the "X" button is pressed.
 # The alert method creates a pop-up alert in your program.  It creates a modal
 # window that halts execution of your code until the user closes it.  Its great
-# for displaying messages and debugging.  It also has the option of displaying
-# a text entry box for getting text input from the user.  This small tool can save
+# for displaying messages and debugging.  It also has the option of allowing the user
+# input in the form of a String or a selection from a Hash or Array.  This small tool can save
 # hundreds of lines of code in your programs.  It can be used extesnively to
 # display all types of messages and request all types of user input.
 #
@@ -145,15 +129,13 @@ end
 #    button_yes: "Overwrite",
 #    button_no: "Reload From Disk",
 #    button_cancel: "Cancel"
-# 
-# http://visualruby.net/img/alert_overwrite.jpg  
 #   
 # The alert box can disply 1, 2 or 3 buttons.  The first button is denoted using the symbol: :button_yes
 # button and is always displayed.  You can add :button_no and :button_cancel.      
 # If you want to add these buttons, just set their values to whatever text you want them to
-# display and they will appear.  Likewise, if you add the option, :input_text, a text entry box will
-# appear.
-#      
+# display and they will appear.  Likewise, if you pass a :data parameter with a String, Hash or Array,
+# it will ask for user input.
+#     
 # There are many examples in the "alert_box" example project. 
 
 def alert(message, options = {})
@@ -162,11 +144,5 @@ def alert(message, options = {})
   return ans.answer 
 end
 
-def go
-i =  alert("Testing", headline: "Im Testing You", title: "Just Testing", button_yes: "Gotcha", button_no: "Piss off", button_cancel: "exit", data: {name: "Eric", password: "", phone: "", email: "", street: "", house: ""} ) 
 
-# i =  alert("Testing", title: "Who?", data: ["Fred", "Barney", "Wilma" ]) 
-#   alert("Testing", title: "Who?", data: "Fred" ) 
-alert i.to_s
-end
 
