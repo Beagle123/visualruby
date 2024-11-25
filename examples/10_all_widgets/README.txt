@@ -29,8 +29,6 @@ this translating.  And there is a another method named get_glade_variables()
 that retreives the widget variables back into the instance variables.
 See the example named "get_glade_variables" for more.  
 
-
-
 Note: you must add an "adjustment" object to the spinbutton in glade
 to make it work.
 

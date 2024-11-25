@@ -4,7 +4,7 @@ width: 1854
 height: 1003
 panel_pos: 360
 notebook_panel_position: 462
-run_command_line: ruby event_handlers.rb
+run_command_line: event_handlers.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/07_event_handlers/event_handlers.rb"
 - "/home/eric/vrp/vr3/examples/07_event_handlers/src/MyTextView.rb"
@@ -15,7 +15,7 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/07_event_handlers/src"
 - "/home/eric/vrp/vr3/examples/07_event_handlers/src/glade"
 current_file: "/home/eric/vrp/vr3/examples/07_event_handlers/README.txt"
-current_line: 15
+current_line: 82
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

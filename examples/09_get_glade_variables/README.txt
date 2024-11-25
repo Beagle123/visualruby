@@ -1,13 +1,13 @@
 
 Using get_glade_variables and set_glade_variables
 
-Visualruby uses the universal @builder variable to hold references
-to all the GUI components on the glade form.  So you can retreive
-the instance of a widget by using its glade name:
+Visualruby uses @builder variable to hold references
+to all the GUI components on the glade form.  It's created by GladeGUI.
+So you can retreive the instance of a widget by using its glade name:
 
 @builder["ui_customer_ent"].text = "Harry"
 
-This would likely be a Gtk::Entry for a customer'n name now set to show "Harry".
+This would likely be a Gtk::Entry for a customer's name that now shows "Harry".
 
 However, usually there will be many fields on the form that need to be filled beyond 
 customer (e.g. address, phone, email etc.)  To initialize your form, you would need 
@@ -29,7 +29,7 @@ with the same names as your widgets in glade:
   def initialize
     @ui_customer_ent"    = "Harry"
     @ui_customer_id_ent  = "4356444"
-    @ui_customer_address = "3424 Main St"
+    @ui_customer_address_ent = "3424 Main St"
   end
 
 Then, when the #show_glade method is called, it will automatically call #set_glade_variables
@@ -41,12 +41,11 @@ to do this:
     @builder["ui_customer_address_ent"].text  = @ui_customer_address_ent
     # etc.
 
-It will simply match the names of the instance variables to the glade names
-and fill in the values on the form.  All with zero lines of code.  
+It's a shortcut to match the names of the instance variables to the glade names
+and fill in the values on the form.    
 
-There is also a method named #get_glade_variables that retreives the values
-from the form and updates the instance variables with any values that
-the user changed on the form.
+You can also do the reverse, and read the form values back into the variables
+using method, #get_glade_variables.
 
 This saves even more typing and errors.  You can replace this:
 
@@ -62,11 +61,12 @@ Now you can save to a database etc.
 
 So the general procedure is to create a list of instance variables in the #initialize method,
 then visualruby will update the form with the values.  When done, retreive the values
-using #get_glade_variables.  An added benefit is that it creates
-a nice list of the fields on the form so you don't need to look them up in glade.
+using #get_glade_variables.  
+
+An added benefit is that it creates a nice list of the fields on the 
+form so you don't need to look them up in glade.
 
 This process can be done with many widgets including buttons, images, calendar dates, entries
-etc.  You can see this in the next example.  Later, click on "Open Project" and see the "all_widgets"
-example.
+etc.  You can see this in the next example.  
 
 

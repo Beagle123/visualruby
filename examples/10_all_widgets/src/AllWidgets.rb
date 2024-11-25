@@ -16,10 +16,8 @@ class AllWidgets
 
   include GladeGUI
 
-  def before_show()
-    @builder["checkbutton1"].label = "I'm a Check Button" #this could be set in glade
-  end
 
+  # all these widgets will populate appropriately:
   def initialize()  
     @window1 = "Showing All Widgets"
     @label1 = "I'm a Label"
@@ -34,6 +32,9 @@ class AllWidgets
     @calendar1 = DateTime.new(2011, 5, 14)    
   end  
 
+  def before_show()
+    @builder["checkbutton1"].label = "I'm a Check Button" #this could be set in glade
+  end
 
 end
 

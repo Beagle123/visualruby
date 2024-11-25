@@ -30,7 +30,7 @@ class ChildWindowDemo
   include GladeGUI
 
   def buttonOpenModeless__clicked(*argv)
-    ModelessWindow.new.show_glade(self) # no parent given so window is modeless
+    ModelessWindow.new.show_glade() # no parent given so window is modeless
   end
 
 # This modal window has its "modal" property set to true in glade.

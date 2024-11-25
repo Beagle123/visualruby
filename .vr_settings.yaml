@@ -22,12 +22,13 @@ open_files:
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/lib"
+- "/home/eric/vrp/vr3/lib/glade"
 - "/home/eric/vrp/vr3/lib/treeview"
 - "/home/eric/vrp/vr3/src"
 - "/home/eric/vrp/vr3/src/main"
 - "/home/eric/vrp/vr3/src/main/glade"
-current_file: "/home/eric/vrp/vr3/src/main/VR_File_Tree.rb"
-current_line: 19
+current_file: "/home/eric/vrp/vr3/src/main/VR_ENV.rb"
+current_line: 36
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

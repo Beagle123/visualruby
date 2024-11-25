@@ -44,7 +44,7 @@ Visualruby would run this code under the hood:
     ui_hello_but__clicked(*args)
   end
 
-So you don't need to hard code everything, just use the right names.
+So you don't need to hard code everything, just use the naming convention.
 
 There are three different forms the method name can take:
 

@@ -1,23 +1,3 @@
-##  
-#  This class is a GUI for a calculator. 
-#  
-#  The instance variable, @builder is a reference to the
-#  Gtk::Builder object.  @builder["window1"] is a reference to
-#  the main window of the calculator.  So, if you edit
-#  the Calculator.glade file (using glade) you'll see that
-#  the top window is named "window1."  (Always keep the name
-#  "window1"!)
-#  
-#  In glade, you'll see that the names of the keys are:
-#  
-#  button[0]
-#  button[1] ...etc.
-#  
-#  This maps to the array @button.  Visual Ruby's GladeGUI interface
-#  will automatically load the values of the array into the form when the
-#  show_glade() method is called.
-#  
-
 
 class CalculatorGUI
 
@@ -32,17 +12,6 @@ class CalculatorGUI
     @clear_display = false
     @display = @builder["ui_display_ent"]
   end  
-
-#  This method is called when any key is clicked.  It follows
-#  this naming convention: <glade_name>__<signal_name>.  (Separator is
-#  two underscores.)  This tells GladeGUI to connect all the
-#  "clicked" signals to this method.  It matches the glade
-#  names "button", "button[x]" or "Calculator.button[x]" to this method
-#  automatically for all the buttons.  Look at the names
-#  of the keys in glade by right clicking on Calculator.rb
-#
-#  This is very useful because you don't need to write a handler for
-#  each button!
 
 
   def button__clicked(button)  

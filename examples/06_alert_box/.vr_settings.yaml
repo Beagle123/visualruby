@@ -10,7 +10,7 @@ open_files:
 open_folders:
 - "/home/eric/vrp/vr3/examples/06_alert_box"
 current_file: "/home/eric/vrp/vr3/examples/06_alert_box/README.txt"
-current_line: 6
+current_line: 7
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

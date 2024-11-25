@@ -11,6 +11,10 @@ class DataObjectGUI
     @ui_email_ent   = @init_email   = email
   end  
 
+  def before_show()
+    show_values
+  end
+
   # call get_glade_variables
   def ui_getglade_but__clicked(*args)
     get_glade_variables
@@ -33,7 +37,11 @@ class DataObjectGUI
   end
 
   def show_values
-    alert "Curent values:\n\n#{@ui_name_ent}\n#{@ui_address_ent}\n#{@ui_email_ent}\n#{@ui_phone_ent}\n" 
+    @builder[:ui_var_txt].buffer.text = "Variable Values:\n" + 
+      "@ui_name_ent = #{@ui_name_ent}\n" +
+      "@ui_address_ent = #{@ui_address_ent}\n" +
+      "@ui_email_ent = #{@ui_email_ent}\n" +
+      "@ui_phone_ent = #{@ui_phone_ent}" 
   end
   
 

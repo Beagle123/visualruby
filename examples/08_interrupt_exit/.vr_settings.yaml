@@ -13,7 +13,7 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/08_interrupt_exit"
 - "/home/eric/vrp/vr3/examples/08_interrupt_exit/src"
 current_file: "/home/eric/vrp/vr3/examples/08_interrupt_exit/README.txt"
-current_line: 3
+current_line: 41
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

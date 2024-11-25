@@ -15,8 +15,8 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/35_child_window"
 - "/home/eric/vrp/vr3/examples/35_child_window/src"
 - "/home/eric/vrp/vr3/examples/35_child_window/src/glade"
-current_file: "/home/eric/vrp/vr3/examples/35_child_window/src/ChildWindowDemo.rb"
-current_line: 5
+current_file: "/home/eric/vrp/vr3/examples/35_child_window/src/ModalWindow.rb"
+current_line: 10
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

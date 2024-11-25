@@ -1,5 +1,5 @@
 
-Destroying Windows
+Closing Windows
 
 Visualruby has some helpful features to handle closing windows.
 
@@ -14,7 +14,7 @@ a method named "cancelButton__clicked()" on every form.
 
 However, sometimes it's desirable to interrupt the window closing process
 to avoid data loss.  Sometimes, you want the program to confirm that
-the user wants to discard the data on the form.  Usually, asking, "Are you sure?"
+the user wants to discard the data on the form.  Usually, asking, "Are you sure you want to close?"
 
 There's a GTK event named "delete_event" that is fired before the window is destroyed.
 You can write this method to run before the window is destroyed:

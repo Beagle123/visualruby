@@ -1,15 +1,14 @@
 --- !ruby/object:SavableSettings
-height: 414
+height: 517
 width: 533
-title: Savable Settings Demo x
+title: dsfsdafSavable Settings Demo x
 text: |-
-  Try running this program multiple times.
-
+  Try running this program multipl
   It will create a file named settings.yaml that stores the height, width, title, and text from this window, so the window will be restored to the same state as when you exited.
 
    If you want to reset the file to the defaults, just delete the settings.yaml file.
 
   You may need to click the 'Refresh' to see the settings.yaml file.
-vr_yaml_file: "/home/eric/vrp/vr3/examples/settings_file/settings.yaml"
+vr_yaml_file: "/home/eric/vrp/vr3/examples/49_settings_file/settings.yaml"
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
