@@ -18,4 +18,4 @@ export_db: true
 export_db_path: ".yardoc"
 vr_yaml_file: "/home/eric/vrp/vr3/.yardoc/my_yard.yaml"
 builder: !ruby/object:Gtk::Builder {}
-top_level_window: false
+top_level_window: true

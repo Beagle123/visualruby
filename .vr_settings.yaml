@@ -13,14 +13,21 @@ open_files:
 - "/home/eric/vrp/vr3/all_requires.rb"
 - "/home/eric/vrp/vr3/lib/treeview/ViewCommon.rb"
 - "/home/eric/vrp/vr3/src/main/VR_ENV.rb"
-- "/home/eric/vrp/vr3/lib/GladeGUI.rb"
+- "/home/eric/vrp/vr3/lib/Tools.rb"
+- "/home/eric/vrp/vr3/lib/vrlib.rb"
+- "/home/eric/vrp/vr3/src/main/NewProjectGUI.rb"
+- "/home/eric/vrp/vr3/src/main/OpenProject.rb"
+- "/home/eric/vrp/vr3/src/main/VR_ENV_GLOBAL.rb"
+- "/home/eric/vrp/vr3/src/main/VR_Tools.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
+- "/home/eric/vrp/vr3/lib"
+- "/home/eric/vrp/vr3/lib/treeview"
 - "/home/eric/vrp/vr3/src"
 - "/home/eric/vrp/vr3/src/main"
 - "/home/eric/vrp/vr3/src/main/glade"
-current_file: "/home/eric/vrp/vr3/src/main/VR_Main.rb"
-current_line: 188
+current_file: "/home/eric/vrp/vr3/src/main/VR_File_Tree.rb"
+current_line: 19
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

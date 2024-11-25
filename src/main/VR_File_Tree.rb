@@ -13,9 +13,10 @@ class VR_File_Tree < VR::FileTreeView
   end
 
   def make_main_bold(col, rend, model, iter)
-      col_id = id(rend.model_sym)
+      col_id = id(:file_name)
+      path = iter[id(:path)]
       file_name = iter[col_id]
-      if file_name == $VR_ENV.run_command_line
+      if file_name == $VR_ENV.run_command_line and not File.directory?(path)
           rend.weight = 1000
       else
           rend.weight = 400
