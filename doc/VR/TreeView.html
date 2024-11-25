@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: VR::TreeView
+  
+    &mdash; VisualRuby GUIs 
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "VR::TreeView";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../VR.html" title="VR (module)">VR</a></span></span>
+     &raquo; 
+    <span class="title">TreeView</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: VR::TreeView
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Gtk::TreeView</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Gtk::TreeView</li>
+          
+            <li class="next">VR::TreeView</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="ViewCommon.html" title="VR::ViewCommon (module)">ViewCommon</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/treeview/TreeView.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>All the methods in VR::ViewCommon work on VR::TreeViews and VR::ListViews.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="FileTreeView.html" title="VR::FileTreeView (class)">FileTreeView</a></span></p>
+</div>
+
+
+
+
+
+
+  <h2>Instance Attribute Summary</h2>
+  
+  <h3 class="inherited">Attributes included from <span class='object_link'><a href="ViewCommon.html" title="VR::ViewCommon (module)">ViewCommon</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ViewCommon.html#column_keys-instance_method" title="VR::ViewCommon#column_keys (method)">#column_keys</a></span>, <span class='object_link'><a href="ViewCommon.html#vr_cols-instance_method" title="VR::ViewCommon#vr_cols (method)">#vr_cols</a></span>, <span class='object_link'><a href="ViewCommon.html#vr_column-instance_method" title="VR::ViewCommon#vr_column (method)">#vr_column</a></span>, <span class='object_link'><a href="ViewCommon.html#vr_id-instance_method" title="VR::ViewCommon#vr_id (method)">#vr_id</a></span>, <span class='object_link'><a href="ViewCommon.html#vr_renderer-instance_method" title="VR::ViewCommon#vr_renderer (method)">#vr_renderer</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_row-instance_method" title="#add_row (instance method)">#<strong>add_row</strong>(parent, hash = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>def initialize(cols)       super()       args = *flatten_hash(cols).values alert args.to_s       self.model = Gtk::TreeStore.new(*args)  # *flatten_hash(cols).values)       load_columns(cols)     end.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="ViewCommon.html" title="VR::ViewCommon (module)">ViewCommon</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ViewCommon.html#add_column-instance_method" title="VR::ViewCommon#add_column (method)">#add_column</a></span>, <span class='object_link'><a href="ViewCommon.html#add_renderer_to_col-instance_method" title="VR::ViewCommon#add_renderer_to_col (method)">#add_renderer_to_col</a></span>, <span class='object_link'><a href="ViewCommon.html#col_attr-instance_method" title="VR::ViewCommon#col_attr (method)">#col_attr</a></span>, <span class='object_link'><a href="ViewCommon.html#column-instance_method" title="VR::ViewCommon#column (method)">#column</a></span>, <span class='object_link'><a href="ViewCommon.html#delete_selected-instance_method" title="VR::ViewCommon#delete_selected (method)">#delete_selected</a></span>, <span class='object_link'><a href="ViewCommon.html#each_cell_method-instance_method" title="VR::ViewCommon#each_cell_method (method)">#each_cell_method</a></span>, <span class='object_link'><a href="ViewCommon.html#each_renderer-instance_method" title="VR::ViewCommon#each_renderer (method)">#each_renderer</a></span>, <span class='object_link'><a href="ViewCommon.html#each_row-instance_method" title="VR::ViewCommon#each_row (method)">#each_row</a></span>, <span class='object_link'><a href="ViewCommon.html#flatten_hash-instance_method" title="VR::ViewCommon#flatten_hash (method)">#flatten_hash</a></span>, <span class='object_link'><a href="ViewCommon.html#get_iter-instance_method" title="VR::ViewCommon#get_iter (method)">#get_iter</a></span>, <span class='object_link'><a href="ViewCommon.html#id-instance_method" title="VR::ViewCommon#id (method)">#id</a></span>, <span class='object_link'><a href="ViewCommon.html#initialize-instance_method" title="VR::ViewCommon#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="ViewCommon.html#method_missing-instance_method" title="VR::ViewCommon#method_missing (method)">#method_missing</a></span>, <span class='object_link'><a href="ViewCommon.html#ren_attr-instance_method" title="VR::ViewCommon#ren_attr (method)">#ren_attr</a></span>, <span class='object_link'><a href="ViewCommon.html#renderer-instance_method" title="VR::ViewCommon#renderer (method)">#renderer</a></span>, <span class='object_link'><a href="ViewCommon.html#selected_rows-instance_method" title="VR::ViewCommon#selected_rows (method)">#selected_rows</a></span>, <span class='object_link'><a href="ViewCommon.html#turn_on_comboboxes-instance_method" title="VR::ViewCommon#turn_on_comboboxes (method)">#turn_on_comboboxes</a></span>, <span class='object_link'><a href="ViewCommon.html#vr_row-instance_method" title="VR::ViewCommon#vr_row (method)">#vr_row</a></span></p>
+
+  <div id="method_missing_details" class="method_details_list">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice super">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+      in the class <span class='object_link'><a href="ViewCommon.html#method_missing-instance_method" title="VR::ViewCommon#method_missing (method)">VR::ViewCommon</a></span>
+    
+  </p>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="add_row-instance_method">
+  
+    #<strong>add_row</strong>(parent, hash = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>def initialize(cols)</p>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='op'>*</span><span class='id identifier rubyid_flatten_hash'>flatten_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_cols'>cols</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+</code></pre>
+
+<p>alert args.to_s</p>
+
+<pre class="code ruby"><code class="ruby">     self.model = Gtk::TreeStore.new(*args)  # *flatten_hash(cols).values)
+     load_columns(cols)
+   end
+
+Adds row to the model.  This will return a &quot;row&quot; type iter that responds
+to column IDs (symbols).  You need to provide a parent row (iter).
+See GtkTreeView#append for more.
+
+The iter is a GtkTreeIter object for the parent or nil for the root of the tree.  The hash argument is a Hash of values to add:
+
+@view.add_row(iter, :name =&gt; &quot;Chester&quot;, :email =&gt; &quot;chester@chesterizer.com&quot;)
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/treeview/TreeView.rb', line 53</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_row'>add_row</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='id identifier rubyid_vr_row'>vr_row</span><span class='lparen'>(</span><span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_append'>append</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='op'>|</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span> <span class='rbrace'>}</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_row'>row</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Sun Nov 24 20:38:56 2024 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.1.6).
+</div>
+
+    </div>
+  </body>
+</html>

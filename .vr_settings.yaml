@@ -20,7 +20,7 @@ open_folders:
 - "/home/eric/vrp/vr3/src/main"
 - "/home/eric/vrp/vr3/src/main/glade"
 current_file: "/home/eric/vrp/vr3/src/main/VR_Main.rb"
-current_line: 186
+current_line: 188
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
