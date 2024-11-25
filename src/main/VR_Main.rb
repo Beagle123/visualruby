@@ -91,7 +91,7 @@ class VR_Main
     @tabs.try_to_save_all(:close=>true) 
   end
 
-  def menuSettings__activate(*a)
+  def menuSelectMain__activate(*a)
     $VR_ENV.show_glade(self)
   end
 
@@ -183,7 +183,7 @@ class VR_Main
   end
 
   def toolRun__clicked(*a)
-     run_command($VR_ENV.run_command_line)
+     run_command("ruby " + $VR_ENV.run_command_line)
   end     
 
   def toolHome__clicked(*a) 

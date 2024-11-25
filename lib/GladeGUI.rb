@@ -377,8 +377,6 @@ module GladeGUI
     end
   end
 
-
-
   # The method you call to show the glade form.  
   # It loads the glade form, sets all the form's widgets to your instance variables,
   # connects all your methods to their signals, and starts Gtk.main loop if necessary.

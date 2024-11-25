@@ -4,7 +4,7 @@ width: 1854
 height: 1003
 panel_pos: 368
 notebook_panel_position: 708
-run_command_line: ruby get_glade_variables.rb
+run_command_line: get_glade_variables.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/09_get_glade_variables/README.txt"
 open_folders:

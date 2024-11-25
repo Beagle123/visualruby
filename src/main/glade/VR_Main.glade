@@ -140,12 +140,12 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="menuSettings">
+                      <object class="GtkMenuItem" id="menuSelectMain">
                         <property name="use-action-appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="tooltip-text" translatable="yes">Edit all user preferences for Visual Ruby.</property>
-                        <property name="label" translatable="yes">Project Settings</property>
+                        <property name="tooltip-text" translatable="yes">Select Main Program </property>
+                        <property name="label" translatable="yes">Select Main Program</property>
                       </object>
                     </child>
                   </object>

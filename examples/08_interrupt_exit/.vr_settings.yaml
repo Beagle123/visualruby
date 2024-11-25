@@ -4,7 +4,7 @@ width: 1854
 height: 1003
 panel_pos: 360
 notebook_panel_position: 622
-run_command_line: ruby interrupt_exit.rb
+run_command_line: interrupt_exit.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/08_interrupt_exit/interrupt_exit.rb"
 - "/home/eric/vrp/vr3/examples/08_interrupt_exit/src/InterruptExit.rb"

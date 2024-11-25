@@ -9,7 +9,7 @@
     <property name="window-position">center</property>
     <property name="default-width">700</property>
     <property name="default-height">150</property>
-    <property name="type-hint">menu</property>
+    <property name="focus-on-map">False</property>
     <child>
       <object class="GtkBox" id="box2">
         <property name="visible">True</property>
@@ -24,7 +24,7 @@
           <object class="GtkLabel" id="label1">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">&lt;big&gt;&lt;big&gt;&lt;b&gt;Project Settings&lt;/b&gt;&lt;/big&gt;&lt;/big&gt;</property>
+            <property name="label" translatable="yes">&lt;big&gt;&lt;big&gt;&lt;b&gt;Main Program&lt;/b&gt;&lt;/big&gt;&lt;/big&gt;</property>
             <property name="use-markup">True</property>
           </object>
           <packing>
@@ -32,6 +32,18 @@
             <property name="fill">True</property>
             <property name="padding">10</property>
             <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">When Run is Pressed Execute this Command: </property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
           </packing>
         </child>
         <child>
@@ -46,7 +58,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="halign">end</property>
-                <property name="label" translatable="yes">Command Line when "Run" is pressed:</property>
+                <property name="label" translatable="yes">ruby  </property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
@@ -68,7 +80,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
         <child>
@@ -107,7 +119,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">2</property>
+            <property name="position">3</property>
           </packing>
         </child>
       </object>

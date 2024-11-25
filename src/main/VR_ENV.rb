@@ -14,12 +14,11 @@ class VR_ENV
     @height ||= 600
     @panel_pos ||= 360
     @notebook_panel_position ||= 300
-    @run_command_line ||= "ruby main.rb"
+    @run_command_line ||= "main.rb"
     @open_files ||= []
     @open_folders ||= []
     @current_file ||= ""
     @current_line ||= 1
-    @rdoc_command_line ||= "rdoc -x README"
   end 
 
 

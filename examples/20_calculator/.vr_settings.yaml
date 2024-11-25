@@ -4,12 +4,12 @@ width: 1854
 height: 1003
 panel_pos: 365
 notebook_panel_position: 400
-run_command_line: ruby calculator.rb
+run_command_line: calculator.rb
 open_files:
-- "/home/eric/vrp/vr3/examples/07_event_handlers/Untitled"
+- "/home/eric/vrp/vr3/examples/09_get_glade_variables/Untitled"
 open_folders:
 - "/home/eric/vrp/vr3/examples/20_calculator"
-current_file: "/home/eric/vrp/vr3/examples/07_event_handlers/Untitled"
+current_file: "/home/eric/vrp/vr3/examples/09_get_glade_variables/Untitled"
 current_line: 1
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}

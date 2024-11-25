@@ -4,7 +4,7 @@ width: 1854
 height: 1003
 panel_pos: 362
 notebook_panel_position: 501
-run_command_line: ruby alertdemo.rb
+run_command_line: alertdemo.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/06_alert_box/README.txt"
 open_folders:

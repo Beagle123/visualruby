@@ -13,7 +13,7 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/71_prettify_view/src"
 - "/home/eric/vrp/vr3/examples/71_prettify_view/src/glade"
 current_file: "/home/eric/vrp/vr3/examples/71_prettify_view/src/PrettyView.rb"
-current_line: 46
+current_line: 17
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

@@ -1,5 +1,5 @@
 
-class MainApp #(change name)
+class MainApp 
  
   include GladeGUI
   

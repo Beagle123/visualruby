@@ -155,8 +155,8 @@ module VR
 
 
     #shortcut to set_cell_data_func!
-    def each_cell_method(col_symbol, block)
-      @vr_column[col_symbol].set_cell_data_func(@vr_renderer[col_symbol]) do |col, rend, model, iter|
+    def each_cell_method(col_symbol, ren_symbol, block)
+      @vr_column[col_symbol].set_cell_data_func(@vr_renderer[ren_symbol]) do |col, rend, model, iter|
         block.call(col, rend, model, iter)
       end
     end

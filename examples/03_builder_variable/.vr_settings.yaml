@@ -1,19 +1,16 @@
 --- !ruby/object:VR_ENV
-vr_yaml_file: "/home/eric/vrp/vr3/examples/06_builder_variable/.vr_settings.yaml"
+vr_yaml_file: "/home/eric/vrp/vr3/examples/03_builder_variable/.vr_settings.yaml"
 width: 1854
 height: 1003
 panel_pos: 360
 notebook_panel_position: 718
-run_command_line: ruby builder.rb
+run_command_line: builder.rb
 open_files:
-- "/home/eric/vrp/vr3/examples/06_builder_variable/README.txt"
-- "/home/eric/vrp/vr3/examples/06_builder_variable/src/BuilderDemo.rb"
+- "/home/eric/vrp/vr3/examples/02_hello/Untitled"
 open_folders:
-- "/home/eric/vrp/vr3/examples/06_builder_variable"
-- "/home/eric/vrp/vr3/examples/06_builder_variable/src"
-- "/home/eric/vrp/vr3/examples/06_builder_variable/src/glade"
-current_file: "/home/eric/vrp/vr3/examples/06_builder_variable/src/BuilderDemo.rb"
-current_line: 17
+- "/home/eric/vrp/vr3/examples/03_builder_variable"
+current_file: "/home/eric/vrp/vr3/examples/02_hello/Untitled"
+current_line: 1
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

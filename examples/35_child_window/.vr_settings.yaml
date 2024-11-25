@@ -4,7 +4,7 @@ width: 1854
 height: 1003
 panel_pos: 437
 notebook_panel_position: 527
-run_command_line: ruby child_window.rb
+run_command_line: child_window.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/35_child_window/child_window.rb"
 - "/home/eric/vrp/vr3/examples/35_child_window/src/MyChildClass.rb"

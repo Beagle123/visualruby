@@ -4,7 +4,7 @@ width: 1854
 height: 1003
 panel_pos: 360
 notebook_panel_position: 671
-run_command_line: ruby menus.rb
+run_command_line: menus.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/05_menus/menus.rb"
 - "/home/eric/vrp/vr3/examples/05_menus/src/Menus.rb"

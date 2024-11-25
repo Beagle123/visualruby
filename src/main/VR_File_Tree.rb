@@ -9,6 +9,17 @@ class VR_File_Tree < VR::FileTreeView
     @builder.connect_signals{ |handle| method(handle) }
     col_visible(path: false, sort_on: false, empty: false, file: false)
     self.visible = true
+    each_cell_method(:file, :file_name, method(:make_main_bold))
+  end
+
+  def make_main_bold(col, rend, model, iter)
+      col_id = id(rend.model_sym)
+      file_name = iter[col_id]
+      if file_name == $VR_ENV.run_command_line
+          rend.weight = 1000
+      else
+          rend.weight = 400
+      end  
   end
 
   def self__row_activated(*args)  
@@ -96,6 +107,8 @@ class VR_File_Tree < VR::FileTreeView
   end
 
   def popSetMain_activate
+    row = selection.selected
+    $VR_ENV.run_command_line = row[id(:file_name)] 
   end
 
   def self__button_release_event(w, event)          # right click

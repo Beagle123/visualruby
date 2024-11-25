@@ -4,7 +4,7 @@ width: 1854
 height: 1003
 panel_pos: 360
 notebook_panel_position: 410
-run_command_line: ruby before_show.rb
+run_command_line: before_show.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/04_before_show/README.txt"
 open_folders:
