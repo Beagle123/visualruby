@@ -1,7 +1,7 @@
 
 class VR_Document < GtkSource::View
   
-  include GladeGUI
+#  include GladeGUI
   include VR_TextViewCommon
     
   attr_accessor :full_path_file, :title, :settings, :context 
@@ -29,19 +29,21 @@ class VR_Document < GtkSource::View
     buffer.highlight_syntax = true
     buffer.highlight_matching_brackets = false
     @hilight = buffer.create_tag("hilight", { "background" => "#FFF0A0" })
-    buffer.signal_connect("changed") { remove_tag(@hilight) }
+    buffer.signal_connect("changed") { remove_tag(@hilight) ; @context.set_highlight(false) }
     self.show_line_numbers = true 
     self.insert_spaces_instead_of_tabs = true
     self.indent_width = $VR_ENV_GLOBAL.tab_spaces.to_i
     self.highlight_current_line = true
-    self.set_cursor_visible(true)
+    self.set_cursor_visible(true) 
     update_style()
     @settings = GtkSource::SearchSettings.new() 
     @context = GtkSource::SearchContext.new(buffer, @settings)
     @current_find_replace_line_no = 0 #deprecated:
     @current_find_replace_str = nil
     @search_iter = nil 
+    self.signal_connect("focus") { remove_tag(@hilight) }
   end
+ 
 
   def update_style()
     override_font(Pango::FontDescription.new($VR_ENV_GLOBAL.font_name))

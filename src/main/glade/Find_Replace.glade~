@@ -171,7 +171,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkCheckButton">
+              <object class="GtkCheckButton" id="checkCase">
                 <property name="label" translatable="yes">Case Sensative</property>
                 <property name="name">checkCaseSensative</property>
                 <property name="visible">True</property>
