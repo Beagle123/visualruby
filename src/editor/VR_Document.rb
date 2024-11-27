@@ -4,7 +4,7 @@ class VR_Document < GtkSource::View
   include GladeGUI
   include VR_TextViewCommon
     
-  attr_accessor :full_path_file, :title  
+  attr_accessor :full_path_file, :title, :settings, :context 
 
   def initialize(full_path_file, title_label, main)
     @main = main
@@ -36,6 +36,11 @@ class VR_Document < GtkSource::View
     self.highlight_current_line = true
     self.set_cursor_visible(true)
     update_style()
+    @settings = GtkSource::SearchSettings.new() 
+    @context = GtkSource::SearchContext.new(buffer, @settings)
+    @current_find_replace_line_no = 0 #deprecated:
+    @current_find_replace_str = nil
+    @search_iter = nil 
   end
 
   def update_style()
@@ -127,6 +132,7 @@ class VR_Document < GtkSource::View
 
   def selected_text()
     s,e = buffer.selection_bounds
+    return "" if s.nil?
     buffer.get_text(s, e, false)
   end
   
@@ -142,6 +148,64 @@ class VR_Document < GtkSource::View
   def mod_time()
     return File.file?(@full_path_file) ? File.stat(@full_path_file).mtime : nil
   end
+
+#   def find_next(search_str)
+#     if @find_replace_string != search_str or @search_iter.nil?
+#       @search_iter = buffer.get_iter_at(:line => 0)
+#     end
+#     @find_replace_string = search_str
+#     s, e = @search_iter.forward_search(search_str, :text_only)  #, e)
+#     @search_iter = e
+#     return if s.nil? or e.nil?
+#     buffer.place_cursor(s) 
+#     buffer.move_mark(buffer.get_mark("selection_bound"), e)   
+#     mark = buffer.get_mark("insert")
+#     scroll_to_mark(mark, 0.1, false, 0.0, 0.5)
+#   end
+
+
+  def find_next(search_str)
+    if @find_replace_string != search_str 
+      cursor_pos = 0    
+    else
+      cursor_pos = buffer.cursor_position + 1
+    end
+#     buffer.highlight = true
+    @find_replace_string = search_str
+    iter = buffer.get_iter_at(:offset => cursor_pos)
+    s, e = iter.forward_search(search_str, :case_insensitive) #search_str, :text_only)  #, e)
+    return if s.nil? or e.nil?
+    buffer.place_cursor(s) 
+    buffer.move_mark(buffer.get_mark("selection_bound"), e)   
+    mark = buffer.get_mark("insert")
+    scroll_to_mark(mark, 0.1, false, 0.0, 0.5)
+  end
+
+  def hilight_selection(s, e)
+    buffer.place_cursor(s) 
+    buffer.move_mark(buffer.get_mark("selection_bound"), e)   
+    mark = buffer.get_mark("insert")
+    scroll_to_mark(mark, 0.1, false, 0.0, 0.5)
+  end
+
+  def find_previous(search_str)
+    if @find_replace_string != search_str 
+      cursor_pos = 0    
+    else
+      cursor_pos = buffer.cursor_position + 1
+    end
+    @find_replace_string = search_str
+    iter = buffer.get_iter_at(:offset => cursor_pos)
+    s, e = iter.backward_search(search_str, :text_only)  #, e)
+    return if s.nil? or e.nil?
+    buffer.place_cursor(s) 
+    buffer.move_mark(buffer.get_mark("selection_bound"), e)   
+    mark = buffer.get_mark("insert")
+    scroll_to_mark(mark, 0.1, false, 0.0, 0.5)
+  end
+
+
+
 
 end
      

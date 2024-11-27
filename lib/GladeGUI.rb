@@ -412,8 +412,14 @@ module GladeGUI
   end
 
   def window1__key_press_event(view, evt)
-    return unless evt.keyval == Gdk::Keyval::KEY_F8
-    oinspect
+# alert Gdk::Keyval.to_name(evt.keyval)
+# oinspect evt.keyval
+#     case evt.keyval
+#       when Gdk::Keyval::CTRL_F
+#         Find_Replace.new("Hello").show_glade()
+#       when Gdk::Keyval::KEY_F8
+#         oinspect
+#     end
   end
 
   # retrieves the key inside a glade control name.  Useful when handling events where

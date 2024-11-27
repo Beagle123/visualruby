@@ -19,6 +19,7 @@
   require_relative "src/editor/VR_Tabs" 
   require_relative "src/editor/VR_Document"
 
+  require_relative "src/main/Find_Replace"
   require_relative "src/main/VR_Tools"
   require_relative "src/main/GemTree"
   require_relative "src/main/NewProjectGUI"

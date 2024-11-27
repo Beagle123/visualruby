@@ -12,7 +12,7 @@ open_files:
 open_folders:
 - "/home/eric/vrp/vr3/examples/78_listview"
 current_file: "/home/eric/vrp/vr3/examples/78_listview/src/SongListViewGUI.rb"
-current_line: 50
+current_line: 2
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

@@ -7,28 +7,21 @@ notebook_panel_position: 568
 run_command_line: vr
 open_files:
 - "/home/eric/vrp/vr3/lib/treeview/FileTreeView.rb"
-- "/home/eric/vrp/vr3/src/main/VR_File_Tree.rb"
 - "/home/eric/vrp/vr3/src/main/VR_Main.rb"
-- "/home/eric/vrp/vr3/src/editor/VR_TextShell.rb"
-- "/home/eric/vrp/vr3/all_requires.rb"
-- "/home/eric/vrp/vr3/lib/treeview/ViewCommon.rb"
-- "/home/eric/vrp/vr3/src/main/VR_ENV.rb"
-- "/home/eric/vrp/vr3/lib/Tools.rb"
-- "/home/eric/vrp/vr3/lib/vrlib.rb"
-- "/home/eric/vrp/vr3/src/main/NewProjectGUI.rb"
-- "/home/eric/vrp/vr3/src/main/OpenProject.rb"
-- "/home/eric/vrp/vr3/src/main/VR_ENV_GLOBAL.rb"
-- "/home/eric/vrp/vr3/src/main/VR_Tools.rb"
+- "/home/eric/vrp/vr3/src/editor/VR_TabSearch.rb"
+- "/home/eric/vrp/vr3/src/main/Find_Replace.rb"
+- "/home/eric/vrp/vr3/src/editor/VR_Document.rb"
+- "/home/eric/vrp/vr3/src/editor/VR_Tabs.rb"
+- "/home/eric/vrp/vr3/src/editor/VR_TextViewCommon.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/lib"
-- "/home/eric/vrp/vr3/lib/glade"
-- "/home/eric/vrp/vr3/lib/treeview"
 - "/home/eric/vrp/vr3/src"
+- "/home/eric/vrp/vr3/src/editor"
 - "/home/eric/vrp/vr3/src/main"
 - "/home/eric/vrp/vr3/src/main/glade"
-current_file: "/home/eric/vrp/vr3/src/main/VR_ENV.rb"
-current_line: 36
+current_file: "/home/eric/vrp/vr3/src/main/Find_Replace.rb"
+current_line: 18
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

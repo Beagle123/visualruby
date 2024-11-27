@@ -124,6 +124,10 @@ class VR_Main
     end
   end
 
+  def toolFind__clicked(*args)
+    Find_Replace.new(@tabs).show_glade()
+  end
+
   def toolMyYard__clicked(*a)
     begin
       require "my_yard"
