@@ -2,7 +2,7 @@
 vr_yaml_file: "/home/eric/vrp/vr3/.vr_settings.yaml"
 width: 1854
 height: 1003
-panel_pos: 370
+panel_pos: 354
 notebook_panel_position: 622
 run_command_line: vr
 open_files:
@@ -13,14 +13,19 @@ open_files:
 - "/home/eric/vrp/vr3/src/editor/VR_TextViewCommon.rb"
 - "/home/eric/vrp/vr3/src/editor/VR_TextShell.rb"
 - "/home/eric/vrp/vr3/src/editor/VR_Document.rb"
+- "/home/eric/vrp/vr3/lib/treeview/FileTreeView.rb"
+- "/home/eric/vrp/vr3/lib/GladeGUI.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
+- "/home/eric/vrp/vr3/lib"
+- "/home/eric/vrp/vr3/lib/glade"
+- "/home/eric/vrp/vr3/lib/treeview"
 - "/home/eric/vrp/vr3/src"
 - "/home/eric/vrp/vr3/src/editor"
 - "/home/eric/vrp/vr3/src/main"
 - "/home/eric/vrp/vr3/src/main/glade"
-current_file: "/home/eric/vrp/vr3/src/main/Find_Replace.rb"
-current_line: 29
+current_file: "/home/eric/vrp/vr3/lib/GladeGUI.rb"
+current_line: 272
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

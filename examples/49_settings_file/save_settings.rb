@@ -2,8 +2,11 @@
 
 require "vrlib"
 
-require_relative 'bin/MainApp'
-require_relative 'bin/SavableSettings'
+require_relative 'src/MainApp'
+require_relative 'src/SavableSettings'
 
-MainApp.new.show_glade()
+# load class from settings.yaml
+env = VR::load_yaml(SavableSettings, "settings.yaml")
 
+# show it
+env.show_glade()

@@ -1,17 +1,6 @@
  
 module VR_TabSearch 
 
-  def find_in_tabs(str)
-    out = "Search Results for:  " + str + "\n"
-    out += scan_for_text(str, @docs[self.page].buffer.text, @docs[self.page].full_path_file)
-    (0..self.n_pages-1).each do |i| 
-      if i != self.page
-        out += scan_for_text(str, @docs[i].buffer.text, @docs[i].full_path_file)
-      end
-    end
-    return out
-  end
-
   def find_in_all(str, case_sensitive)
     out = "Search Results for:  " + str + "\n"
     out += scan_for_text(str, @docs[self.page].buffer.text, @docs[self.page].full_path_file, case_sensitive)
@@ -31,17 +20,11 @@ module VR_TabSearch
     return out
   end
 
-  def replace(str_replacement)
-    @docs[self.page].replace(str_replacement)
-  end
-
   def scan_for_text(str, txt, path, case_sensitive = true)
     i = 1
     out = ''
     txt.each_line do |line|
       found = case_sensitive ? line.include?(str) : line.downcase.include?(str.downcase)
- #     match = case_sensitive ? line.scan(str) : line.scan(/#{str}/i)
-#       out += path + ':' + i.to_s + ": Found: "+ str + "\n" if match.size > 0
       out += path + ':' + i.to_s + ": Found: "+ str + "\n" if found
       i += 1
     end

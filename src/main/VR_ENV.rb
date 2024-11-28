@@ -26,7 +26,7 @@ class VR_ENV
   def buttonSave__clicked(*a)
     get_glade_variables
     VR::save_yaml(self)
-    @builder["window1"].destroy
+    @builder["window1"].close
   end
   
 

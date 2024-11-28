@@ -15,6 +15,7 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkMenuBar" id="menubar">
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkMenuItem" id="menuFile">
                 <property name="use-action-appearance">False</property>
@@ -352,17 +353,17 @@
             </child>
             <child>
               <object class="GtkPaned" id="panelMain">
-                <property name="can-focus">False</property>
+                <property name="can-focus">True</property>
                 <child>
                   <object class="GtkBox" id="box3">
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkNotebook" id="notebookTree">
-                        <property name="can-focus">False</property>
+                        <property name="can-focus">True</property>
                         <child>
                           <object class="GtkScrolledWindow" id="scrolledwindowFileTree">
-                            <property name="can-focus">False</property>
+                            <property name="can-focus">True</property>
                             <property name="hexpand">True</property>
                             <property name="vexpand">True</property>
                             <child>
@@ -382,7 +383,7 @@
                         </child>
                         <child>
                           <object class="GtkScrolledWindow" id="scrolledLocalGems">
-                            <property name="can-focus">False</property>
+                            <property name="can-focus">True</property>
                             <child>
                               <placeholder/>
                             </child>
@@ -403,7 +404,7 @@
                         </child>
                         <child>
                           <object class="GtkScrolledWindow" id="scrolledRemoteGems">
-                            <property name="can-focus">False</property>
+                            <property name="can-focus">True</property>
                             <child>
                               <placeholder/>
                             </child>
@@ -437,7 +438,7 @@
                 </child>
                 <child>
                   <object class="GtkPaned" id="panelNotebook">
-                    <property name="can-focus">False</property>
+                    <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
                     <property name="orientation">vertical</property>
@@ -456,7 +457,7 @@
                     </child>
                     <child>
                       <object class="GtkScrolledWindow" id="scrollShell">
-                        <property name="can-focus">False</property>
+                        <property name="can-focus">True</property>
                         <property name="shadow-type">in</property>
                         <child>
                           <placeholder/>

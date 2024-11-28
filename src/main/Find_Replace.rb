@@ -9,7 +9,7 @@ class Find_Replace
     @entryFind = @tabs.docs[@tabs.page].selected_text()
     @entryReplace = nil
     @checkCase = true
-    @comboFiles = nil
+    @comboFiles = "All Files in Project"
   end
 
   def buttonNext__clicked(*a)
@@ -59,10 +59,11 @@ class Find_Replace
 
   def buttonReplace__clicked(*a)
     page = @tabs.docs[@tabs.page]
-    s, e = page.buffer.selection_bounds
-    return if s.nil? or e.nil?
-    page.replace(@builder[:entryReplace].text)
-#    page.context.replace(s, e, @builder[:entryReplace].text, @builder[:entryReplace].text.length)
+    return unless page.buffer.has_selection?
+    s,e = page.buffer.selection_bounds
+    page.buffer.delete(s,e)
+    page.buffer.insert_at_cursor(@builder[:entryReplace].text)
+#     page.context.replace(s, e, @builder[:entryReplace].text, @builder[:entryReplace].text.length)  #doesn't work after clicking shell to find match
   end
 
   def buttonReplaceAll__clicked(*a)
@@ -70,12 +71,12 @@ class Find_Replace
     get_glade_variables
     return unless alert("This will replace:  <b>#{@entryFind}</b> with <b>#{@entryReplace}</b>\nIn these files:  <b>#{@comboFiles}</b>\n",
          headline: "Do You Wish to Continue?", width:600, button_yes: "Replace", button_cancel: "Abort")
-    if @comboFiles == "All Open Documents"
-      (0..@tabs.n_pages-1).each do |i| 
-        total = total + replace_all(@tabs.docs[i])
-      end
-    else
+    if @comboFiles == "Current Document"
       total = replace_all(@tabs.docs[@tabs.page])
+    elsif @comboFiles == "All Open Documents"
+      total = replace_all_open()
+    elsif @comboFiles == "All Files in Project"
+      total = replace_all_closed()
     end
     alert("Total Replacements:  #{total.to_s}", headline: "Files Updated")
   end
@@ -85,6 +86,38 @@ class Find_Replace
     move(page, :forward)
     return page.context.replace_all(@builder[:entryReplace].text, @builder[:entryReplace].text.length)    
   end
+
+  def replace_all_open()
+    total = 0
+    (0..@tabs.n_pages-1).each do |i| 
+      total = total + replace_all(@tabs.docs[i])
+    end
+    return total
+  end
+
+  def replace_all_closed()
+    total = 0
+    mod = @checkCase ? "" : "i"
+    Find.find(Dir.pwd) do |path|
+      Find.prune if path =~ /\/glade$/ or path =~ /\/docs$/ 
+      if (File.extname(path) == ".rb" or File.extname(path) == ".erb") and not File.directory?(path) 
+        next if not @tabs.docs.all? { |doc| doc.full_path_file != path }  # skip open docs
+        txt = File.open(path, "r").read
+        count = @checkCase ? txt.scan(/#{@entryFind}/).length : txt.scan(/#{@entryFind}/i).length
+        if count > 0
+          total = total + count
+        end
+        if @checkCase
+          txt.gsub!(/#{@entryFind}/, @entryReplace)
+        else
+          txt.gsub!(/#{@entryFind}/i, @entryReplace)
+        end
+        File.open(path, "w") { |f| f.puts(txt) }
+      end
+    end
+    return total
+  end
+
 
   def comboFiles__changed(*a)
     if @builder[:comboFiles].active_text == "All Files in Project"

@@ -1,15 +1,14 @@
 --- !ruby/object:SavableSettings
-height: 517
-width: 848
-title: Savable Settings Demo
+height: 500
+width: 600
+username: Me Myself and I  dfgdfgs
+switch: true
+checkYesNo: true
+comboFruit: Passion Fruit
 text: |-
-  Try running this program multiple times.
+  Try changing this form, then running it again.  You will find that it preserves its state after it closes. You can even resize the window, and it will preserve its size. dsbgsdfg
 
-  It will create a file named settings.yaml that stores the height, width, title, and text from this window, so the window will be restored to the same state as when you exited.
-
-   If you want to reset the file to the defaults, just delete the settings.yaml file.
-
-  You may need to click the 'Refresh' to see the settings.yaml file.
+  It's storing itself in settings.yaml.  To start again, just delete the settings.yaml file.You may need to click the 'Refresh' to see the settings.yaml file appear again.
 vr_yaml_file: "/home/eric/vrp/vr3/examples/49_settings_file/settings.yaml"
 builder: !ruby/object:Gtk::Builder {}
-top_level_window: false
+top_level_window: true

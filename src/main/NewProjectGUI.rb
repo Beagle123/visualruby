@@ -18,7 +18,7 @@ class NewProjectGUI
       VR_Tools.copy_skeleton_project(path)
     end
     @parent.proj_path = path
-    @builder["window1"].destroy
+    @builder["window1"].close
   end
 
 end

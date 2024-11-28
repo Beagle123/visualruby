@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
     def buttonSave__clicked(*a)
       get_glade_all #sets name, address, phone etc. from glade
       save!
-      @builder[:window1].destroy
+      @builder[:window1].close
     end
 
 end

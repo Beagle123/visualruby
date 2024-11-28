@@ -235,23 +235,7 @@ class VR_Main
       @tabs.load_tab(file_name)
       @file_tree.refresh()
     end
-  end
-
-  def buttonNext_clicked
-    @shell.jump_to()
-  end
-
-  def buttonFind_clicked
-    str = @builder["entryFind"].text
-    str = str.length < 2 ? @tabs.docs[@tabs.page].selected_text() : str
-    return if str.nil? or str.length < 2
-    text = (@builder["radioOnDisk"].active?) ? @tabs.find_in_all(str) : @tabs.find_in_tabs(str)    
-    @shell.hilight_links(text, false)
   end  
-
-  def buttonReplace_clicked
-    @tabs.docs[@tabs.page].replace(@builder[:entryReplace].text)
-  end
   
   def menuInstallExamples__activate(*a)
     path = File.join(ENV["HOME"], "visualruby", "examples")
@@ -279,7 +263,7 @@ class VR_Main
   end
 
   def menuQuit__activate(*a)   
-    @builder[:window1].destroy
+    @builder[:window1].close
   end
 
   def tabs__switch_page(_self, x, page_num)

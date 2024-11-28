@@ -16,7 +16,7 @@ class DataObject
 
   def buttonSave__clicked(*args)
     get_glade_variables()
-    @builder["window1"].destroy
+    @builder["window1"].close
   end
 
 # The each_cell method defines the appearance of the object in the

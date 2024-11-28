@@ -72,7 +72,7 @@ module VR::Col
       m = @builder["am"].active? ? "AM" : "PM"
       t = DateTime.strptime("#{@hour.to_i.to_s} #{@minute.to_i.to_s} #{m}", "%I %M %p")
       @date = DateTime.new(@date.year, @date.month, @date.day, t.hour, t.min, 0)
-      @builder["window1"].destroy
+      @builder["window1"].close
     end
 
     # Used for sorting in ListView

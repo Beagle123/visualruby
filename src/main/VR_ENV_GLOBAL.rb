@@ -29,7 +29,7 @@ class VR_ENV_GLOBAL
       get_glade_variables
       @tab_spaces = @builder['tab_spaces'].text.to_i
       VR::save_yaml(self)
-      @builder["window1"].destroy
+      @builder["window1"].close
     end
   end
 

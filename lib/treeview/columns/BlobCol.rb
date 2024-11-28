@@ -47,11 +47,11 @@ module VR::Col
 
     def buttonSave__clicked(*args) # :nodoc:
       get_glade_variables()
-      @builder["window1"].destroy
+      @builder["window1"].close
     end
 
     def buttonCancel__clicked(*args) # :nodoc:
-      @builder["window1"].destroy
+      @builder["window1"].close
     end
 
     def <=>(text_col)

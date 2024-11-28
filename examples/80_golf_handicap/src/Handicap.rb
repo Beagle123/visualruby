@@ -81,7 +81,7 @@ class Handicap
   def ui_change_but__clicked(*a)
     @ui_rounds_listview = nil  # so it doesn't save contents
     VR::save_yaml(self)
-    @builder[:window1].destroy
+    @builder[:window1].close
     load_new_golfer
   end
 

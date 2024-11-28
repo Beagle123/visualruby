@@ -8,7 +8,7 @@ module VR
 
     attr_accessor :answer    
     
-     include GladeGUI
+    include GladeGUI
     
     # Just passes on values from #alert method. 
     # @see #alert      
@@ -22,6 +22,10 @@ module VR
     end
 
     def before_show
+      @builder[:input_text].hide
+      @builder[:ui_grid].hide
+      @builder[:choices_text].hide
+      @builder[:headline].hide
       @flags[:title] = @flags[:title] ? @flags[:title] : @flags[:headline]
       @builder[:window1].title = @flags[:title] if @flags[:title]
       @builder[:window1].resize(@flags[:width],100) if @flags[:width].to_i > 100
@@ -56,8 +60,8 @@ module VR
         @builder[:input_text].show 
       end
 
-      @builder[:button_no].show if @flags[:button_no]
-      @builder[:button_cancel].show if @flags[:button_cancel]
+      @builder[:button_no].hide unless @flags[:button_no]
+      @builder[:button_cancel].hide unless @flags[:button_cancel]
       set_glade_hash(@flags)
     end
 
@@ -74,17 +78,17 @@ module VR
       else
         @answer.answer = true
       end
-      @builder[:window1].destroy
+      @builder[:window1].close
     end
 
     def button_no__clicked(but)
       @answer.answer = false    
-      @builder[:window1].destroy
+      @builder[:window1].close
     end
 
     def button_cancel__clicked(but) 
       @answer.answer = nil 
-      @builder[:window1].destroy
+      @builder[:window1].close
     end
 
     # Helper to VR::Alert so :answer can be passed by reference. 

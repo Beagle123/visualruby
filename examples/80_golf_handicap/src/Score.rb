@@ -19,7 +19,7 @@ class Score
   def ui_save_but__clicked(*a)
     get_glade_variables
     @used = "n" # signals save occured
-    @builder[:window1].destroy
+    @builder[:window1].close
   end  
 
   def diff()

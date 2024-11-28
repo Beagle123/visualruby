@@ -120,13 +120,6 @@ class VR_Document < GtkSource::View
     return s.line, e.line 
   end
 
-  def replace(str)
-    return unless buffer.has_selection?
-    s,e = buffer.selection_bounds
-    buffer.delete(s,e)
-    buffer.insert_at_cursor(str)
-  end
-
   def selected_text()
     s,e = buffer.selection_bounds
     return "" if s.nil?

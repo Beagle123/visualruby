@@ -268,7 +268,8 @@ module GladeGUI
     return unless control
     case control  # order matters-- subclasses?
       when Gtk::Window then control.title = val
-      when Gtk::CheckButton then control.active = val
+      when Gtk::CheckButton then control.set_active(val)
+      when Gtk::Switch then control.set_active(val)
       when Gtk::TextView then control.buffer.text = val.to_s
       when Gtk::Entry then control.text = val.to_s
       when Gtk::ColorButton then control.color = Gdk::Color.parse(val.to_s)
@@ -349,7 +350,7 @@ module GladeGUI
     control = @builder[glade_name]
     return unless control ||= @builder[my_class_name(obj) + "." + glade_name]
     case control
-      when Gtk::CheckButton, Gtk::ToggleButton then control.active?
+      when Gtk::CheckButton, Gtk::ToggleButton, Gtk::Switch then control.active?
       when Gtk::Entry then control.text.to_s
       when Gtk::TextView then control.buffer.text.to_s
       when Gtk::FontButton then control.font_name 
@@ -391,10 +392,11 @@ module GladeGUI
     if parent then
         @builder[:window1].transient_for = parent.builder[:window1]
     end
+    @builder[:window1].show_all
     before_show() if respond_to? :before_show
     parse_signals()
     set_glade_all()
-    @builder[:window1].show  #show_all can't hide widgets in before_show
+#    @builder[:window1].show_all  #show_all can't hide widgets in before_show
     @top_level_window = Gtk.main_level == 0 ? true : false
     Gtk.main if @top_level_window or @builder[:window1].modal?  # need new Gtk.main for blocking!
   end

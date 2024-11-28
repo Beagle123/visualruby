@@ -3,17 +3,15 @@ vr_yaml_file: "/home/eric/vrp/vr3/examples/49_settings_file/.vr_settings.yaml"
 width: 1854
 height: 1003
 panel_pos: 360
-notebook_panel_position: 400
+notebook_panel_position: 580
 run_command_line: save_settings.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/49_settings_file/save_settings.rb"
-- "/home/eric/vrp/vr3/examples/49_settings_file/bin/MainApp.rb"
 - "/home/eric/vrp/vr3/examples/49_settings_file/bin/SavableSettings.rb"
-- "/home/eric/vrp/vr3/examples/49_settings_file/settings.yaml"
 open_folders:
 - "/home/eric/vrp/vr3/examples/49_settings_file"
 - "/home/eric/vrp/vr3/examples/49_settings_file/bin"
 - "/home/eric/vrp/vr3/examples/49_settings_file/bin/glade"
-current_file: "/home/eric/vrp/vr3/examples/49_settings_file/settings.yaml"
-current_line: 16
+current_file: "/home/eric/vrp/vr3/examples/49_settings_file/save_settings.rb"
+current_line: 11
 rdoc_command_line: rdoc -x README

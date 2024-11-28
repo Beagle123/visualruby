@@ -2,8 +2,6 @@
 class SavableSettings 
  
   include GladeGUI
- 
-  attr_accessor :height, :width, :title, :text
 
   def initialize()
     defaults()
@@ -16,22 +14,32 @@ class SavableSettings
   # and execute it, so use the name "defaults, and it will automatically run.
 
   def defaults()
-    @height ||= 200
-    @width ||= 350
-    @title ||= "Savable Settings Demo"
-    @text ||= "Try running this program multiple times.\n\n" +
-              "It will create a file named settings.yaml that stores " +
-              "the height, width, title, and text from this window, so the " +
-              "window will be restored to the same state as when you exited.\n\n " +
-              "If you want to reset the file to the defaults, just delete the settings.yaml file.\n\n" +
-              "You may need to click the 'Refresh' to see the settings.yaml file."
+    @height ||= 500
+    @width ||= 600
+    @username ||= "Me Myself and I"
+    @switch ||= false
+    @checkYesNo ||= false
+    @comboFruit ||= "Apples"
+    @text ||= "Try changing this form, then running it again.  " +
+              "You will find that it preserves its state after it closes. " +
+              "You can even resize the window, and it will preserve its size.\n\n" +
+              "It's storing itself in settings.yaml.  " +
+              "To start again, just delete the settings.yaml file." +
+              "You may need to click the 'Refresh' to see the settings.yaml file appear again."  
   end  
 
-  def buttonSave__clicked(*a)
+  def before_show()
+    @builder[:window1].resize @width, @height
+  end  
+
+
+  def window1__delete_event(*)
     get_glade_variables
-    VR::save_yaml(self) 
-    @builder[:window1].destroy
+    @width, @height = @builder[:window1].size()
+    VR::save_yaml(self)
+    return false #ok to close
   end
+
 
 
 end
