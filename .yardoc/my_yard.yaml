@@ -5,7 +5,7 @@ template_root: "/home/eric/my_yard/templates"
 output_dir: docs
 theme: default
 template: default
-files: "*/**/*.rb */**/*.c"
+files: "*/**/*.rb"
 extra_files: "*/**/*.md"
 exclude: ''
 include_public: true
@@ -14,7 +14,7 @@ include_protected: false
 include_private_tag: false
 title: 'Generated with my_yard '
 main: README.md
-export_db: true
+export_db: false
 export_db_path: ".yardoc"
 vr_yaml_file: "/home/eric/vrp/vr3/.yardoc/my_yard.yaml"
 builder: !ruby/object:Gtk::Builder {}

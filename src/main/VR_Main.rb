@@ -1,16 +1,14 @@
 
-
 class VR_Main 
 
   include GladeGUI
 
   attr_accessor :proj_path, :tabs, :shell, :builder, :file_tree  
-  
+ 
   def initialize(argv)
     # can pass project on command line
     @proj_path = VR_Tools.vr_project?(argv[0]) ? argv[0] : nil
   end 
-
 
   def before_show
 
@@ -24,8 +22,6 @@ class VR_Main
       File.delete(VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
       $VR_ENV_GLOBAL = VR::load_yaml(VR_ENV_GLOBAL, VR_ENV_GLOBAL::GLOBAL_SETTINGS_FILE)
     end    
-
-
 
     @proj_path ||= $VR_ENV_GLOBAL.default_project
 
@@ -125,7 +121,7 @@ class VR_Main
   end
 
   def toolFind__clicked(*args)
-    Find_Replace.new(@tabs).show_glade()
+    Find_Replace.new(@tabs, @shell).show_glade()
   end
 
   def toolMyYard__clicked(*a)
@@ -230,6 +226,7 @@ class VR_Main
     @file_tree.open_folders($VR_ENV.open_folders)
     @tabs.load_tab($VR_ENV.current_file)
     @tabs.docs[@tabs.page].jump_to_line($VR_ENV.current_line)
+    @tabs.docs[@tabs.page].remove_tag(@tabs.docs[@tabs.page].hilight)   
   end
 
   def menuCreateGemspec__activate(*a)
@@ -254,15 +251,6 @@ class VR_Main
 
   def buttonReplace_clicked
     @tabs.docs[@tabs.page].replace(@builder[:entryReplace].text)
-  end
-
-  def entryFind__key_press_event(me, evt)
-    return if evt.keyval != 65293 #enter key
-    buttonFind_clicked
-  end
-
-  def menuTutorials__activate(*a)
-    VR_Tools.popen("#{$VR_ENV_GLOBAL.browser} https://beagle123.github.io/visualruby")
   end
   
   def menuInstallExamples__activate(*a)

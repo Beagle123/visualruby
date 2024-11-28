@@ -161,7 +161,7 @@
                 <items>
                   <item translatable="yes">Current Document</item>
                   <item translatable="yes">All Open Documents</item>
-                  <item translatable="yes">Files From Project</item>
+                  <item translatable="yes">All Files in Project</item>
                 </items>
               </object>
               <packing>

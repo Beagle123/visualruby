@@ -4,7 +4,7 @@ module VR_TextViewCommon
     s = buffer.get_iter_at(:line => line)
     e = get_end_iter(s)
     if !search_str.nil?
-    s, e = s.forward_search(search_str, :text_only, e)
+      s, e = s.forward_search(search_str, :case_insensitive, e)
     end
     return s, e
   end
@@ -13,7 +13,6 @@ module VR_TextViewCommon
       s, e = get_line_iters(line, search_str)
       return if s.nil? or e.nil?
       buffer.place_cursor(s)
-#      buffer.move_mark(buffer.get_mark("insert"),s)
       buffer.move_mark(buffer.get_mark("selection_bound"), e)
   end
 

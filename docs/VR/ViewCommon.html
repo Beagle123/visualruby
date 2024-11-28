@@ -6,15 +6,15 @@
 <title>
   Module: VR::ViewCommon
   
-    &mdash; Visual Ruby GUI Creator
+    &mdash; Generated with my_yard 
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   pathId = "VR::ViewCommon";
   relpath = '../';
 </script>
@@ -28,12 +28,12 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../just_file_list.html"></iframe>
+      <iframe id="nav" src="../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
     <div id="main" tabindex="-1">
-<!--       <div id="header">
+      <div id="header">
         <div id="menu">
   
     <a href="../_index.html">Index (V)</a> &raquo;
@@ -42,8 +42,8 @@
     <span class="title">ViewCommon</span>
   
 </div>
- 
-       <div id="search">
+
+        <div id="search">
   
     <a class="full_list_link" id="class_list_link"
         href="../class_list.html">
@@ -55,12 +55,10 @@
         </svg>
     </a>
   
-</div> 
+</div>
         <div class="clear"></div>
       </div>
 
-      <iframe id="search_frame" src=""></iframe>
--->
       <div id="content"><h1>Module: VR::ViewCommon
   
   
@@ -489,7 +487,7 @@ Some examples are:
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#each_cell_method-instance_method" title="#each_cell_method (instance method)">#<strong>each_cell_method</strong>(col_symbol, block)  &#x21d2; Object </a>
+      <a href="#each_cell_method-instance_method" title="#each_cell_method (instance method)">#<strong>each_cell_method</strong>(col_symbol, ren_symbol, block)  &#x21d2; Object </a>
     
 
     
@@ -1291,7 +1289,7 @@ Some examples are:
       <div class="method_details ">
   <h3 class="signature " id="each_cell_method-instance_method">
   
-    #<strong>each_cell_method</strong>(col_symbol, block)  &#x21d2; <tt>Object</tt> 
+    #<strong>each_cell_method</strong>(col_symbol, ren_symbol, block)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -1323,8 +1321,8 @@ Some examples are:
     <td>
       <pre class="code"><span class="info file"># File 'lib/treeview/ViewCommon.rb', line 158</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_each_cell_method'>each_cell_method</span><span class='lparen'>(</span><span class='id identifier rubyid_col_symbol'>col_symbol</span><span class='comma'>,</span> <span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='ivar'>@vr_column</span><span class='lbracket'>[</span><span class='id identifier rubyid_col_symbol'>col_symbol</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_set_cell_data_func'>set_cell_data_func</span><span class='lparen'>(</span><span class='ivar'>@vr_renderer</span><span class='lbracket'>[</span><span class='id identifier rubyid_col_symbol'>col_symbol</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_col'>col</span><span class='comma'>,</span> <span class='id identifier rubyid_rend'>rend</span><span class='comma'>,</span> <span class='id identifier rubyid_model'>model</span><span class='comma'>,</span> <span class='id identifier rubyid_iter'>iter</span><span class='op'>|</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_each_cell_method'>each_cell_method</span><span class='lparen'>(</span><span class='id identifier rubyid_col_symbol'>col_symbol</span><span class='comma'>,</span> <span class='id identifier rubyid_ren_symbol'>ren_symbol</span><span class='comma'>,</span> <span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='ivar'>@vr_column</span><span class='lbracket'>[</span><span class='id identifier rubyid_col_symbol'>col_symbol</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_set_cell_data_func'>set_cell_data_func</span><span class='lparen'>(</span><span class='ivar'>@vr_renderer</span><span class='lbracket'>[</span><span class='id identifier rubyid_ren_symbol'>ren_symbol</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_col'>col</span><span class='comma'>,</span> <span class='id identifier rubyid_rend'>rend</span><span class='comma'>,</span> <span class='id identifier rubyid_model'>model</span><span class='comma'>,</span> <span class='id identifier rubyid_iter'>iter</span><span class='op'>|</span>
     <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_col'>col</span><span class='comma'>,</span> <span class='id identifier rubyid_rend'>rend</span><span class='comma'>,</span> <span class='id identifier rubyid_model'>model</span><span class='comma'>,</span> <span class='id identifier rubyid_iter'>iter</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1927,15 +1925,11 @@ VR::ViewCommon#vr_row.
 </div>
 
       <div id="footer">
-  Generated on Sat Nov 23 22:46:09 2024 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  Generated on Tue Nov 26 23:40:30 2024 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.6).
 </div>
 
-    </div>
-    <div id="resizer"></div>
-    <div class="nav_wrap">
-      <iframe id="nav" src="../class_and_method_list.html" ></iframe>
     </div>
   </body>
 </html>

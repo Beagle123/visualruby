@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: VR_Document
+  
+    &mdash; Generated with my_yard 
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "VR_Document";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (V)</a> &raquo;
+    
+    
+    <span class="title">VR_Document</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: VR_Document
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">GtkSource::View</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">GtkSource::View</li>
+          
+            <li class="next">VR_Document</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="VR_TextViewCommon.html" title="VR_TextViewCommon (module)">VR_TextViewCommon</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>src/editor/VR_Document.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#context-instance_method" title="#context (instance method)">#<strong>context</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute context.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#full_path_file-instance_method" title="#full_path_file (instance method)">#<strong>full_path_file</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute full_path_file.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hilight-instance_method" title="#hilight (instance method)">#<strong>hilight</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute hilight.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#settings-instance_method" title="#settings (instance method)">#<strong>settings</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute settings.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#title-instance_method" title="#title (instance method)">#<strong>title</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute title.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_class_title-class_method" title="get_class_title (class method)">.<strong>get_class_title</strong>(source_code)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete_before_selected-instance_method" title="#delete_before_selected (instance method)">#<strong>delete_before_selected</strong>(text)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#empty%3F-instance_method" title="#empty? (instance method)">#<strong>empty?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_selected_lines-instance_method" title="#get_selected_lines (instance method)">#<strong>get_selected_lines</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hilight_line-instance_method" title="#hilight_line (instance method)">#<strong>hilight_line</strong>(line)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hilight_selection-instance_method" title="#hilight_selection (instance method)">#<strong>hilight_selection</strong>(s, e)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(full_path_file, title_label, main)  &#x21d2; VR_Document </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of VR_Document.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#insert_before_selected-instance_method" title="#insert_before_selected (instance method)">#<strong>insert_before_selected</strong>(text)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#jump_to_line-instance_method" title="#jump_to_line (instance method)">#<strong>jump_to_line</strong>(line_num, search_str = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mod_time-instance_method" title="#mod_time (instance method)">#<strong>mod_time</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#modified_time_matches-instance_method" title="#modified_time_matches (instance method)">#<strong>modified_time_matches</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reload_from_disk-instance_method" title="#reload_from_disk (instance method)">#<strong>reload_from_disk</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#replace-instance_method" title="#replace (instance method)">#<strong>replace</strong>(str)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#selected_text-instance_method" title="#selected_text (instance method)">#<strong>selected_text</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_style-instance_method" title="#update_style (instance method)">#<strong>update_style</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write_to_disk-instance_method" title="#write_to_disk (instance method)">#<strong>write_to_disk</strong>(fn = @full_path_file)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="VR_TextViewCommon.html" title="VR_TextViewCommon (module)">VR_TextViewCommon</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="VR_TextViewCommon.html#apply_tag_to_line-instance_method" title="VR_TextViewCommon#apply_tag_to_line (method)">#apply_tag_to_line</a></span>, <span class='object_link'><a href="VR_TextViewCommon.html#get_end_iter-instance_method" title="VR_TextViewCommon#get_end_iter (method)">#get_end_iter</a></span>, <span class='object_link'><a href="VR_TextViewCommon.html#get_line_iters-instance_method" title="VR_TextViewCommon#get_line_iters (method)">#get_line_iters</a></span>, <span class='object_link'><a href="VR_TextViewCommon.html#line_at_cursor-instance_method" title="VR_TextViewCommon#line_at_cursor (method)">#line_at_cursor</a></span>, <span class='object_link'><a href="VR_TextViewCommon.html#remove_tag-instance_method" title="VR_TextViewCommon#remove_tag (method)">#remove_tag</a></span>, <span class='object_link'><a href="VR_TextViewCommon.html#select_text-instance_method" title="VR_TextViewCommon#select_text (method)">#select_text</a></span></p>
+
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(full_path_file, title_label, main)  &#x21d2; <tt><span class='object_link'><a href="" title="VR_Document (class)">VR_Document</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of VR_Document.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_full_path_file'>full_path_file</span><span class='comma'>,</span> <span class='id identifier rubyid_title_label'>title_label</span><span class='comma'>,</span> <span class='id identifier rubyid_main'>main</span><span class='rparen'>)</span>
+  <span class='ivar'>@main</span> <span class='op'>=</span> <span class='id identifier rubyid_main'>main</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='ivar'>@title</span> <span class='op'>=</span> <span class='id identifier rubyid_title_label'>title_label</span> <span class='comment'>#reference to label on tab
+</span>  <span class='ivar'>@full_path_file</span> <span class='op'>=</span> <span class='id identifier rubyid_full_path_file'>full_path_file</span>
+  <span class='id identifier rubyid_reload_from_disk'>reload_from_disk</span><span class='lparen'>(</span><span class='rparen'>)</span> 
+  <span class='id identifier rubyid_hilight_current_line'>hilight_current_line</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_show_right_margin'>show_right_margin</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_right_margin_position'>right_margin_position</span> <span class='op'>=</span> <span class='int'>80</span>
+  <span class='id identifier rubyid_auto_indent'>auto_indent</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>if</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.gemspec</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_extname'>extname</span><span class='lparen'>(</span><span class='id identifier rubyid_full_path_file'>full_path_file</span><span class='rparen'>)</span><span class='rparen'>)</span> 
+    <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_language'>language</span> <span class='op'>=</span> <span class='const'>GtkSource</span><span class='op'>::</span><span class='const'>LanguageManager</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_get_language'>get_language</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ruby</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.html</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.erb</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_extname'>extname</span><span class='lparen'>(</span><span class='id identifier rubyid_full_path_file'>full_path_file</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_language'>language</span> <span class='op'>=</span> <span class='const'>GtkSource</span><span class='op'>::</span><span class='const'>LanguageManager</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_get_language'>get_language</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>html</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.yaml</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.yml</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_extname'>extname</span><span class='lparen'>(</span><span class='id identifier rubyid_full_path_file'>full_path_file</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_language'>language</span> <span class='op'>=</span> <span class='const'>GtkSource</span><span class='op'>::</span><span class='const'>LanguageManager</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_get_language'>get_language</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>yaml</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>else</span> 
+    <span class='id identifier rubyid_guess_lang'>guess_lang</span> <span class='op'>=</span> <span class='const'>GtkSource</span><span class='op'>::</span><span class='const'>LanguageManager</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_guess_language'>guess_language</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_full_path_file'>full_path_file</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_language'>language</span> <span class='op'>=</span> <span class='id identifier rubyid_guess_lang'>guess_lang</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_highlight_syntax'>highlight_syntax</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_highlight_matching_brackets'>highlight_matching_brackets</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@hilight</span> <span class='op'>=</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_create_tag'>create_tag</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hilight</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>background</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#FFF0A0</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_signal_connect'>signal_connect</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>changed</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_remove_tag'>remove_tag</span><span class='lparen'>(</span><span class='ivar'>@hilight</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='ivar'>@context</span><span class='period'>.</span><span class='id identifier rubyid_set_highlight'>set_highlight</span><span class='lparen'>(</span><span class='kw'>false</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_show_line_numbers'>show_line_numbers</span> <span class='op'>=</span> <span class='kw'>true</span> 
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_insert_spaces_instead_of_tabs'>insert_spaces_instead_of_tabs</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_indent_width'>indent_width</span> <span class='op'>=</span> <span class='gvar'>$VR_ENV_GLOBAL</span><span class='period'>.</span><span class='id identifier rubyid_tab_spaces'>tab_spaces</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_highlight_current_line'>highlight_current_line</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_set_cursor_visible'>set_cursor_visible</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> 
+  <span class='id identifier rubyid_update_style'>update_style</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_remove_tag'>remove_tag</span><span class='lparen'>(</span><span class='ivar'>@hilight</span><span class='rparen'>)</span>
+  <span class='ivar'>@settings</span> <span class='op'>=</span> <span class='const'>GtkSource</span><span class='op'>::</span><span class='const'>SearchSettings</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span> 
+  <span class='ivar'>@context</span> <span class='op'>=</span> <span class='const'>GtkSource</span><span class='op'>::</span><span class='const'>SearchContext</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_buffer'>buffer</span><span class='comma'>,</span> <span class='ivar'>@settings</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="context=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="context-instance_method">
+  
+    #<strong>context</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute context.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_context'>context</span>
+  <span class='ivar'>@context</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="full_path_file=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="full_path_file-instance_method">
+  
+    #<strong>full_path_file</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute full_path_file.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_full_path_file'>full_path_file</span>
+  <span class='ivar'>@full_path_file</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="hilight=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="hilight-instance_method">
+  
+    #<strong>hilight</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute hilight.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hilight'>hilight</span>
+  <span class='ivar'>@hilight</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="settings=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="settings-instance_method">
+  
+    #<strong>settings</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute settings.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_settings'>settings</span>
+  <span class='ivar'>@settings</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="title=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="title-instance_method">
+  
+    #<strong>title</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute title.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_title'>title</span>
+  <span class='ivar'>@title</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="get_class_title-class_method">
+  
+    .<strong>get_class_title</strong>(source_code)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+140
+141
+142
+143</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 140</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_class_title'>get_class_title</span><span class='lparen'>(</span><span class='id identifier rubyid_source_code'>source_code</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_cn'>cn</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*class\s+(\b\w+\b)</span><span class='regexp_end'>/</span></span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='id identifier rubyid_source_code'>source_code</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_cn'>cn</span> <span class='op'>==</span> <span class='kw'>nil</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Untitled</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_cn'>cn</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.rb</span><span class='tstring_end'>&quot;</span></span> 
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="delete_before_selected-instance_method">
+  
+    #<strong>delete_before_selected</strong>(text)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_delete_before_selected'>delete_before_selected</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_has_selection?'>has_selection?</span>
+  <span class='id identifier rubyid_s'>s</span><span class='comma'>,</span><span class='id identifier rubyid_e'>e</span> <span class='op'>=</span> <span class='id identifier rubyid_get_selected_lines'>get_selected_lines</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='op'>..</span><span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='id identifier rubyid_iter'>iter</span><span class='comma'>,</span> <span class='id identifier rubyid_iter_end'>iter_end</span> <span class='op'>=</span> <span class='id identifier rubyid_get_line_iters'>get_line_iters</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+    <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_iter_end'>iter_end</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span> <span class='op'>&lt;=</span>  <span class='id identifier rubyid_iter'>iter</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span> <span class='op'>+</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_iter_end'>iter_end</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='id identifier rubyid_iter'>iter</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span> <span class='op'>+</span> <span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> 
+    <span class='id identifier rubyid_chr'>chr</span> <span class='op'>=</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_get_text'>get_text</span><span class='lparen'>(</span><span class='id identifier rubyid_iter'>iter</span><span class='comma'>,</span> <span class='id identifier rubyid_iter_end'>iter_end</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_iter'>iter</span><span class='comma'>,</span> <span class='id identifier rubyid_iter_end'>iter_end</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_chr'>chr</span> <span class='op'>==</span> <span class='id identifier rubyid_text'>text</span>   
+  <span class='kw'>end</span>  
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="empty?-instance_method">
+  
+    #<strong>empty?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+136
+137
+138</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 136</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_empty?'>empty?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_selected_lines-instance_method">
+  
+    #<strong>get_selected_lines</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+117
+118
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 117</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_selected_lines'>get_selected_lines</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_has_selection?'>has_selection?</span>
+  <span class='id identifier rubyid_s'>s</span><span class='comma'>,</span><span class='id identifier rubyid_e'>e</span> <span class='op'>=</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_selection_bounds'>selection_bounds</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_line'>line</span> 
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="hilight_line-instance_method">
+  
+    #<strong>hilight_line</strong>(line)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 89</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hilight_line'>hilight_line</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_remove_tag'>remove_tag</span><span class='lparen'>(</span><span class='ivar'>@hilight</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_apply_tag_to_line'>apply_tag_to_line</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='op'>-</span><span class='int'>1</span><span class='comma'>,</span> <span class='ivar'>@hilight</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="hilight_selection-instance_method">
+  
+    #<strong>hilight_selection</strong>(s, e)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+149
+150
+151
+152
+153
+154</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 149</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hilight_selection'>hilight_selection</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_place_cursor'>place_cursor</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> 
+  <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_move_mark'>move_mark</span><span class='lparen'>(</span><span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_get_mark'>get_mark</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>selection_bound</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span>   
+  <span class='id identifier rubyid_mark'>mark</span> <span class='op'>=</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_get_mark'>get_mark</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>insert</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_scroll_to_mark'>scroll_to_mark</span><span class='lparen'>(</span><span class='id identifier rubyid_mark'>mark</span><span class='comma'>,</span> <span class='float'>0.1</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.5</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="insert_before_selected-instance_method">
+  
+    #<strong>insert_before_selected</strong>(text)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97
+98
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_insert_before_selected'>insert_before_selected</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_has_selection?'>has_selection?</span>
+  <span class='id identifier rubyid_s'>s</span><span class='comma'>,</span><span class='id identifier rubyid_e'>e</span> <span class='op'>=</span> <span class='id identifier rubyid_get_selected_lines'>get_selected_lines</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='op'>..</span><span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='id identifier rubyid_iter'>iter</span><span class='comma'>,</span> <span class='id identifier rubyid_iter_end'>iter_end</span> <span class='op'>=</span> <span class='id identifier rubyid_get_line_iters'>get_line_iters</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='id identifier rubyid_iter'>iter</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>  
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="jump_to_line-instance_method">
+  
+    #<strong>jump_to_line</strong>(line_num, search_str = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+79
+80
+81
+82
+83
+84
+85
+86
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 79</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_jump_to_line'>jump_to_line</span><span class='lparen'>(</span><span class='id identifier rubyid_line_num'>line_num</span><span class='comma'>,</span> <span class='id identifier rubyid_search_str'>search_str</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_clear_events'>clear_events</span>
+  <span class='id identifier rubyid_hilight_line'>hilight_line</span><span class='lparen'>(</span><span class='id identifier rubyid_line_num'>line_num</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_iter'>iter</span> <span class='op'>=</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_get_iter_at'>get_iter_at</span><span class='lparen'>(</span><span class='symbol'>:line</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_line_num'>line_num</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_place_cursor'>place_cursor</span><span class='lparen'>(</span><span class='id identifier rubyid_iter'>iter</span><span class='rparen'>)</span>    
+  <span class='id identifier rubyid_mark'>mark</span> <span class='op'>=</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_get_mark'>get_mark</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>insert</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_scroll_to_mark'>scroll_to_mark</span><span class='lparen'>(</span><span class='id identifier rubyid_mark'>mark</span><span class='comma'>,</span> <span class='float'>0.1</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.5</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_select_text'>select_text</span><span class='lparen'>(</span><span class='id identifier rubyid_line_num'>line_num</span> <span class='op'>-</span> <span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_search_str'>search_str</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_search_str'>search_str</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="mod_time-instance_method">
+  
+    #<strong>mod_time</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 145</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_mod_time'>mod_time</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_file?'>file?</span><span class='lparen'>(</span><span class='ivar'>@full_path_file</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_stat'>stat</span><span class='lparen'>(</span><span class='ivar'>@full_path_file</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_mtime'>mtime</span> <span class='op'>:</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="modified_time_matches-instance_method">
+  
+    #<strong>modified_time_matches</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_modified_time_matches'>modified_time_matches</span><span class='lparen'>(</span><span class='rparen'>)</span>  
+  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='ivar'>@modified_time</span> <span class='op'>==</span> <span class='id identifier rubyid_mod_time'>mod_time</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The file: &lt;b&gt;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@full_path_file</span><span class='embexpr_end'>}</span><span class='tstring_content'>&lt;/b&gt;\n has been modified since you loaded it:\n\nYou loaded: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@modified_time</span><span class='embexpr_end'>}</span><span class='tstring_content'>\nOn disk: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_mod_time'>mod_time</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n\nDo you wnat to keep this version?\n</span><span class='tstring_end'>&quot;</span></span>  
+  <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='id identifier rubyid_alert'><span class='object_link'><a href="top-level-namespace.html#alert-instance_method" title="#alert (method)">alert</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='label'>headline:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Warning!</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>width:</span> <span class='int'>400</span><span class='comma'>,</span> <span class='label'>button_yes:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Keep Current Version</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> 
+          <span class='label'>button_no:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Reload Disk Version</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>button_cancel:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cancel</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>parent:</span> <span class='ivar'>@main</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_ans'>ans</span> <span class='op'>==</span> <span class='kw'>true</span> <span class='comment'># yes, keep current ok 
+</span>    <span class='id identifier rubyid_write_to_disk'>write_to_disk</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>true</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_ans'>ans</span> <span class='op'>==</span> <span class='kw'>false</span> <span class='comment'># Reload From Disk ok
+</span>    <span class='id identifier rubyid_reload_from_disk'>reload_from_disk</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>true</span>
+  <span class='kw'>end</span> 
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='comment'># abort! No resolution.
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="reload_from_disk-instance_method">
+  
+    #<strong>reload_from_disk</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 50</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_reload_from_disk'>reload_from_disk</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='ivar'>@full_path_file</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>r</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span> <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_file?'>file?</span><span class='lparen'>(</span><span class='ivar'>@full_path_file</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='comment'>#protect against nil to_s        
+</span>  <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_modified'>modified</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@modified_time</span> <span class='op'>=</span> <span class='id identifier rubyid_mod_time'>mod_time</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="replace-instance_method">
+  
+    #<strong>replace</strong>(str)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+123
+124
+125
+126
+127
+128</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 123</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_replace'>replace</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_has_selection?'>has_selection?</span>
+  <span class='id identifier rubyid_s'>s</span><span class='comma'>,</span><span class='id identifier rubyid_e'>e</span> <span class='op'>=</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_selection_bounds'>selection_bounds</span>
+  <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span><span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_insert_at_cursor'>insert_at_cursor</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="selected_text-instance_method">
+  
+    #<strong>selected_text</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+130
+131
+132
+133
+134</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 130</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_selected_text'>selected_text</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_s'>s</span><span class='comma'>,</span><span class='id identifier rubyid_e'>e</span> <span class='op'>=</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_selection_bounds'>selection_bounds</span>
+  <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_get_text'>get_text</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_e'>e</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_style-instance_method">
+  
+    #<strong>update_style</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update_style'>update_style</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_override_font'>override_font</span><span class='lparen'>(</span><span class='const'>Pango</span><span class='op'>::</span><span class='const'>FontDescription</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='gvar'>$VR_ENV_GLOBAL</span><span class='period'>.</span><span class='id identifier rubyid_font_name'>font_name</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_tab_array'>tab_array</span> <span class='op'>=</span> <span class='const'>Pango</span><span class='op'>::</span><span class='const'>TabArray</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>1</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_tab_array'>tab_array</span><span class='period'>.</span><span class='id identifier rubyid_set_tab'>set_tab</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:left</span><span class='comma'>,</span> <span class='gvar'>$VR_ENV_GLOBAL</span><span class='period'>.</span><span class='id identifier rubyid_tab_spaces'>tab_spaces</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='int'>8</span><span class='rparen'>)</span>  
+  <span class='id identifier rubyid_set_tabs'>set_tabs</span><span class='lparen'>(</span><span class='id identifier rubyid_tab_array'>tab_array</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="write_to_disk-instance_method">
+  
+    #<strong>write_to_disk</strong>(fn = @full_path_file)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73
+74
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/editor/VR_Document.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_write_to_disk'>write_to_disk</span><span class='lparen'>(</span><span class='id identifier rubyid_fn'>fn</span> <span class='op'>=</span> <span class='ivar'>@full_path_file</span><span class='rparen'>)</span>
+  <span class='ivar'>@full_path_file</span> <span class='op'>=</span> <span class='id identifier rubyid_fn'>fn</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_fn'>fn</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>w</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>  <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span><span class='lparen'>(</span><span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_buffer'>buffer</span><span class='period'>.</span><span class='id identifier rubyid_modified'>modified</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@modified_time</span> <span class='op'>=</span> <span class='id identifier rubyid_mod_time'>mod_time</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='ivar'>@title</span><span class='period'>.</span><span class='id identifier rubyid_label'>label</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_fn'>fn</span><span class='rparen'>)</span> 
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Nov 26 23:40:31 2024 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.1.6).
+</div>
+
+    </div>
+  </body>
+</html>
