@@ -20,6 +20,7 @@ class SavableSettings
     @switch ||= false
     @checkYesNo ||= false
     @comboFruit ||= "Apples"
+    @adjustment2 ||= 58  # applies to  Gtk::Scale control
     @text ||= "Try changing this form, then running it again.  " +
               "You will find that it preserves its state after it closes. " +
               "You can even resize the window, and it will preserve its size.\n\n" +

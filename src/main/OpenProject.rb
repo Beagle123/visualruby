@@ -73,9 +73,10 @@ class OpenProject
 
 
   def buttonCancel__clicked(*a) #save state
+puts "In Open:", Gtk.main_level
     $VR_ENV_GLOBAL.projects_home_open_folders = @ftv.get_open_folders()
     VR::save_yaml($VR_ENV_GLOBAL)
-    @builder["window1"].close  
+    @builder["window1"].destroy  
   end
 
 end

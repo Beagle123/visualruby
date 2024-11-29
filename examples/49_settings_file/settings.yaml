@@ -1,10 +1,10 @@
 --- !ruby/object:SavableSettings
-height: 500
-width: 600
+height: 646
+width: 1011
 username: Me Myself and I  dfgdfgs
-switch: true
-checkYesNo: true
-comboFruit: Passion Fruit
+switch: false
+checkYesNo: false
+comboFruit: Bananas
 text: |-
   Try changing this form, then running it again.  You will find that it preserves its state after it closes. You can even resize the window, and it will preserve its size. dsbgsdfg
 
@@ -12,3 +12,4 @@ text: |-
 vr_yaml_file: "/home/eric/vrp/vr3/examples/49_settings_file/settings.yaml"
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: true
+adjustment2: 6.1

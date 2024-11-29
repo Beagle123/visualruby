@@ -15,6 +15,26 @@ open_files:
 - "/home/eric/vrp/vr3/src/editor/VR_Document.rb"
 - "/home/eric/vrp/vr3/lib/treeview/FileTreeView.rb"
 - "/home/eric/vrp/vr3/lib/GladeGUI.rb"
+- "/home/eric/vrp/vr3/vr"
+- "/home/eric/vrp/vr3/lib/SavableClass.rb"
+- "/home/eric/vrp/vr3/src/main/OpenProject.rb"
+- "/home/eric/vrp/vr3/examples/01_phantom/phantom.rb"
+- "/home/eric/vrp/vr3/examples/02_hello/hello.rb"
+- "/home/eric/vrp/vr3/examples/03_builder_variable/builder.rb"
+- "/home/eric/vrp/vr3/examples/04_before_show/before_show.rb"
+- "/home/eric/vrp/vr3/examples/05_menus/menus.rb"
+- "/home/eric/vrp/vr3/examples/06_alert_box/alertdemo.rb"
+- "/home/eric/vrp/vr3/examples/07_event_handlers/event_handlers.rb"
+- "/home/eric/vrp/vr3/examples/08_interrupt_exit/interrupt_exit.rb"
+- "/home/eric/vrp/vr3/examples/09_get_glade_variables/get_glade_variables.rb"
+- "/home/eric/vrp/vr3/examples/10_all_widgets/all_widgets.rb"
+- "/home/eric/vrp/vr3/examples/10_all_widgets/src/AllWidgets.rb"
+- "/home/eric/vrp/vr3/lib/Alert.rb"
+- "/home/eric/vrp/vr3/lib/oinspect/ObjectInspectorGUI.rb"
+- "/home/eric/vrp/vr3/lib/treeview/columns/CalendarCol.rb"
+- "/home/eric/vrp/vr3/lib/treeview/columns/CellRendererObject.rb"
+- "/home/eric/vrp/vr3/skeleton/document/NewWindow.rb"
+- "/home/eric/vrp/vr3/skeleton/project/main.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/lib"
@@ -24,8 +44,8 @@ open_folders:
 - "/home/eric/vrp/vr3/src/editor"
 - "/home/eric/vrp/vr3/src/main"
 - "/home/eric/vrp/vr3/src/main/glade"
-current_file: "/home/eric/vrp/vr3/lib/GladeGUI.rb"
-current_line: 272
+current_file: "/home/eric/vrp/vr3/skeleton/project/main.rb"
+current_line: 6
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

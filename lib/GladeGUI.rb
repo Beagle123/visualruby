@@ -281,7 +281,7 @@ module GladeGUI
       when Gtk::ProgressBar then control.fraction = val.to_f
       when Gtk::Calendar then control.select_month(val.month, val.year) ; control.select_day(val.day) ; control.mark_day(val.day)
       when Gtk::Adjustment then control.value = val.to_f
-      when Gtk::ScrolledWindow, Gtk::Frame, Gtk::VBox, Gtk::HBox then control.add(val)
+      when Gtk::ScrolledWindow, Gtk::Frame, Gtk::VBox, Gtk::HBox, Gtk::Box then control.add(val)
       when Gtk::ComboBoxText then try_to_select_text_in_combobox(control, val.to_s)
     end      
   end
@@ -389,6 +389,7 @@ module GladeGUI
       alert "Error:  You need to name your window, 'window1' in glade.  Edit glade file."
       return
     end
+#     @builder[:window1].screen = parent.screen
     if parent then
         @builder[:window1].transient_for = parent.builder[:window1]
     end
@@ -396,15 +397,16 @@ module GladeGUI
     before_show() if respond_to? :before_show
     parse_signals()
     set_glade_all()
-#    @builder[:window1].show_all  #show_all can't hide widgets in before_show
     @top_level_window = Gtk.main_level == 0 ? true : false
-    Gtk.main if @top_level_window or @builder[:window1].modal?  # need new Gtk.main for blocking!
+    if @top_level_window # or @builder[:window1].modal?  Blocking?
+      Gtk.main
+    end
   end
 
 # Called when window is destroyed when you execute: <tt>@builder[:window1].destroy</tt>
 # It manages the Gtk.main loop for all the windows.
   def window1__destroy(*args)
-    Gtk.main_quit if @top_level_window or @builder["window1"].modal? 
+    Gtk.main_quit if @top_level_window # or @builder["window1"].modal? 
   end
 
 # Convenience method so you can just make a button named "buttonCancel" and it will work.  This

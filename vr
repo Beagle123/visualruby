@@ -7,8 +7,12 @@ require GTK_SOURCEVIEW_VERSION
 
 $root = File.dirname(__FILE__)
 
+require_relative "all_requires"
+
+VR_Main.new(ARGV).show_glade()
+
 # main = Gtk::Application.new()
-#   main.signal_connect "activate" do |app|
+# main.signal_connect "activate" do |app|
 #     @splash = nil
 #     @t = Thread.new do
 #       @splash = Gtk::Window.new()
@@ -25,11 +29,12 @@ $root = File.dirname(__FILE__)
 #       sleep 4
 #       @splash.destroy
 #     end
-    require_relative "all_requires"
-    VR_Main.new(ARGV).show_glade()
+
+#    VR_Main.new(ARGV).show_glade()
 #     @splash.show_all
 #     @splash.set_keep_above(true)
-#   end
+# end
+
 # main.run 
 
 

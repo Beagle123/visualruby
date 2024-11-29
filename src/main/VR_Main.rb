@@ -121,7 +121,7 @@ class VR_Main
   end
 
   def toolFind__clicked(*args)
-    Find_Replace.new(@tabs, @shell).show_glade()
+    Find_Replace.new(@tabs, @shell).show_glade(self)
   end
 
   def toolMyYard__clicked(*a)
@@ -133,7 +133,7 @@ class VR_Main
       return
     end
     proj = VR::load_yaml(MyYard, File.join(Dir.pwd, ".yardoc", "my_yard.yaml"))
-    proj.show_glade()
+    proj.show_glade(self)
   end
 
   def toolViewRDoc__clicked(*a)

@@ -2,7 +2,6 @@
 
 require "vrlib"
 
-require_relative 'src/MainApp'
 require_relative 'src/SavableSettings'
 
 # load class from settings.yaml
