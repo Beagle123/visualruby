@@ -26,12 +26,13 @@ module VR_Tools
   end
  
   def self.create_gemspec()
-    main_file = $VR_ENV.run_command_line.split(" ")[1]
+    main_file = $VR_ENV.run_command_line
     str = <<END
 Gem::Specification.new do |s|
   s.name = "#{File.basename(Dir.pwd).downcase}"  # i.e. visualruby.  This name will show up in the gem list.
   s.version = "0.0.1"  # i.e. (major,non-backwards compatable).(backwards compatable).(bugfix)
   s.add_dependency "visualruby", ">= 3.0.18"
+  s.licenses = ["MIT"]
   s.authors = ["Your Name"] 
   s.email = "you@yoursite.com" # optional
   s.summary = "Short Description Here." # optional

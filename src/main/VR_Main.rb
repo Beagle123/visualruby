@@ -69,7 +69,7 @@ class VR_Main
     save_state
     return unless @tabs.try_to_save_all(:ask=>true)
     old_path = @proj_path
-    OpenProject.new(self).show_glade(self)
+    OpenProject.new(self).show_glade()
     if old_path != @proj_path
       @tabs.try_to_save_all(:ask => false, :close => true)
       load_project()
@@ -194,6 +194,7 @@ class VR_Main
     @proj_path = $VR_ENV_GLOBAL.home_project
     load_project()
   end
+
 
   def run_command(cmd)
     save_state()

@@ -4,7 +4,7 @@ module VR
   # Class that the #alert method uses.  This class is note useful by itself.  See #alert method instead.
   # @see #alert
   # @private
-  class Alert  
+  class Alert   
 
     attr_accessor :answer    
     

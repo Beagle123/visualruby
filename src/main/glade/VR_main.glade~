@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
-  <object class="GtkWindow" id="window1">
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkApplicationWindow" id="window1">
     <property name="can-focus">False</property>
-    <property name="default-width">1000</property>
-    <property name="default-height">800</property>
-    <property name="destroy-with-parent">True</property>
-    <property name="icon-name">accessories-text-editor</property>
-    <property name="has-resize-grip">True</property>
     <child>
       <object class="GtkBox" id="box1">
         <property name="can-focus">False</property>
@@ -22,7 +17,6 @@
               <object class="GtkMenuItem" id="menuFile">
                 <property name="use-action-appearance">False</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">File</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu1">
                     <property name="can-focus">False</property>
@@ -30,7 +24,6 @@
                       <object class="GtkMenuItem" id="menuNewProject">
                         <property name="use-action-appearance">False</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">New Project</property>
                         <accelerator key="n" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                     </child>
@@ -39,7 +32,6 @@
                         <property name="use-action-appearance">False</property>
                         <property name="can-focus">False</property>
                         <property name="tooltip-text" translatable="yes">Create a new, blank script in a tab.</property>
-                        <property name="label" translatable="yes">New Blank Script</property>
                       </object>
                     </child>
                     <child>
@@ -47,7 +39,6 @@
                         <property name="use-action-appearance">False</property>
                         <property name="can-focus">False</property>
                         <property name="tooltip-text" translatable="yes">Creates a skeleton Window Script</property>
-                        <property name="label" translatable="yes">New Window Script</property>
                       </object>
                     </child>
                     <child>
@@ -55,7 +46,6 @@
                         <property name="use-action-appearance">False</property>
                         <property name="can-focus">False</property>
                         <property name="tooltip-text" translatable="yes">Saves all documents in the tabs to disk.</property>
-                        <property name="label" translatable="yes">Save All</property>
                       </object>
                     </child>
                     <child>
@@ -63,7 +53,6 @@
                         <property name="use-action-appearance">False</property>
                         <property name="can-focus">False</property>
                         <property name="tooltip-text" translatable="yes">Saves the current tab to a file.</property>
-                        <property name="label" translatable="yes">Save As</property>
                       </object>
                     </child>
                     <child>
@@ -71,7 +60,6 @@
                         <property name="use-action-appearance">False</property>
                         <property name="can-focus">False</property>
                         <property name="tooltip-text" translatable="yes">Close all documents opened in the tabs.</property>
-                        <property name="label" translatable="yes">Close All</property>
                       </object>
                     </child>
                     <child>
@@ -83,7 +71,6 @@
                       <object class="GtkMenuItem" id="menuQuit">
                         <property name="use-action-appearance">False</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Quit</property>
                         <accelerator key="q" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                     </child>
@@ -95,15 +82,12 @@
               <object class="GtkMenuItem" id="menuTools">
                 <property name="use-action-appearance">False</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Tools</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu3">
                     <property name="can-focus">False</property>
                     <child>
                       <object class="GtkMenuItem" id="menuFind">
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Find and Replace</property>
-                        <property name="use-underline">True</property>
                       </object>
                     </child>
                     <child>
@@ -111,7 +95,6 @@
                         <property name="use-action-appearance">False</property>
                         <property name="can-focus">False</property>
                         <property name="tooltip-text" translatable="yes">Will create a .gemspec file that defines this project.  When you build your gem, it uses this file.</property>
-                        <property name="label" translatable="yes">Create Gemspec File</property>
                       </object>
                     </child>
                     <child>
@@ -119,14 +102,12 @@
                         <property name="use-action-appearance">False</property>
                         <property name="can-focus">False</property>
                         <property name="tooltip-text" translatable="yes">Create a free account on rubygems.org so you can upload and share your gems.</property>
-                        <property name="label" translatable="yes">Make RubyGems Account</property>
                       </object>
                     </child>
                     <child>
                       <object class="GtkMenuItem" id="menuGlobalSettings">
                         <property name="use-action-appearance">False</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Global Settings</property>
                       </object>
                     </child>
                     <child>
@@ -134,7 +115,6 @@
                         <property name="use-action-appearance">False</property>
                         <property name="can-focus">False</property>
                         <property name="tooltip-text" translatable="yes">Select Main Program </property>
-                        <property name="label" translatable="yes">Select Main Program</property>
                       </object>
                     </child>
                   </object>
@@ -145,7 +125,6 @@
               <object class="GtkMenuItem" id="menuHelp">
                 <property name="use-action-appearance">False</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Help</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu">
                     <property name="can-focus">False</property>
@@ -154,15 +133,12 @@
                         <property name="use-action-appearance">False</property>
                         <property name="can-focus">False</property>
                         <property name="tooltip-text" translatable="yes">This will copy exaple code into a folder named visualruby_examples in your home directory.</property>
-                        <property name="label" translatable="yes">Re-Install Examples</property>
                       </object>
                     </child>
                     <child>
                       <object class="GtkMenuItem" id="menuAbout">
                         <property name="can-focus">False</property>
                         <property name="tooltip-text" translatable="yes">See version number of visualruby.</property>
-                        <property name="label" translatable="yes">About</property>
-                        <property name="use-underline">True</property>
                       </object>
                     </child>
                   </object>
@@ -179,8 +155,6 @@
         <child>
           <object class="GtkBox" id="box2">
             <property name="can-focus">False</property>
-            <property name="margin-left">6</property>
-            <property name="margin-right">6</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkToolbar" id="toolbar1">
@@ -355,17 +329,17 @@
             </child>
             <child>
               <object class="GtkPaned" id="panelMain">
-                <property name="can-focus">False</property>
+                <property name="can-focus">True</property>
                 <child>
                   <object class="GtkBox" id="box3">
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkNotebook" id="notebookTree">
-                        <property name="can-focus">False</property>
+                        <property name="can-focus">True</property>
                         <child>
                           <object class="GtkScrolledWindow" id="scrolledwindowFileTree">
-                            <property name="can-focus">False</property>
+                            <property name="can-focus">True</property>
                             <property name="hexpand">True</property>
                             <property name="vexpand">True</property>
                             <child>
@@ -385,7 +359,7 @@
                         </child>
                         <child>
                           <object class="GtkScrolledWindow" id="scrolledLocalGems">
-                            <property name="can-focus">False</property>
+                            <property name="can-focus">True</property>
                             <child>
                               <placeholder/>
                             </child>
@@ -406,7 +380,7 @@
                         </child>
                         <child>
                           <object class="GtkScrolledWindow" id="scrolledRemoteGems">
-                            <property name="can-focus">False</property>
+                            <property name="can-focus">True</property>
                             <child>
                               <placeholder/>
                             </child>
@@ -440,7 +414,7 @@
                 </child>
                 <child>
                   <object class="GtkPaned" id="panelNotebook">
-                    <property name="can-focus">False</property>
+                    <property name="can-focus">True</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
                     <property name="orientation">vertical</property>
@@ -459,7 +433,7 @@
                     </child>
                     <child>
                       <object class="GtkScrolledWindow" id="scrollShell">
-                        <property name="can-focus">False</property>
+                        <property name="can-focus">True</property>
                         <property name="shadow-type">in</property>
                         <child>
                           <placeholder/>
@@ -514,9 +488,6 @@
           </packing>
         </child>
       </object>
-    </child>
-    <child type="titlebar">
-      <placeholder/>
     </child>
   </object>
 </interface>

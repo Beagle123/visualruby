@@ -4,7 +4,7 @@ class VR_ENV
 
   SETTINGS_FILE = ".vr_settings.yaml"
 
-  attr_accessor :width, :height, :panel_pos, :rdoc_command_line
+  attr_accessor :width, :height, :panel_pos
   attr_accessor :run_command_line, :open_files, :open_folders, :current_file
   attr_accessor :notebook_panel_position, :current_line
 

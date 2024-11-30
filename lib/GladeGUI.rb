@@ -321,7 +321,7 @@ module GladeGUI
 # @return none 
   def get_glade_variables(obj = self)
     obj.instance_variables.each do |var_name|
-      next if var_name == :@builder or var_name == :@top_level_window
+      next if var_name == :@builder  # or var_name == :@top_level_window
       var = obj.instance_variable_get(var_name)
       var_name = var_name.to_s.gsub("@", "")  #fix for ruby 1.9 giving symbols
       if var.is_a? Hash
@@ -389,7 +389,7 @@ module GladeGUI
       alert "Error:  You need to name your window, 'window1' in glade.  Edit glade file."
       return
     end
-#     @builder[:window1].screen = parent.screen
+#    @builder[:window1].screen = parent.screen
     if parent then
         @builder[:window1].transient_for = parent.builder[:window1]
     end
@@ -397,16 +397,16 @@ module GladeGUI
     before_show() if respond_to? :before_show
     parse_signals()
     set_glade_all()
-    @top_level_window = Gtk.main_level == 0 ? true : false
-    if @top_level_window # or @builder[:window1].modal?  Blocking?
+#    @top_level_window = Gtk.main_level == 0 ? true : false
+#    if @top_level_window # or @builder[:window1].modal?  Blocking?
       Gtk.main
-    end
+#    end
   end
 
 # Called when window is destroyed when you execute: <tt>@builder[:window1].destroy</tt>
 # It manages the Gtk.main loop for all the windows.
   def window1__destroy(*args)
-    Gtk.main_quit if @top_level_window # or @builder["window1"].modal? 
+    Gtk.main_quit # if @top_level_window # or @builder["window1"].modal? 
   end
 
 # Convenience method so you can just make a button named "buttonCancel" and it will work.  This
@@ -415,7 +415,7 @@ module GladeGUI
     @builder[:window1].close
   end
 
-  def window1__key_press_event(view, evt)
+#   def window1__key_press_event(view, evt)
 # alert Gdk::Keyval.to_name(evt.keyval)
 # oinspect evt.keyval
 #     case evt.keyval
@@ -424,7 +424,7 @@ module GladeGUI
 #       when Gdk::Keyval::KEY_F8
 #         oinspect
 #     end
-  end
+#   end
 
   # retrieves the key inside a glade control name.  Useful when handling events where
   # the control name is returned, and you need to match it to an actual hash.  

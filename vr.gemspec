@@ -7,7 +7,6 @@ Gem::Specification.new do |s|
   s.version = VERSION   
   s.add_dependency(GTK_VERSION) 
   s.add_dependency(GTK_SOURCEVIEW_VERSION) 
-  s.add_dependency('require_all', '= 1.4')
   s.authors = ["Eric Cunningham"]  
   s.email = "beagle4321_2000@yahoo.com" # optional 
   s.summary = "Create IDE designed to make great GUIs with Ruby" # optional

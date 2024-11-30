@@ -2,13 +2,46 @@
 <!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
+  <object class="GtkMenu" id="popFile">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkMenuItem" id="popGlade">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="tooltip-text" translatable="yes">Edits the graphical interface for this class.</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="popRun">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="popSetMain">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkMenu" id="popGemspec">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkMenuItem" id="popBuildGem">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="tooltip-text" translatable="yes">This will build a Rubygem from the Selected .gemspec file.
+</property>
+      </object>
+    </child>
+  </object>
   <object class="GtkWindow" id="window1">
     <property name="can-focus">False</property>
     <property name="default-width">1000</property>
     <property name="default-height">800</property>
-    <property name="destroy-with-parent">True</property>
     <property name="icon-name">accessories-text-editor</property>
-    <property name="has-resize-grip">True</property>
     <child>
       <object class="GtkBox" id="box1">
         <property name="can-focus">False</property>
@@ -514,9 +547,6 @@
           </packing>
         </child>
       </object>
-    </child>
-    <child type="titlebar">
-      <placeholder/>
     </child>
   </object>
 </interface>

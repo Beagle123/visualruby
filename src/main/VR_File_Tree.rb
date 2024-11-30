@@ -31,7 +31,8 @@ class VR_File_Tree < VR::FileTreeView
     if ext == ".glade"
       Open3.popen3("#{$VR_ENV_GLOBAL.glade_path} #{file_name} ")
     elsif ext == ".gem"
-      if alert("Do you want to install <b>#{basename}</b>?", parent: @main, button_cancel: "Cancel")
+      oinspect @builder['popFile']
+      if alert("Do you want to install <b>#{basename}</b>?", button_cancel: "Cancel")
         popInstallGem_clicked    
       end
     elsif File.directory?(file_name)  
@@ -49,10 +50,12 @@ class VR_File_Tree < VR::FileTreeView
 
   def popInstallGem_clicked()
     file_name = get_selected_path().to_s
+    @main.run_command("echo y | gem install #{file_name} --local")  # must use echo or it hangs on prompts
+    return
     begin
       txt = "\nInstalled Gem:  " + file_name
       package = Gem::Package.new(file_name)
-      inst = Gem::Installer.new(package, wrappers: true, ignore_dependencies: true)
+      inst = Gem::Installer.new(package, force: true, wrappers:false, ignore_dependencies: true)
       inst.install
       txt += "\nNo check was made for dependencies"
     rescue Exception => e
@@ -112,8 +115,8 @@ class VR_File_Tree < VR::FileTreeView
     $VR_ENV.run_command_line = row[id(:file_name)] 
   end
 
-  def self__button_release_event(w, event)          # right click
-    return unless path = get_selected_path() and event.button == 3
+  def self__button_release_event(w, event)      
+    return unless path = get_selected_path() and event.button == 3  # right click
     if File.file?(path) and (File.extname(path) == ".rb" or File.extname(path) == "") 
         @builder['popFile'].popup(nil, nil, event.button, event.time)
     elsif File.extname(path) == ".gemspec"

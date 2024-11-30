@@ -10,7 +10,7 @@ class PrettyView < VR::ListView
     col_attr(:balance, alignment: 1, xalign: 1)  # align header and numbers to right 
     refresh()
     self.visible = true
-    each_cell_method(:balance, method(:make_negatives_red))
+    each_cell_method(:balance, :balance, method(:make_negatives_red))
   end    
 
   # This method is called by Gtk on each cell.  It passes the Gtk::TreeViewColumn, the renderer etc.

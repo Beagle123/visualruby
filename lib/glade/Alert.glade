@@ -15,7 +15,6 @@
     <property name="default-width">300</property>
     <property name="default-height">200</property>
     <property name="destroy-with-parent">True</property>
-    <property name="type-hint">dialog</property>
     <property name="urgency-hint">True</property>
     <child>
       <object class="GtkBox" id="box1">

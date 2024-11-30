@@ -2,50 +2,29 @@
 vr_yaml_file: "/home/eric/vrp/vr3/.vr_settings.yaml"
 width: 1854
 height: 1003
-panel_pos: 354
+panel_pos: 353
 notebook_panel_position: 622
 run_command_line: vr
 open_files:
-- "/home/eric/vrp/vr3/src/main/VR_Main.rb"
-- "/home/eric/vrp/vr3/src/editor/VR_TabSearch.rb"
-- "/home/eric/vrp/vr3/src/main/Find_Replace.rb"
-- "/home/eric/vrp/vr3/src/editor/VR_Tabs.rb"
-- "/home/eric/vrp/vr3/src/editor/VR_TextViewCommon.rb"
-- "/home/eric/vrp/vr3/src/editor/VR_TextShell.rb"
-- "/home/eric/vrp/vr3/src/editor/VR_Document.rb"
-- "/home/eric/vrp/vr3/lib/treeview/FileTreeView.rb"
+- "/home/eric/vrp/vr3/src/main/VR_File_Tree.rb"
 - "/home/eric/vrp/vr3/lib/GladeGUI.rb"
+- "/home/eric/vrp/vr3/src/main/VR_Main.rb"
 - "/home/eric/vrp/vr3/vr"
-- "/home/eric/vrp/vr3/lib/SavableClass.rb"
-- "/home/eric/vrp/vr3/src/main/OpenProject.rb"
-- "/home/eric/vrp/vr3/examples/01_phantom/phantom.rb"
-- "/home/eric/vrp/vr3/examples/02_hello/hello.rb"
-- "/home/eric/vrp/vr3/examples/03_builder_variable/builder.rb"
-- "/home/eric/vrp/vr3/examples/04_before_show/before_show.rb"
-- "/home/eric/vrp/vr3/examples/05_menus/menus.rb"
-- "/home/eric/vrp/vr3/examples/06_alert_box/alertdemo.rb"
-- "/home/eric/vrp/vr3/examples/07_event_handlers/event_handlers.rb"
-- "/home/eric/vrp/vr3/examples/08_interrupt_exit/interrupt_exit.rb"
-- "/home/eric/vrp/vr3/examples/09_get_glade_variables/get_glade_variables.rb"
-- "/home/eric/vrp/vr3/examples/10_all_widgets/all_widgets.rb"
-- "/home/eric/vrp/vr3/examples/10_all_widgets/src/AllWidgets.rb"
-- "/home/eric/vrp/vr3/lib/Alert.rb"
-- "/home/eric/vrp/vr3/lib/oinspect/ObjectInspectorGUI.rb"
-- "/home/eric/vrp/vr3/lib/treeview/columns/CalendarCol.rb"
-- "/home/eric/vrp/vr3/lib/treeview/columns/CellRendererObject.rb"
-- "/home/eric/vrp/vr3/skeleton/document/NewWindow.rb"
-- "/home/eric/vrp/vr3/skeleton/project/main.rb"
+- "/home/eric/vrp/vr3/src/editor/VR_Document.rb"
+- "/home/eric/vrp/vr3/src/main/VR_Tools.rb"
+- "/home/eric/vrp/vr3/src/main/VR_ENV.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/lib"
 - "/home/eric/vrp/vr3/lib/glade"
-- "/home/eric/vrp/vr3/lib/treeview"
+- "/home/eric/vrp/vr3/skeleton"
+- "/home/eric/vrp/vr3/skeleton/document"
 - "/home/eric/vrp/vr3/src"
 - "/home/eric/vrp/vr3/src/editor"
 - "/home/eric/vrp/vr3/src/main"
 - "/home/eric/vrp/vr3/src/main/glade"
-current_file: "/home/eric/vrp/vr3/skeleton/project/main.rb"
-current_line: 6
-rdoc_command_line: rdoc -x README
+current_file: "/home/eric/vrp/vr3/src/main/VR_ENV.rb"
+current_line: 22
 builder: !ruby/object:Gtk::Builder {}
+rdoc_command_line: rdoc -x README
 top_level_window: false
