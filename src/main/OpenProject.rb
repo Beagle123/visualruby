@@ -48,7 +48,8 @@ class OpenProject
   def buttonOpen__clicked(*a)
       return unless row = @ftv.selected_rows.first
       if VR_Tools.vr_project?( row[:path] ) 
-        @parent.proj_path = row[:path]
+        @parent.load_project( row[:path])
+#         @parent.proj_path = row[:path]
         buttonCancel__clicked
       else
         @ftv.expand_or_collapse_folder()
@@ -68,11 +69,11 @@ class OpenProject
   def buttonNew__clicked(*a)
     old_proj_path = @parent.proj_path
     NewProjectGUI.new(@parent).show_glade(self)
-    @builder[:window1].close if @parent.proj_path != old_proj_path  #new path created!
+    buttonCancel__clicked if @parent.proj_path != old_proj_path  #new path created!
   end
 
 
-  def buttonCancel__clicked(*a) #save state
+  def buttonCancel__clicked(*a)
     $VR_ENV_GLOBAL.projects_home_open_folders = @ftv.get_open_folders()
     VR::save_yaml($VR_ENV_GLOBAL)
     @builder["window1"].close  

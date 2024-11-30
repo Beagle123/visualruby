@@ -7,14 +7,15 @@
     <property name="title" translatable="yes">Modal Window</property>
     <property name="modal">True</property>
     <property name="window-position">center</property>
+    <property name="destroy-with-parent">True</property>
     <child>
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="margin-left">20</property>
-        <property name="margin-right">20</property>
-        <property name="margin-top">20</property>
-        <property name="margin-bottom">20</property>
+        <property name="margin-left">40</property>
+        <property name="margin-right">40</property>
+        <property name="margin-top">40</property>
+        <property name="margin-bottom">40</property>
         <property name="orientation">vertical</property>
         <property name="spacing">20</property>
         <child>
@@ -35,24 +36,20 @@ the parent, and it's always on top.&lt;/big&gt;</property>
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <child>
-              <placeholder/>
-            </child>
+            <property name="halign">end</property>
             <child>
               <object class="GtkButton" id="buttonOk">
                 <property name="label" translatable="yes">Ok</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <property name="halign">end</property>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
           <packing>

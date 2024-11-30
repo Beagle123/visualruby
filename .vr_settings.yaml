@@ -6,25 +6,26 @@ panel_pos: 353
 notebook_panel_position: 622
 run_command_line: vr
 open_files:
-- "/home/eric/vrp/vr3/src/main/VR_File_Tree.rb"
 - "/home/eric/vrp/vr3/lib/GladeGUI.rb"
 - "/home/eric/vrp/vr3/src/main/VR_Main.rb"
 - "/home/eric/vrp/vr3/vr"
 - "/home/eric/vrp/vr3/src/editor/VR_Document.rb"
 - "/home/eric/vrp/vr3/src/main/VR_Tools.rb"
-- "/home/eric/vrp/vr3/src/main/VR_ENV.rb"
+- "/home/eric/vrp/vr3/src/main/OpenProject.rb"
+- "/home/eric/vrp/vr3/src/main/NewProjectGUI.rb"
 open_folders:
 - "/home/eric/vrp/vr3"
 - "/home/eric/vrp/vr3/lib"
 - "/home/eric/vrp/vr3/lib/glade"
+- "/home/eric/vrp/vr3/site"
 - "/home/eric/vrp/vr3/skeleton"
 - "/home/eric/vrp/vr3/skeleton/document"
 - "/home/eric/vrp/vr3/src"
 - "/home/eric/vrp/vr3/src/editor"
 - "/home/eric/vrp/vr3/src/main"
 - "/home/eric/vrp/vr3/src/main/glade"
-current_file: "/home/eric/vrp/vr3/src/main/VR_ENV.rb"
-current_line: 22
-builder: !ruby/object:Gtk::Builder {}
+current_file: "/home/eric/vrp/vr3/lib/GladeGUI.rb"
+current_line: 5
 rdoc_command_line: rdoc -x README
+builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

@@ -53,7 +53,9 @@ class VR_Main
 
   end
 
-  def load_project() # assumes valid_project? is true
+  def load_project(path = @proj_path)
+    return unless VR_Tools.vr_project?(path)
+    @proj_path = path
     FileUtils.cd(@proj_path)
     @builder['window1'].title = "VR: " + File.basename(Dir.pwd)
     @builder["labelStatus"].label = Dir.pwd
@@ -263,7 +265,7 @@ class VR_Main
     return ret
   end
 
-  def menuQuit__activate(*a)   
+  def menuQuit__activate(*a) 
     @builder[:window1].close
   end
 

@@ -8,7 +8,6 @@ run_command_line: save_settings.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/49_settings_file/save_settings.rb"
 - "/home/eric/vrp/vr3/examples/49_settings_file/src/SavableSettings.rb"
-- "/home/eric/vrp/vr3/examples/49_settings_file/settings.yaml"
 - "/home/eric/vrp/vr3/examples/49_settings_file/README.txt"
 open_folders:
 - "/home/eric/vrp/vr3/examples/49_settings_file"

@@ -3,10 +3,10 @@ project_root: "/home/eric/vrp/vr3"
 theme_root: "/home/eric/my_yard/themes"
 template_root: "/home/eric/my_yard/templates"
 output_dir: docs
-theme: default
-template: default
-files: "*/**/*.rb"
-extra_files: "*/**/*.md"
+theme: visualruby
+template: visualruby
+files: lib/**/*.rb
+extra_files: "**/**/*.md"
 exclude: ''
 include_public: true
 include_private: false

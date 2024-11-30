@@ -397,16 +397,19 @@ module GladeGUI
     before_show() if respond_to? :before_show
     parse_signals()
     set_glade_all()
-#    @top_level_window = Gtk.main_level == 0 ? true : false
-#    if @top_level_window # or @builder[:window1].modal?  Blocking?
-      Gtk.main
-#    end
+#     @top_level_window = Gtk.main_level == 0
+#     @builder.class.send(:attr_accessor, "top_level_window")
+#     @builder.top_level_window = Gtk.main_level == 0
+    if Gtk.main_level == 0
+      @builder[:window1].modal = true
+    end 
+    Gtk.main if  @builder[:window1].modal?  # @builder.top_level_window or
   end
 
 # Called when window is destroyed when you execute: <tt>@builder[:window1].destroy</tt>
 # It manages the Gtk.main loop for all the windows.
   def window1__destroy(*args)
-    Gtk.main_quit # if @top_level_window # or @builder["window1"].modal? 
+    Gtk.main_quit if  @builder["window1"].modal?  # @builder.top_level_window or
   end
 
 # Convenience method so you can just make a button named "buttonCancel" and it will work.  This

@@ -3,17 +3,19 @@
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkWindow" id="window1">
-    <property name="can-focus">False</property>
+    <property name="can-focus">True</property>
+    <property name="has-focus">True</property>
     <property name="title" translatable="yes">Modeless Window</property>
     <property name="window-position">center</property>
+    <property name="destroy-with-parent">True</property>
     <child>
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="margin-left">20</property>
-        <property name="margin-right">20</property>
-        <property name="margin-top">20</property>
-        <property name="margin-bottom">20</property>
+        <property name="margin-left">40</property>
+        <property name="margin-right">40</property>
+        <property name="margin-top">40</property>
+        <property name="margin-bottom">40</property>
         <property name="orientation">vertical</property>
         <property name="spacing">15</property>
         <child>
@@ -21,7 +23,8 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="label" translatable="yes">&lt;big&gt;This window operates concurrently with 
-the parent.   Open as many as you want!&lt;/big&gt;</property>
+the parent.   Open as many as you want!
+It will close with parent window.&lt;/big&gt;</property>
             <property name="use-markup">True</property>
           </object>
           <packing>
@@ -35,17 +38,12 @@ the parent.   Open as many as you want!&lt;/big&gt;</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
               <object class="GtkButton" id="buttonOk">
                 <property name="label" translatable="yes">Ok</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <property name="halign">end</property>
               </object>
               <packing>
                 <property name="expand">True</property>

@@ -1,6 +1,6 @@
 # @title ListView Tutorial
 
-= ListView Tutorial
+# ListView Tutorial
 
 
 VR::ListView offers you the abilitly to make complex listviews without having to struggle 
@@ -8,9 +8,10 @@ with all the details of GtkTreeView. You can create a VR::TreeView or VR::ListVi
 a few lines of code and do almost anything with it.  You can present any type of
 data you like including DateTime, VR::CalendarCol, VR::SpinCol, VR::ProgressCol, VR::ComboCol,
 and GdkPixbuf.  You can even add your own user-defined objects, and edit them.
-You can create columns from <b>instance variables, methods</b> or <b>any object</b>.  <b>Everything</b> will be editable and sortable.
+You can create columns from <b>instance variables, methods</b> or <b>any object</b>.  
+<b>Everything</b> will be editable and sortable.
 
-=Simple Example
+# Simple Example
 
 In this example, we'll make a ListView that displays a list of folders.  It's the
 same listview that visualruby uses when you click on the "Open Project" button.
@@ -86,12 +87,12 @@ Another way to do the same thing would be:
 
 Where the VR::ListView#id method provides the column number.
 
-==Subclassing VR::ListView
-{Back to Top}[link:#top]
+## Subclassing VR::ListView
 
 In the example, we created an instance variable, <b>@view</b> to hold our VR::ListView.  A much 
 cleaner approach is to subclass VR::ListView:
 
+```
  class ProjectChooserView < VR::ListView
   
    PIX = Gdk::Pixbuf.new(File.dirname(__FILE__) + "/../../img/folder.png")
@@ -118,9 +119,11 @@ cleaner approach is to subclass VR::ListView:
    end
 	
  end	
+```
 
 Then make a subclass of it to handle the GUI components:
- 
+
+``` 
  class ProjectChooserGUI < ProjectChooserView
   
    include GladeGUI
@@ -137,7 +140,7 @@ Then make a subclass of it to handle the GUI components:
    end
 
  end
-
+```
 This technique keeps everything organized:
 
 * ProjectChooserView encapsulates everything for the VR::ListView
@@ -147,17 +150,17 @@ And it looks like this:
 
 http://visualruby.net/img/quick_open.jpg
 
-==Editing Cells
+## Editing Cells
 {Back to Top}[link:#top]
 
 All the column types are editable except GdkPixbuf and VR::ProgressCol.  You can
 set a column to be editable by setting its (Renderer)#editable property to true.  The editable 
 property set similarly to any other property:
-
+```
  ren_editable(:person => true)  # makes :person col editable
  ren_attr(:person, :age, :editable => true)
  ren_editable(true)  #set all columns to be editable
-
+```
 Many of the renderers default to be editable.  How an object gets edited depends on the type
 of the object.  For example, clicking on a VR::CalenderCol object makes a little calender
 appear on the screen so you can select a date and time;  A DateTime object will use a 
@@ -168,7 +171,7 @@ will display a small text editor to allow you to enter long Strings.
 There's a great example of editing a listview in the example projects entitled "listview."
 
 
-==Post-Editing Callback
+## Post-Editing Callback
 {Back to Top}[link:#top]
 
 There are times you will want to update the model after an edit, and you
@@ -176,25 +179,26 @@ can do that (or anything else) in a post-edit callback.  You can set it
 on the VR::CellRenderer objects by using the VR::ListView#renderer
 method:
 
+```
  @view.renderer(:name).edit_callback = Proc.new { |model_sym, row, view | 
    ...your code here
    }	  
- 
+```
+
 This block will be called after the cell has been edited.  You can use this
 callback to update any of the columns using the "row" parameter.  For example,
 if you had an object in a column, and you edited it, you could write code
 to update other columns using the newly edited object.
 
+```
 - model_sym--the column id symbol for the column (here, it would be :name)
 - row--a GtkTreeIter iter that will respond to symbols i.e. <tt>row[:name]</tt>
 - view--the VR::ListView or VR::TreeView obect parent of the renderer
+```
 
 If you want to know the current value of the cell, use <tt><b>row[model_sym]</b></tt>
 
-
-
-
-==Validating User Input
+## Validating User Input
 {Back to Top}[link:#top]
 
 You can validate that the user has edited a cell correctly by using various
@@ -217,14 +221,16 @@ to the block is always the value of the edited cell.  In this case its "text" wh
 - view--the VR::ListView or VR::TreeView parent of this renderer.
 
 
-=Objects in Columns
+## Objects in Columns
 {Back to Top}[link:#top]
 
 With VR::ListView and VR::TreeView, you can create columns of any type, including
 classes you've written yourself.  To create a VR::ListView of your own classes, simply
 pass their types to the constructor:
 
+```
  @view = VR::ListView.new(:person => PersonClass, :employer => EmployerClass)
+```
 
 This will create a VR::ListView with two columns.  The first column will hold
 instances of PersonClass, and the second will hold instances of EmployerClass.
@@ -234,9 +240,11 @@ including subclasses of ActiveRecordBase.
 
 Once you've constructed your VR::ListView, you can add records normally:
 
+```
  row = @view.add_row
  row[:person] = PersonClass.new("Henry", 25)
  row[:employer] = EmployerClass.new("Google Inc.") 
+```
 
 Here we're constructing new instances of each class, but usually you'll be working with
 existing objects that you want to show in a listview.  Obviously, you must add objects of
@@ -251,6 +259,8 @@ The listview will execute the
 <b>to_s</b> method on the instace of PersonClass, and that will display in the listview.  Therefore,
 you should override the <b>to_s</b> method in all the classes you use in VR::ListView:
 
+
+```
  class PersonClass
 
    def initialize(name, age)
@@ -263,10 +273,11 @@ you should override the <b>to_s</b> method in all the classes you use in VR::Lis
    end
 
  end
+```
 
 Now the text "Henry (25)" will appear in the listview for our example record.
 
-==Editing Objects in a VR::ListView
+## Editing Objects in a VR::ListView
 {Back to Top}[link:#top]
 
 There's really not much point to adding objects to a VR::ListView if you just plan to look at them.
@@ -280,6 +291,7 @@ The objects you add to a VR::ListView should be GUI objects that <b>include</b> 
 their own window by calling their show() method.  So, really our PersonClass should look more like
 this:
 
+```
   class PersonClass
 
     #this makes the class visual:
@@ -296,15 +308,15 @@ this:
     end
 
   end
+```
 
-Now when you double-click on a person's cell, that object's show() method will execute
+Now when you double-click on a person's cell, that object's show_glade() method will execute
 showing the object on the screen.  It is likely that the PersonClass will show the person's
 name and age and allow you to edit each field.  If you edit the object, your changes will be 
 automatically reflected in the VR::ListView when you return.  Also, if the VR::ListView is sorted,
 it will resort with the new value.
 
-
-==Altering Individual Cells' Appearance
+## Altering Individual Cells' Appearance
 {Back to Top}[link:#top]
 
 You can change the appearance of an object in a listview by adding a method named, <b>visual_attributes</b>
@@ -313,6 +325,7 @@ you want to show the negative balances in red.  This can be accomplished easily 
 method named <b>visual_attributes</b>.  Here is an example where everyone over 50 years old
 will be displayed in red:
 
+```
  class PersonClass
 
    include GladeGUI
@@ -331,11 +344,12 @@ will be displayed in red:
    end
 
  end
+```
 
 Now, all PersonClass objects will display red backgrounds for people over 50 when
 they appear in a VR::ListView.
 
-There's an example of this in the example project, "active_record2."
+There's an example of this in the example project, "prettify_views"
 
 
 =Objects as Rows
@@ -350,11 +364,14 @@ method.  This method will search the names of the columns, and try to match to i
 variables and methods of the object.  For example, if we used our <b>PersonClass</b>
 from the previous example, we could load the fields of the listview like this:
 
+
+```
  @view = VR::ListView.new(:name => String, :age => String, :to_s => String)
  person = PersonClass.new("Henry", 25)
  row = @view.add_row
  row.load_object(person)
  puts row[:name]  # "Henry"
+```
 
 This would populate the :name and :age columns because the load_object() method
 would look at the column ID symbol for each column, and compare it to the instance
@@ -365,7 +382,7 @@ Notice also that there is a column in the listview named <b>:to_s</b>.  This
 column will be filled-in using the <b>PersonClass#to_s</b> method, as described in the
 next section.
 
-==Adding Methods to a ListView
+## Adding Methods to a ListView
 {Back to Top}[link:#top]
 
 You're not limited to populating columns with simple types of data like :name
@@ -378,6 +395,7 @@ In this example, the to_s method will output a simple string to display on the
 screen, but you can make your object's method output any type of data for the listview.
 For example you could write a method called my_birthday(): 
 
+```
  class PersonClass
 
    include GladeGUI
@@ -393,17 +411,21 @@ For example you could write a method called my_birthday():
    end
 
  end
+```
 
 The my_birthday() method will return a VR::CalendarCol object, which is a great way to edit
 a birthday date.  The VR::ListView's constructor will need to reflect that there will
 be a column for the person's birthday:  
 
+```
  @view = VR::ListView.new(:name => String, :age => Integer, :my_birthday => VR::CalenderCol)
+
  
  row = @view.add_row
  person = PersonClass.new("Henry", 25)
  row.load_object(person)
  puts row[:my_birthday]  # "1987-01-01"
+```
 
 This will display the person's name, age and birthday in three columns.  
 When you click on a person's birthday a VR::CalendarCol object will appear
@@ -415,48 +437,54 @@ Notice that the column name, :my_birthday must match the method name, my_birthda
 for the load_object() method to work.
 
 
-=Altering The View's Appearance
+# Altering The View's Appearance
 {Back to Top}[link:#top]
 
-==Making Columns Invisible
+## Making Columns Invisible
 {Back to Top}[link:#top]
 
 To make columns invisible, you set the GtkTreeViewColumn#visible property.  Set the
 visible propery in the same way you set any property in a VR::ListView:
 
+```
  col_visble(:person => false)  # person is now invisible
  col_visible(true)  # all cols visible
+```
 
 Note:  cell renderers also have a property named visible.  But it just makes
 the data invisible and leaves the header in place.  It really isn't very useful.
 Just remmeber to use the VR::ListView#col_visible method.
 
 
-==Setting New Titles
+## Setting New Titles
 {Back to Top}[link:#top]
 
 VR::ListView and VR::TreeView will automatically make nice-looking titles based on the IDs of the
 columns.  But sometimes you may want to change the columns' titles for the sake of appearance.
 You can change any column's title my setting the GtkTreeViewColumn#title property:
 
+```
  col_title(:person => "Name (age)", :employer => "Place of Work")
+```
 
-
-==Setting the Width of Columns
+## Setting the Width of Columns
 {Back to Top}[link:#top]
 
 You can set any column to have a fixed width by setting the GtkTreeViewColumn#width property.
 
+```
  col_width(:person => 200)
+```
 
 This will also set the GtkTreeViewColumn#sizing property to Gtk::TreeViewColumn::FIXED.  Which makes the
 column a fixed width type instead of "auto."
 
 You can also set make all the widths equal:
 
+```
  col_width(200)
-
-==Setting the Alignment of Columns
+```
+## Setting the Alignment of Columns
 {Back to Top}[link:#top]
 
 If you want to right-justify, left-justify, or center-justify a column,
@@ -467,31 +495,36 @@ alignment of the text in the header, and the renderer version will align the
 text in the cells.  It can be set to any Float number ranging from 0 to 1.
 0.00 = left justify, 1.00 = right justify
 
+```
 	@view.ren_xalign(:modified => 0.5)  # center justify text in cells
-  @view.col_xalign(:modified => 0.5)  # center justify text in header
-
+ @view.col_xalign(:modified => 0.5)  # center justify text in header
+```
 This is one of the rare circumstances where the ren_<property> and col_<propery>
 methods differ because both the renderer and column have an identical property, <b>xalign</b>.
 
 
-=={Sorting Columns}[rdoc-label:sorting:sorting]
+## {Sorting Columns}[rdoc-label:sorting:sorting]
 {Back to Top}[link:#top]
 
 Its easy to sort colums in a VR::ListView.  Visual ruby adds a "sortable" property
 to the columns that you can set like any other property:
 
+```
  @view.col_sortable(:first_name => true, :last_name => true)
-
+```
 You can also make all the columns sortable by just passing one value:
 
- @view.col_sortable(true)
+```
+@view.col_sortable(true)
+```
 
 If you'd like to have one column sort based on another column's value, you can set
 the "sort_column_id" property.  This could be useful, for example, if you wanted a
 column with peoples' full names to sort based on a last_name column:
 
- @view.col_sort_column_id(:full_name => id(:last_name))
-
+```
+@view.col_sort_column_id(:full_name => id(:last_name))
+```
 Now when you click on the full_name column, the names will sort in last_name order.
 
 The "sort_column_id" method requires that you pass an Integer to identify the column number. 
@@ -499,13 +532,16 @@ You must pass the number of the column to this method, so you can use the
 VR::ListView#id method to convert the id symbol into the column number.
 The code looks like this:
 
+```
 	@view.set_sort_column_id(:modified => id(:modified), :file_name => id(:modified))
+```
 
 or equivalently:
 
+```
   @view.column(:modified).sort_column_id = id(:modified)
   @view.column(:file_name).sort_column_id = id(:modified)
-
+```
 
 This code will make the column headers clickable.  When a user clicks on the header
 of a column it will sort on the column number provided.  So, when the user clicks on 
@@ -519,13 +555,16 @@ in your model just for sorting purposes.
 You can see this sorting in action, by clicking on the "Open Project" button in visualruby.
 Try clicking on the headers.
 
-===Important note about sorting:  
+## Important note about sorting:
+  
 Sometimes you get errors when you try to add records to a listview when there is an active
 sort_column_id.   I know errors occur when you try to add records when the the listview is sorted 
 on a DateTime column.   You should re-set the active sort_column_id to a "safe" column
 type before adding records.  Simply, use this type of code:
 
+```
  @view.model.set_sort_column_id(0)
+```
 
 This assumes that the first column in your model is a String or Fixnum (not a DateTime or UserDefinedClass!)
 
@@ -534,7 +573,7 @@ This assumes that the first column in your model is a String or Fixnum (not a Da
 
 
 
-==Adding ActiveRecord Objects
+## Adding ActiveRecord Objects
 {Back to Top}[link:#top]
 
 Under construction.
@@ -544,7 +583,7 @@ Under construction.
 
 
 
-=Working with Gtk
+## Working with Gtk
 {Back to Top}[link:#top]
 
 There may be times where you want to do something very customized to
@@ -553,24 +592,18 @@ your VR::ListView, and you may need to use Gtk to do it.
 VR::ListView (and VR::TreeView) are subclasses of Gtk::TreeView, so you can 
 always program them exactly like a GtkTreeView.   In fact, all the classes
 used by VR::ListView and VR::TreeView are directly subclassed from Gtk:
-  
+
+```  
 VR::TreeView < GtkTreeView
-
 VR::ListView < GtkTreeView
-
 VR::TreeViewColumn < GtkTreeViewColumn
-
 VR::CellRendererText < GtkCellRendererText 
-
 VR::CellRendererCombo < GtkCellRendererCombo
-
 VR::CellRendererToggle < GtkCellRendererToggle
-
 VR::CellRendererSpin < GtkCellRendererSpin
-
 VR::CellRendererProgress < GtkCellRendererProgress
-
 VR::CellRendererPixbuf < GtkCellRendererPixbuf
+```
 
 If you read the documentation for all the superclasses you'll find that you
 can do almost anything using Gtk's methods (but its A LOT of work!)  That's
@@ -580,29 +613,36 @@ why visualruby was created.
 Often, these methods use GtkTreeIters to refer to rows of data in the model.  In order to
 use these their iters, you need to know the column number in the model, as in this example:
 
+```
  iter = selection.seleted
  iter[3] = "Chester"
+```
 
 To get the column number "3", you'll need to convert the symbol for the column to an integer using
 the VR::ListView#id method:
 
+```
  iter = selection.seleted
  iter[id(:name)] = "Chester"
+```
 
 or you can convert the iter to accept column IDs using the VR::ListView#vr_row method:
 
+```
  row = vr_row(selection.seleted)
  iter[:name] = "Chester"
+```
 
-
-===Referencing Renderers and Columns
+### Referencing Renderers and Columns
 
 Many of Gtk's methods use their cell renderers and GtkTreeViewColumns.  VR makes it
 easy to get a reference to any renderer or column using the VR::ListView#renderer and
 VR::ListView#column methods:
 
+```
  @view.renderer(:name)
  @view.column(:name)
+```
 
 Both of these methods will work on all VR::TreeView and VR::ListView objects.
  

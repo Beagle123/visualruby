@@ -17,7 +17,9 @@ class NewProjectGUI
       FileUtils.mkpath path
       VR_Tools.copy_skeleton_project(path)
     end
-    @parent.proj_path = path
+    # creates .vr_settings.yaml
+    VR::load_yaml(VR_ENV, path + "/" + VR_ENV::SETTINGS_FILE)
+    @parent.load_project(path)
     @builder["window1"].close
   end
 

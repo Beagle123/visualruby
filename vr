@@ -11,6 +11,7 @@ require_relative "all_requires"
 
 VR_Main.new(ARGV).show_glade()
 
+# Gtk.main_quit
 # 
 # main = Gtk::Application.new("visualruby.org.main", [:non_unique] )
 # 

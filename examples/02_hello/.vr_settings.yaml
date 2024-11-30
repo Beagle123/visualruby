@@ -1,7 +1,7 @@
 --- !ruby/object:VR_ENV
 vr_yaml_file: "/home/eric/vrp/vr3/examples/02_hello/.vr_settings.yaml"
-width: 1390
-height: 743
+width: 1854
+height: 1003
 panel_pos: 360
 notebook_panel_position: 553
 run_command_line: hello.rb
@@ -15,8 +15,8 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/02_hello/src/glade"
 current_file: "/home/eric/vrp/vr3/examples/02_hello/README.txt"
 current_line: 24
-rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
+rdoc_command_line: rdoc -x README
 top_level_window: false
 browser: firefox
 backup_path: "/home/eric"
