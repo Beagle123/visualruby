@@ -132,6 +132,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="top-level-namespace.html#alert2-instance_method" title="#alert2 (instance method)">#<strong>alert2</strong>(message, options = {})  &#x21d2; String, ... </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The alert method creates a pop-up alert in your program.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="top-level-namespace.html#oinspect-instance_method" title="#oinspect (instance method)">#<strong>oinspect</strong>(obj = self)  &#x21d2; Object </a>
     
 
@@ -450,6 +474,311 @@
       <pre class="lines">
 
 
+135
+136
+137
+138</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/AlertDialog.rb', line 135</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_alert'>alert</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_win'>win</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'>AlertDialog</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_win'>win</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="alert2-instance_method">
+  
+    #<strong>alert2</strong>(message, options = {})  &#x21d2; <tt>String</tt>, ... 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The alert method creates a pop-up alert in your program.  It creates a modal window that halts execution of your code until the user closes it.  Its great for displaying messages and debugging.  It also has the option of allowing the user input in the form of a String or a selection from a Hash or Array.  This small tool can save hundreds of lines of code in your programs.  It can be used extesnively to display all types of messages and request all types of user input.</p>
+
+<p>The alert box can disply 1, 2 or 3 buttons.  The first button is denoted using the symbol: :button_yes button and is always displayed.  You can add :button_no and :button_cancel.   </p>
+
+<p>If you want to add these buttons, just set their values to whatever text you want them to display and they will appear.  Likewise, if you pass a :data parameter with a String, Hash or Array, it will ask for user input.</p>
+
+<p>There are many examples in the “alert_box” example project.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_alert'><span class='object_link'><a href="#alert-instance_method" title="#alert (method)">alert</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Continue?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>button_no:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nope</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>button_cancel:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Quit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>parent:</span> <span class='kw'>self</span><span class='rparen'>)</span> </code></pre>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_alert'><span class='object_link'><a href="#alert-instance_method" title="#alert (method)">alert</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The file you selected is already on disk.  Do you want to overwrite it?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>headline:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Overwrite FIle?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>button_yes:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Overwrite</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>button_no:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Reload From Disk</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='label'>button_cancel:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cancel</span><span class='tstring_end'>&quot;</span></span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>message</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>text message to display in alert box. Uses markup.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Hash of options:  :button_yes =&gt; text on the button that returns true.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:button_yes</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Text that appears on the “yes” button.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:button_no</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Text that appears on “no” button. (set to make no button appear)</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:button_cancel</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Text that appears on “cancel” button. (set to make cancel button appear)</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:data</span>
+          <span class="type">(<tt>Variable</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Either String, Array, or Hash.  This will determine type of user input.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:headline</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Larger headline over text message.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:title</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Title of the alert box window.  Defaults to :headline.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:width</span>
+          <span class="type">(<tt>Integer</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>The width in pixels of the window. Used for wrapping text.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:parent</span>
+          <span class="type">(<tt>Object #builder</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>The window that the alert box is always on top of.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>text in the text entry field when the :button_yes button is pressed. (:data passed a String)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>selected text from dropdown when the :button_yes button is pressed. (:data passed an Array)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>When :data is passed as Hash, this is updated Hash from user input.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>When the :button_yes button is selected and there’s no text entry box.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>When :button_no is pressed</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>When :button_cancel or the “X” button is pressed.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
 145
 146
 147
@@ -459,7 +788,7 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/Alert.rb', line 145</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_alert'>alert</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_alert2'>alert2</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ans'>ans</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'>Alert</span><span class='op'>::</span><span class='const'>DialogAnswer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'>Alert</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='id identifier rubyid_ans'>ans</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_show_glade'><span class='object_link'><a href="GladeGUI.html#show_glade-instance_method" title="GladeGUI#show_glade (method)">show_glade</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:parent</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_ans'>ans</span><span class='period'>.</span><span class='id identifier rubyid_answer'>answer</span> 
@@ -560,7 +889,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun Dec  1 00:23:22 2024 by
+  Generated on Mon Dec  2 01:44:55 2024 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.6).
 </div>
