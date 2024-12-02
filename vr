@@ -6,11 +6,11 @@ require GTK_VERSION
 require GTK_SOURCEVIEW_VERSION
 
 $root = File.dirname(__FILE__)
-
+ 
 require_relative "all_requires"
 
 VR_Main.new(ARGV).show_glade()
-
+ 
 # Gtk.main_quit
 # 
 # main = Gtk::Application.new("visualruby.org.main", [:non_unique] )

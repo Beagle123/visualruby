@@ -1,39 +1,31 @@
-# @title Quick Start 
+# @title Quick Start
 # Quick Start 
 
-## Running Visual Ruby
+## 1) Install Visual Ruby
 
-First {file:site/Download.md} visualruby. Once you've installed it, run it by typing the command:
-
+First [Install Ruby, Glade, and Visualruby](file.Download.html). Once you've installed it, run it by typing the command:
+```
 	vr
-
+```
 <p>
   <iframe width="480" height="360" src="https://www.youtube.com/embed/cFejLEs5Rb0" frameborder="0" allowfullscreen>
   </iframe>
 </p>
 
- 
-## Try the Example Projects
+## Go to the Example Projects
 
-Once started, visualruby will open one of the example projects.  Click the *Run" button
-to try it. 
+The best way to learn what you can do with visualruby is to run the example projects.
+Start by reading the README.txt file located in the first project.  Each example
+will illustrate a few features.  Then click the "Run" button to try the example.
 
-You can open and run each example project using the **Open Project**, and **Run** buttons:
+## Navigating the IDE
 
-![](http://visualruby.net/img/buttons.jpg)
-
-
-Try browsing the code using the file tree on the left, and edit the glade files
-by right-clicking on one of the ruby (.rb) files.
-
-Each example is designed to teach a lesson in visualruby, and every project will
-show you great time saving tricks.  Run each example, and study the code.  It will
-onlt take a short time.  There are many examples you can learn from:
-
-![Open Project](http://visualruby.net/img/open_project.jpg)
+You can right-click on the files in the left column to see the options.  If you right-click
+on a ruby script, you can set it to be the main program that will run when you hit the "Run"
+button.  The main program will appear in bold text.
 
 
-## Visual Ruby will Create Home Folder
+## Visual Ruby Home Folder
 
 When installed, visualruby will create a folder:
 
@@ -41,8 +33,8 @@ When installed, visualruby will create a folder:
 
 This is where you should keep all your visualruby projects.
 
-When you create a project in the */visualruby* folder, it will then appear
-when you click the *Open Project* button on the toolbar.  
+When you create a project in the /visualruby folder, it will then appear
+when you click the Open Project button on the toolbar.  
 
 ## Try Editing the Glade Files
 
@@ -60,12 +52,6 @@ all the properties and methods of the Gtk parent classes can be used on the visu
 
 For example, the class VR::ListView is a subclass of Gtk::TreeView.  So you can use all of Gtk::TreeView's
 methods and instance variables.
-
-Everyhitng about ruby/gtk is at this website:
-
-
-[Ruby-GNOME2](https://ruby-gnome2.osdn.jp/hiki.cgi)
-
    
 
 ## Getting Help

@@ -59,10 +59,10 @@
 
       <iframe id="search_frame" src=""></iframe>
 -->
-      <div id="content"><div id='filecontents'>
-<p>= Signals Tutorial</p>
+      <div id="content"><div id='filecontents'><a name="top"></a>
+<h1 id="label-Signals+Tutorial">Signals Tutorial</h1>
 
-<p>== Visual Ruby handles signals Using a Naming Convention.</p>
+<h2 id="label-VisualRuby+handles+signals+Using+a+Naming+Convention.">VisualRuby handles signals Using a Naming Convention.</h2>
 
 <p>Signals are events that occur when a user interacts with your program. For example, when a user clicks on a button, a “clicked” signal occurs. You need to write code that reacts to the user clicking the button, and takes the proper action.</p>
 
@@ -70,7 +70,10 @@
 
 <p>Just write a method like so:</p>
 
-<p>def button1__clicked(*args)  puts “Do something”  end</p>
+<pre class="code ruby"><code class="ruby"><span class='kw'>def</span> <span class='id identifier rubyid_button1__clicked'>button1__clicked</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Do something</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+</code></pre>
 
 <p>And that’s it!</p>
 
@@ -96,29 +99,29 @@
 
 <p>This method also works on instace variables that contain references to widgets. For example, visualruby offers a great class VR:ListView for displaying rows of data. It has a signal named “row_activated” for when a user double-clicks a row in the grid. So, we can simply use the same naming convention, and the “row_activated” signal will be handled automatically:</p>
 
-<p>class MyClass</p>
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>MyClass</span>
+ 
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="GladeGUI.html" title="GladeGUI (module)">GladeGUI</a></span></span>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="GladeGUI.html" title="GladeGUI (module)">GladeGUI</a></span></span>
+  <span class='kw'>def</span> <span class='id identifier rubyid_before_show'>before_show</span>  <span class='comment'># 
+</span>   <span class='ivar'>@list_view</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="VR/ListView.html" title="VR::ListView (class)">ListView</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="VR/ViewCommon.html#initialize-instance_method" title="VR::ViewCommon#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:myfield</span> <span class='op'>=&gt;</span> <span class='const'>String</span><span class='rparen'>)</span>
+   <span class='ivar'>@list_view</span><span class='period'>.</span><span class='id identifier rubyid_add_row'>add_row</span><span class='lparen'>(</span><span class='symbol'>:myfield</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello World</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+   <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrolledwindow1</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='ivar'>@builder</span><span class='comma'>,</span> <span class='ivar'>@list_view</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_before_show'>before_show</span>  <span class='comment'># 
-</span> <span class='ivar'>@list_view</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="VR/ListView.html" title="VR::ListView (class)">ListView</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="VR/ViewCommon.html#initialize-instance_method" title="VR::ViewCommon#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:myfield</span> <span class='op'>=&gt;</span> <span class='const'>String</span><span class='rparen'>)</span>
- <span class='ivar'>@list_view</span><span class='period'>.</span><span class='id identifier rubyid_add_row'>add_row</span><span class='lparen'>(</span><span class='symbol'>:myfield</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello World</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
- <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrolledwindow1</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='ivar'>@builder</span><span class='comma'>,</span> <span class='ivar'>@list_view</span><span class='rparen'>)</span>
+  <span class='kw'>def</span> <span class='id identifier rubyid_list_view__row_activated'>list_view__row_activated</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+   <span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='ivar'>@list_view</span><span class='period'>.</span><span class='id identifier rubyid_selected_row'>selected_row</span><span class='lparen'>(</span><span class='rparen'>)</span>
+   <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='symbol'>:myfield</span><span class='rbracket'>]</span>  <span class='comment'># =&gt;  &quot;Hello World&quot;
+</span>  <span class='kw'>end</span>
+
 <span class='kw'>end</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_list_view__row_activated'>list_view__row_activated</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
- <span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='ivar'>@list_view</span><span class='period'>.</span><span class='id identifier rubyid_selected_row'>selected_row</span><span class='lparen'>(</span><span class='rparen'>)</span>
- <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='symbol'>:myfield</span><span class='rbracket'>]</span>  <span class='comment'># =&gt;  &quot;Hello World&quot;
-</span><span class='kw'>end</span>
 </code></pre>
-
-<p>end</p>
 
 <p>When the user double clicks on “Hello World” in the listview, it outputs “Hello World” to the console.</p>
 
 <p>By naming the method “list_view__row_activated” its telling GladeGUI to attach the “row_activated” signal to @list_view. We’re telling it to do this by separating the names by two underscores.</p>
 
-<p>==Attaching signals to “self”</p>
+<h2 id="label-Attaching+signals+to+-22self-22">Attaching signals to “self”</h2>
 
 <p>Often, you will prefer to subclass VR::ListView (and its good coding practice). So, you’ll need a way to attach signals to “self.” Luckily, you can do that by simply using “self” as the glade_name:</p>
 
@@ -145,7 +148,7 @@
 
 <p>Note: In this case, we needed to call the parse_signals() method manually. Normally, the parse_signals() method is called automatically by the show_glade() method when the main window is shown. However, this class isn’t a window, so we’re never going to call show_glade on it. THerefore, we need to run parse_signals() to get the self__row_activated method to work.</p>
 
-<p>==Attaching Signals to a method</p>
+<h2 id="label-Attaching+Signals+to+a+method">Attaching Signals to a method</h2>
 
 <p>Once in a while, you may need to set a signal to a method. The method must return an object that will respond_to?(“signal_connect”). In other words, When GladeGUI encounters a method name that has 2 underscores in it, its going to try to connect a signal to the object. For example. if it sees the method “button1__clicked:”</p>
 
@@ -166,15 +169,25 @@
 
 <p>Here’s an example of were it can be very useful: The VR::ListView class has a weird way of handling when the user selects a new row. For some reason the poeple who designed its parent, Gtk:TreeView, decided to make a separate object to handle selections. To reference this object, you call the Gtk::TreeView#selection method:</p>
 
-<p>class MyClass &lt; MyListView</p>
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>MyClass</span> <span class='op'>&lt;</span> <span class='const'>MyListView</span>
+ 
+   <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="GladeGUI.html" title="GladeGUI (module)">GladeGUI</a></span></span>
+  
+   <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
+     <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrolledwindow1</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='ivar'>@builder</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
+     <span class='id identifier rubyid_add_row'>add_row</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>World</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+     <span class='id identifier rubyid_add_row'>add_row</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Mars</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+     <span class='id identifier rubyid_load_glade'>load_glade</span><span class='lparen'>(</span><span class='kw'>__FILE__</span><span class='rparen'>)</span> <span class='comment'>#must be called after @list_view is set!
+</span>     <span class='id identifier rubyid_show_window'>show_window</span>
+   <span class='kw'>end</span>
+  
+   <span class='kw'>def</span> <span class='id identifier rubyid_self__row_activated'>self__row_activated</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+     <span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='id identifier rubyid_selection'>selection</span><span class='period'>.</span><span class='id identifier rubyid_selected'>selected</span>  <span class='comment'>#this selection method returns the object
+</span>     <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>  <span class='comment'># =&gt;  &quot;Hello World&quot;
+</span>   <span class='kw'>end</span>
 
-<p>include GladeGUI</p>
-
-<p>def show  @<a href=""scrolledwindow1"">builder</a>.add_child(@builder, self)  add_row(“Hello”, “World”)  add_row(“Hello”, “Mars”)  load_glade(<strong>FILE</strong>) #must be called after @list_view is set!  show_window  end</p>
-
-<p>def self__row_activated(*args)  row = selection.selected #this selection method returns the object  puts <a href="0">row</a> + “ ” + <a href="1">row</a> # =&gt; “Hello World”  end</p>
-
-<p>end</p>
+ <span class='kw'>end</span>
+</code></pre>
 
 <p>Here, the reference to “selection.selected” line calls the Gtk::TreeView#selection method that returns a Gtk::TreeSelection object. The “selected” call retruns the currently selected row. But the important thing to realize here is that our VR::ListView class has a #selection method that returns a Gtk::TreeSelection object, and we can attach signals to that object.</p>
 
@@ -186,19 +199,29 @@
 
 <p>So our method name would be “selection__changed:” (2 underscores!)</p>
 
-<p>class MyClass &lt; MyListView</p>
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>MyClass</span> <span class='op'>&lt;</span> <span class='const'>MyListView</span>
+   
+   <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="GladeGUI.html" title="GladeGUI (module)">GladeGUI</a></span></span>
 
-<p>include GladeGUI</p>
+   <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
+     <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrolledwindow1</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='ivar'>@builder</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
+     <span class='id identifier rubyid_add_row'>add_row</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>World</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+     <span class='id identifier rubyid_add_row'>add_row</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Mars</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+     <span class='id identifier rubyid_load_glade'>load_glade</span><span class='lparen'>(</span><span class='kw'>__FILE__</span><span class='rparen'>)</span> <span class='comment'>#must be called after @list_view is set!
+</span>     <span class='id identifier rubyid_show_window'>show_window</span>
+   <span class='kw'>end</span>
 
-<p>def show  @<a href=""scrolledwindow1"">builder</a>.add_child(@builder, self)  add_row(“Hello”, “World”)  add_row(“Hello”, “Mars”)  load_glade(<strong>FILE</strong>) #must be called after @list_view is set!  show_window  end</p>
+   <span class='kw'>def</span> <span class='id identifier rubyid_selection__changed'>selection__changed</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+     <span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='id identifier rubyid_selection'>selection</span><span class='period'>.</span><span class='id identifier rubyid_selected'>selected</span>  <span class='comment'>#this selection method returns the object
+</span>     <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>  <span class='comment'># =&gt;  &quot;Hello World&quot; or &quot;Hello Mars&quot;
+</span>   <span class='kw'>end</span>
 
-<p>def selection__changed(*args)  row = selection.selected #this selection method returns the object  puts <a href="0">row</a> + “ ” + <a href="1">row</a> # =&gt; “Hello World” or “Hello Mars”  end</p>
-
-<p>end</p>
+ <span class='kw'>end</span>
+</code></pre>
 
 <p>This program would output the current row everytime the user selected a new row. So, it would output “Hello World” and “Hello Mars” over and over again.</p>
 
-<p>== Two important methods for VR::ListView and VR::TreeView</p>
+<h2 id="label-Two+important+methods+for+VR-3A-3AListView+and+VR-3A-3ATreeView">Two important methods for VR::ListView and VR::TreeView</h2>
 
 <p>When you subclass VR::ListView, there are two method names you should remember:</p>
 
@@ -212,31 +235,44 @@
 
 <p>Here is a portion of the Calculator project as an example:</p>
 
-<p>class Calculator</p>
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>Calculator</span>
 
-<p>include GladeGUI</p>
+   <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="GladeGUI.html" title="GladeGUI (module)">GladeGUI</a></span></span>
+  
+   <span class='kw'>def</span> <span class='id identifier rubyid_before_show'>before_show</span><span class='lparen'>(</span><span class='rparen'>)</span>
+     <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>window1</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Calculator</span><span class='tstring_end'>&quot;</span></span>
+     <span class='ivar'>@keys</span> <span class='op'>=</span> <span class='lbracket'>[</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>2</span><span class='comma'>,</span> <span class='int'>3</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>C</span><span class='tstring_end'>&quot;</span></span> <span class='rbracket'>]</span> <span class='op'>+</span>
+             <span class='lbracket'>[</span> <span class='int'>4</span><span class='comma'>,</span> <span class='int'>5</span><span class='comma'>,</span> <span class='int'>6</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>+</span><span class='tstring_end'>&quot;</span></span> <span class='rbracket'>]</span> <span class='op'>+</span>
+             <span class='lbracket'>[</span> <span class='int'>7</span><span class='comma'>,</span> <span class='int'>8</span><span class='comma'>,</span> <span class='int'>9</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span> <span class='rbracket'>]</span> <span class='op'>+</span>
+             <span class='lbracket'>[</span> <span class='int'>0</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+   <span class='kw'>end</span>	
+  
+   <span class='kw'>def</span> <span class='id identifier rubyid_keys__clicked'>keys__clicked</span><span class='lparen'>(</span><span class='id identifier rubyid_button'>button</span><span class='rparen'>)</span>
+     <span class='comment'># handle the keypress 
+</span>   <span class='kw'>end</span>	
 
-<p>def before_show()  @<a href=""window1"">builder</a>.title = “Calculator”  @keys = [ 1, 2, 3, “C” ] +  [ 4, 5, 6, “+” ] +  [ 7, 8, 9, “-” ] +  [ 0, “.”,“/”,“=”]  end</p>
-
-<p>def keys__clicked(button)  # handle the keypress  end</p>
-
-<p>end</p>
-
-<p><img src="http://visualruby.net/img/signals_calculator.jpg" /></p>
+ <span class='kw'>end</span>
+</code></pre>
 
 <p>In the glade form, there are 16 buttons with the names:</p>
 
-<p>“<a href="0">keys</a>”  “<a href="1">keys</a>”  “<a href="2">keys</a>”  etc…</p>
+<pre class="code ruby"><code class="ruby"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>keys[0]</span><span class='tstring_end'>&quot;</span></span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>keys[1]</span><span class='tstring_end'>&quot;</span></span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>keys[2]</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_etc'>etc</span><span class='op'>...</span>
+</code></pre>
 
 <p>There is a @keys instance variable that maps to the 16 glade buttons. The all the labels on the buttons are set when the show_glade method is called on this class. When visualruby parses the signals for widgets that have have the array brackets in the name it will call he same signal handler: <em>keys_clicked</em> for all 16 buttons.</p>
 
 <p>Also, remember that the @keys variable has no impact on this. This is just GladeGUI scanning the names of the widgts, and matching them to your signal methods (denoted with 2 underscores).</p>
 
 <p>See the calculator example for more.</p>
+
+<p><a href="#top">Back to Top</a></p>
 </div></div>
 
       <div id="footer">
-  Generated on Fri Nov 29 22:27:15 2024 by
+  Generated on Sun Dec  1 00:23:22 2024 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.6).
 </div>

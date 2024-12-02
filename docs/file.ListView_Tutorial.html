@@ -107,7 +107,7 @@
 <p>In the example, we created an instance variable, <strong>@view</strong> to hold our VR::ListView. A much cleaner approach is to subclass VR::ListView:</p>
 
 <pre class="code ruby"><code class="ruby">class ProjectChooserView &lt; VR::ListView
-  
+
    PIX = Gdk::Pixbuf.new(File.dirname(__FILE__) + &quot;/../../img/folder.png&quot;)
   
    def initialize()
@@ -118,17 +118,17 @@
    end
   
    def refresh()
-
-     @view.model.clear                  #search for settings file
-
-     Dir.glob(ENV[&quot;HOME&quot;] + &quot;/**/.vr_settings.yaml&quot;)).each do |fn| 
-       mod = File.stat(fn).mtime #modified time
-       row = @view.add_row
-       row[:pix] = PIX
-       row[:file_name] = File.dirname(fn)
-       row[:modified] = DateTime.parse(mod.to_s)
-     end
-
+  
+   @view.model.clear                  #search for settings file
+  
+   Dir.glob(ENV[&quot;HOME&quot;] + &quot;/**/.vr_settings.yaml&quot;)).each do |fn| 
+     mod = File.stat(fn).mtime #modified time
+     row = @view.add_row
+     row[:pix] = PIX
+     row[:file_name] = File.dirname(fn)
+     row[:modified] = DateTime.parse(mod.to_s)
+   end
+  
    end
 	
  end
@@ -480,59 +480,64 @@
 
 <p>This assumes that the first column in your model is a String or Fixnum (not a DateTime or UserDefinedClass!)</p>
 
-<p>==Adding ActiveRecord Objects <a href="#top">Back to Top</a></p>
+<h2 id="label-Adding+ActiveRecord+Objects">Adding ActiveRecord Objects</h2>
+
+<p><a href="#top">Back to Top</a></p>
 
 <p>Under construction.</p>
 
-<p>=Working with Gtk <a href="#top">Back to Top</a></p>
+<h2 id="label-Working+with+Gtk">Working with Gtk</h2>
+
+<p><a href="#top">Back to Top</a></p>
 
 <p>There may be times where you want to do something very customized to your VR::ListView, and you may need to use Gtk to do it.</p>
 
 <p>VR::ListView (and VR::TreeView) are subclasses of Gtk::TreeView, so you can always program them exactly like a GtkTreeView. In fact, all the classes used by VR::ListView and VR::TreeView are directly subclassed from Gtk:</p>
 
-<p>VR::TreeView &lt; GtkTreeView</p>
-
-<p>VR::ListView &lt; GtkTreeView</p>
-
-<p>VR::TreeViewColumn &lt; GtkTreeViewColumn</p>
-
-<p>VR::CellRendererText &lt; GtkCellRendererText</p>
-
-<p>VR::CellRendererCombo &lt; GtkCellRendererCombo</p>
-
-<p>VR::CellRendererToggle &lt; GtkCellRendererToggle</p>
-
-<p>VR::CellRendererSpin &lt; GtkCellRendererSpin</p>
-
-<p>VR::CellRendererProgress &lt; GtkCellRendererProgress</p>
-
-<p>VR::CellRendererPixbuf &lt; GtkCellRendererPixbuf</p>
+<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="VR/TreeView.html" title="VR::TreeView (class)">TreeView</a></span></span> <span class='op'>&lt;</span> <span class='const'>GtkTreeView</span>
+<span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="VR/ListView.html" title="VR::ListView (class)">ListView</a></span></span> <span class='op'>&lt;</span> <span class='const'>GtkTreeView</span>
+<span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="VR/TreeViewColumn.html" title="VR::TreeViewColumn (class)">TreeViewColumn</a></span></span> <span class='op'>&lt;</span> <span class='const'>GtkTreeViewColumn</span>
+<span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'>CellRendererText</span> <span class='op'>&lt;</span> <span class='const'>GtkCellRendererText</span> 
+<span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'>CellRendererCombo</span> <span class='op'>&lt;</span> <span class='const'>GtkCellRendererCombo</span>
+<span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'>CellRendererToggle</span> <span class='op'>&lt;</span> <span class='const'>GtkCellRendererToggle</span>
+<span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'>CellRendererSpin</span> <span class='op'>&lt;</span> <span class='const'>GtkCellRendererSpin</span>
+<span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'>CellRendererProgress</span> <span class='op'>&lt;</span> <span class='const'>GtkCellRendererProgress</span>
+<span class='const'><span class='object_link'><a href="VR.html" title="VR (module)">VR</a></span></span><span class='op'>::</span><span class='const'>CellRendererPixbuf</span> <span class='op'>&lt;</span> <span class='const'>GtkCellRendererPixbuf</span>
+</code></pre>
 
 <p>If you read the documentation for all the superclasses you’ll find that you can do almost anything using Gtk’s methods (but its A LOT of work!) That’s why visualruby was created.</p>
 
 <p>Often, these methods use GtkTreeIters to refer to rows of data in the model. In order to use these their iters, you need to know the column number in the model, as in this example:</p>
 
-<p>iter = selection.seleted  <a href="3">iter</a> = “Chester”</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_iter'>iter</span> <span class='op'>=</span> <span class='id identifier rubyid_selection'>selection</span><span class='period'>.</span><span class='id identifier rubyid_seleted'>seleted</span>
+ <span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Chester</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
 
 <p>To get the column number “3”, you’ll need to convert the symbol for the column to an integer using the VR::ListView#id method:</p>
 
-<p>iter = selection.seleted  <a href="id(:name)">iter</a> = “Chester”</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_iter'>iter</span> <span class='op'>=</span> <span class='id identifier rubyid_selection'>selection</span><span class='period'>.</span><span class='id identifier rubyid_seleted'>seleted</span>
+ <span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='id identifier rubyid_id'>id</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Chester</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
 
 <p>or you can convert the iter to accept column IDs using the VR::ListView#vr_row method:</p>
 
-<p>row = vr_row(selection.seleted)  <a href=":name">iter</a> = “Chester”</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='id identifier rubyid_vr_row'>vr_row</span><span class='lparen'>(</span><span class='id identifier rubyid_selection'>selection</span><span class='period'>.</span><span class='id identifier rubyid_seleted'>seleted</span><span class='rparen'>)</span>
+ <span class='id identifier rubyid_iter'>iter</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Chester</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
 
-<p>===Referencing Renderers and Columns</p>
+<h3 id="label-Referencing+Renderers+and+Columns">Referencing Renderers and Columns</h3>
 
 <p>Many of Gtk’s methods use their cell renderers and GtkTreeViewColumns. VR makes it easy to get a reference to any renderer or column using the VR::ListView#renderer and VR::ListView#column methods:</p>
 
-<p>@view.renderer(:name)  @view.column(:name)</p>
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_renderer'>renderer</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span>
+ <span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_column'>column</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span>
+</code></pre>
 
 <p>Both of these methods will work on all VR::TreeView and VR::ListView objects.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Fri Nov 29 22:27:15 2024 by
+  Generated on Sat Nov 30 22:24:04 2024 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.6).
 </div>

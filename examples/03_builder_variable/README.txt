@@ -1,22 +1,22 @@
 
 This example shows how a instance variable named @builder is 
-automatically created when the show_glade method is called.
-When show_glade() is called, the GladeGUI module will run this code:
+automatically created when the show_glade() method is called.
+It runs this code:
 
   @builder = Gtk::Builder.new(file: "glade/BuilderDemo.glade")
 
 which loads the glade file into the @builder variable.  This is done
-behind the scenes in Glade GUI, so the @builder variable will magically
+behind the scenes in GladeGUI, so the @builder variable will magically
 apper in your script.
 
 The @builder variable holds references to all the widgets (and windows etc).
 You can access any widget using its glade ID:
 
-  widget = @builder["ui_widget_btn"]
+  widget = @builder[:ui_widget_btn]
 
 You can get and set properties:
 
-  my_button = @builder["ui_widget_btn"]     # retreives reference to button
+  my_button = @builder[:ui_widget_btn]      # retreives reference to button
   puts my_button.label                      # using GtkLabel's "label" property.
   my_button.label = "Click Me"              # Changes button's text to "Click Me"
 

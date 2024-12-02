@@ -5,8 +5,8 @@ template_root: "/home/eric/my_yard/templates"
 output_dir: docs
 theme: visualruby
 template: visualruby
-files: lib/**/*.rb
-extra_files: "**/**/*.md"
+files: 'lib/**/*.rb '
+extra_files: "*/**/*.md"
 exclude: ''
 include_public: true
 include_private: false
@@ -17,5 +17,5 @@ main: README.md
 export_db: false
 export_db_path: ".yardoc"
 vr_yaml_file: "/home/eric/vrp/vr3/.yardoc/my_yard.yaml"
-builder: !ruby/object:Gtk::Builder {}
-top_level_window: false
+builder: !ruby/object:Gtk::Builder
+  top_level_window: false

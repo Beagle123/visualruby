@@ -54,7 +54,7 @@ class AlertBoxDemo
     if answer.is_a?(String)
       alert ("You chose: #{answer}\nUser_id: #{user_id[names.index(answer)].to_s}")
     elsif answer == false #no_button pressed = new name
-      new_name = alert("Enter New Person:", input_text: "")
+      new_name = alert("Enter New Person:", data: "")
     elsif answer.nil?
       alert "You pressed the 'X' button"
     end

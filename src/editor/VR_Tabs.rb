@@ -36,12 +36,11 @@ class VR_Tabs < Gtk::Notebook
     end 
     return false
   end
-
+ 
   def save_changes?
-    answer = alert "Save chages to:  <b> #{File.basename(@docs[page].full_path_file)}</b> ?",
-              parent: @main, 
+    answer = alert("Save chages to:  <b> #{File.basename(@docs[page].full_path_file)}</b> ?",
               button_yes: "Save Changes", button_no: "Discard Changes",  
-              headline: "Save Changes?", button_cancel: "Cancel"
+              headline: "Save Changes?", button_cancel: "Cancel")
     if answer == true # save
       if @docs[page].title.label == "Untitled"
         return save_as() 

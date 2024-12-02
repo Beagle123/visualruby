@@ -94,7 +94,7 @@ cleaner approach is to subclass VR::ListView:
 
 ```
  class ProjectChooserView < VR::ListView
-  
+
    PIX = Gdk::Pixbuf.new(File.dirname(__FILE__) + "/../../img/folder.png")
   
    def initialize()
@@ -105,17 +105,17 @@ cleaner approach is to subclass VR::ListView:
    end
   
    def refresh()
-
-     @view.model.clear                  #search for settings file
-
-     Dir.glob(ENV["HOME"] + "/**/.vr_settings.yaml")).each do |fn| 
-       mod = File.stat(fn).mtime #modified time
-       row = @view.add_row
-       row[:pix] = PIX
-       row[:file_name] = File.dirname(fn)
-       row[:modified] = DateTime.parse(mod.to_s)
-     end
-
+  
+   @view.model.clear                  #search for settings file
+  
+   Dir.glob(ENV["HOME"] + "/**/.vr_settings.yaml")).each do |fn| 
+     mod = File.stat(fn).mtime #modified time
+     row = @view.add_row
+     row[:pix] = PIX
+     row[:file_name] = File.dirname(fn)
+     row[:modified] = DateTime.parse(mod.to_s)
+   end
+  
    end
 	
  end	
@@ -141,6 +141,7 @@ Then make a subclass of it to handle the GUI components:
 
  end
 ```
+
 This technique keeps everything organized:
 
 * ProjectChooserView encapsulates everything for the VR::ListView
@@ -156,11 +157,13 @@ http://visualruby.net/img/quick_open.jpg
 All the column types are editable except GdkPixbuf and VR::ProgressCol.  You can
 set a column to be editable by setting its (Renderer)#editable property to true.  The editable 
 property set similarly to any other property:
+
 ```
  ren_editable(:person => true)  # makes :person col editable
  ren_attr(:person, :age, :editable => true)
  ren_editable(true)  #set all columns to be editable
 ```
+
 Many of the renderers default to be editable.  How an object gets edited depends on the type
 of the object.  For example, clicking on a VR::CalenderCol object makes a little calender
 appear on the screen so you can select a date and time;  A DateTime object will use a 

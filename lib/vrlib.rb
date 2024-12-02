@@ -6,10 +6,10 @@ require "yaml"
 require "find"
 require "fileutils"
 
-
 #tools go first
 require_relative "GladeGUI"
-require_relative "Alert"
+# require_relative "Alert"
+require_relative "AlertDialog"
 require_relative "DragDrop"
 require_relative "SavableClass"
 

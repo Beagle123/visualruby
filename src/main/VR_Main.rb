@@ -50,7 +50,6 @@ class VR_Main
     @remote_gem_tree.show
 
     load_project
-
   end
 
   def load_project(path = @proj_path)

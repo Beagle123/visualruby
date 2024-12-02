@@ -1,27 +1,22 @@
-
 module VR
 
   # Class that the #alert method uses.  This class is note useful by itself.  See #alert method instead.
   # @see #alert
   # @private
-  class Alert   
-
-    attr_accessor :answer    
+  class AlertDialog   
     
     include GladeGUI
     
     # Just passes on values from #alert method. 
     # @see #alert      
 
-    def initialize(message, answer, flags = {})
+    def initialize(message, flags = {})
       @flags = flags
-      @answer = answer
       @message = message
-      @p = nil
-
     end
-
+  
     def before_show
+      @builder[:window1].show_all
       @builder[:input_text].hide
       @builder[:ui_grid].hide
       @builder[:choices_text].hide
@@ -59,43 +54,38 @@ module VR
         @builder[:input_text].buffer.text = @flags[:data]
         @builder[:input_text].show 
       end
-
       @builder[:button_no].hide unless @flags[:button_no]
       @builder[:button_cancel].hide unless @flags[:button_cancel]
+      set_glade_variables
       set_glade_hash(@flags)
     end
 
-    def button_yes__clicked(but)
-      if @flags[:data].is_a? String
-        @answer.answer = @builder[:input_text].buffer.text 
-      elsif @flags[:data].is_a? Array
-        @answer.answer = @builder[:choices_text].active_text
-      elsif @flags[:data].is_a? Hash
-        @answer.answer = @my_hash
-        @my_hash.each_pair do |key, val| 
-          @answer.answer[key] = @my_hash[key].buffer.text 
-        end  
-      else
-        @answer.answer = true
-      end
-      @builder[:window1].close
-    end
-
-    def button_no__clicked(but)
-      @answer.answer = false    
-      @builder[:window1].close
-    end
-
-    def button_cancel__clicked(but) 
-      @answer.answer = nil 
-      @builder[:window1].close
-    end
-
-    # Helper to VR::Alert so :answer can be passed by reference. 
-    # @see #alert
-    class DialogAnswer 
-      attr_accessor :answer
-    end
+    def run()
+      load_glade()
+      before_show()
+      response = @builder[:window1].run
+      case response
+        when Gtk::ResponseType::YES
+          if @flags[:data].is_a? String
+            answer =  @builder[:input_text].buffer.text 
+          elsif @flags[:data].is_a? Array
+            answer = @builder[:choices_text].active_text
+          elsif @flags[:data].is_a? Hash
+            answer = @my_hash  # clean up
+            @my_hash.each_pair do |key, val| 
+              answer[key] = @my_hash[key].buffer.text 
+            end   
+          else
+            answer = true
+          end
+        when Gtk::ResponseType::NO 
+          answer = false
+        else 
+          answer = nil
+      end # case
+      @builder[:window1].destroy
+      return answer
+    end # run
 
   end
 
@@ -142,14 +132,9 @@ end
 #     
 # There are many examples in the "alert_box" example project. 
 
-def alert2(message, options = {})
-  ans = VR::Alert::DialogAnswer.new()
-  VR::Alert.new(message, ans, options).show_glade(options[:parent])
-  return ans.answer 
+def alert(message, options = {})
+  win = VR::AlertDialog.new(message, options)
+  return win.run()
 end
 
-
-
-
-
-
+# alert2("Hello There", data: {name: "", password: ""}, headline: "testing", width: 500)

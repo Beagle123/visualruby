@@ -7,10 +7,13 @@ notebook_panel_position: 501
 run_command_line: alertdemo.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/06_alert_box/README.txt"
+- "/home/eric/vrp/vr3/examples/06_alert_box/alertdemo.rb"
+- "/home/eric/vrp/vr3/examples/06_alert_box/src/AlertBoxDemo.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/06_alert_box"
-current_file: "/home/eric/vrp/vr3/examples/06_alert_box/README.txt"
-current_line: 7
+- "/home/eric/vrp/vr3/examples/06_alert_box/src"
+current_file: "/home/eric/vrp/vr3/examples/06_alert_box/src/AlertBoxDemo.rb"
+current_line: 57
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

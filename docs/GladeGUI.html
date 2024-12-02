@@ -594,12 +594,12 @@
       <pre class="lines">
 
 
-414
-415
-416</pre>
+417
+418
+419</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 414</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 417</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_buttonCancel__clicked'>buttonCancel__clicked</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span>
   <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='symbol'>:window1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
@@ -683,12 +683,12 @@
       <pre class="lines">
 
 
-437
-438
-439</pre>
+440
+441
+442</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 437</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 440</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extract_key'>extract_key</span><span class='lparen'>(</span><span class='id identifier rubyid_widget'>widget</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_widget'>widget</span><span class='period'>.</span><span class='id identifier rubyid_builder_name'>builder_name</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\[(.+?)\]</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
@@ -713,16 +713,16 @@
       <pre class="lines">
 
 
-464
-465
-466
 467
 468
 469
-470</pre>
+470
+471
+472
+473</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 464</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 467</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_glade_active_record'>get_glade_active_record</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span> 
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>defined?</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span>
@@ -1258,13 +1258,13 @@ It also functions the same as this statement:
       <pre class="lines">
 
 
-459
-460
-461
-462</pre>
+462
+463
+464
+465</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 459</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 462</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_glade_active_record'>set_glade_active_record</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='kw'>self</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='kw'>defined?</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span>
@@ -1562,7 +1562,10 @@ So, to set all the values of a form, simply call the set_glade_all() method inst
 401
 402
 403
-404</pre>
+404
+405
+406
+407</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 386</span>
@@ -1581,11 +1584,14 @@ So, to set all the values of a form, simply call the set_glade_all() method inst
   <span class='id identifier rubyid_before_show'>before_show</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:before_show</span>
   <span class='id identifier rubyid_parse_signals'>parse_signals</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_set_glade_all'>set_glade_all</span><span class='lparen'>(</span><span class='rparen'>)</span>
-<span class='comment'>#    @top_level_window = Gtk.main_level == 0 ? true : false
-</span><span class='comment'>#    if @top_level_window # or @builder[:window1].modal?  Blocking?
-</span>    <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_main'>main</span>
-<span class='comment'>#    end
-</span><span class='kw'>end</span></pre>
+<span class='comment'>#     @top_level_window = Gtk.main_level == 0
+</span>  <span class='ivar'>@builder</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:attr_accessor</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>top_level_window</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@builder</span><span class='period'>.</span><span class='id identifier rubyid_top_level_window'>top_level_window</span> <span class='op'>=</span> <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_main_level'>main_level</span> <span class='op'>==</span> <span class='int'>0</span>
+<span class='comment'>#     if Gtk.main_level == 0
+</span><span class='comment'>#       @builder[:window1].modal = true
+</span><span class='comment'>#     end 
+</span>  <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_main'>main</span> <span class='kw'>if</span>  <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='symbol'>:window1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_modal?'>modal?</span> <span class='kw'>or</span> <span class='ivar'>@builder</span><span class='period'>.</span><span class='id identifier rubyid_top_level_window'>top_level_window</span> 
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1661,16 +1667,16 @@ So, to set all the values of a form, simply call the set_glade_all() method inst
       <pre class="lines">
 
 
-408
-409
-410</pre>
+411
+412
+413</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 408</span>
+      <pre class="code"><span class="info file"># File 'lib/GladeGUI.rb', line 411</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_window1__destroy'>window1__destroy</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
-  <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_main_quit'>main_quit</span> <span class='comment'># if @top_level_window # or @builder[&quot;window1&quot;].modal? 
-</span><span class='kw'>end</span></pre>
+  <span class='const'>Gtk</span><span class='period'>.</span><span class='id identifier rubyid_main_quit'>main_quit</span> <span class='kw'>if</span> <span class='ivar'>@builder</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>window1</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_modal?'>modal?</span> <span class='kw'>or</span> <span class='ivar'>@builder</span><span class='period'>.</span><span class='id identifier rubyid_top_level_window'>top_level_window</span> 
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1681,7 +1687,7 @@ So, to set all the values of a form, simply call the set_glade_all() method inst
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 29 22:27:15 2024 by
+  Generated on Sun Dec  1 00:23:22 2024 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.1.6).
 </div>

@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Assistant:200');
-@import url('https://fonts.googleapis.com/css?family=Raleway:300');
-@import url('https://fonts.googleapis.com/css?family=Rubik+One:300');
+@import url('https://fonts.googleapis.com/css?family=Assistant:400');
+@import url('https://fonts.googleapis.com/css?family=Rubik+One:400');
+@import url('https://fonts.googleapis.com/css?family=Hind:200');
 body {color: #000000;}
 body {background-color: #ffffff;}
-body {font-size: 15px;}
+body {font-size: 18px;}
 #main a, #main a:visited {color: #662211;}
 li.odd {background: #eeeeee;}
 li.even {background: #dddddd;}
@@ -12,14 +12,14 @@ li.clicked > .item {background: #000000;}
 li.clicked > .item {color: #d3d7cf;}
 #main a:hover {background: #f6f5cb;}
 h1 {font-family: 'Assistant';}
-h2 {font-family: 'Raleway';}
+h2 {font-family: 'Assistant';}
 h3 {font-family: 'Rubik One';}
-h1 {font-weight: 200;}
-h2 {font-weight: 300;}
-h3 {font-weight: 300;}
-h1 {font-size: 3em;}
-h2 {font-size: 1.4em;}
-h3 {font-size: 1.4em;}
+h1 {font-weight: 400;}
+h2 {font-weight: 400;}
+h3 {font-weight: 400;}
+h1 {font-size: 2.6em;}
+h2 {font-size: 1.5em;}
+h3 {font-size: 1.3em;}
 h1 {color: #662211;}
 h2 {color: #000000;}
 h3 {color: #000000;}
@@ -28,15 +28,15 @@ h2 {background: #ffffff;}
 h3 {background: #ebeade;}
 #toc {background-color: #f3f3eb;}
 #main p {width: 65%;}
-#main p {font-family: 'Raleway';}
-#main p {font-weight: 300;}
+#main p {font-family: 'Hind';}
+#main p {font-weight: 200;}
 .object_link a, #full_list_nav a, #full_list_nav a:hover {color: #662211;}
-.object_link {font-family: 'Raleway';}
-.object_link {font-weight: 300;}
+.object_link {font-family: 'Assistant';}
+.object_link {font-weight: 400;}
 .object_link {font-size: 1em;}
-#toc {font-size: 1em;}
-#toc {font-family: 'Raleway';}
-#toc {font-weight: 300;}
+#toc {font-size: 0.8em;}
+#toc {font-family: 'Assistant';}
+#toc {font-weight: 400;}
 #content .summary .summary_signature:hover a {color: #000000;}
 .summary_signature:hover {border-color: #000000;}
 .summary .summary_signature {background: #ebeade;}

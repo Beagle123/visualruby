@@ -11,8 +11,8 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/04_before_show"
 current_file: "/home/eric/vrp/vr3/examples/04_before_show/README.txt"
 current_line: 9
-builder: !ruby/object:Gtk::Builder {}
 rdoc_command_line: rdoc -x README
+builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
 browser: firefox
 backup_path: "/home/eric"
