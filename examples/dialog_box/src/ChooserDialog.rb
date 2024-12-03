@@ -1,18 +1,19 @@
 
 class ChooserDialog
  
-  include GladeGUI
+  include GladeGUI  # to load ChooserDialog.glade
 
   def run()
-    load_glade
+    load_glade  # in GladeGUI
     response = @builder[:window1].run()
-    @builder[:window1].hide
     case response
       when Gtk::ResponseType::OK
-        return @builder[:comboLang].active_text, @builder[:checkDefault].active?
+        lang, default = @builder[:comboLang].active_text, @builder[:checkDefault].active?
       when Gtk::ResponseType::CANCEL
-        return nil, nil
-    end  
+        lang, default = nil, nil
+    end 
+    @builder[:window1].close
+    return lang, default 
   end
 
 end

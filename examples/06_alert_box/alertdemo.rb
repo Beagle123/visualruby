@@ -1,5 +1,6 @@
 
-require_relative "./../../lib/vrlib.rb"
+require "vrlib"
+
 require_relative "src/AlertBoxDemo.rb"
 
 

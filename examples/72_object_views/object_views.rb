@@ -1,5 +1,5 @@
 
-require "../../lib/vrlib"
+require "vrlib"
 
 require_relative "src/BalanceClass"
 require_relative "src/CustomerClass"

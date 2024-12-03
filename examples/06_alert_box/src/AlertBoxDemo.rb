@@ -62,7 +62,7 @@ class AlertBoxDemo
 
   def buttonHash__clicked(*a)
     my_hash = { username: "", password: "" }
-    answer = alert("Enter your credentials:", headline: "Sign In", data: my_hash, button_no: "Forgot Password")
+    answer = alert("Enter your credentials:", headline: "Sign In", data: my_hash, button_no: "Forgot Password", width:550)
     if answer.is_a? Hash
       alert "Alert() Returned Hash:  \n\n" + answer.to_s
     elsif answer == false

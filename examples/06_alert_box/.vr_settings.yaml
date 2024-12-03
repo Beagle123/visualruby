@@ -12,8 +12,8 @@ open_files:
 open_folders:
 - "/home/eric/vrp/vr3/examples/06_alert_box"
 - "/home/eric/vrp/vr3/examples/06_alert_box/src"
-current_file: "/home/eric/vrp/vr3/examples/06_alert_box/src/AlertBoxDemo.rb"
-current_line: 57
+current_file: "/home/eric/vrp/vr3/examples/06_alert_box/alertdemo.rb"
+current_line: 2
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

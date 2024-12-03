@@ -16,14 +16,16 @@ module VR
     end
   
     def before_show
-      @builder[:window1].show_all
-      @builder[:input_text].hide
-      @builder[:ui_grid].hide
-      @builder[:choices_text].hide
-      @builder[:headline].hide
+#       @builder[:window1].show_all
+#       @builder[:boxData].visible = false
+#       @builder[:input_text].visible = false
+#       @builder[:ui_grid].visible = false
+#       @builder[:choices_text].visible = false
+#       @builder[:headline].hide
       @flags[:title] = @flags[:title] ? @flags[:title] : @flags[:headline]
       @builder[:window1].title = @flags[:title] if @flags[:title]
-      @builder[:window1].resize(@flags[:width],100) if @flags[:width].to_i > 100
+      width = @flags[:width].to_i > 100 ? @flags[:width].to_i : 300 
+      @builder[:window1].resize(width, 150)
       @builder[:headline].show if @flags[:headline]
 
       if @flags[:data].is_a? Hash
@@ -41,21 +43,24 @@ module VR
         end
         @flags[:button_yes] ||= "Save"
         @flags[:button_cancel] ||= "Cancel"
+        @builder[:boxData].visible = true
         @builder["ui_grid"].show_all
       elsif @flags[:data].is_a? Array
         @flags[:button_yes] ||= "Select"
         @flags[:button_cancel] ||= "Cancel"
         @flags[:data].each { |c| @builder[:choices_text].append_text(c) }
         @choices_text = @flags[:data][0]
+        @builder[:boxData].visible = true
         @builder[:choices_text].show 
       elsif @flags[:data].is_a? String
         @flags[:button_yes] ||= "Save"
         @flags[:button_cancel] ||= "Cancel"
         @builder[:input_text].buffer.text = @flags[:data]
+        @builder[:boxData].visible = true
         @builder[:input_text].show 
       end
-      @builder[:button_no].hide unless @flags[:button_no]
-      @builder[:button_cancel].hide unless @flags[:button_cancel]
+      @builder[:button_no].show if @flags[:button_no]
+      @builder[:button_cancel].show if @flags[:button_cancel]
       set_glade_variables
       set_glade_hash(@flags)
     end

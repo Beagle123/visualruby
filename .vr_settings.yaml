@@ -18,8 +18,23 @@ open_files:
 - "/home/eric/vrp/vr3/lib/AlertDialog.rb"
 - "/home/eric/vrp/vr3/src/main/NewProjectGUI.rb"
 - "/home/eric/vrp/vr3/src/editor/VR_Tabs.rb"
+- "/home/eric/vrp/vr3/examples/06_alert_box/alertdemo.rb"
+- "/home/eric/vrp/vr3/examples/35_child_window/child_window.rb"
+- "/home/eric/vrp/vr3/examples/71_prettify_view/prettify_view.rb"
+- "/home/eric/vrp/vr3/examples/72_object_views/object_views.rb"
+- "/home/eric/vrp/vr3/examples/78_listview/listview.rb"
+- "/home/eric/vrp/vr3/examples/78_listview_objects/listviewobjects.rb"
+- "/home/eric/vrp/vr3/examples/95_active_record/active_record.rb"
+- "/home/eric/vrp/vr3/examples/97_active_record2/main.rb"
+- "/home/eric/vrp/vr3/vr.gemspec"
+- "/home/eric/vrp/vr3/examples/78_listview_objects/src/ListViewObjects.rb"
+- "/home/eric/vrp/vr3/lib/treeview/columns/CalendarCol.rb"
+- "/home/eric/vrp/vr3/site/Cheat_Sheet.md"
+- "/home/eric/vrp/vr3/site/Child_Windows_Tutorial.md"
+- "/home/eric/vrp/vr3/README.md"
 open_folders:
 - "/home/eric/vrp/vr3"
+- "/home/eric/vrp/vr3/examples"
 - "/home/eric/vrp/vr3/lib"
 - "/home/eric/vrp/vr3/lib/glade"
 - "/home/eric/vrp/vr3/site"
@@ -29,8 +44,8 @@ open_folders:
 - "/home/eric/vrp/vr3/src/editor"
 - "/home/eric/vrp/vr3/src/main"
 - "/home/eric/vrp/vr3/src/main/glade"
-current_file: "/home/eric/vrp/vr3/lib/AlertDialog.rb"
-current_line: 7
+current_file: "/home/eric/vrp/vr3/README.md"
+current_line: 34
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

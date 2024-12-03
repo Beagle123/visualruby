@@ -1,6 +1,6 @@
 
 
-require "vrlib"
+require "./../../lib/vrlib.rb"
 
 require_relative "src/Phantom.rb"
 

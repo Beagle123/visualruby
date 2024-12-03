@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors = ["Eric Cunningham"]  
   s.email = "beagle4321_2000@yahoo.com" # optional 
   s.summary = "Create IDE designed to make great GUIs with Ruby" # optional
-  s.homepage = "https://github.com/Beagle123/visualruby"  # optional
+  s.homepage = "https://beagle123.github.io/visualruby/"  # optional
   s.description = "Visualruby is a complete IDE for making graphical user interfaces with ruby.  It utilizes glade interface " +
             "designer to create windows, and uses a library of GUI helpers to make coding GTK+ programs easy.  " +
             "The IDE really helps you organize your files and your thoughts because it names your ruby files and glade " +

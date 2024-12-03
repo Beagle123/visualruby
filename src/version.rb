@@ -1,4 +1,4 @@
-VERSION = "3.6.9"
+VERSION = "3.6.13"
 GTK_VERSION = "gtk3"
 GTK_SOURCEVIEW_VERSION = "gtksourceview4"
 

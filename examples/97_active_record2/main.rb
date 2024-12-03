@@ -1,6 +1,6 @@
 
 # ignore -- this is for development, same as require 'vrlib'
-require File.exist?("./../../lib/vrlib.rb") ?  "./../../lib/vrlib.rb" : "vrlib"
+require "vrlib"
 
 begin
   require 'active_record'

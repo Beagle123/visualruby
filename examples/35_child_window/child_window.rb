@@ -1,6 +1,6 @@
 
-#require "vrlib"
-require_relative  "./../../lib/vrlib"
+require "vrlib"
+#require_relative  "./../../lib/vrlib"
 
 require_relative "src/ChildWindowDemo"
 require_relative "src/ModalWindow"
