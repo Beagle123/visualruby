@@ -9,13 +9,12 @@ open_files:
 - "/home/eric/vrp/vr3/examples/01_phantom/README.txt"
 - "/home/eric/vrp/vr3/examples/01_phantom/phantom.rb"
 - "/home/eric/vrp/vr3/examples/01_phantom/src/Phantom.rb"
-- "/home/eric/vrp/vr3/examples/01_phantom/src/glade/Phantom.glade"
 open_folders:
 - "/home/eric/vrp/vr3/examples/01_phantom"
 - "/home/eric/vrp/vr3/examples/01_phantom/src"
 - "/home/eric/vrp/vr3/examples/01_phantom/src/glade"
-current_file: "/home/eric/vrp/vr3/examples/01_phantom/src/glade/Phantom.glade"
-current_line: 8
+current_file: "/home/eric/vrp/vr3/examples/01_phantom/phantom.rb"
+current_line: 3
 rdoc_command_line: rdoc -x README
 builder: !ruby/object:Gtk::Builder {}
 top_level_window: false

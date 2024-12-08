@@ -3,10 +3,8 @@ require "vrlib"
 
 require_relative "src/AlertBoxDemo.rb"
 
-
-
-main = Gtk::Application.new()
+main = Gtk::Application.new("org.visualruby.main")
 main.signal_connect "activate" do |app|
-  AlertBoxDemo.new.show_glade()
+  app = AlertBoxDemo.new.show_glade()
 end
 main.run 

@@ -1,0 +1,17 @@
+--- !ruby/object:VR_ENV
+vr_yaml_file: "/home/eric/vrp/vr3/examples/36_dialog_box/.vr_settings.yaml"
+width: 1854
+height: 1003
+panel_pos: 360
+notebook_panel_position: 606
+run_command_line: dialog_box.rb
+open_files:
+- "/home/eric/vrp/vr3/examples/36_dialog_box/README.txt"
+- "/home/eric/vrp/vr3/examples/36_dialog_box/dialog_box.rb"
+- "/home/eric/vrp/vr3/examples/36_dialog_box/src/ChooserDialog.rb"
+open_folders:
+- "/home/eric/vrp/vr3/examples/36_dialog_box"
+- "/home/eric/vrp/vr3/examples/36_dialog_box/src"
+- "/home/eric/vrp/vr3/examples/36_dialog_box/src/glade"
+current_file: "/home/eric/vrp/vr3/examples/36_dialog_box/README.txt"
+current_line: 30

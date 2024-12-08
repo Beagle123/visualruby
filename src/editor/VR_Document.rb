@@ -21,6 +21,8 @@ class VR_Document < GtkSource::View
       buffer.language = GtkSource::LanguageManager.new.get_language("html")
     elsif [".yaml", ".yml"].include?(File.extname(full_path_file))
       buffer.language = GtkSource::LanguageManager.new.get_language("yaml")
+    elsif [".ui", ".glade"].include?(File.extname(full_path_file))
+      buffer.language = GtkSource::LanguageManager.new.get_language("xml")
     else 
       guess_lang = GtkSource::LanguageManager.new.guess_language(File.basename(full_path_file))
       buffer.language = guess_lang

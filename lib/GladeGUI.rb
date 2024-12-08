@@ -482,7 +482,7 @@ def clear_events()
     Gtk.main_iteration
   end
 end
- 
+
 
 
  

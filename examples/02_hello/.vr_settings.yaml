@@ -8,15 +8,14 @@ run_command_line: hello.rb
 open_files:
 - "/home/eric/vrp/vr3/examples/02_hello/README.txt"
 - "/home/eric/vrp/vr3/examples/02_hello/hello.rb"
-- "/home/eric/vrp/vr3/examples/02_hello/src/HelloGUI.rb"
 open_folders:
 - "/home/eric/vrp/vr3/examples/02_hello"
 - "/home/eric/vrp/vr3/examples/02_hello/src"
 - "/home/eric/vrp/vr3/examples/02_hello/src/glade"
-current_file: "/home/eric/vrp/vr3/examples/02_hello/README.txt"
-current_line: 24
-builder: !ruby/object:Gtk::Builder {}
+current_file: "/home/eric/vrp/vr3/examples/02_hello/hello.rb"
+current_line: 9
 rdoc_command_line: rdoc -x README
+builder: !ruby/object:Gtk::Builder {}
 top_level_window: false
 browser: firefox
 backup_path: "/home/eric"

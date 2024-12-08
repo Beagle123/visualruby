@@ -12,6 +12,6 @@ open_files:
 open_folders:
 - "/home/eric/vrp/vr3/examples/49_settings_file"
 - "/home/eric/vrp/vr3/examples/49_settings_file/src"
-current_file: "/home/eric/vrp/vr3/examples/49_settings_file/README.txt"
-current_line: 27
+current_file: "/home/eric/vrp/vr3/examples/49_settings_file/save_settings.rb"
+current_line: 12
 rdoc_command_line: rdoc -x README
