@@ -13,10 +13,10 @@ open_folders:
 - "/home/eric/vrp/vr3/examples/20_calculator"
 - "/home/eric/vrp/vr3/examples/20_calculator/src"
 - "/home/eric/vrp/vr3/examples/20_calculator/src/glade"
-current_file: "/home/eric/vrp/vr3/examples/20_calculator/README.txt"
-current_line: 18
-rdoc_command_line: rdoc -x README
+current_file: "/home/eric/vrp/vr3/examples/20_calculator/src/CalculatorGUI.rb"
+current_line: 44
 builder: !ruby/object:Gtk::Builder {}
+rdoc_command_line: rdoc -x README
 top_level_window: false
 settings_file_version: 1
 filename: ".vr_settings.yaml"

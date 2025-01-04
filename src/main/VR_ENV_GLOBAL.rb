@@ -16,7 +16,7 @@ class VR_ENV_GLOBAL
     @glade_path ||= "glade"
     @projects_home ||= File.join(ENV["HOME"], "visualruby")
     @projects_home_open_folders ||= [@projects_home]
-    @default_project ||= File.join(ENV["HOME"], "visualruby", "examples", "alert_box")
+    @default_project ||= File.join(ENV["HOME"], "visualruby", "examples", "01_phantom")
     @home_project ||= @default_project
   end
 

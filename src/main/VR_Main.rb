@@ -13,7 +13,7 @@ class VR_Main
   def before_show
 
     # there must be a visualruby directory:
-    required_project = File.join(ENV["HOME"],"","visualruby", "examples", "alert_box")
+    required_project = File.join(ENV["HOME"],"","visualruby", "examples", "01_phantom")
     menuInstallExamples__activate if not VR_Tools.vr_project?(required_project)
 
     # load global settings (requires /home/visuaruby folder exists

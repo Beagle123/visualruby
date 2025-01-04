@@ -21,6 +21,7 @@ class VR_Tabs < Gtk::Notebook
               parent: @main.builder[:window1],
               action: :save,
               buttons: [["_Cancel", :cancel], ["_Save", :accept]])
+    dialog.resize(500, 800)
     dialog.current_folder = File.dirname(@docs[page].full_path_file)
     dialog.current_name = VR_Document.get_class_title(@docs[page].buffer.text) 
     resp = dialog.run 

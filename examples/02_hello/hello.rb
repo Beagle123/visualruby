@@ -1,8 +1,10 @@
+require "./../../lib/vrlib.rb"
 
-require "vrlib"
+require_relative "src/Phantom.rb"
 
-require_relative "src/HelloGUI"
-
-
-HelloGUI.new.show_glade()
+main = Gtk::Application.new("org.visualruby.phantom_demo", :handles_open)
+main.signal_connect "activate" do |app|  
+  HelloGUI.new.show_ui(app)
+end
+main.run 
 

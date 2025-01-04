@@ -1,22 +1,25 @@
 --- !ruby/object:VR_ENV
 vr_yaml_file: "/home/eric/vrp/vr3/.vr_settings.yaml"
 width: 1854
-height: 1003
-panel_pos: 390
-notebook_panel_position: 553
+height: 1040
+panel_pos: 368
+notebook_panel_position: 739
 run_command_line: vr
 open_files:
 - "/home/eric/vrp/vr3/lib/GladeGUI.rb"
 - "/home/eric/vrp/vr3/src/main/VR_Main.rb"
 - "/home/eric/vrp/vr3/src/editor/VR_Tabs.rb"
-- "/home/eric/vrp/vr3/src/main/VR_File_Tree.rb"
 - "/home/eric/vrp/vr3/examples/78_listview/src/SongListViewGUI.rb"
-- "/home/eric/vrp/vr3/lib/treeview/FileTreeView.rb"
-- "/home/eric/vrp/vr3/Led_bar_8_segment.py"
+- "/home/eric/vrp/vr3/src/main/Find_Replace.rb"
+- "/home/eric/vrp/vr3/vr"
 open_folders:
 - "/home/eric/vrp/vr3"
-current_file: "/home/eric/vrp/vr3/Led_bar_8_segment.py"
-current_line: 77
-rdoc_command_line: rdoc -x README
+- "/home/eric/vrp/vr3/src"
+- "/home/eric/vrp/vr3/src/main"
+- "/home/eric/vrp/vr3/src/main/glade"
+- "/home/eric/vrp/vr3/lib"
+current_file: "/home/eric/vrp/vr3/vr"
+current_line: 64
 builder: !ruby/object:Gtk::Builder {}
+rdoc_command_line: rdoc -x README
 top_level_window: false

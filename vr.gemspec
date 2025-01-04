@@ -20,6 +20,6 @@ Gem::Specification.new do |s|
             "gems with one click.\n\nTo install, get instructions from our github page at https://github.com/Beagle123/visualruby" 
   s.executables = ['vr']   
   s.bindir = ['.']    # optional, default = bin
-  s.files = Dir.glob("./**/*.{rb,glade,png,yaml,sqlite3}", File::FNM_DOTMATCH) 
+  s.files = Dir.glob("./**/*.{rb,glade,png,yaml,sqlite3,txt}", File::FNM_DOTMATCH) 
   s.files << "vr"
 end

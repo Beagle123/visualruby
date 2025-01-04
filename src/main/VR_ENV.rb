@@ -10,8 +10,8 @@ class VR_ENV
 
   #to add setting, just add to list
   def defaults
-    @width ||= 800
-    @height ||= 600
+    @width ||= 700
+    @height ||= 500
     @panel_pos ||= 360
     @notebook_panel_position ||= 300
     @run_command_line ||= "main.rb"
